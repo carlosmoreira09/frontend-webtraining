@@ -1,9 +1,12 @@
 import { Component } from '@angular/core';
+import {ArmComponent} from "./components/arm/arm.component";
 
 @Component({
   selector: 'app-exercicios',
   standalone: true,
-  imports: [],
+  imports: [
+    ArmComponent
+  ],
   templateUrl: './exercises.component.html',
   styleUrl: './exercises.component.css'
 })

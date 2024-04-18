@@ -2,7 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {FormBuilder, ReactiveFormsModule, Validators} from "@angular/forms";
 import {ClientsModel} from "../../../data/clients.model";
 import {AtletasService} from "../../../service/atletas.service";
-import {ModalAtletaComponent} from "./components/modal-atleta.component";
+import {ModalAtletaComponent} from "./components/modal-athlete.component";
 import {HttpClient, HttpClientModule} from "@angular/common/http";
 import {CommonModule} from "@angular/common";
 import {DialogModule} from "primeng/dialog";
@@ -13,8 +13,8 @@ import {DialogModule} from "primeng/dialog";
   imports: [
     ReactiveFormsModule, HttpClientModule, DialogModule, CommonModule, ModalAtletaComponent
   ],
-  templateUrl: './atletas.component.html',
-  styleUrl: './atletas.component.css',
+  templateUrl: './athlete.component.html',
+  styleUrl: './athlete.component.css',
   providers: [HttpClient, AtletasService]
 })
 export class AtletasComponent implements OnInit {

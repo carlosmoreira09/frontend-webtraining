@@ -4,9 +4,9 @@ import { Component } from '@angular/core';
   selector: 'app-costas',
   standalone: true,
   imports: [],
-  templateUrl: './costas.component.html',
-  styleUrl: './costas.component.css'
+  templateUrl: './chest.component.html',
+  styleUrl: './chest.component.css'
 })
-export class CostasComponent {
+export class ChestComponent {
 
 }

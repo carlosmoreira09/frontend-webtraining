@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ModalAtletaComponent } from './modal-atleta.component';
+import { ModalAtletaComponent } from './modal-athlete.component';
 
 describe('ModalAtletaComponent', () => {
   let component: ModalAtletaComponent;
@@ -11,7 +11,7 @@ describe('ModalAtletaComponent', () => {
       imports: [ModalAtletaComponent]
     })
     .compileComponents();
-    
+
     fixture = TestBed.createComponent(ModalAtletaComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();

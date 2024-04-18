@@ -14,8 +14,8 @@ import {CommonModule} from "@angular/common";
     DialogModule,
     ReactiveFormsModule, HttpClientModule, CommonModule
   ],
-  templateUrl: './modal-atleta.component.html',
-  styleUrl: './modal-atleta.component.css',
+  templateUrl: './modal-athlete.component.html',
+  styleUrl: './modal-athlete.component.css',
   providers: [AtletasService,HttpClient]
 })
 export class ModalAtletaComponent implements AfterViewInit {
