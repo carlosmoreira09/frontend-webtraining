@@ -1,0 +1,113 @@
+<!-- Create Client modal -->
+<p-dialog position="center" [(visible)]="showCreateUser" [draggable]="false" [modal]="true" [style]="{ width: '50%', minHeight: '500px'}">
+  <ng-template pTemplate="content">
+    <div class="bg-white border-b rounded-t dark:border-gray-600 flex items-center justify-center w-full">
+      <div class="w-full h-full">
+        <!-- Modal header -->
+        <div class="mb-2 border-b rounded-t dark:border-gray-600">
+          <div class="text-xl font-semibold text-gray-900 dark:text-white">
+            Adicionar Atleta
+          </div>
+        </div>
+        <!-- Modal content -->
+        <form [formGroup]="formClient" class="relative mt-3 bg-white rounded-lg shadow dark:bg-gray-700">
+          <!-- Modal body -->
+          <div class="p-6 space-y-6">
+            <div class="grid grid-cols-6 gap-6">
+              <div class="col-span-6 sm:col-span-3">
+                <label for="fullName" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Nome Completo</label>
+                <input formControlName="fullName" type="text"  class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required="">
+              </div>
+              <div class="col-span-6 sm:col-span-3">
+                <label for="age" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Idade</label>
+                <input type="number" formControlName="age" class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required="">
+              </div>
+              <div class="col-span-6 sm:col-span-3">
+                <label for="email" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Email</label>
+                <input type="email" formControlName="email"  class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="example@company.com" required="">
+              </div>
+              <div class="col-span-6 sm:col-span-3">
+                <label for="phone" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Contato</label>
+                <input type="text" formControlName="phone" class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="(22)99999-9999" required="">
+              </div>
+              <div class="col-span-6 sm:col-span-3">
+                <label for="underline_select" class="sr-only">Modalidade</label>
+                <select [value]="modalidades" formControlName="id_training" class="block py-2.5 px-0 w-full text-sm text-gray-500 bg-transparent border-0 border-b-2 border-gray-200 appearance-none dark:text-gray-400 dark:border-gray-700 focus:outline-none focus:ring-0 focus:border-gray-200 peer">
+                  <option selected> Selecione uma Modalidade</option>
+                  <option *ngFor="let modalidade of modalidades">
+                    {{  modalidade.name }}</option>
+
+                </select>
+              </div>
+            </div>
+          </div>
+          <!-- Modal footer -->
+          <div class="flex items-center p-6 space-x-3 rtl:space-x-reverse border-t border-gray-200 rounded-b dark:border-gray-600">
+            <button type="submit" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Save all</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </ng-template>
+</p-dialog>
+
+<p-dialog position="center" [(visible)]="showEditUser" [draggable]="false" [modal]="true" [style]="{ width: '50%', minHeight: '500px'}">
+  <ng-template pTemplate="content">
+  <div class="bg-white border-b rounded-t dark:border-gray-600 flex items-center justify-center w-full">
+    <div class="w-full h-full">
+      <!-- Modal header -->
+      <div class="mb-2 border-b rounded-t dark:border-gray-600">
+        <div class="text-xl font-semibold text-gray-900 dark:text-white">
+          Editar Dados Atleta
+        </div>
+      </div>
+      <!-- Modal content -->
+      <form [formGroup]="formClient" class="relative mt-3 bg-white rounded-lg shadow dark:bg-gray-700">
+        <!-- Modal body -->
+          <div class="p-6 space-y-6">
+            <div class="grid grid-cols-6 gap-6">
+              <div class="col-span-6 sm:col-span-3">
+                <label for="fullName" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Nome Completo</label>
+                <input formControlName="fullName" type="text" id="fullName" class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                       [placeholder]="clientInfo?.fullName" required="">
+              </div>
+              <div class="col-span-6 sm:col-span-3">
+                <label for="age" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Idade</label>
+                <input type="number" formControlName="age" id="age" class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                       [placeholder]="clientInfo?.age" required="">
+              </div>
+              <div class="col-span-6 sm:col-span-3">
+                <label for="email" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Email</label>
+                <input type="email" formControlName="email" id="email" class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                       [placeholder]="clientInfo?.email" required="">
+              </div>
+              <div class="col-span-6 sm:col-span-3">
+                <label for="phone" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Contato</label>
+                <input type="text" formControlName="phone" id="phone" class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                       [placeholder]="clientInfo?.phone" placeholder="(22)99999-9999" required="">
+              </div>
+              <div class="col-span-6 sm:col-span-3">
+                <label for="underline_select" class="sr-only">Modalidade</label>
+                <select formControlName="id_training" id="underline_select" class="block py-2.5 px-0 w-full text-sm text-gray-500 bg-transparent border-0 border-b-2 border-gray-200 appearance-none dark:text-gray-400 dark:border-gray-700 focus:outline-none focus:ring-0 focus:border-gray-200 peer">
+                  @for (modalidade of modalidades; track modalidade.name) {
+                    @if(modalidade.abbrev == clientInfo?.id_training) {
+                    <option selected> {{ modalidade.name }}</option>
+                    } @else {
+                    <option> {{ modalidade.name }}</option>
+                  }
+                  }
+
+                </select>
+              </div>
+            </div>
+          </div>
+          <!-- Modal footer -->
+          <div class="flex items-center p-6 space-x-3 rtl:space-x-reverse border-t border-gray-200 rounded-b dark:border-gray-600">
+            <button type="submit" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Save all</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </ng-template>
+</p-dialog>
+
