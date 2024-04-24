@@ -11,7 +11,9 @@
           </div>
         </div>
         <!-- Modal content -->
-        <p-message *ngIf="formValid" severity="error" text="Field is required"></p-message>
+        <div class="flex justify-center">
+        <p-message class="p-4 space-x-3 rounded bg-red-500 text-white flex justify-center mr-2" *ngIf="formValid" severity="error" text="Field is required"></p-message>
+        </div>
         <form [formGroup]="exerciseFormGroup" class="relative mt-3 bg-white rounded-lg shadow dark:bg-gray-700">
           <!-- Modal body -->
           <div class="p-6 space-y-1">

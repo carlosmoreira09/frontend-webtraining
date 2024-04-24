@@ -96,7 +96,7 @@ export class ModalExercisesComponent implements AfterViewInit{
  getFormValues(): ExerciseModel | any {
     if(this.exerciseFormGroup.invalid) {
       this.formValid = true;
-      return
+      return 
     }
       const exercise = this.getField('exercise')?.value;
       const exercise_desc = this.getField('exercise_desc')?.value;
