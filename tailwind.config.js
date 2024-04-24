@@ -1,6 +1,9 @@
 /** @type {import('tailwindcss').Config} */
 const {join} = require("path");
 module.exports = {
+  corePlugins: {
+    preflight: true,
+  },
   content: [
     "./src/**/*.{html,ts}",
     "./node_modules/flowbite/**/*.js",

@@ -69,28 +69,28 @@
               <div class="col-span-6 sm:col-span-3">
                 <label for="fullName" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Nome Completo</label>
                 <input formControlName="fullName" type="text" id="fullName" class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                       [placeholder]="clientInfo?.fullName" required="">
+                       [placeholder]="clientInfo.fullName" required="">
               </div>
               <div class="col-span-6 sm:col-span-3">
                 <label for="age" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Idade</label>
                 <input type="number" formControlName="age" id="age" class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                       [placeholder]="clientInfo?.age" required="">
+                       [placeholder]="clientInfo.age" required="">
               </div>
               <div class="col-span-6 sm:col-span-3">
                 <label for="email" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Email</label>
                 <input type="email" formControlName="email" id="email" class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                       [placeholder]="clientInfo?.email" required="">
+                       [placeholder]="clientInfo.email" required="">
               </div>
               <div class="col-span-6 sm:col-span-3">
                 <label for="phone" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Contato</label>
                 <input type="text" formControlName="phone" id="phone" class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                       [placeholder]="clientInfo?.phone" placeholder="(22)99999-9999" required="">
+                       [placeholder]="clientInfo.phone" placeholder="(22)99999-9999" required="">
               </div>
               <div class="col-span-6 sm:col-span-3">
                 <label for="underline_select" class="sr-only">Modalidade</label>
                 <select formControlName="id_training" id="underline_select" class="block py-2.5 px-0 w-full text-sm text-gray-500 bg-transparent border-0 border-b-2 border-gray-200 appearance-none dark:text-gray-400 dark:border-gray-700 focus:outline-none focus:ring-0 focus:border-gray-200 peer">
                   @for (modalidade of modalidades; track modalidade.name) {
-                    @if(modalidade.abbrev == clientInfo?.id_training) {
+                    @if(modalidade.abbrev == clientInfo.id_training) {
                     <option selected> {{ modalidade.name }}</option>
                     } @else {
                     <option> {{ modalidade.name }}</option>

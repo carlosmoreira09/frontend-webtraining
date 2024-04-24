@@ -18,31 +18,15 @@ import {DialogModule} from "primeng/dialog";
   providers: [HttpClient, AtletasService]
 })
 export class AtletasComponent implements OnInit {
-  atletas: ClientsModel[] | undefined;
+  atletas: ClientsModel[];
 
-  public modalidades = [
-    {name: 'Hipertrofia', abbrev: 'hiper'},
-    {name: 'Emagrecimento', abbrev: 'emagre'},
-    {name: 'Fortalecimento', abbrev: 'fortalecimento'},
-    {name: 'Tratamento de Lesões', abbrev: 'lesoes'}
-  ];
-  public formClient = this.formBuilder.group({
-    fullName: ['', Validators.required],
-    age: [''],
-    phone: [''],
-    email: [''],
-    id_training: ['']
-  });
-
-  constructor(private clientService: AtletasService,
-              private formBuilder: FormBuilder,
-  ) {}
+  constructor(private clientService: AtletasService) {}
   ngOnInit() {
     this.listAllUsers();
   }
   listAllUsers() {
-    return this.clientService.listAllUser().subscribe(
-      (users) => {
+    return this.clientService.listAllAthletas().subscribe(
+      (users: ClientsModel[]) => {
         this.atletas = users;
       }
     )

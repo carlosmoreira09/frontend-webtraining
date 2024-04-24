@@ -23,8 +23,7 @@ export class ModalAtletaComponent implements AfterViewInit {
   dialog!: ElementRef;
 
   @Input() service!: string;
-  @Input() clientInfo: ClientsModel | undefined;
-  atletas: ClientsModel[] | undefined;
+  @Input() clientInfo: ClientsModel;
   showCreateUser = false;
   showEditUser = false;
 
@@ -55,13 +54,5 @@ export class ModalAtletaComponent implements AfterViewInit {
 
   ngAfterViewInit() {
     this.formClient = this.initControlForm();
-    this.listAllUsers();
-  }
-  listAllUsers() {
-    return this.clientService.listAllUser().subscribe(
-      (users) => {
-        this.atletas = users;
-      }
-    )
   }
 }
