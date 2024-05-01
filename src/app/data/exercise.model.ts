@@ -6,3 +6,8 @@ export interface ExerciseModel {
   repetition: string;
   training_type?: string;
 }
+
+export interface returnMessage {
+  message: string;
+  status: number;
+}

@@ -9,7 +9,7 @@ import {
 } from "@angular/forms";
 import {NgForOf, NgIf} from "@angular/common";
 import {MessageService, SharedModule} from "primeng/api";
-import {ExerciseModel} from "../../../../../data/exercise.model";
+import {ExerciseModel, returnMessage} from "../../../../../data/exercise.model";
 import {DropdownModule} from "primeng/dropdown";
 import {ActivatedRoute} from "@angular/router";
 import {ExercisesService} from "../../../../../service/exercises.service";
@@ -47,7 +47,7 @@ export class ModalExercisesComponent implements AfterViewInit{
   showCreateExercise = false;
   showEditExercise = false;
   categories: any;
-  formValid = false;
+  formValid = true;
 
   constructor(private formBuilder: FormBuilder,
               private router: ActivatedRoute,
@@ -83,10 +83,10 @@ export class ModalExercisesComponent implements AfterViewInit{
   }
   initNewControlForm() {
       this.exerciseFormGroup = this.formBuilder.group({
-        exercise: ['', [Validators.minLength(5),Validators.requiredTrue]],
+        exercise: ['', [Validators.required, Validators.minLength(5)]],
         exercise_desc: [''],
-        repetition: ['', Validators.requiredTrue],
-        training_type: ['', Validators.requiredTrue],
+        repetition: ['', Validators.required],
+        training_type: ['', Validators.required],
       });
   }
  getField(field: string) {
@@ -94,25 +94,25 @@ export class ModalExercisesComponent implements AfterViewInit{
  }
 
  getFormValues(): ExerciseModel | any {
-    if(this.exerciseFormGroup.invalid) {
-      this.formValid = true;
-      return 
-    }
-      const exercise = this.getField('exercise')?.value;
-      const exercise_desc = this.getField('exercise_desc')?.value;
-      const repetition = this.getField('repetition')?.value;
-      const training_type = this.getField('training_type')?.value;
+   if (this.exerciseFormGroup.valid) {
+   const exercise = this.getField('exercise')?.value;
+   const exercise_desc = this.getField('exercise_desc')?.value;
+   const repetition = this.getField('repetition')?.value;
+   const training_type = this.getField('training_type')?.value;
 
-      return {
-        exercise: exercise,
-        exercise_desc: exercise_desc,
-        training_type: training_type,
-        repetition: repetition,
-        exercise_type: this.router.snapshot.params['type']
-      }
-
+   return {
+     exercise: exercise,
+     exercise_desc: exercise_desc,
+     training_type: training_type,
+     repetition: repetition,
+     exercise_type: this.router.snapshot.params['type']
+     }
+   } else {
+     this.formValid = false;
+   }
  }
  onCloseCreate() {
+    this.openDialogCreate();
     this.exerciseFormGroup.reset();
     this.initNewControlForm();
  }
@@ -127,14 +127,14 @@ export class ModalExercisesComponent implements AfterViewInit{
       .subscribe(
         res => this.submitFunctions(res)
       )}
- submitFunctions(res: any) {
+ submitFunctions(res: returnMessage) {
    this.openDialogCreate();
    this.onCloseCreate();
    this.exerciseComponent.listExercisesByType();
    this.messageService.add({
      key: 'tc',
      severity: 'success',
-     detail: res,
+     detail: res.message.toString(),
    })
  }
 }
