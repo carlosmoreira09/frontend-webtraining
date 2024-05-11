@@ -1,7 +1,7 @@
 import {Injectable, Self} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {ExerciseModel} from "../data/exercise.model";
-import {catchError, Observable} from "rxjs";
+import {Observable} from "rxjs";
 
 @Injectable({
   providedIn: 'root'
@@ -16,5 +16,9 @@ export class ExercisesService {
   }
   addExercise(newExercise: ExerciseModel): Observable<any> {
     return this.httpClient.post(this.url,newExercise, {responseType: 'text'})
+  }
+
+  deleteExercise(id: number | undefined): Observable<any> {
+    return this.httpClient.delete(this.url+ "/" + id);
   }
 }

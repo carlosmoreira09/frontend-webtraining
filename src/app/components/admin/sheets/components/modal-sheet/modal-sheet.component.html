@@ -1,0 +1,150 @@
+<p-toast class="bg-green bg-green-500 dark:bg-green-500 text-white rounded" position="center" key="tc"></p-toast>
+<!-- Create Client modal -->
+<p-dialog (onHide)="onCloseCreate()" position="center" [(visible)]="showCreateSheet" [draggable]="false" [modal]="true" [style]="{ width: '50%', minHeight: '500px'}">
+  <ng-template pTemplate="headless">
+    <div class="bg-white border-b rounded-t dark:border-gray-600 flex items-center justify-center w-full">
+      <div class="w-full h-full">
+        <!-- Modal header -->
+        <div class="mb-2 border-b rounded-t dark:border-gray-600">
+          <div class="p-4 text-xl font-semibold text-gray-900 dark:text-white">
+            <i class="ml-2 pi pi-plus-circle" style="color: blue; font-size: 1rem"></i>
+            Criar Planilha
+          </div>
+        </div>
+        <!-- Modal content -->
+        <div class="flex justify-center">
+          <p-message *ngIf="formValid" severity="error" text="Field is required"></p-message>
+        </div>
+        <form [formGroup]="sheetFormGroup" class="relative mt-3 bg-white rounded-lg shadow dark:bg-gray-700">
+          <!-- Modal body -->
+          <div class="p-6 space-y-1">
+            <div class="grid grid-cols-1">
+              <div class="col-span-1 mb-2 sm:col-span-3">
+                <label htmlFor="sheet_name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Nome da Planilha</label>
+                <input formControlName="sheet_name" type="text"  class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required="">
+              </div>
+              <div class="col-span-1 mb-2 sm:col-span-3">
+                <label htmlFor="sheet_desc" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Descrição da Planilha</label>
+                <input type="text" formControlName="sheet_desc" class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required=""/>
+              </div>
+
+              <label class="block mb-2 mt-3 text-sm font-medium text-gray-900 dark:text-white">Qual treino você deseja adicionar?</label>
+              <div class="flex row mb-4 sm:col-span-3">
+                <div class="flex">
+                <input class="ml-2" type="checkbox" formControlName="sheet_a" id="sheet_a"/>
+                </div>
+                <label htmlFor="sheet_a" class="ml-2 mt-1 block text-sm font-medium text-gray-900 dark:text-white"> Treino A</label>
+                <div class="m-0">
+                <input class="ml-2" type="checkbox" formControlName="sheet_b" id="sheet_b"/>
+                </div>
+                <label htmlFor="sheet_b" class="ml-2 mt-1 block text-sm font-medium text-gray-900 dark:text-white"> Treino B</label>
+
+                <div class="m-0">
+                <input class="ml-2" type="checkbox" formControlName="sheet_c" id="sheet_c"/>
+                </div>
+                <label htmlFor="sheet_c" class="ml-2 mt-1 block text-sm font-medium text-gray-900 dark:text-white"> Treino C</label>
+
+                <div class="m-0">
+                <input class="ml-2" type="checkbox" formControlName="sheet_d" id="sheet_d"/>
+                </div>
+                <label htmlFor="sheet_d" class="ml-2 mt-1 block text-sm font-medium text-gray-900 dark:text-white"> Treino D</label>
+
+              </div>
+            <div class="col-span-1 sm:col-span-3">
+              <label htmlFor="exercise_type" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Escolha o Tipo de Exercicio</label>
+              <select (change)="onSelectExercise()" formControlName="exercise_type" id="exercise_type" class="block py-2.5 px-0 w-full text-sm text-gray-500 bg-transparent border-0 border-b-2 border-gray-200 appearance-none dark:text-gray-400 dark:border-gray-700 focus:outline-none focus:ring-0 focus:border-gray-200 peer">
+                @for (modalidade of modalidades; track modalidade.name) {
+                    <option> {{ modalidade.name }}</option>
+                }
+              </select>
+            </div>
+              <div class="col-span-1 mt-1 sm:col-span-3">
+                <label htmlFor="exercises" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Escolha o Exercicio</label>
+                <select formControlName="exercises" id="exercises" class="block py-2.5 px-0 w-full text-sm text-gray-500 bg-transparent border-0 border-b-2 border-gray-200 appearance-none dark:text-gray-400 dark:border-gray-700 focus:outline-none focus:ring-0 focus:border-gray-200 peer">
+                  @for (exercise of list; track exercise.name) {
+                    <option> {{ exercise.name }}</option>
+                  }
+                </select>
+                <button (click)="addExercise()" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Adicionar</button>
+              </div>
+            </div>
+          </div>
+          <!-- Modal footer -->
+          <div class="flex justify-center p-6 space-x-3">
+            <div class="rtl:space-x-reverse border-t border-gray-200 rounded-b dark:border-gray-600">
+              <button (click)="submitNewSheet()" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Save</button>
+            </div>
+            <div class="rtl:space-x-reverse border-t border-gray-200 rounded-b dark:border-gray-600">
+              <button (click)="onCloseCreate()" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Cancelar</button>
+            </div>
+          </div>
+        </form>
+<hr class="line-clamp-1">
+        <div class="flex justify-between row-auto">
+          <div>
+            Treino A
+          </div>
+          <div>
+            Treino B
+          </div>
+          <div>
+          Treino C
+        </div>
+          <div>
+            Treino D
+          </div>
+        </div>
+      </div>
+    </div>
+  </ng-template>
+</p-dialog>
+
+<p-dialog (close)="onCloseEdit()" position="center" [(visible)]="showEditSheet" [draggable]="false" [modal]="true" [style]="{ width: '50%', minHeight: '500px'}">
+  <ng-template pTemplate="headless">
+    <div class="bg-white border-b rounded-t dark:border-gray-600 flex items-center justify-center w-full">
+      <div class="w-full h-full">
+        <!-- Modal header -->
+        <div class="mb-2 border-b rounded-t dark:border-gray-600">
+          <div class="text-xl font-semibold text-gray-900 dark:text-white">
+            Editar Dados Atleta
+          </div>
+        </div>
+        <!-- Modal content -->
+        <form [formGroup]="sheetFormGroup" class="relative mt-3 bg-white rounded-lg shadow dark:bg-gray-700">
+          <!-- Modal body -->
+          <div class="p-6 space-y-1">
+            <div class="grid grid-cols-1">
+              <div class="col-span-1 mb-2 sm:col-span-3">
+                <label htmlFor="exercise" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Nome do Exercicio</label>
+                <input formControlName="exercise" type="text"
+                       class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required="">
+              </div>
+              <div class="col-span-1 mb-2 sm:col-span-3">
+                <label htmlFor="exercise_desc" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Descrição</label>
+                <input type="text" formControlName="exercise_desc" class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required="">
+              </div>
+              <div class="col-span-1 mb-2 sm:col-span-3">
+                <label htmlFor="repetition" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Repetições</label>
+                <input type="text" formControlName="repetition"  class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="4 x 10" required="">
+              </div>
+              <div class="col-span-1 mb-2 sm:col-span-3">
+                <label htmlFor="training_type" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Modalidade do Exercício</label>
+                <input type="text" formControlName="training_type"  class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Musculação" required="">
+              </div>
+            </div>
+          </div>
+          <!-- Modal footer -->
+          <div class="flex justify-center p-6 space-x-3">
+            <div class="rtl:space-x-reverse border-t border-gray-200 rounded-b dark:border-gray-600">
+              <button (click)="submitNewSheet()" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Save</button>
+            </div>
+            <div class="rtl:space-x-reverse border-t border-gray-200 rounded-b dark:border-gray-600">
+              <button (click)="onCloseEdit()" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Cancelar</button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </ng-template>
+</p-dialog>
+

@@ -1,13 +1,13 @@
 import { TestBed } from '@angular/core/testing';
 
-import { PlanilhasService } from './planilhas.service';
+import { SheetsService } from './sheets.service';
 
 describe('PlanilhasService', () => {
-  let service: PlanilhasService;
+  let service: SheetsService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({});
-    service = TestBed.inject(PlanilhasService);
+    service = TestBed.inject(SheetsService);
   });
 
   it('should be created', () => {

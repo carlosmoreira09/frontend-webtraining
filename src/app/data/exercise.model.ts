@@ -1,5 +1,5 @@
 export interface ExerciseModel {
-  id_exercise?: number;
+  id_exercise?: number | undefined;
   exercise: string;
   exercise_desc: string;
   exercise_type: string;

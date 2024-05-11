@@ -1,7 +1,7 @@
 import {Component} from '@angular/core';
 import {CommonModule} from "@angular/common";
-import {ActivatedRoute, Router, RouterLink, RouterLinkActive} from "@angular/router";
-import {ExercisesComponent} from "../../admin/exercises/exercises.component";
+import {RouterLink, RouterLinkActive} from "@angular/router";
+
 
 @Component({
   selector: 'app-menu',
@@ -9,17 +9,12 @@ import {ExercisesComponent} from "../../admin/exercises/exercises.component";
   imports: [
     CommonModule,
     RouterLink,
-    RouterLinkActive,
-    ExercisesComponent
+    RouterLinkActive
   ],
   templateUrl: './menu.component.html',
   styleUrl: './menu.component.css',
-  providers: [ExercisesComponent]
+  providers: []
 })
 export class MenuComponent {
-
-  constructor() {
-  }
-
-
+  constructor() {}
 }

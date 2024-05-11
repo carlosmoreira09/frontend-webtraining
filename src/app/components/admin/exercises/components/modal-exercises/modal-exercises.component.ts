@@ -112,7 +112,7 @@ export class ModalExercisesComponent implements AfterViewInit{
    }
  }
  onCloseCreate() {
-    this.openDialogCreate();
+   this.showCreateExercise = false;
     this.exerciseFormGroup.reset();
     this.initNewControlForm();
  }
@@ -128,8 +128,7 @@ export class ModalExercisesComponent implements AfterViewInit{
         res => this.submitFunctions(res)
       )}
  submitFunctions(res: returnMessage) {
-   this.openDialogCreate();
-   this.onCloseCreate();
+   this.showCreateExercise = false;
    this.exerciseComponent.listExercisesByType();
    this.messageService.add({
      key: 'tc',

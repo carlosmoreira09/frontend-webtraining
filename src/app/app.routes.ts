@@ -3,6 +3,7 @@ import {AuthComponent} from "./components/views/auth/auth.component";
 import {RegisterComponent} from "./components/views/register/register.component";
 import {AtletasComponent} from "./components/admin/athlete/athlete.component";
 import {ExercisesComponent} from "./components/admin/exercises/exercises.component";
+import {SheetsComponent} from "./components/admin/sheets/sheets.component";
 
 export const routes: Routes = [
   {
@@ -12,11 +13,15 @@ export const routes: Routes = [
   },
   {
     path: 'auth', component: AuthComponent
-  }, {
+  },
+  {
     path: 'register', component: RegisterComponent
   },
   {
     path: 'athletas', component: AtletasComponent
+  },
+  {
+    path: 'sheets', component: SheetsComponent
   },
   {
     path: 'exercises/:type', component: ExercisesComponent

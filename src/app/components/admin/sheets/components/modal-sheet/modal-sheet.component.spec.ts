@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { UserDropdownComponent } from './user-dropdown.component';
+import { ModalSheetComponent } from './modal-sheet.component';
 
-describe('UserDropdownComponent', () => {
-  let component: UserDropdownComponent;
-  let fixture: ComponentFixture<UserDropdownComponent>;
+describe('ModalSheetComponent', () => {
+  let component: ModalSheetComponent;
+  let fixture: ComponentFixture<ModalSheetComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [UserDropdownComponent]
+      imports: [ModalSheetComponent]
     })
     .compileComponents();
     
-    fixture = TestBed.createComponent(UserDropdownComponent);
+    fixture = TestBed.createComponent(ModalSheetComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
