@@ -1,12 +1,20 @@
 <p-toast class="bg-green bg-green-500 dark:bg-green-500 text-white rounded" position="center" key="tc"></p-toast>
 <!-- Create Client modal -->
-<p-dialog (onHide)="onCloseCreate()" position="center" [(visible)]="showCreateSheet" [draggable]="false" [modal]="true" [style]="{ width: '50%', minHeight: '500px'}">
+<p-dialog
+  (onHide)="onCloseCreate()"
+  position="center"
+  [(visible)]="showCreateSheet"
+  [breakpoints]="{ '650px': '75vw', '575px': '90vw' }"
+  [draggable]="false"
+  [modal]="true"
+  styleClass="overflow-auto"
+  [style]="{ width: '70%', minHeight: '500px'}">
   <ng-template pTemplate="headless">
-    <div class="bg-white border-b rounded-t dark:border-gray-600 flex items-center justify-center w-full">
+    <div class="p-4 bg-white border-b rounded-t dark:border-gray-600 flex items-center justify-center w-full">
       <div class="w-full h-full">
         <!-- Modal header -->
         <div class="mb-2 border-b rounded-t dark:border-gray-600">
-          <div class="p-4 text-xl font-semibold text-gray-900 dark:text-white">
+          <div class="p-2 text-xl font-semibold text-gray-900 dark:text-white">
             <i class="ml-2 pi pi-plus-circle" style="color: blue; font-size: 1rem"></i>
             Criar Planilha
           </div>
@@ -15,57 +23,47 @@
         <div class="flex justify-center">
           <p-message *ngIf="formValid" severity="error" text="Field is required"></p-message>
         </div>
-        <form [formGroup]="sheetFormGroup" class="relative mt-3 bg-white rounded-lg shadow dark:bg-gray-700">
+        <form [formGroup]="sheetFormGroup" class="relative mt-1 bg-white rounded-lg shadow dark:bg-gray-700">
           <!-- Modal body -->
-          <div class="p-6 space-y-1">
+          <div class="p-2 space-y-1">
             <div class="grid grid-cols-1">
-              <div class="col-span-1 mb-2 sm:col-span-3">
-                <label htmlFor="sheet_name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Nome da Planilha</label>
-                <input formControlName="sheet_name" type="text"  class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required="">
+              <div class="col-span-1 mb-1 sm:col-span-3">
+                <label htmlFor="sheet_name" class="block text-sm font-medium text-gray-900 dark:text-white">Nome da Planilha</label>
+                <input formControlName="sheet_name" type="text"  class="shadow-sm h-8 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required="">
               </div>
-              <div class="col-span-1 mb-2 sm:col-span-3">
-                <label htmlFor="sheet_desc" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Descrição da Planilha</label>
-                <input type="text" formControlName="sheet_desc" class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required=""/>
+              <div class="col-span-1 mb-1 sm:col-span-3">
+                <label htmlFor="sheet_desc" class="block text-sm font-medium text-gray-900 dark:text-white">Descrição da Planilha</label>
+                <input type="text" formControlName="sheet_desc" class="shadow-sm h-8 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required=""/>
+              </div>
+              <div class="col-span-1 mb-1 sm:col-span-3">
+                <label htmlFor="sheet_id" class="block text-sm font-medium text-gray-900 dark:text-white">Escolha o Treino</label>
+                <select formControlName="sheet_id" id="sheet_id" class="block py-2.5 px-0 w-full text-sm text-gray-500 bg-transparent border-0 border-b-2 border-gray-200 appearance-none dark:text-gray-400 dark:border-gray-700 focus:outline-none focus:ring-0 focus:border-gray-200 peer">
+                  @for (sheet of sheets; track sheet.name) {
+                    <option> {{ sheet.name }}</option>
+                  }
+                </select>
               </div>
 
-              <label class="block mb-2 mt-3 text-sm font-medium text-gray-900 dark:text-white">Qual treino você deseja adicionar?</label>
-              <div class="flex row mb-4 sm:col-span-3">
-                <div class="flex">
-                <input class="ml-2" type="checkbox" formControlName="sheet_a" id="sheet_a"/>
-                </div>
-                <label htmlFor="sheet_a" class="ml-2 mt-1 block text-sm font-medium text-gray-900 dark:text-white"> Treino A</label>
-                <div class="m-0">
-                <input class="ml-2" type="checkbox" formControlName="sheet_b" id="sheet_b"/>
-                </div>
-                <label htmlFor="sheet_b" class="ml-2 mt-1 block text-sm font-medium text-gray-900 dark:text-white"> Treino B</label>
-
-                <div class="m-0">
-                <input class="ml-2" type="checkbox" formControlName="sheet_c" id="sheet_c"/>
-                </div>
-                <label htmlFor="sheet_c" class="ml-2 mt-1 block text-sm font-medium text-gray-900 dark:text-white"> Treino C</label>
-
-                <div class="m-0">
-                <input class="ml-2" type="checkbox" formControlName="sheet_d" id="sheet_d"/>
-                </div>
-                <label htmlFor="sheet_d" class="ml-2 mt-1 block text-sm font-medium text-gray-900 dark:text-white"> Treino D</label>
-
-              </div>
-            <div class="col-span-1 sm:col-span-3">
-              <label htmlFor="exercise_type" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Escolha o Tipo de Exercicio</label>
+            <div class="col-span-1 mb-1 sm:col-span-3">
+              <label htmlFor="exercise_type" class="block mt-2 text-sm font-medium text-gray-900 dark:text-white">Escolha o Tipo de Exercicio</label>
               <select (change)="onSelectExercise()" formControlName="exercise_type" id="exercise_type" class="block py-2.5 px-0 w-full text-sm text-gray-500 bg-transparent border-0 border-b-2 border-gray-200 appearance-none dark:text-gray-400 dark:border-gray-700 focus:outline-none focus:ring-0 focus:border-gray-200 peer">
-                @for (modalidade of modalidades; track modalidade.name) {
+                @for (modalidade of modalidades; track modalidade.abbrev) {
                     <option> {{ modalidade.name }}</option>
                 }
               </select>
             </div>
-              <div class="col-span-1 mt-1 sm:col-span-3">
-                <label htmlFor="exercises" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Escolha o Exercicio</label>
-                <select formControlName="exercises" id="exercises" class="block py-2.5 px-0 w-full text-sm text-gray-500 bg-transparent border-0 border-b-2 border-gray-200 appearance-none dark:text-gray-400 dark:border-gray-700 focus:outline-none focus:ring-0 focus:border-gray-200 peer">
-                  @for (exercise of list; track exercise.name) {
+              <div class="col-span-1 mb-1 sm:col-span-3">
+                <label htmlFor="exercises" class="block mt-1 text-sm font-medium text-gray-900 dark:text-white">Escolha o Exercicio</label>
+                <select
+                        formControlName="exercises"
+                        id="exercises"
+                        class="block py-2.5 px-0 w-full text-sm text-gray-500 bg-transparent border-0 border-b-2 border-gray-200 appearance-none dark:text-gray-400 dark:border-gray-700 focus:outline-none focus:ring-0 focus:border-gray-200 peer">
+                  @for (exercise of listExercise; track exercise) {
                     <option> {{ exercise.name }}</option>
                   }
                 </select>
-                <button (click)="addExercise()" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Adicionar</button>
+                <button (click)="addExercise()" class="text-white mt-1 bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+                  Adicionar Exercício</button>
               </div>
             </div>
           </div>
@@ -80,19 +78,54 @@
           </div>
         </form>
 <hr class="line-clamp-1">
-        <div class="flex justify-between row-auto">
-          <div>
-            Treino A
-          </div>
-          <div>
-            Treino B
-          </div>
-          <div>
-          Treino C
-        </div>
-          <div>
-            Treino D
-          </div>
+        <div class="p-2 flex justify-center items-center mb-2.5 divide-x ml-2">
+          <table class="w-full border-collapse border border-slate-400">
+            <caption class="caption-top">
+                Preview Planilha
+            </caption>
+            <thead>
+            <tr class="bg-gray-200" >
+              <td class="border border-slate-900">Treino A</td>
+              <td class="border border-slate-900">Treino B</td>
+              <td class="border border-slate-900">Treino C</td>
+              <td class="border border-slate-900">Treino D</td>
+            </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="w-1/4 border border-slate-300">
+
+              @for(exercise of addExercisesA; track exercise.name) {
+                <p class="capitalize border-l-blue-900"> {{ exercise.name }}</p>
+              }
+                </td>
+
+                <td class="w-1/4 border border-slate-300">
+              @for(exercise of addExercisesB; track exercise.name) {
+                <p class="capitalize border-l-blue-900"> {{ exercise.name }}</p>
+              }
+                </td>
+
+              <td class="w-1/4 border border-slate-300">
+              @for(exercise of addExercisesC; track exercise.name) {
+                <p class="capitalize"> {{ exercise.name }}</p>
+              }
+                </td>
+                <td class="w-1/4 border border-slate-300">
+              @for(exercise of addExercisesD; track exercise.name) {
+                <p class="capitalize border-l-blue-900"> {{ exercise.name }}</p>
+              }
+                </td>
+              </tr>
+            </tbody>
+            <tfoot class="border-spacing-2" >
+            <tr class="capitalize">
+              <td class="col-span-1 border border-slate-500 border-separate">Observações:</td>
+              <td class="col-span-3">
+              </td>
+            </tr>
+            </tfoot>
+          </table>
         </div>
       </div>
     </div>
