@@ -36,16 +36,25 @@
                 <input type="text" formControlName="sheet_desc" class="shadow-sm h-8 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required=""/>
               </div>
               <div class="col-span-1 mb-1 sm:col-span-3">
-                <label htmlFor="sheet_id" class="block text-sm font-medium text-gray-900 dark:text-white">Escolha o Treino</label>
-                <select formControlName="sheet_id" id="sheet_id" class="block py-2.5 px-0 w-full text-sm text-gray-500 bg-transparent border-0 border-b-2 border-gray-200 appearance-none dark:text-gray-400 dark:border-gray-700 focus:outline-none focus:ring-0 focus:border-gray-200 peer">
-                  @for (sheet of sheets; track sheet.name) {
-                    <option> {{ sheet.name }}</option>
-                  }
-                </select>
+                <fieldset class="p-fieldset p-2">
+                  <legend>Escolha o Treino</legend>
+                  <label class="mr-1"><input id="quantity_a" type="radio" formControlName="quantity" value="1" checked> 1</label>
+                  <label class="mr-1"><input id="quantity_b" type="radio" formControlName="quantity" value="2"/> 2</label>
+                  <label class="mr-1"><input id="quantity_c" type="radio" formControlName="quantity" value="3"/> 3</label>
+                  <label class="mr-1"><input id="quantity_d" type="radio" formControlName="quantity" value="4"/> 4</label>
+                </fieldset>
               </div>
-
+              <div class="col-span-1 mb-1 sm:col-span-3">
+                <fieldset class="p-fieldset p-2">
+                  <legend>Escolha o Treino</legend>
+                  <label class="mr-1"><input id="sheet_a" type="radio" formControlName="sheet_id" value="sheet_a" checked> Treino A</label>
+                  <label *ngIf="getField('quantity')?.value > 1" class="mr-1"><input id="sheet_b" type="radio" formControlName="sheet_id" value="sheet_b"/> Treino B</label>
+                  <label *ngIf="getField('quantity')?.value > 2" class="mr-1"><input id="sheet_c" type="radio" formControlName="sheet_id" value="sheet_c"/> Treino C</label>
+                  <label *ngIf="getField('quantity')?.value > 3" class="mr-1"><input id="sheet_d" type="radio" formControlName="sheet_id" value="sheet_d"/> Treino D</label>
+                </fieldset>
+              </div>
             <div class="col-span-1 mb-1 sm:col-span-3">
-              <label htmlFor="exercise_type" class="block mt-2 text-sm font-medium text-gray-900 dark:text-white">Escolha o Tipo de Exercicio</label>
+              <label htmlFor="exercise_type" class="block mt-2 text-sm font-medium text-gray-900 dark:text-white">Escolha o Tipo de Exercício:</label>
               <select (change)="onSelectExercise()" formControlName="exercise_type" id="exercise_type" class="block py-2.5 px-0 w-full text-sm text-gray-500 bg-transparent border-0 border-b-2 border-gray-200 appearance-none dark:text-gray-400 dark:border-gray-700 focus:outline-none focus:ring-0 focus:border-gray-200 peer">
                 @for (modalidade of modalidades; track modalidade.abbrev) {
                     <option> {{ modalidade.name }}</option>
@@ -53,7 +62,7 @@
               </select>
             </div>
               <div class="col-span-1 mb-1 sm:col-span-3">
-                <label htmlFor="exercises" class="block mt-1 text-sm font-medium text-gray-900 dark:text-white">Escolha o Exercicio</label>
+                <label htmlFor="exercises" class="block mt-1 text-sm font-medium text-gray-900 dark:text-white">Escolha o Exercício:</label>
                 <select
                         formControlName="exercises"
                         id="exercises"
@@ -62,9 +71,16 @@
                     <option> {{ exercise.name }}</option>
                   }
                 </select>
-                <button (click)="addExercise()" class="text-white mt-1 bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
-                  Adicionar Exercício</button>
               </div>
+              <div class="col-span-1 mb-1 sm:col-span-3">
+              <label htmlFor="sheet_details" class="block mt-1 text-sm font-medium text-gray-900 dark:text-white">Observações:</label>
+              <input type="text"
+                formControlName="sheet_details"
+                id="sheet_details"
+                class="block py-2.5 px-0 w-full text-sm text-gray-500 bg-transparent border-0 border-b-2 border-gray-200 appearance-none dark:text-gray-400 dark:border-gray-700 focus:outline-none focus:ring-0 focus:border-gray-200 peer"/>
+            </div>
+              <button (click)="addExercise()" class="text-white mt-1 bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+                Adicionar Exercício</button>
             </div>
           </div>
           <!-- Modal footer -->
@@ -86,9 +102,9 @@
             <thead>
             <tr class="bg-gray-200" >
               <td class="border border-slate-900">Treino A</td>
-              <td class="border border-slate-900">Treino B</td>
-              <td class="border border-slate-900">Treino C</td>
-              <td class="border border-slate-900">Treino D</td>
+              <td *ngIf="getField('quantity')?.value > 1" class="border border-slate-900">Treino B</td>
+              <td *ngIf="getField('quantity')?.value > 2" class="border border-slate-900">Treino C</td>
+              <td *ngIf="getField('quantity')?.value > 3" class="border border-slate-900">Treino D</td>
             </tr>
             </thead>
             <tbody>
@@ -96,24 +112,24 @@
                 <td class="w-1/4 border border-slate-300">
 
               @for(exercise of addExercisesA; track exercise.name) {
-                <p class="capitalize border-l-blue-900"> {{ exercise.name }}</p>
+                <p class="capitalize border-l-blue-900"> {{ exercise.name }} <button (click)="removeExercise(exercise)" style="color: white" class="rounded-full pi pi-times-circle bg-red-600"></button></p>
               }
                 </td>
 
-                <td class="w-1/4 border border-slate-300">
+                <td  *ngIf="getField('quantity')?.value > 1" class="w-1/4 border border-slate-300">
               @for(exercise of addExercisesB; track exercise.name) {
-                <p class="capitalize border-l-blue-900"> {{ exercise.name }}</p>
+                <p class="capitalize border-l-blue-900"> {{ exercise.name }} <button (click)="removeExercise(exercise)" style="color: white" class="rounded-full pi pi-times-circle bg-red-600"></button></p>
               }
                 </td>
 
-              <td class="w-1/4 border border-slate-300">
+              <td  *ngIf="getField('quantity')?.value > 2" class="w-1/4 border border-slate-300">
               @for(exercise of addExercisesC; track exercise.name) {
-                <p class="capitalize"> {{ exercise.name }}</p>
+                <p class="capitalize"> {{ exercise.name }} <button (click)="removeExercise(exercise)" style="color: white" class="rounded-full pi pi-times-circle bg-red-600"></button> </p>
               }
                 </td>
-                <td class="w-1/4 border border-slate-300">
+                <td  *ngIf="getField('quantity')?.value > 3" class="w-1/4 border border-slate-300">
               @for(exercise of addExercisesD; track exercise.name) {
-                <p class="capitalize border-l-blue-900"> {{ exercise.name }}</p>
+                <p class="capitalize border-l-blue-900"> {{ exercise.name }} <button (click)="removeExercise(exercise)" style="color: white" class="rounded-full pi pi-times-circle bg-red-600"></button></p>
               }
                 </td>
               </tr>
@@ -121,7 +137,8 @@
             <tfoot class="border-spacing-2" >
             <tr class="capitalize">
               <td class="col-span-1 border border-slate-500 border-separate">Observações:</td>
-              <td class="col-span-3">
+              <td class="col-span-3 capitalize divide-blue-900 border border-slate-300">
+                {{ this.getField('sheet_details')?.value }}
               </td>
             </tr>
             </tfoot>
