@@ -8,8 +8,9 @@ import {MessageService, SharedModule} from "primeng/api";
 import {ToastModule} from "primeng/toast";
 import {ActivatedRoute} from "@angular/router";
 import {ExercisesService} from "../../../../../service/exercises.service";
-import {ExerciseModel} from "../../../../../data/exercise.model";
+import {ExerciseModel, returnMessage} from "../../../../../data/exercise.model";
 import {createNewSheet} from "../../../../../data/sheets.model";
+import {SheetsService} from "../../../../../service/sheets.service";
 
 interface Modalidade  {
   name: string;
@@ -56,7 +57,8 @@ export class ModalSheetComponent implements  AfterViewInit {
   constructor(private formBuilder: FormBuilder,
               private router: ActivatedRoute,
               private messageService: MessageService,
-              private exerciseService: ExercisesService
+              private exerciseService: ExercisesService,
+              private sheetService: SheetsService
               ) {
   }
 
@@ -142,8 +144,17 @@ export class ModalSheetComponent implements  AfterViewInit {
     }
   }
   submitNewSheet() {
-    console.log(this.getValues());
-
+    const newSheet: createNewSheet = this.getValues();
+    this.sheetService.addNewSheet(newSheet).subscribe(
+      (res: returnMessage) => {
+        this.messageService.add({
+          key: 'tc',
+          severity: 'success',
+          detail: res.message,
+          life: 1500
+        });
+      }
+    )
   }
    addExercise() {
      this.resultSheet =  this.getField('sheet_id')?.value;
@@ -213,6 +224,7 @@ export class ModalSheetComponent implements  AfterViewInit {
   }
 
   onCloseEdit() {
+    this.showCreateSheet = false;
 
   }
 

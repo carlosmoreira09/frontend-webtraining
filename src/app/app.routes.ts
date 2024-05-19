@@ -4,15 +4,22 @@ import {RegisterComponent} from "./components/views/register/register.component"
 import {AtletasComponent} from "./components/admin/athlete/athlete.component";
 import {ExercisesComponent} from "./components/admin/exercises/exercises.component";
 import {SheetsComponent} from "./components/admin/sheets/sheets.component";
+import {HomeComponent} from "./components/views/home/home.component";
 
 export const routes: Routes = [
   {
     path: '',
     pathMatch: 'full',
-    redirectTo: 'athletas'
+    redirectTo: 'auth'
   },
   {
     path: 'auth', component: AuthComponent
+  },
+  {
+    path: 'home', component: HomeComponent
+  },
+  {
+    path: 'register', component: AuthComponent
   },
   {
     path: 'register', component: RegisterComponent

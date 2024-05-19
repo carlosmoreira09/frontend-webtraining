@@ -11,6 +11,6 @@ export class AtletasService {
   constructor(@Self() private httpClient: HttpClient) { }
 
   listAllAthletas() {
-    return this.httpClient.get<ClientsModel[]>(this.url);
+    return this.httpClient.get<ClientsModel[]>(this.url+ "/athletas/"+2);
   }
 }

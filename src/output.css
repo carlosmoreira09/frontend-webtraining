@@ -2461,8 +2461,8 @@ video {
     grid-column: span 1 / span 1;
   }
 
-  .col-span-3 {
-    grid-column: span 3 / span 3;
+  .col-span-4 {
+    grid-column: span 4 / span 4;
   }
 
   .col-span-6 {
@@ -2516,6 +2516,10 @@ video {
 
   .ml-64 {
     margin-left: 16rem;
+  }
+
+  .mr-1 {
+    margin-right: 0.25rem;
   }
 
   .ms-2 {
@@ -3071,6 +3075,11 @@ video {
   .bg-indigo-900 {
     --tw-bg-opacity: 1;
     background-color: rgb(54 47 120 / var(--tw-bg-opacity));
+  }
+
+  .bg-red-600 {
+    --tw-bg-opacity: 1;
+    background-color: rgb(224 36 36 / var(--tw-bg-opacity));
   }
 
   .bg-transparent {

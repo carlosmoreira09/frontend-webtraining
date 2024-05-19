@@ -39,7 +39,7 @@ import {MessageModule} from "primeng/message";
 })
 export class ModalExercisesComponent implements AfterViewInit{
   @ViewChild('openDialog')
-  dialog!: ElementRef;
+  dialog: ElementRef
 
   @Input() service!: string;
   @Input() exerciseInfo: ExerciseModel;
@@ -48,6 +48,7 @@ export class ModalExercisesComponent implements AfterViewInit{
   showEditExercise = false;
   categories: any;
   formValid = true;
+  submitReturn: returnMessage;
 
   constructor(private formBuilder: FormBuilder,
               private router: ActivatedRoute,
@@ -125,15 +126,16 @@ export class ModalExercisesComponent implements AfterViewInit{
     this.exerciseService
       .addExercise(newExercise)
       .subscribe(
-        res => this.submitFunctions(res)
-      )}
- submitFunctions(res: returnMessage) {
-   this.showCreateExercise = false;
-   this.exerciseComponent.listExercisesByType();
-   this.messageService.add({
-     key: 'tc',
-     severity: 'success',
-     detail: res.message.toString(),
-   })
- }
+        (res: returnMessage) => {
+          this.showCreateExercise = false;
+          this.exerciseComponent.listExercisesByType();
+          this.messageService.add({
+            key: 'tc',
+            severity: 'success',
+            detail: res.message,
+            life: 1500
+          })
+        }
+ )}
+
 }

@@ -24,7 +24,7 @@ import {ConfirmDialogModule} from "primeng/confirmdialog";
   providers: [MessageService, ConfirmationService]
 })
 export class ExercisesComponent implements  OnInit {
-  exercises: ExerciseModel[];
+  exercises: ExerciseModel[] = [];
   title: string;
 
   constructor(private exerciseService: ExercisesService,

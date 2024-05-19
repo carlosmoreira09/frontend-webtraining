@@ -32,10 +32,10 @@
               Nome da Planilha
             </th>
             <th scope="col" class="px-6 py-3">
-              Tipo da Planilha
+              Descrição da Planilha
             </th>
             <th scope="col" class="px-6 py-3">
-              Repetições Padrão
+              Observações
             </th>
             <th scope="col" class="px-6 py-3">
               Modalidade
@@ -61,16 +61,26 @@
               </div>
             </th>
             <td class="px-6 py-4">
-              {{ sheet.sheet_desc }}
+              <p>{{ sheet.sheet_desc }}</p>
             </td>
             <td class="px-6 py-4">
               <div class="flex items-center">
-                1
+                <p>{{  sheet.sheet_details }}</p>
               </div>
             </td>
             <td class="px-6 py-4">
               <div class="capitalize flex items-center">
-                4
+
+                @if (sheet.training_d.length == 0) {
+                  <p>Planilha com 3 treinos</p>
+                } @else if (sheet.training_c.length == 0) {
+                  <p>Planilha com 2 treinos</p>
+                } @else if (sheet.training_b.length == 0) {
+                  <p>Planilha com 1 treinos</p>
+                } @else {
+                  <p>Planilha com 4 treinos</p>
+                }
+
               </div>
             </td>
             <td class="px-6 py-4">

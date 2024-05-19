@@ -1,5 +1,5 @@
 import {Injectable, Self} from '@angular/core';
-import {HttpClient} from "@angular/common/http";
+import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {ExerciseModel} from "../data/exercise.model";
 import {Observable} from "rxjs";
 
@@ -15,7 +15,10 @@ export class ExercisesService {
     return this.httpClient.get<ExerciseModel[]>(this.url + "/" + type);
   }
   addExercise(newExercise: ExerciseModel): Observable<any> {
-    return this.httpClient.post(this.url,newExercise, {responseType: 'text'})
+    const header = new HttpHeaders({ ['id_client']: 1})
+    return this.httpClient.post(this.url,newExercise, {
+      responseType: 'json', headers: header
+    });
   }
 
   deleteExercise(id: number | undefined): Observable<any> {

@@ -1,8 +1,13 @@
 export interface SheetsModel {
   "id_sheet": number;
   "sheet_desc": string;
+  "sheet_details": string;
   "sheet_name": string;
-  "exercise": any[];
+  training_a: any[];
+  training_b: any[];
+  training_c: any[];
+  training_d: any[];
+  id_client: any;
 }
 export interface createNewSheet {
   sheet_name: string;

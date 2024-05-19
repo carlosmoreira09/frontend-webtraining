@@ -1,6 +1,8 @@
 import {Injectable, Self} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
-import {SheetsModel} from "../data/sheets.model";
+import {createNewSheet, SheetsModel} from "../data/sheets.model";
+import {returnMessage} from "../data/exercise.model";
+import {Observable} from "rxjs";
 
 @Injectable({
   providedIn: 'root'
@@ -12,6 +14,10 @@ export class SheetsService {
 
   listSheets() {
     return this.httpClient.get<SheetsModel[]>(this.url)
+  }
+
+  addNewSheet(newSheet: createNewSheet): Observable<any> {
+    return this.httpClient.post<returnMessage>(this.url, newSheet)
   }
 
 }
