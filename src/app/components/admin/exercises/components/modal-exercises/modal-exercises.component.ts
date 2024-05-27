@@ -65,7 +65,8 @@ export class ModalExercisesComponent implements AfterViewInit{
       {name: 'Quadríceps', code: 'perna'},
       {name: 'Posterior', code: 'posterior'},
       {name: 'Fortalecimento', code: 'fortalecimento'}
-    ];  }
+    ];
+  }
   openDialogCreate() {
     this.initNewControlForm();
     this.showCreateExercise = !this.showCreateExercise;

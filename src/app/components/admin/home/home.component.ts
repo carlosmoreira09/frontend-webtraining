@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import {ClientsModel} from "../../../data/clients.model";
 import {FormBuilder, Validators} from "@angular/forms";
 import {AtletasService} from "../../../service/atletas.service";
-import {AtletasComponent} from "../../admin/athlete/athlete.component";
+import {AtletasComponent} from "../athlete/athlete.component";
 
 @Component({
   selector: 'app-home',

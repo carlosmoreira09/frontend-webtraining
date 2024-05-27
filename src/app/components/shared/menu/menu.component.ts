@@ -1,6 +1,8 @@
-import {Component} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {CommonModule} from "@angular/common";
 import {RouterLink, RouterLinkActive} from "@angular/router";
+import {Subscription} from "rxjs";
+import {AuthService} from "../../../service/auth.service";
 
 
 @Component({
@@ -16,5 +18,7 @@ import {RouterLink, RouterLinkActive} from "@angular/router";
   providers: []
 })
 export class MenuComponent {
+
   constructor() {}
+
 }

@@ -34,7 +34,7 @@ export class ModalAtletaComponent implements AfterViewInit {
     {name: 'Tratamento de Lesões', abbrev: '4'},
   ];
   public formClient!: FormGroup;
-  constructor(private clientService: AtletasService,
+  constructor(
               private formBuilder: FormBuilder) {}
   openDialogCreate() {
     this.showCreateUser = !this.showCreateUser;
