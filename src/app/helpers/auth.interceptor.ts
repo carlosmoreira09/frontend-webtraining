@@ -5,17 +5,14 @@ import {AuthPayload} from "../data/auth.model";
 
 export const AuthInterceptor: HttpInterceptorFn = (req, next) => {
   const authToken = sessionStorage.getItem("access-token");
-  let token;
   if(!authToken) {
+    console.log(authToken);
     return next(req)
   }
-  if(authToken) {
-    const payload: AuthPayload = JSON.parse(authToken)
-    token = payload.accessToken;
-  }
+  console.log(JSON.stringify(authToken));
   const authReq = req.clone({
     setHeaders: {
-      Authorization: `Bearer ${token}`
+      Authorization: `Bearer ${JSON.parse(authToken)}`
     }
   });
   return next(authReq).pipe(

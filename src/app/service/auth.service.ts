@@ -9,8 +9,6 @@ import {StorageService} from "./storage.service";
 })
 export class AuthService {
   constructor(private httpClient: HttpClient, private sessionStorage: StorageService) { }
-  private payload: AuthPayload;
-  private token: string;
   authURL = 'http://localhost:3000/api/auth';
 
    login(data: AuthDTO) {

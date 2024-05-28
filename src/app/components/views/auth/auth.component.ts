@@ -81,7 +81,7 @@ export class AuthComponent  implements OnInit {
           })
         },
         complete: () => {
-          this.storageService.saveUser(payload);
+          this.storageService.saveUser(payload.accessToken);
           this.authService.home(payload).subscribe({
             next: (res) => {
               console.log(res);
