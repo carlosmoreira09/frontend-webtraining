@@ -17,7 +17,7 @@ export class StorageService {
     sessionStorage.setItem(this.USER_KEY, JSON.stringify(user));
   }
 
-  public getUser(): AuthPayload | null {
+  public getUser(): any {
     const user = sessionStorage.getItem(this.USER_KEY);
     if (user) {
       return JSON.parse(user);

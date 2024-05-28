@@ -1,5 +1,5 @@
-import {AfterViewInit, Component, OnInit} from '@angular/core';
-import {FormBuilder, FormControl, FormGroup, ReactiveFormsModule, UntypedFormGroup, Validators} from "@angular/forms";
+import { Component, OnInit} from '@angular/core';
+import {FormBuilder, ReactiveFormsModule, UntypedFormGroup, Validators} from "@angular/forms";
 import {NgOptimizedImage} from "@angular/common";
 import {Router, RouterLink} from "@angular/router";
 import {AuthService} from "../../../service/auth.service";
@@ -8,7 +8,6 @@ import {MessageService} from "primeng/api";
 import {ToastModule} from "primeng/toast";
 import {HttpClient} from "@angular/common/http";
 import {StorageService} from "../../../service/storage.service";
-import {error} from "@angular/compiler-cli/src/transformers/util";
 
 @Component({
   selector: 'app-auth',
@@ -24,7 +23,7 @@ import {error} from "@angular/compiler-cli/src/transformers/util";
   styleUrl: './auth.component.css'
 })
 export class AuthComponent  implements OnInit {
-  authForm: FormGroup;
+  authForm: UntypedFormGroup;
   constructor(private formBuilder: FormBuilder,
               private storageService: StorageService,
               private authService: AuthService,
@@ -33,15 +32,29 @@ export class AuthComponent  implements OnInit {
   }
 
   ngOnInit() {
-    if(this.storageService.getUser()){
-      console.log(this.storageService.getUser());
-    }
     this.authForm = this.formBuilder.group({
       username: ['', [Validators.required, Validators.minLength(5)]],
       password: [''],
     });
-  }
 
+    const token = this.storageService.getUser();
+    if (token) {
+
+      this.authService.home(token).subscribe({
+          next: (res) => {
+            console.log(res);
+          },
+          complete: () => {
+            this.navigate('home').then(
+              (res) => {
+                console.log(res)
+              }
+            )
+          }
+        }
+      )
+    }
+  }
   getFormValues(): AuthDTO {
     const username = this.getField('username')?.value;
     const password = this.getField('password')?.value;
@@ -68,6 +81,7 @@ export class AuthComponent  implements OnInit {
           })
         },
         complete: () => {
+          this.storageService.saveUser(payload);
           this.authService.home(payload).subscribe({
             next: (res) => {
               console.log(res);
