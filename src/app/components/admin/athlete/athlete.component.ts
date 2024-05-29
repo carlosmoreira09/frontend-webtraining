@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {FormBuilder, ReactiveFormsModule, Validators} from "@angular/forms";
-import {ClientsModel} from "../../../data/clients.model";
+import {ClientsModel} from "../../../models/clients.model";
 import {AtletasService} from "../../../service/atletas.service";
 import {ModalAtletaComponent} from "./components/modal-athlete.component";
 import {HttpClient, HttpClientModule} from "@angular/common/http";

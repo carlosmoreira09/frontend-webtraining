@@ -1,6 +1,6 @@
 import { Component, OnInit} from '@angular/core';
 import {NgForOf} from "@angular/common";
-import {ExerciseModel, returnMessage} from "../../../data/exercise.model";
+import {ExerciseModel, returnMessage} from "../../../models/exercise.model";
 import {ExercisesService} from "../../../service/exercises.service";
 import {ActivatedRoute} from "@angular/router";
 import {ModalExercisesComponent} from "./components/modal-exercises/modal-exercises.component";

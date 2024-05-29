@@ -1,6 +1,7 @@
-import {Component} from '@angular/core';
-import {CommonModule} from "@angular/common";
+import {Component, Inject, OnInit, PLATFORM_ID} from '@angular/core';
+import {CommonModule, isPlatformBrowser} from "@angular/common";
 import {RouterLink, RouterLinkActive} from "@angular/router";
+import {initFlowbite} from "flowbite";
 
 
 @Component({
@@ -15,6 +16,14 @@ import {RouterLink, RouterLinkActive} from "@angular/router";
   styleUrl: './menu.component.css',
   providers: []
 })
-export class MenuComponent {
-  constructor() {}
+export class MenuComponent implements OnInit {
+
+  constructor(@Inject(PLATFORM_ID) private platformId: Object) {
+  }
+  ngOnInit() {
+    if(isPlatformBrowser(this.platformId)){
+      initFlowbite();
+    }
+  }
+
 }

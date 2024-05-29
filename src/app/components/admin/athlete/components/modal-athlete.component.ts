@@ -1,7 +1,7 @@
 import {Component, OnInit, Input, ViewChild, ElementRef, AfterViewInit} from '@angular/core';
 import {AtletasService} from "../../../../service/atletas.service";
 import {FormBuilder, FormGroup, ReactiveFormsModule, Validators} from "@angular/forms";
-import {ClientsModel} from "../../../../data/clients.model";
+import {ClientsModel} from "../../../../models/clients.model";
 import {DialogModule} from "primeng/dialog";
 import {HttpClient, HttpClientModule} from "@angular/common/http";
 import {CommonModule} from "@angular/common";
@@ -34,7 +34,7 @@ export class ModalAtletaComponent implements AfterViewInit {
     {name: 'Tratamento de Lesões', abbrev: '4'},
   ];
   public formClient!: FormGroup;
-  constructor(private clientService: AtletasService,
+  constructor(
               private formBuilder: FormBuilder) {}
   openDialogCreate() {
     this.showCreateUser = !this.showCreateUser;

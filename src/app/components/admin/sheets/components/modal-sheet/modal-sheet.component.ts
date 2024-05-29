@@ -1,15 +1,14 @@
 import {AfterViewInit, Component, OnInit} from '@angular/core';
 import {DialogModule} from "primeng/dialog";
 import {MessageModule} from "primeng/message";
-import {CommonModule, NgFor, NgForOf, NgIf} from "@angular/common";
+import {CommonModule, NgIf} from "@angular/common";
 import {PaginatorModule} from "primeng/paginator";
-import {FormBuilder, FormControl, FormGroup, ReactiveFormsModule, UntypedFormGroup, Validators} from "@angular/forms";
+import {FormBuilder, ReactiveFormsModule, UntypedFormGroup, Validators} from "@angular/forms";
 import {MessageService, SharedModule} from "primeng/api";
 import {ToastModule} from "primeng/toast";
-import {ActivatedRoute} from "@angular/router";
 import {ExercisesService} from "../../../../../service/exercises.service";
-import {ExerciseModel, returnMessage} from "../../../../../data/exercise.model";
-import {createNewSheet} from "../../../../../data/sheets.model";
+import {ExerciseModel, returnMessage} from "../../../../../models/exercise.model";
+import {createNewSheet} from "../../../../../models/sheets.model";
 import {SheetsService} from "../../../../../service/sheets.service";
 
 interface Modalidade  {
@@ -55,7 +54,6 @@ export class ModalSheetComponent implements  AfterViewInit {
   public modalidades: Modalidade[] = [];
 
   constructor(private formBuilder: FormBuilder,
-              private router: ActivatedRoute,
               private messageService: MessageService,
               private exerciseService: ExercisesService,
               private sheetService: SheetsService
@@ -112,24 +110,24 @@ export class ModalSheetComponent implements  AfterViewInit {
     let idExercisesC: number[] = [];
     let idExercisesD: number[] = [];
 
-    for(let k of this.addExercisesA) {
-      if (k.id != null) {
-        idExercisesA.push(k.id);
+    for(let exercise of this.addExercisesA) {
+      if (exercise.id != null) {
+        idExercisesA.push(exercise.id);
       }
     }
-    for(let k of this.addExercisesB) {
-      if (k.id != null) {
-        idExercisesB.push(k.id);
+    for(let exercise of this.addExercisesB) {
+      if (exercise.id != null) {
+        idExercisesB.push(exercise.id);
       }
     }
-    for(let k of this.addExercisesC) {
-      if (k.id != null) {
-        idExercisesC.push(k.id);
+    for(let exercise of this.addExercisesC) {
+      if (exercise.id != null) {
+        idExercisesC.push(exercise.id);
       }
     }
-    for(let k of this.addExercisesD) {
-      if (k.id != null) {
-        idExercisesD.push(k.id);
+    for(let exercise of this.addExercisesD) {
+      if (exercise.id != null) {
+        idExercisesD.push(exercise.id);
       }
     }
 
@@ -156,40 +154,46 @@ export class ModalSheetComponent implements  AfterViewInit {
       }
     )
   }
+  addMessage(severity: string, detail: string) {
+    return this.messageService.add({
+      severity: severity,
+      key: 'tc',
+      life: 1500,
+      detail: detail,
+    })
+  }
    addExercise() {
      this.resultSheet =  this.getField('sheet_id')?.value;
-     console.log(this.listExercise);
       this.resultExercise = this.listExercise.find(({ name }) => name === this.getField('exercises')?.value);
-      console.log(this.resultExercise);
-     console.log(this.resultSheet);
 
      if (this.resultExercise) {
        if (this.resultSheet === 'training_a') {
          if(!(this.addExercisesA.find(({ name }) => name === this.resultExercise?.name))) {
            this.addExercisesA.push(this.resultExercise)
          } else {
-           console.log('error')
+           this.addMessage('error', 'Exercício Já Existe na Planilha');
          }
        } else if (this.resultSheet === 'training_b') {
          if(!(this.addExercisesB.find(({ name }) => name === this.resultExercise?.name))) {
            this.addExercisesB.push(this.resultExercise)
          } else {
-           console.log('error')
+           this.addMessage('error', 'Exercício Já Existe na Planilha');
          }
        } else if (this.resultSheet === 'training_c') {
          if(!(this.addExercisesC.find(({ name }) => name === this.resultExercise?.name))) {
            this.addExercisesC.push(this.resultExercise)
          } else {
-           console.log('error')
+           this.addMessage('error', 'Exercício Já Existe na Planilha');
          }
        } else if (this.resultSheet === 'training_d') {
          if(!(this.addExercisesD.find(({ name }) => name === this.resultExercise?.name))) {
            this.addExercisesD.push(this.resultExercise)
          } else {
-           console.log('error')
-         }       }
+           this.addMessage('error', 'Exercício Já Existe na Planilha');
+         }
+       }
      } else {
-       alert('error')
+       this.addMessage('error', 'Erro ao adicionar Exercício')
      }
    }
   removeExercise(exercise: Exercise) {
@@ -197,18 +201,24 @@ export class ModalSheetComponent implements  AfterViewInit {
     if (exercise) {
       if (resultSheet === 'training_a') {
         this.addExercisesA.splice(this.addExercisesA.indexOf(exercise), 1);
+        this.addMessage('success', 'Exercício Removido');
+
 
       } else if (resultSheet === 'training_b') {
         this.addExercisesB.splice(this.addExercisesB.indexOf(exercise), 1);
+        this.addMessage('success', 'Exercício Removido');
 
       } else if (resultSheet === 'training_c') {
         this.addExercisesC.splice(this.addExercisesC.indexOf(exercise), 1);
+        this.addMessage('success', 'Exercício Removido');
 
       } else if (resultSheet === 'training_d') {
         this.addExercisesD.splice(this.addExercisesD.indexOf(exercise), 1);
+        this.addMessage('success', 'Exercício Removido');
+      } else {
+        this.addMessage('success', 'Erro ao Remover Exercício');
+
       }
-    } else {
-      alert('error')
     }
   }
   openDialogCreate() {

@@ -1,7 +1,7 @@
 import {Injectable, Self} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
-import {createNewSheet, SheetsModel} from "../data/sheets.model";
-import {returnMessage} from "../data/exercise.model";
+import {createNewSheet, SheetsModel} from "../models/sheets.model";
+import {returnMessage} from "../models/exercise.model";
 import {Observable} from "rxjs";
 
 @Injectable({

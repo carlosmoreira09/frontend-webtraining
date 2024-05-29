@@ -30,11 +30,7 @@
               "node_modules/primeng/resources/primeng.min.css"
             ],
             "scripts": [],
-            "server": "src/main.server.ts",
-            "prerender": true,
-            "ssr": {
-              "entry": "server.ts"
-            }
+            "server": "src/main.server.ts"
           },
           "configurations": {
             "production": {
