@@ -1,6 +1,6 @@
 import {Injectable, Self} from '@angular/core';
 import {HttpClient, HttpHeaders} from "@angular/common/http";
-import {ExerciseModel} from "../data/exercise.model";
+import {ExerciseModel} from "../models/exercise.model";
 import {Observable} from "rxjs";
 
 @Injectable({

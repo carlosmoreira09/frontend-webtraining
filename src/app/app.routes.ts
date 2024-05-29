@@ -16,18 +16,18 @@ export const routes: Routes = [
     path: 'auth', component: AuthComponent,
   },
   {
-    path: 'home', component: HomeComponent, data: { loggedIn: true   }
+    path: 'home', component: HomeComponent, data: { loggedIn: true, homepage: true   }
   },
   {
-    path: 'register', component: RegisterComponent, data: { loggedIn: true }
+    path: 'register', component: RegisterComponent, data: { loggedIn: true, homepage: false }
   },
   {
-    path: 'athletas', component: AtletasComponent, data: { loggedIn: true }
+    path: 'athletas', component: AtletasComponent, data: { loggedIn: true, homepage: false }
   },
   {
-    path: 'sheets', component: SheetsComponent, data: { loggedIn: true }
+    path: 'sheets', component: SheetsComponent, data: { loggedIn: true, homepage: false }
   },
   {
-    path: 'exercises/:type', component: ExercisesComponent, data: { loggedIn: true }
+    path: 'exercises/:type', component: ExercisesComponent, data: { loggedIn: true, homepage: false }
   }
 ];

@@ -6,7 +6,7 @@ import {FooterComponent} from "./components/shared/footer/footer.component";
 import {HeaderComponent} from "./components/shared/header/header.component";
 import {MenuComponent} from "./components/shared/menu/menu.component";
 import {initFlowbite} from "flowbite";
-import {isPlatformBrowser, NgIf} from "@angular/common";
+import {isPlatformBrowser, NgClass, NgIf} from "@angular/common";
 import { filter, map, switchMap } from 'rxjs';
 
 
@@ -19,13 +19,13 @@ import { filter, map, switchMap } from 'rxjs';
     FooterComponent,
     HeaderComponent,
     MenuComponent,
-    NgIf],
+    NgIf, NgClass],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css',
 })
 export class AppComponent implements OnInit{
   public loggedIn: boolean = false;
-
+  public homepage: boolean = false;
   constructor(@Inject(PLATFORM_ID) private platformId: Object,
               activatedRoute: ActivatedRoute,
               router: Router) {
@@ -38,12 +38,16 @@ export class AppComponent implements OnInit{
         }))
       .pipe(switchMap((route) => route.data))
       .subscribe((event: any) => {
-        this.loggedIn = event['loggedIn']
+        this.loggedIn = event['loggedIn'];
+        (event['homepage'])? this.homepage = true : this.homepage = false;
+
       });
 
       }
 
   ngOnInit() {
-    if (isPlatformBrowser(this.platformId)) initFlowbite();
+    if(isPlatformBrowser(this.platformId)){
+      initFlowbite();
+    }
   }
 }

@@ -3,7 +3,7 @@ import {FormBuilder, ReactiveFormsModule, UntypedFormGroup, Validators} from "@a
 import {NgOptimizedImage} from "@angular/common";
 import {Router, RouterLink} from "@angular/router";
 import {AuthService} from "../../../service/auth.service";
-import {AuthDTO, AuthPayload} from "../../../data/auth.model";
+import {AuthDTO, AuthPayload} from "../../../models/auth.model";
 import {MessageService} from "primeng/api";
 import {ToastModule} from "primeng/toast";
 import {HttpClient} from "@angular/common/http";
@@ -37,9 +37,8 @@ export class AuthComponent  implements OnInit {
       password: [''],
     });
 
-    const token = this.storageService.getUser();
-    if (token) {
-
+    if (this.storageService.isLoggedIn()) {
+      const token = this.storageService.getUser();
       this.authService.home(token).subscribe({
           next: (res) => {
             console.log(res);

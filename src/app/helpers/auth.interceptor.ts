@@ -1,15 +1,12 @@
 
 import {HttpErrorResponse, HttpInterceptorFn} from '@angular/common/http';
 import {catchError, throwError} from "rxjs";
-import {AuthPayload} from "../data/auth.model";
 
 export const AuthInterceptor: HttpInterceptorFn = (req, next) => {
   const authToken = sessionStorage.getItem("access-token");
   if(!authToken) {
-    console.log(authToken);
     return next(req)
   }
-  console.log(JSON.stringify(authToken));
   const authReq = req.clone({
     setHeaders: {
       Authorization: `Bearer ${JSON.parse(authToken)}`

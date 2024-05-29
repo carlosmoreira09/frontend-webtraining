@@ -1,16 +1,25 @@
-import { Component } from '@angular/core';
-import {ClientsModel} from "../../../data/clients.model";
-import {FormBuilder, Validators} from "@angular/forms";
-import {AtletasService} from "../../../service/atletas.service";
-import {AtletasComponent} from "../athlete/athlete.component";
+import {Component, Inject, OnInit, PLATFORM_ID} from '@angular/core';
+import {CardHomeComponent} from "./components/card-home.component";
+import {RouterLink} from "@angular/router";
+import {isPlatformBrowser} from "@angular/common";
+import {initFlowbite} from "flowbite";
 
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [],
+  imports: [
+    CardHomeComponent,
+    RouterLink
+  ],
   templateUrl: './home.component.html',
   styleUrl: './home.component.css'
 })
-export class HomeComponent {
-
+export class HomeComponent implements OnInit{
+  constructor(@Inject(PLATFORM_ID) private platformId: Object) {
+  }
+  ngOnInit() {
+    if(isPlatformBrowser(this.platformId)){
+      initFlowbite();
+    }
+  }
 }

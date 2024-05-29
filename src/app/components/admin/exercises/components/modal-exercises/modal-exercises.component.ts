@@ -9,7 +9,7 @@ import {
 } from "@angular/forms";
 import {NgForOf, NgIf} from "@angular/common";
 import {MessageService, SharedModule} from "primeng/api";
-import {ExerciseModel, returnMessage} from "../../../../../data/exercise.model";
+import {ExerciseModel, returnMessage} from "../../../../../models/exercise.model";
 import {DropdownModule} from "primeng/dropdown";
 import {ActivatedRoute} from "@angular/router";
 import {ExercisesService} from "../../../../../service/exercises.service";

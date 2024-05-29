@@ -1,5 +1,4 @@
 import { Injectable } from '@angular/core';
-import {AuthPayload} from "../data/auth.model";
 
 @Injectable({
   providedIn: 'root'

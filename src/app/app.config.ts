@@ -9,6 +9,7 @@ import {AuthInterceptor} from "./helpers/auth.interceptor";
 
 export const appConfig: ApplicationConfig = {
   providers: [
+    provideClientHydration(),
     provideRouter(routes, withComponentInputBinding()),
     provideClientHydration(),
     provideAnimations(),

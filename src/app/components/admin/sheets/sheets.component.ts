@@ -5,9 +5,10 @@ import {NgForOf} from "@angular/common";
 import {ToastModule} from "primeng/toast";
 import {ConfirmationService, MessageService} from "primeng/api";
 import {SheetsService} from "../../../service/sheets.service";
-import {SheetsModel} from "../../../data/sheets.model";
+import {SheetsModel} from "../../../models/sheets.model";
 import {ModalSheetComponent} from "./components/modal-sheet/modal-sheet.component";
 import {HttpClient} from "@angular/common/http";
+import {initFlowbite} from "flowbite";
 
 @Component({
   selector: 'app-sheets',
@@ -29,6 +30,7 @@ export class SheetsComponent implements  OnInit {
   sheets: SheetsModel[];
    constructor(private sheetsService: SheetsService){}
   ngOnInit() {
+    initFlowbite();
     this.listSheets();
   }
   listSheets() {

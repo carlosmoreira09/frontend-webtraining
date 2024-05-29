@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import {HttpClient, HttpHeaders} from "@angular/common/http";
-import {AuthDTO, AuthPayload} from "../data/auth.model";
+import {AuthDTO, AuthPayload} from "../models/auth.model";
 import {BehaviorSubject, tap} from "rxjs";
 import {StorageService} from "./storage.service";
 
