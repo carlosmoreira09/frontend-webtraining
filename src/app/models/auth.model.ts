@@ -8,3 +8,13 @@ export interface AuthPayload {
   message: string;
   accessToken: string;
 }
+
+export interface AuthRoles {
+  id: number;
+  username: string;
+  name: string;
+  email: string;
+  role: string;
+  iat: number
+  exp: number
+}

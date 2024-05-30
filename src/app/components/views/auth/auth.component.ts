@@ -3,11 +3,12 @@ import {FormBuilder, ReactiveFormsModule, UntypedFormGroup, Validators} from "@a
 import {NgOptimizedImage} from "@angular/common";
 import {Router, RouterLink} from "@angular/router";
 import {AuthService} from "../../../service/auth.service";
-import {AuthDTO, AuthPayload} from "../../../models/auth.model";
+import {AuthDTO, AuthPayload, AuthRoles} from "../../../models/auth.model";
 import {MessageService} from "primeng/api";
 import {ToastModule} from "primeng/toast";
 import {HttpClient} from "@angular/common/http";
 import {StorageService} from "../../../service/storage.service";
+import {jwtDecode} from "jwt-decode";
 
 @Component({
   selector: 'app-auth',
@@ -46,7 +47,8 @@ export class AuthComponent  implements OnInit {
           complete: () => {
             this.navigate('home').then(
               (res) => {
-                console.log(res)
+                const decoded = jwtDecode(token);
+                console.log(decoded);
               }
             )
           }
@@ -54,6 +56,7 @@ export class AuthComponent  implements OnInit {
       )
     }
   }
+
   getFormValues(): AuthDTO {
     const username = this.getField('username')?.value;
     const password = this.getField('password')?.value;
@@ -89,6 +92,10 @@ export class AuthComponent  implements OnInit {
               this.navigate('home').then(
                 (res) => {
                   console.log(res)
+                  const decoded: AuthRoles = jwtDecode(payload.accessToken);
+                  console.log(decoded.exp);
+                  console.log(decoded.role);
+
                 }
               )
             }

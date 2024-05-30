@@ -1,8 +1,8 @@
 import { Component, OnInit} from '@angular/core';
-import {NgForOf} from "@angular/common";
+import {NgForOf, NgOptimizedImage} from "@angular/common";
 import {ExerciseModel, returnMessage} from "../../../models/exercise.model";
 import {ExercisesService} from "../../../service/exercises.service";
-import {ActivatedRoute} from "@angular/router";
+import {ActivatedRoute, RouterLink} from "@angular/router";
 import {ModalExercisesComponent} from "./components/modal-exercises/modal-exercises.component";
 import {MessagesModule} from "primeng/messages";
 import {ConfirmationService, MessageService} from "primeng/api";
@@ -17,7 +17,9 @@ import {ConfirmDialogModule} from "primeng/confirmdialog";
     ModalExercisesComponent,
     MessagesModule,
     ToastModule,
-    ConfirmDialogModule
+    ConfirmDialogModule,
+    NgOptimizedImage,
+    RouterLink
   ],
   templateUrl: './exercises.component.html',
   styleUrl: './exercises.component.css',
