@@ -19,7 +19,7 @@ import {jwtDecode} from "jwt-decode";
     RouterLink,
     ToastModule
   ],
-  providers: [AuthService, HttpClient, MessageService],
+  providers: [AuthService, HttpClient, MessageService, AuthComponent],
   templateUrl: './auth.component.html',
   styleUrl: './auth.component.css'
 })

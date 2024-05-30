@@ -6,7 +6,6 @@ import {initFlowbite} from "flowbite";
 import {StorageService} from "../../../service/storage.service";
 import {MessageService} from "primeng/api";
 import {ToastModule} from "primeng/toast";
-import {AuthComponent} from "../../views/auth/auth.component";
 
 @Component({
   selector: 'app-home',
@@ -16,7 +15,7 @@ import {AuthComponent} from "../../views/auth/auth.component";
     RouterLink,
     ToastModule
   ],
-  providers: [MessageService,StorageService, AuthComponent],
+  providers: [MessageService,StorageService],
   templateUrl: './home.component.html',
   styleUrl: './home.component.css'
 })
