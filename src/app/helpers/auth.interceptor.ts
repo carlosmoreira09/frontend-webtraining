@@ -1,7 +1,7 @@
 
 import {HttpErrorResponse, HttpInterceptorFn} from '@angular/common/http';
 import {catchError, throwError} from "rxjs";
-import {Component, inject, Injectable} from "@angular/core";
+import {inject} from "@angular/core";
 import {Router} from "@angular/router";
 import {StorageService} from "../service/storage.service";
 import {AuthRoles} from "../models/auth.model";
@@ -36,9 +36,10 @@ export const AuthInterceptor: HttpInterceptorFn = (req, next) => {
           }
         }
         return throwError(() => err);
-      }))
-    }
+      }));
   }
+  }
+
   const authReq = req.clone({
     setHeaders: {
       Authorization: `Bearer ${auth}`
@@ -48,11 +49,19 @@ export const AuthInterceptor: HttpInterceptorFn = (req, next) => {
     catchError((err: any) => {
       if (err instanceof HttpErrorResponse) {
         if (err.status === 401) {
-         router.navigate(['no-access']).then()
+          // Specific handling for unauthorized errors
+          console.error('Unauthorized request:', err);
+          // You might trigger a re-authentication flow or redirect the user here
+        } else {
+          // Handle other HTTP error codes
+          console.error('HTTP error:', err);
         }
       } else {
-        router.navigate(['error-page']).then()
+        // Handle non-HTTP errors
+        console.error('An error occurred:', err);
       }
+
+      // Re-throw the error to propagate it further
       return throwError(() => err);
     })
   );

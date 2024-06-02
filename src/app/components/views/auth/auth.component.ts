@@ -9,7 +9,7 @@ import {HttpClient} from "@angular/common/http";
 import {jwtDecode} from "jwt-decode";
 import {StorageService} from "../../../service/storage.service";
 import {AuthService} from "../../../service/auth.service";
-import {AuthDTO, AuthPayload, AuthRoles} from "../../../models/auth.model";
+import {AuthDTO, AuthPayload} from "../../../models/auth.model";
 
 @Component({
   selector: 'app-auth',
@@ -51,7 +51,7 @@ export class AuthComponent  implements OnInit {
           complete: () => {
             this.navigate('home').then(
               (res) => {
-                const decoded = jwtDecode(token);
+
               }
             )
           }
@@ -101,7 +101,7 @@ export class AuthComponent  implements OnInit {
             complete: () => {
               this.navigate('home').then(
                 (res) => {
-                  console.log(res)
+
                 }
               )
             }

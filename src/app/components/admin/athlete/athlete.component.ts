@@ -6,16 +6,22 @@ import {ModalAtletaComponent} from "./components/modal-athlete.component";
 import {HttpClient, HttpClientModule} from "@angular/common/http";
 import {CommonModule} from "@angular/common";
 import {DialogModule} from "primeng/dialog";
+import {RouterLink} from "@angular/router";
+import {ConfirmationService, MessageService} from "primeng/api";
 
 @Component({
   selector: 'app-athlete',
   standalone: true,
   imports: [
-    ReactiveFormsModule, HttpClientModule, DialogModule, CommonModule, ModalAtletaComponent
+    ReactiveFormsModule,
+    DialogModule,
+    CommonModule,
+    ModalAtletaComponent,
+    RouterLink
   ],
   templateUrl: './athlete.component.html',
   styleUrl: './athlete.component.css',
-  providers: [HttpClient, AtletasService]
+  providers: [MessageService, ConfirmationService]
 })
 export class AtletasComponent implements OnInit {
   atletas: ClientsModel[];
