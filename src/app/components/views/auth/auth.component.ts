@@ -1,14 +1,15 @@
 import { Component, OnInit} from '@angular/core';
 import {FormBuilder, ReactiveFormsModule, UntypedFormGroup, Validators} from "@angular/forms";
 import {NgOptimizedImage} from "@angular/common";
-import {Router, RouterLink} from "@angular/router";
-import {AuthService} from "../../../service/auth.service";
-import {AuthDTO, AuthPayload, AuthRoles} from "../../../models/auth.model";
+import {ActivatedRoute, Router, RouterLink} from "@angular/router";
+
 import {MessageService} from "primeng/api";
 import {ToastModule} from "primeng/toast";
 import {HttpClient} from "@angular/common/http";
-import {StorageService} from "../../../service/storage.service";
 import {jwtDecode} from "jwt-decode";
+import {StorageService} from "../../../service/storage.service";
+import {AuthService} from "../../../service/auth.service";
+import {AuthDTO, AuthPayload, AuthRoles} from "../../../models/auth.model";
 
 @Component({
   selector: 'app-auth',
@@ -19,9 +20,9 @@ import {jwtDecode} from "jwt-decode";
     RouterLink,
     ToastModule
   ],
-  providers: [AuthService, HttpClient, MessageService, AuthComponent],
+  providers: [HttpClient, MessageService, AuthComponent, StorageService, AuthService],
   templateUrl: './auth.component.html',
-  styleUrl: './auth.component.css'
+  styleUrl: './auth.component.css',
 })
 export class AuthComponent  implements OnInit {
   authForm: UntypedFormGroup;
@@ -29,10 +30,13 @@ export class AuthComponent  implements OnInit {
               private storageService: StorageService,
               private authService: AuthService,
               private messageService: MessageService,
-              private router: Router) {
+              private router: Router,
+              private activeRoute: ActivatedRoute,) {
+
   }
 
   ngOnInit() {
+
     this.authForm = this.formBuilder.group({
       username: ['', [Validators.required, Validators.minLength(5)]],
       password: [''],
@@ -41,7 +45,7 @@ export class AuthComponent  implements OnInit {
     if (this.storageService.isLoggedIn()) {
       const token = this.storageService.getUser();
       this.authService.home(token).subscribe({
-          next: (res) => {
+          next: (res: any) => {
             console.log(res);
           },
           complete: () => {
@@ -56,7 +60,14 @@ export class AuthComponent  implements OnInit {
       )
     }
   }
-
+  loginErrorMessage(detail: string) {
+    return this.messageService.add({
+      severity: 'error',
+      key: 'tc',
+      life: 1500,
+      detail: detail,
+    })
+  }
   getFormValues(): AuthDTO {
     const username = this.getField('username')?.value;
     const password = this.getField('password')?.value;
@@ -71,10 +82,10 @@ export class AuthComponent  implements OnInit {
     const authData: AuthDTO = this.getFormValues()
     this.authService.login(authData).subscribe(
       {
-        next: (value) => {
+        next: (value: any) => {
           payload = value;
         },
-        error: err => {
+        error: (err: { message: any; }) => {
           this.messageService.add({
             severity: 'error',
             key: 'tc',
@@ -85,7 +96,7 @@ export class AuthComponent  implements OnInit {
         complete: () => {
           this.storageService.saveUser(payload.accessToken);
           this.authService.home(payload).subscribe({
-            next: (res) => {
+            next: (res: any) => {
               console.log(res);
             },
             complete: () => {
