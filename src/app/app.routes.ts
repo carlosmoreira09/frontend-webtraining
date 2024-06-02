@@ -61,5 +61,9 @@ export const routes: Routes = [
     component: ExercisesComponent,
     data: { loggedIn: true, homepage: false },
     canActivate:[ClientGuard]
+  },
+  {
+    path: '**',
+    component: ErrorComponent
   }
 ];

@@ -52,7 +52,6 @@ export class AuthComponent  implements OnInit {
             this.navigate('home').then(
               (res) => {
                 const decoded = jwtDecode(token);
-                console.log(decoded);
               }
             )
           }
@@ -103,10 +102,6 @@ export class AuthComponent  implements OnInit {
               this.navigate('home').then(
                 (res) => {
                   console.log(res)
-                  const decoded: AuthRoles = jwtDecode(payload.accessToken);
-                  console.log(decoded.exp);
-                  console.log(decoded.role);
-
                 }
               )
             }

@@ -11,7 +11,6 @@ export const ClientGuard: CanActivateFn = (route, state) => {
     return true;
   }
   if(!authService.getAccessLevel('client')) {
-    console.log('client guard false')
     router.navigate(['/no-access']).then(
       () => {
         storageService.clean();

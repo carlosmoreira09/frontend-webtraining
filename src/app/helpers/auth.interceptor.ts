@@ -13,7 +13,6 @@ export const AuthInterceptor: HttpInterceptorFn = (req, next) => {
   const storageService = inject(StorageService);
   const auth = storageService.getUser();
   if(!auth) {
-    console.log('auth false')
     router.navigate(['auth']).then(
       () => {
         storageService.clean();
@@ -38,7 +37,7 @@ export const AuthInterceptor: HttpInterceptorFn = (req, next) => {
         }
         return throwError(() => err);
       }))
-  }
+    }
   }
   const authReq = req.clone({
     setHeaders: {
@@ -49,19 +48,11 @@ export const AuthInterceptor: HttpInterceptorFn = (req, next) => {
     catchError((err: any) => {
       if (err instanceof HttpErrorResponse) {
         if (err.status === 401) {
-          // Specific handling for unauthorized errors
-          console.error('Unauthorized request:', err);
-          // You might trigger a re-authentication flow or redirect the user here
-        } else {
-          // Handle other HTTP error codes
-          console.error('HTTP error:', err);
+         router.navigate(['no-access']).then()
         }
       } else {
-        // Handle non-HTTP errors
-        console.error('An error occurred:', err);
+        router.navigate(['error-page']).then()
       }
-
-      // Re-throw the error to propagate it further
       return throwError(() => err);
     })
   );
