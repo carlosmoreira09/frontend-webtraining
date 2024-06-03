@@ -52,7 +52,7 @@ export class ExercisesComponent implements  OnInit {
       accept: () => {
         this.deleteExercise(id);
         this.listExercisesByType();
-        this.messageService.add({ severity: 'info', summary: 'Confirmed', detail: 'Record deleted', life: 1500 });
+        this.messageService.add({ severity: 'info', summary: 'Confirmed', detail: 'Exercício deletado', life: 1500 });
       },
       reject: () => {
         this.listExercisesByType();
