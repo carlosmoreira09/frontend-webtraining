@@ -1,7 +1,7 @@
 import {Injectable, Self} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {createNewSheet, SheetsModel} from "../models/sheets.model";
-import {returnMessage} from "../models/exercise.model";
+import {ReturnMessage} from "../models/exercise.model";
 import {Observable} from "rxjs";
 
 @Injectable({
@@ -17,7 +17,10 @@ export class SheetsService {
   }
 
   addNewSheet(newSheet: createNewSheet): Observable<any> {
-    return this.httpClient.post<returnMessage>(this.url, newSheet)
+    return this.httpClient.post<ReturnMessage>(this.url, newSheet)
+  }
+  delete(id: number | undefined): Observable<any> {
+    return this.httpClient.delete<ReturnMessage>(this.url + "/" + id);
   }
 
 }

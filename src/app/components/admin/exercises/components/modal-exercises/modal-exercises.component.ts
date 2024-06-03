@@ -1,7 +1,7 @@
 import {AfterViewInit, Component, ElementRef, Input, ViewChild} from '@angular/core';
 import {DialogModule} from "primeng/dialog";
 import {
-  FormBuilder, FormControl,
+  FormBuilder,
   FormsModule,
   ReactiveFormsModule,
   UntypedFormGroup,
@@ -9,7 +9,7 @@ import {
 } from "@angular/forms";
 import {NgForOf, NgIf} from "@angular/common";
 import {MessageService, SharedModule} from "primeng/api";
-import {ExerciseModel, returnMessage} from "../../../../../models/exercise.model";
+import {ExerciseModel, ReturnMessage} from "../../../../../models/exercise.model";
 import {DropdownModule} from "primeng/dropdown";
 import {ActivatedRoute} from "@angular/router";
 import {ExercisesService} from "../../../../../service/exercises.service";
@@ -48,7 +48,6 @@ export class ModalExercisesComponent implements AfterViewInit{
   showEditExercise = false;
   categories: any;
   formValid = true;
-  submitReturn: returnMessage;
 
   constructor(private formBuilder: FormBuilder,
               private router: ActivatedRoute,
@@ -127,7 +126,7 @@ export class ModalExercisesComponent implements AfterViewInit{
     this.exerciseService
       .addExercise(newExercise)
       .subscribe(
-        (res: returnMessage) => {
+        (res: ReturnMessage) => {
           this.showCreateExercise = false;
           this.exerciseComponent.listExercisesByType();
           this.messageService.add({

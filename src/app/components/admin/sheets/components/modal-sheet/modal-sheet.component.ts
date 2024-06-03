@@ -1,4 +1,4 @@
-import {AfterViewInit, Component, OnInit} from '@angular/core';
+import {AfterViewInit, Component} from '@angular/core';
 import {DialogModule} from "primeng/dialog";
 import {MessageModule} from "primeng/message";
 import {CommonModule, NgIf} from "@angular/common";
@@ -7,7 +7,7 @@ import {FormBuilder, ReactiveFormsModule, UntypedFormGroup, Validators} from "@a
 import {MessageService, SharedModule} from "primeng/api";
 import {ToastModule} from "primeng/toast";
 import {ExercisesService} from "../../../../../service/exercises.service";
-import {ExerciseModel, returnMessage} from "../../../../../models/exercise.model";
+import {ExerciseModel, ReturnMessage} from "../../../../../models/exercise.model";
 import {createNewSheet} from "../../../../../models/sheets.model";
 import {SheetsService} from "../../../../../service/sheets.service";
 
@@ -144,7 +144,7 @@ export class ModalSheetComponent implements  AfterViewInit {
   submitNewSheet() {
     const newSheet: createNewSheet = this.getValues();
     this.sheetService.addNewSheet(newSheet).subscribe(
-      (res: returnMessage) => {
+      (res: ReturnMessage) => {
         this.messageService.add({
           key: 'tc',
           severity: 'success',

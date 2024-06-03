@@ -9,6 +9,7 @@ import {SheetsModel} from "../../../models/sheets.model";
 import {ModalSheetComponent} from "./components/modal-sheet/modal-sheet.component";
 import {HttpClient} from "@angular/common/http";
 import {initFlowbite} from "flowbite";
+import {ReturnMessage} from "../../../models/exercise.model";
 
 @Component({
   selector: 'app-sheets',
@@ -28,7 +29,8 @@ import {initFlowbite} from "flowbite";
 export class SheetsComponent implements  OnInit {
 
   sheets: SheetsModel[];
-   constructor(private sheetsService: SheetsService){}
+   constructor(private sheetsService: SheetsService,
+               private messageService: MessageService,){}
   ngOnInit() {
     initFlowbite();
     this.listSheets();
@@ -40,5 +42,16 @@ export class SheetsComponent implements  OnInit {
        }
      );
   }
-
+  delete(id: number) {
+     this.sheetsService.delete(id).subscribe(
+       (res: ReturnMessage) => {
+         this.messageService.add({
+           key: 'tc',
+           severity: 'success',
+           detail: res.message,
+           life: 1500
+         });
+       }
+     )
+  }
 }

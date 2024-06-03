@@ -1,6 +1,6 @@
 import { Component, OnInit} from '@angular/core';
 import {NgForOf, NgOptimizedImage} from "@angular/common";
-import {ExerciseModel, returnMessage} from "../../../models/exercise.model";
+import {ExerciseModel, ReturnMessage} from "../../../models/exercise.model";
 import {ExercisesService} from "../../../service/exercises.service";
 import {ActivatedRoute, RouterLink} from "@angular/router";
 import {ModalExercisesComponent} from "./components/modal-exercises/modal-exercises.component";
@@ -62,7 +62,7 @@ export class ExercisesComponent implements  OnInit {
 
   deleteExercise(id: number | undefined) {
      this.exerciseService.deleteExercise(id).subscribe(
-       (res: returnMessage) => {
+       (res: ReturnMessage) => {
        this.listExercisesByType();
          this.messageService.add({
            key: 'tc',

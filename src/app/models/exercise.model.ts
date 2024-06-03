@@ -7,7 +7,7 @@ export interface ExerciseModel {
   training_type?: string;
 }
 
-export interface returnMessage {
+export interface ReturnMessage {
   message: string;
   status: number;
 }
