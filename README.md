@@ -1,28 +1,31 @@
-# FrontendWebtraining
+## Webtraining Application
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 17.3.3.
+### What is WebTraining Application ?
 
-## Development server
+This project is to manage and track training sheets in a gym.
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+### Functionalities
 
-## Code scaffolding
+- Training Registration: Allows users to create and save different workouts.
+- Workout Management: Add, edit, and remove exercises from a workout sheet.
+- Progress Tracking: Visualize progress over time with graphs and statistics.
+- Intuitive Interface: Easy to use, even for beginners.
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+### How it is work?
 
-## Build
+The Web training  Application is a tool that allows users (Personal Trainner) to create, edit and build training sheets to your athletes. It provides an intuitive interface to manage exercises, sets, reps and more.
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+### Stacks
 
-## Running unit tests
+Developed in Angular 17 and NestJS
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+## Main Goals
 
-## Running end-to-end tests
+The main objective of the Gym Worksheets application is to provide users with a practical and effective means of creating, editing and monitoring their exercise routines. With it, users can:
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+- Structure their workouts according to their personal goals.
+- Keep a detailed history of their workouts.
+- Track progress and make adjustments as necessary.
+- Access data and statistics on their performance over time.
 
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
-# frontend-webtraining
+  ## Deployment Status
