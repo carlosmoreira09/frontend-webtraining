@@ -44,14 +44,14 @@ The main objective of this application is to provide users with a practical and 
   | 1.0 | 30th July | In time |
    
   | SubTasks - Frontend | Estimated Date | Status |
-  | --- | --- | --- |
-  | HomePage  | 30th June | Done |
-  | LoginPage | 30th June | Done |
-  | SheetPage | 30th June | Done |
-  | ExercicesPage | 30th June | Done |
-  | ClientPage | 30th June | Done |
-  | UserPage   | 30th June | Done |
-  | Integration Between UserXClient  | 5th June | Ongoing |
-  | Integration Between SheetXUser   | 10h June | Waiting |
-  | Integration Between SheetXClient | 15th June | Waiting |
+  | --- |----------------| --- |
+  | HomePage  | 30th May       | Done |
+  | LoginPage | 30th May      | Done |
+  | SheetPage | 30th May      | Done |
+  | ExercicesPage | 30th May      | Done |
+  | ClientPage | 30th May      | Done |
+  | UserPage   | 30th May      | Done |
+  | Integration Between UserXClient  | 5th June       | Ongoing |
+  | Integration Between SheetXUser   | 10h June       | Waiting |
+  | Integration Between SheetXClient | 15th June      | Waiting |
   
