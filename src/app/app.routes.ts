@@ -38,7 +38,6 @@ export const routes: Routes = [
   {
     path: 'register',
     component: RegisterComponent,
-    data: { loggedIn: true, homepage: false },
     canActivate:[AdminGuard]
   },
   {

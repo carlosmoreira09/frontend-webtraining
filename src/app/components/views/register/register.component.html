@@ -1,0 +1,63 @@
+<p-toast class="bg-green bg-green-500 dark:bg-green-500 text-white rounded" position="center" key="tc"></p-toast>
+
+<section class="h-screen">
+  <div class="h-full">
+    <!-- Left column container with background-->
+    <div
+      class="flex h-full flex-wrap items-center justify-center lg:justify-between">
+      <div
+        class="flex justify-center items-center md:mb-0 md:w-9/12 md:shrink-0 lg:w-6/12 xl:w-6/12">
+        <img
+          ngSrc="../../../../assets/img/banner.png"
+          priority="true"
+          width="500"
+          height="500"
+          alt="Banner Web Training" />
+      </div>
+
+      <!-- Right column container -->
+      <div class=" mb-12 mr-16 md:mb-2 md:w-7/12 lg:w-5/12 xl:w-5/12">
+        <form>
+          <!--Sign in section-->
+          <div
+            class="flex flex-row items-center justify-center lg:justify-center md:justify-center">
+            <p class="mb-0 me-4 text-lg uppercase text-blue-900 tracking-wide font-bold ">Cadastro de Cliente </p>
+          </div>
+
+          <!-- Username input -->
+          <div class="relative mb-6">
+            <label htmlFor="username" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Usuário</label>
+            <input autocomplete="usuario" formControlName="username" type="text"  class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required="">
+          </div>
+          <!-- Username input -->
+          <div class="relative mb-6">
+            <label htmlFor="username" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Nome Completo</label>
+            <input autocomplete="usuario" formControlName="username" type="text"  class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required="">
+          </div>
+          <!-- Password input -->
+          <div class="relative mb-6">
+            <label htmlFor="password" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Senha</label>
+            <input autocomplete="password" formControlName="password" type="password"  class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required="">
+          </div>
+          <!-- Username input -->
+          <div class="relative mb-6">
+            <label htmlFor="password" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Confirme a senha</label>
+            <input autocomplete="password" formControlName="password" type="password"  class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required="">
+          </div>
+          <!-- Password input -->
+          <div class="relative mb-6">
+            <label htmlFor="password" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">E-mail</label>
+            <input autocomplete="email" formControlName="email" type="text"  class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required="">
+          </div>
+          <!-- Login button -->
+          <div class="text-center lg:text-left">
+            <button
+              class="inline-block w-full rounded bg-blue-600 px-7 pb-2 pt-3 text-sm font-medium uppercase leading-normal text-white shadow-primary-3 transition duration-150 ease-in-out hover:bg-primary-accent-300 hover:shadow-primary-2 focus:bg-primary-accent-300 focus:shadow-primary-2 focus:outline-none focus:ring-0 active:bg-primary-600 active:shadow-primary-2 dark:shadow-black/30 dark:hover:shadow-dark-strong dark:focus:shadow-dark-strong dark:active:shadow-dark-strong">
+              Cadastrar
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
