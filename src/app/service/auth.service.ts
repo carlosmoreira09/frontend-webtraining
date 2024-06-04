@@ -1,8 +1,9 @@
 import { Injectable } from '@angular/core';
 import {HttpClient, HttpHeaders} from "@angular/common/http";
-import {AuthDTO, AuthPayload, AuthRoles} from "../models/auth.model";
+import {AuthDTO, AuthPayload, AuthRoles, ClientDTO} from "../models/auth.model";
 import {StorageService} from "./storage.service";
 import {jwtDecode} from "jwt-decode";
+import {ReturnMessage} from "../models/exercise.model";
 
 @Injectable({
   providedIn: 'root'
@@ -21,6 +22,11 @@ export class AuthService {
        }
      }
      return false;
+   }
+
+  register(data: ClientDTO | undefined, role: string) {
+
+     return this.httpClient.post<ReturnMessage>(this.authURL+"/register", data, { headers: new HttpHeaders({'user_role': role}) });
    }
 
 

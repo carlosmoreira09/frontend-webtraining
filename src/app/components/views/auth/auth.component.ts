@@ -59,14 +59,6 @@ export class AuthComponent  implements OnInit {
       )
     }
   }
-  loginErrorMessage(detail: string) {
-    return this.messageService.add({
-      severity: 'error',
-      key: 'tc',
-      life: 1500,
-      detail: detail,
-    })
-  }
   getFormValues(): AuthDTO {
     const username = this.getField('username')?.value;
     const password = this.getField('password')?.value;

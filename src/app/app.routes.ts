@@ -4,8 +4,8 @@ import {ExercisesComponent} from "./components/admin/exercises/exercises.compone
 import {SheetsComponent} from "./components/admin/sheets/sheets.component";
 import {HomeComponent} from "./components/admin/home/home.component";
 import {AdminGuard} from "./guards/admin.guard";
-import {ErrorComponent} from "./components/views/error/404/error404.component";
-import {ErrorAuthorizeComponent} from "./components/views/error/401/error401.component";
+import {ErrorComponent} from "./components/views/public/404/error404.component";
+import {ErrorAuthorizeComponent} from "./components/views/public/401/error401.component";
 import {AuthComponent} from "./components/views/auth/auth.component";
 import {RegisterComponent} from "./components/views/register/register.component";
 import {ClientGuard} from "./guards/client.guard";

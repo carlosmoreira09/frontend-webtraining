@@ -18,3 +18,14 @@ export interface AuthRoles {
   iat: number
   exp: number
 }
+
+export interface ClientDTO {
+  username: string;
+  fullName: string;
+  email: string;
+  password: string;
+  userType: string;
+  isActive?: boolean;
+  paymentDate?: Date;
+  paymentStatus?: 'Pago' | 'Nao Pago';
+}

@@ -1,6 +1,6 @@
 import {Component, Inject, OnInit, PLATFORM_ID} from '@angular/core';
 import {CardHomeComponent} from "./components/card-home.component";
-import {Router, RouterLink} from "@angular/router";
+import { RouterLink} from "@angular/router";
 import {isPlatformBrowser} from "@angular/common";
 import {initFlowbite} from "flowbite";
 import {StorageService} from "../../../service/storage.service";
