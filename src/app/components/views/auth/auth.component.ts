@@ -9,7 +9,7 @@ import {HttpClient} from "@angular/common/http";
 import {jwtDecode} from "jwt-decode";
 import {StorageService} from "../../../service/storage.service";
 import {AuthService} from "../../../service/auth.service";
-import {AuthDTO, AuthPayload} from "../../../models/auth.model";
+import {AuthDTO, AuthPayload, AuthRoles} from "../../../models/auth.model";
 
 @Component({
   selector: 'app-auth',
@@ -101,6 +101,44 @@ export class AuthComponent  implements OnInit {
           )
         }
       }
+    );
+  }
+
+  register() {
+    let payload: AuthPayload;
+    const authData: AuthDTO = this.getFormValues()
+    this.authService.login(authData).subscribe(
+      {
+        next: (value: any) => {
+          payload = value;
+        },
+        error: (err: { message: any; }) => {
+          this.messageService.add({
+            severity: 'error',
+            key: 'tc',
+            detail: err.message,
+            life: 1500,
+          })
+        },
+        complete: () => {
+          this.storageService.saveUser(payload.accessToken);
+          this.authService.home(payload).subscribe({
+              next: (res: any) => {
+                console.log(res);
+              },
+              complete: () => {
+                const token = this.storageService.getUser();
+                const authRoles: AuthRoles = jwtDecode(token);
+                if (authRoles.role === 'admin') {
+                  this.navigate('register').then()
+                } else {
+                  this.navigate('no-access').then()
+                }
+              }
+            }
+          )
+        }
+      }
     )
   }
 
@@ -110,4 +148,5 @@ export class AuthComponent  implements OnInit {
   getField(field: string) {
     return this.authForm.get(field);
   }
+
 }
