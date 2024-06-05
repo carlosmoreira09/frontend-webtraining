@@ -18,11 +18,13 @@
       <div class=" mb-12 mr-16 md:mb-2 md:w-7/12 lg:w-5/12 xl:w-5/12">
 
         <form [formGroup]="registerForm">
+
           <!--Sign in section-->
           <div
             class="flex flex-col items-center justify-center lg:justify-center md:justify-center">
             <p class="mb-0 me-4 text-2xl uppercase text-blue-900 tracking-wide font-bold ">Cadastro de Cliente </p>
-            <div class="flex justify-center items-center mt-3 w-1/2 h-1/4 rounded-full bg-red-600 text-white" *ngIf="!formValid"> Erro no formulário</div>
+            <div class="flex justify-center items-center p-4 mt-3 rounded-full bg-red-600 text-white" *ngIf="formValid"> {{ this.errorMessage }}</div>
+
           </div>
 
           <!-- Username input -->

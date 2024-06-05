@@ -1,11 +1,11 @@
 import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormsModule, ReactiveFormsModule, UntypedFormGroup, Validators} from "@angular/forms";
-import {NgIf, NgOptimizedImage} from "@angular/common";
+import {NgClass, NgIf, NgOptimizedImage} from "@angular/common";
 import {Router, RouterLink} from "@angular/router";
 import {ToastModule} from "primeng/toast";
 import {ConfirmationService, MessageService} from "primeng/api";
 import {AuthService} from "../../../service/auth.service";
-import {AuthDTO, AuthRoles, ClientDTO} from "../../../models/auth.model";
+import {AuthRoles, ClientDTO, StrongPasswordRegx} from "../../../models/auth.model";
 import {ReturnMessage} from "../../../models/exercise.model";
 import {StorageService} from "../../../service/storage.service";
 import {MessageModule} from "primeng/message";
@@ -23,7 +23,8 @@ import {jwtDecode} from "jwt-decode";
     ToastModule,
     MessageModule,
     NgIf,
-    DialogModule
+    DialogModule,
+    NgClass
   ],
   providers: [MessageService, ConfirmationService],
   templateUrl: './register.component.html',
@@ -31,7 +32,8 @@ import {jwtDecode} from "jwt-decode";
 })
 export class RegisterComponent implements OnInit {
   registerForm: UntypedFormGroup;
-  formValid: boolean = true;
+  formValid: boolean = false;
+  errorMessage: string = '';
 
   constructor(private formBuilder: FormBuilder,
               private authService: AuthService,
@@ -42,18 +44,25 @@ export class RegisterComponent implements OnInit {
 
   ngOnInit(): void {
     this.registerForm = this.formBuilder.group({
-      username: ['', [Validators.required]],
-      password: [''],
+      username: ['', []],
+      password: ['', Validators.pattern(StrongPasswordRegx)],
       passwordCheck: [''],
-      email: ['', [Validators.required]],
-      fullName: ['', [Validators.required]],
+      email: ['', []],
+      fullName: ['', []],
     });
   }
   onSubmit() {
-    if (this.registerForm.valid) {
-      const registerValues  = this.getFormValues();
+    const registerValues  = this.getFormValues();
+    if(registerValues === undefined) {
+      this.errorMessage = 'Senhas Não Coincidem'
+      this.messageService.add({
+        severity: 'error',
+        key: 'tc',
+        detail: 'Verifique seu formulário',
+        life: 1500
+      })
+    } else {
       const authRoles: AuthRoles = jwtDecode(this.storageService.getUser())
-
       this.authService.register(registerValues, authRoles.role).subscribe({
         next: (res: ReturnMessage) => {
           if(res.status !== 200) {
@@ -81,30 +90,57 @@ export class RegisterComponent implements OnInit {
         },
         complete: () => {
           this.storageService.clean();
-          this.navigate('auth').then()
+          this.navigate('auth').then();
         }
       })
     }
   }
+  checkPassword() {
+    let pass = this.getField('password')?.value;
+    let passwordRegx: RegExp = new RegExp(StrongPasswordRegx);
+    const testPassword = passwordRegx.test(pass);
+    if (!testPassword) {
+      this.formValid = true;
+      let regxUpperCase = new RegExp("^(?=.*[A-Z])");
+      if (!regxUpperCase.test(pass)) {
+        this.errorMessage = 'Acrescente uma letra maiuscula';
+        return false;
+      }
+      let regxOneNumber = new RegExp("(.*[0-9].*)");
+      if (!regxOneNumber.test(pass)) {
+        this.errorMessage = 'Acrescente um número';
+        return false;
+      }
+      let regxOneCarac = new RegExp("(?=.*[!@#$%^&*])");
+      if (!regxOneCarac.test(pass)) {
+        this.errorMessage = 'Acrescente um caracter especiak do tipo !@#$%^&* ';
+        return false;
+      }
+      let regxNumberChar = new RegExp(".{8,}");
+      if (!regxNumberChar.test(pass)) {
+        this.errorMessage = 'Sua senha deve possui 8 caracter';
+        return false;
+      }
+      if(pass !== this.getField('passwordCheck')?.value) {
+        this.errorMessage = 'Senhas não Coincidem';
+        return false;
+      }
+    }
+    return true;
+  }
   getFormValues(): ClientDTO | undefined {
 
     const username = this.getField('username')?.value;
-    const password = this.getField('password')?.value;
-    const confirmPassword = this.getField('password')?.value;
-
-    const email = this.getField('email')?.value;
-    const fullName = this.getField('fullName')?.value;
-    if(password !== confirmPassword) {
-      this.formValid = true;
-      this.messageService.add({
-        severity: 'error',
-        key: 'tc',
-        detail: 'Erro no Formulário',
-        life: 1500
-      })
+    const checkPass = this.checkPassword();
+    if(!checkPass) {
+      this.registerForm.get('password')?.setValue('')
+      this.registerForm.get('passwordCheck')?.setValue('')
       return
     }
 
+    const email = this.getField('email')?.value;
+    const fullName = this.getField('fullName')?.value;
+    const password = this.getField('password')?.value;
     return {
       username: username,
       fullName: fullName,
