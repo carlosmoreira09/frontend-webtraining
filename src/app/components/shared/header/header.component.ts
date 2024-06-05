@@ -1,20 +1,40 @@
-import {Component, OnDestroy, OnInit} from '@angular/core';
-import {AuthService} from "../../../service/auth.service";
-import {Subscription} from "rxjs";
+import {AfterContentInit, AfterViewInit, Component, OnInit} from '@angular/core';
 import {NgIf} from "@angular/common";
+import {UserInfo} from "../../../models/auth.model";
+import {StorageService} from "../../../service/storage.service";
+import {Router} from "@angular/router";
+import {AuthComponent} from "../../views/auth/auth.component";
+import {MessageService} from "primeng/api";
 
 @Component({
   selector: 'app-header',
   standalone: true,
   imports: [
-    NgIf
+    NgIf,
+    AuthComponent
   ],
   templateUrl: './header.component.html',
-  styleUrl: './header.component.css'
+  styleUrl: './header.component.css',
 })
-export class HeaderComponent {
+export class HeaderComponent implements OnInit {
+  public loggedUser: UserInfo;
 
-  constructor() {
+  constructor(private storageService: StorageService, private router: Router,
+              ) {}
+
+  ngOnInit(): void {
+    this.loggedUser = this.storageService.getItem('user')
+    console.log(this.loggedUser.fullName)
   }
 
+  logout() {
+    this.navigate('auth').then(
+      () => {
+        this.storageService.clean();
+      }
+    )
+  }
+  navigate(endpoint: string) {
+    return this.router.navigate([endpoint]);
+  }
 }

@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import {HttpClient, HttpHeaders} from "@angular/common/http";
-import {AuthDTO, AuthPayload, AuthRoles, ClientDTO} from "../models/auth.model";
+import {AuthDTO, AuthPayload, AuthRoles, ClientDTO, UserInfo} from "../models/auth.model";
 import {StorageService} from "./storage.service";
 import {jwtDecode} from "jwt-decode";
 import {ReturnMessage} from "../models/exercise.model";
@@ -36,11 +36,14 @@ export class AuthService {
 
    home(data: AuthPayload) {
      const token = data.accessToken;
-     let headers = new HttpHeaders({
+     let headers: HttpHeaders;
+     headers = new HttpHeaders({
        'Content-Type': 'application/json',
-       'Authorization': 'Bearer ' + token });
-     let options = { headers: headers };
-    return this.httpClient.get(this.authURL + "/profile",
+       'Authorization': 'Bearer ' + token
+     });
+     let options: { headers: HttpHeaders };
+     options= { headers: headers };
+    return this.httpClient.get<UserInfo>(this.authURL + "/profile",
        options
       );
   }

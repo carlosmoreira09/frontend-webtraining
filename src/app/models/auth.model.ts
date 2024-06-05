@@ -31,3 +31,11 @@ export interface ClientDTO {
 }
 export const StrongPasswordRegx: RegExp =
   /^(?=[^A-Z]*[A-Z])(?=[^a-z]*[a-z])(?=\D*\d).{8,}$/;
+
+export interface UserInfo {
+  id_user: number;
+  username: string;
+  fullName: string;
+  email: string;
+
+}

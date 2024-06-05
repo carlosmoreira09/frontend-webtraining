@@ -1,15 +1,15 @@
 import { Component, OnInit} from '@angular/core';
 import {FormBuilder, ReactiveFormsModule, UntypedFormGroup, Validators} from "@angular/forms";
 import {NgOptimizedImage} from "@angular/common";
-import {ActivatedRoute, Router, RouterLink} from "@angular/router";
-
+import { Router, RouterLink} from "@angular/router";
 import {MessageService} from "primeng/api";
 import {ToastModule} from "primeng/toast";
 import {HttpClient} from "@angular/common/http";
 import {jwtDecode} from "jwt-decode";
 import {StorageService} from "../../../service/storage.service";
 import {AuthService} from "../../../service/auth.service";
-import {AuthDTO, AuthPayload, AuthRoles} from "../../../models/auth.model";
+import {AuthDTO, AuthPayload, AuthRoles, UserInfo} from "../../../models/auth.model";
+import {HeaderComponent} from "../../shared/header/header.component";
 
 @Component({
   selector: 'app-auth',
@@ -26,12 +26,14 @@ import {AuthDTO, AuthPayload, AuthRoles} from "../../../models/auth.model";
 })
 export class AuthComponent  implements OnInit {
   authForm: UntypedFormGroup;
+  public user: UserInfo;
+
   constructor(private formBuilder: FormBuilder,
               private storageService: StorageService,
               private authService: AuthService,
               private messageService: MessageService,
               private router: Router,
-              private activeRoute: ActivatedRoute,) {
+              ) {
 
   }
 
@@ -41,17 +43,16 @@ export class AuthComponent  implements OnInit {
       username: ['', [Validators.required, Validators.minLength(5)]],
       password: [''],
     });
-
     if (this.storageService.isLoggedIn()) {
       const token = this.storageService.getUser();
       this.authService.home(token).subscribe({
-          next: (res: any) => {
-            console.log(res);
+          next: (res: UserInfo) => {
+            this.user = res;
           },
           complete: () => {
+            this.storageService.saveItem('user', this.user);
             this.navigate('home').then(
-              (res) => {
-
+              () => {
               }
             )
           }
@@ -87,13 +88,13 @@ export class AuthComponent  implements OnInit {
         complete: () => {
           this.storageService.saveUser(payload.accessToken);
           this.authService.home(payload).subscribe({
-            next: (res: any) => {
-              console.log(res);
-            },
+              next: (res: UserInfo) => {
+                this.user = res;
+              },
             complete: () => {
+              this.storageService.saveItem('user', this.user);
               this.navigate('home').then(
-                (res) => {
-
+                () => {
                 }
               )
             }
@@ -122,19 +123,21 @@ export class AuthComponent  implements OnInit {
         },
         complete: () => {
           this.storageService.saveUser(payload.accessToken);
+
           this.authService.home(payload).subscribe({
-              next: (res: any) => {
-                console.log(res);
+                next: (res: UserInfo) => {
+                  this.user = res;
               },
               complete: () => {
-                const token = this.storageService.getUser();
-                const authRoles: AuthRoles = jwtDecode(token);
-                if (authRoles.role === 'admin') {
-                  this.navigate('register').then()
-                } else {
-                  this.navigate('no-access').then()
+                this.storageService.saveItem('user', this.user);
+                  const token = this.storageService.getUser();
+                  const authRoles: AuthRoles = jwtDecode(token);
+                  if (authRoles.role === 'admin') {
+                    this.navigate('register').then()
+                  } else {
+                    this.navigate('no-access').then()
+                  }
                 }
-              }
             }
           )
         }
