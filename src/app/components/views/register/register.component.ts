@@ -43,10 +43,13 @@ export class RegisterComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.initControlForm();
+  }
+  initControlForm() {
     this.registerForm = this.formBuilder.group({
       username: ['', []],
       password: ['', Validators.pattern(StrongPasswordRegx)],
-      passwordCheck: [''],
+      passwordCheck: ['',Validators.pattern(StrongPasswordRegx)],
       email: ['', []],
       fullName: ['', []],
     });
@@ -121,21 +124,30 @@ export class RegisterComponent implements OnInit {
         this.errorMessage = 'Sua senha deve possui 8 caracter';
         return false;
       }
-      if(pass !== this.getField('passwordCheck')?.value) {
+      let checkPassword = this.getField('passwordCheck')?.value
+      if(pass !== checkPassword) {
         this.errorMessage = 'Senhas não Coincidem';
         return false;
       }
     }
     return true;
   }
-  getFormValues(): ClientDTO | undefined {
+  addMessage(type: string, message: string): void {
+    return this.messageService.add({
+      severity: type,
+      key: 'tc',
+      detail: message,
+      life: 1500,
+    })
+  }
+  getFormValues(): any {
 
     const username = this.getField('username')?.value;
     const checkPass = this.checkPassword();
     if(!checkPass) {
-      this.registerForm.get('password')?.setValue('')
-      this.registerForm.get('passwordCheck')?.setValue('')
-      return
+      this.getField('password')?.setValue('');
+      this.getField('passwordCheck')?.setValue('');
+      return this.addMessage('error', 'Verifique sua senha')
     }
 
     const email = this.getField('email')?.value;
