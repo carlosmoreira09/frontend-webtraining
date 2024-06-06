@@ -12,6 +12,8 @@ export const AuthInterceptor: HttpInterceptorFn = (req, next) => {
   const router: Router = inject(Router);
   const storageService = inject(StorageService);
   const auth = storageService.getUser();
+  const authLocal = storageService.getUserLocalStorage()
+
   if(!auth) {
     router.navigate(['auth']).then(
       () => {
@@ -19,7 +21,14 @@ export const AuthInterceptor: HttpInterceptorFn = (req, next) => {
       }
     )
   }
-  if(auth) {
+  if(!authLocal) {
+    router.navigate(['auth']).then(
+      () => {
+        storageService.clean();
+      }
+    )
+  }
+  if(auth || authLocal) {
     const decode: AuthRoles = jwtDecode(auth.toString())
     const dateNow = new Date();
     const expirationTime = new Date(decode.exp*1000)

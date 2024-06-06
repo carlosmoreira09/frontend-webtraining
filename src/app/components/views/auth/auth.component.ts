@@ -9,7 +9,6 @@ import {jwtDecode} from "jwt-decode";
 import {StorageService} from "../../../service/storage.service";
 import {AuthService} from "../../../service/auth.service";
 import {AuthDTO, AuthPayload, AuthRoles, UserInfo} from "../../../models/auth.model";
-import {HeaderComponent} from "../../shared/header/header.component";
 
 @Component({
   selector: 'app-auth',
@@ -41,9 +40,10 @@ export class AuthComponent  implements OnInit {
 
     this.authForm = this.formBuilder.group({
       username: ['', [Validators.required, Validators.minLength(5)]],
-      password: [''],
+      password: ['', [Validators.required]],
+      saveData: ['']
     });
-    if (this.storageService.isLoggedIn()) {
+    if (this.storageService.isLoggedIn() || this.storageService.isLoggedInLocal()) {
       const token = this.storageService.getUser();
       this.authService.home(token).subscribe({
           next: (res: UserInfo) => {
@@ -60,6 +60,7 @@ export class AuthComponent  implements OnInit {
       )
     }
   }
+
   getFormValues(): AuthDTO {
     const username = this.getField('username')?.value;
     const password = this.getField('password')?.value;
@@ -86,6 +87,10 @@ export class AuthComponent  implements OnInit {
           })
         },
         complete: () => {
+          const saveLocal = this.getField('saveData')?.value
+          if(saveLocal) {
+            this.storageService.saveItemLocalStorage(payload.accessToken);
+          }
           this.storageService.saveUser(payload.accessToken);
           this.authService.home(payload).subscribe({
               next: (res: UserInfo) => {
@@ -123,7 +128,10 @@ export class AuthComponent  implements OnInit {
         },
         complete: () => {
           this.storageService.saveUser(payload.accessToken);
-
+          const saveLocal = this.getField('saveData')?.value
+          if(saveLocal) {
+            this.storageService.saveItemLocalStorage(payload.accessToken);
+          }
           this.authService.home(payload).subscribe({
                 next: (res: UserInfo) => {
                   this.user = res;
@@ -144,6 +152,7 @@ export class AuthComponent  implements OnInit {
       }
     )
   }
+
 
   navigate(endpoint: string) {
     return this.router.navigate([endpoint]);

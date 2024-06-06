@@ -93,7 +93,7 @@ export class RegisterComponent implements OnInit {
         },
         complete: () => {
           this.storageService.clean();
-          this.navigate('auth').then();
+          this.navigate('new-register').then();
         }
       })
     }

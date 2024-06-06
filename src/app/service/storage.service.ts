@@ -12,6 +12,21 @@ export class StorageService {
     sessionStorage.clear();
   }
 
+  public saveItemLocalStorage(user: any): void {
+    localStorage.removeItem(this.USER_KEY);
+    localStorage.setItem(this.USER_KEY, JSON.stringify(user));
+  }
+  public getUserLocalStorage(): any {
+    const user = localStorage.getItem(this.USER_KEY);
+    if (user) {
+      return JSON.parse(user);
+    }
+    return null;
+  }
+  public isLoggedInLocal(): boolean {
+    const user = localStorage.getItem(this.USER_KEY);
+    return !!user;
+  }
   public saveUser(user: any): void {
     sessionStorage.removeItem(this.USER_KEY);
     sessionStorage.setItem(this.USER_KEY, JSON.stringify(user));
