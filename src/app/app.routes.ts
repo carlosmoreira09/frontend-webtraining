@@ -9,6 +9,7 @@ import {ErrorAuthorizeComponent} from "./components/views/public/401/error401.co
 import {AuthComponent} from "./components/views/auth/auth.component";
 import {RegisterComponent} from "./components/views/register/register.component";
 import {ClientGuard} from "./guards/client.guard";
+import {NewUserComponent} from "./components/views/register/user-register/user-register.component";
 
 
 export const routes: Routes = [
@@ -24,6 +25,12 @@ export const routes: Routes = [
   {
     path: 'no-access',
     component: ErrorAuthorizeComponent
+  },
+  {
+    path: 'new-register',
+    component: NewUserComponent,
+    canActivate:[AdminGuard]
+
   },
   {
     path: 'auth',

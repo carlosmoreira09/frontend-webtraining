@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import {RouterLink} from "@angular/router";
 
 @Component({
-  selector: 'app-401-page',
+  selector: 'app-user-register',
   standalone: true,
   imports: [
     RouterLink
@@ -10,6 +10,6 @@ import {RouterLink} from "@angular/router";
   templateUrl: './user-register.component.html',
   styleUrl: './user-register.component.css'
 })
-export class ErrorAuthorizeComponent {
+export class NewUserComponent {
 
 }
