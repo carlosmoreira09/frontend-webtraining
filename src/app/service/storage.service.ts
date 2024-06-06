@@ -1,5 +1,4 @@
 import { Injectable } from '@angular/core';
-import {setPostSignalSetFn} from "@angular/core/primitives/signals";
 
 @Injectable({
   providedIn: 'root'
@@ -10,9 +9,10 @@ export class StorageService {
   constructor() { }
   clean(): void {
     sessionStorage.clear();
+    localStorage.clear();
   }
 
-  public saveItemLocalStorage(user: any): void {
+  public saveUserLocalStorage(user: any): void {
     localStorage.removeItem(this.USER_KEY);
     localStorage.setItem(this.USER_KEY, JSON.stringify(user));
   }
@@ -22,6 +22,10 @@ export class StorageService {
       return JSON.parse(user);
     }
     return null;
+  }
+  public saveItemLocalStorage(key: string, item: any): void {
+    localStorage.removeItem(key);
+    localStorage.setItem(key, JSON.stringify(item));
   }
   public isLoggedInLocal(): boolean {
     const user = localStorage.getItem(this.USER_KEY);

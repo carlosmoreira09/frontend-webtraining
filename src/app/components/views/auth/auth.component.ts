@@ -44,7 +44,10 @@ export class AuthComponent  implements OnInit {
       saveData: ['']
     });
     if (this.storageService.isLoggedIn() || this.storageService.isLoggedInLocal()) {
-      const token = this.storageService.getUser();
+      let token = this.storageService.getUser();
+      if(!token) {
+        token = this.storageService.getUserLocalStorage();
+      }
       this.authService.home(token).subscribe({
           next: (res: UserInfo) => {
             this.user = res;
@@ -87,9 +90,9 @@ export class AuthComponent  implements OnInit {
           })
         },
         complete: () => {
-          const saveLocal = this.getField('saveData')?.value
+          let saveLocal = this.getField('saveData')?.value
           if(saveLocal) {
-            this.storageService.saveItemLocalStorage(payload.accessToken);
+            this.storageService.saveUserLocalStorage(payload.accessToken);
           }
           this.storageService.saveUser(payload.accessToken);
           this.authService.home(payload).subscribe({
@@ -98,6 +101,9 @@ export class AuthComponent  implements OnInit {
               },
             complete: () => {
               this.storageService.saveItem('user', this.user);
+              if(saveLocal) {
+                this.storageService.saveItemLocalStorage('user', this.user);
+              }
               this.navigate('home').then(
                 () => {
                 }
@@ -128,9 +134,9 @@ export class AuthComponent  implements OnInit {
         },
         complete: () => {
           this.storageService.saveUser(payload.accessToken);
-          const saveLocal = this.getField('saveData')?.value
+          let saveLocal = this.getField('saveData')?.value
           if(saveLocal) {
-            this.storageService.saveItemLocalStorage(payload.accessToken);
+            this.storageService.saveUserLocalStorage(payload.accessToken);
           }
           this.authService.home(payload).subscribe({
                 next: (res: UserInfo) => {
@@ -138,6 +144,9 @@ export class AuthComponent  implements OnInit {
               },
               complete: () => {
                 this.storageService.saveItem('user', this.user);
+                if(saveLocal) {
+                  this.storageService.saveItemLocalStorage('user', this.user);
+                }
                   const token = this.storageService.getUser();
                   const authRoles: AuthRoles = jwtDecode(token);
                   if (authRoles.role === 'admin') {

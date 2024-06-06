@@ -15,13 +15,10 @@ export class AuthService {
 
    getAccessLevel(role : string): boolean {
      const token = this.storageService.getUser();
-     if(token){
-       const authRoles: AuthRoles = jwtDecode(token)
-       if(authRoles.role === role) {
-         return true;
-       }
-     }
-     return false;
+     const tokenLocal = this.storageService.getUserLocalStorage();
+     let tokenExist = tokenLocal? tokenLocal : token
+     let authRoles: AuthRoles = jwtDecode(tokenExist);
+     return authRoles.role === role;
    }
 
   register(data: ClientDTO | undefined, role: string) {

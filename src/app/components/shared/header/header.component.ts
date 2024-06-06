@@ -32,6 +32,7 @@ export class HeaderComponent implements OnInit {
     this.navigate('auth').then(
       () => {
         this.storageService.clean();
+
       }
     )
   }

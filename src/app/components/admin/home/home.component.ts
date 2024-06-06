@@ -33,7 +33,9 @@ export class HomeComponent implements OnInit{
       initFlowbite();
     }
     const token = this.storageService.getUser();
-    const authRoles: AuthRoles = jwtDecode(token);
+    const tokenLocal = this.storageService.getUserLocalStorage();
+    let tokenExist = tokenLocal? tokenLocal : token
+    const authRoles: AuthRoles = jwtDecode(tokenExist);
     authRoles.role === 'admin'? this.isAdmin = true : this.isAdmin = false;
   }
 }
