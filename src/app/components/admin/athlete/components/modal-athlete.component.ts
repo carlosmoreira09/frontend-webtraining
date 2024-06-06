@@ -1,6 +1,6 @@
 import {Component, OnInit, Input, ViewChild, ElementRef, AfterViewInit} from '@angular/core';
 import {AtletasService} from "../../../../service/atletas.service";
-import {FormBuilder, FormGroup, ReactiveFormsModule, Validators} from "@angular/forms";
+import {FormBuilder, FormGroup, ReactiveFormsModule, UntypedFormGroup, Validators} from "@angular/forms";
 import {ClientsModel} from "../../../../models/clients.model";
 import {DialogModule} from "primeng/dialog";
 import {HttpClient, HttpClientModule} from "@angular/common/http";
@@ -26,6 +26,7 @@ export class ModalAtletaComponent implements AfterViewInit {
   @Input() clientInfo: ClientsModel;
   showCreateUser = false;
   showEditUser = false;
+  formClient: UntypedFormGroup;
 
   public modalidades = [
     {name: 'Hipertrofia', abbrev: '1'},
@@ -33,9 +34,13 @@ export class ModalAtletaComponent implements AfterViewInit {
     {name: 'Fortalecimento', abbrev: '3'},
     {name: 'Tratamento de Lesões', abbrev: '4'},
   ];
-  public formClient!: FormGroup;
   constructor(
               private formBuilder: FormBuilder) {}
+
+  ngAfterViewInit() {
+    this.formClient = this.initControlForm();
+  }
+
   openDialogCreate() {
     this.showCreateUser = !this.showCreateUser;
   }
@@ -45,14 +50,15 @@ export class ModalAtletaComponent implements AfterViewInit {
   initControlForm() {
     return this.formBuilder.group({
       fullName: ['', Validators.required],
+      password: ['', Validators.required],
       age: [''],
       phone: [''],
       email: [''],
       id_training: ['']
     });
   }
+  onSubmit() {
 
-  ngAfterViewInit() {
-    this.formClient = this.initControlForm();
   }
+
 }

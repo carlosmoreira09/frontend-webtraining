@@ -1,10 +1,9 @@
 import {AfterContentInit, AfterViewInit, Component, OnInit} from '@angular/core';
 import {NgIf, NgOptimizedImage} from "@angular/common";
-import {UserInfo} from "../../../models/auth.model";
+import {ClientDTO} from "../../../models/auth.model";
 import {StorageService} from "../../../service/storage.service";
 import {Router, RouterLink} from "@angular/router";
 import {AuthComponent} from "../../views/auth/auth.component";
-import {MessageService} from "primeng/api";
 
 @Component({
   selector: 'app-header',
@@ -19,7 +18,7 @@ import {MessageService} from "primeng/api";
   styleUrl: './header.component.css',
 })
 export class HeaderComponent implements OnInit {
-  public loggedUser: UserInfo;
+  public loggedUser: ClientDTO;
 
   constructor(private storageService: StorageService, private router: Router,
               ) {}

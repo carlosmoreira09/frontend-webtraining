@@ -23,7 +23,7 @@ export interface ClientDTO {
   username: string;
   fullName: string;
   email: string;
-  password: string;
+  password?: string;
   userType: string;
   isActive?: boolean;
   paymentDate?: Date;
@@ -32,10 +32,3 @@ export interface ClientDTO {
 export const StrongPasswordRegx: RegExp =
   /^(?=[^A-Z]*[A-Z])(?=[^a-z]*[a-z])(?=\D*\d).{8,}$/;
 
-export interface UserInfo {
-  id_user: number;
-  username: string;
-  fullName: string;
-  email: string;
-
-}

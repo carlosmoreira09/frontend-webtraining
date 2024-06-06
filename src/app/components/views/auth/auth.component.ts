@@ -8,7 +8,7 @@ import {HttpClient} from "@angular/common/http";
 import {jwtDecode} from "jwt-decode";
 import {StorageService} from "../../../service/storage.service";
 import {AuthService} from "../../../service/auth.service";
-import {AuthDTO, AuthPayload, AuthRoles, UserInfo} from "../../../models/auth.model";
+import {AuthDTO, AuthPayload, AuthRoles, ClientDTO} from "../../../models/auth.model";
 
 @Component({
   selector: 'app-auth',
@@ -25,7 +25,7 @@ import {AuthDTO, AuthPayload, AuthRoles, UserInfo} from "../../../models/auth.mo
 })
 export class AuthComponent  implements OnInit {
   authForm: UntypedFormGroup;
-  public user: UserInfo;
+  public user: ClientDTO;
 
   constructor(private formBuilder: FormBuilder,
               private storageService: StorageService,
@@ -49,7 +49,7 @@ export class AuthComponent  implements OnInit {
         token = this.storageService.getUserLocalStorage();
       }
       this.authService.home(token).subscribe({
-          next: (res: UserInfo) => {
+          next: (res: ClientDTO) => {
             this.user = res;
           },
           complete: () => {
@@ -96,7 +96,7 @@ export class AuthComponent  implements OnInit {
           }
           this.storageService.saveUser(payload.accessToken);
           this.authService.home(payload).subscribe({
-              next: (res: UserInfo) => {
+              next: (res: ClientDTO) => {
                 this.user = res;
               },
             complete: () => {
@@ -139,7 +139,7 @@ export class AuthComponent  implements OnInit {
             this.storageService.saveUserLocalStorage(payload.accessToken);
           }
           this.authService.home(payload).subscribe({
-                next: (res: UserInfo) => {
+                next: (res: ClientDTO) => {
                   this.user = res;
               },
               complete: () => {
