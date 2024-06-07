@@ -6,8 +6,11 @@ import {ModalAtletaComponent} from "./components/modal-athlete.component";
 import {HttpClient, HttpClientModule} from "@angular/common/http";
 import {CommonModule} from "@angular/common";
 import {DialogModule} from "primeng/dialog";
-import {RouterLink} from "@angular/router";
+import {Router, RouterLink} from "@angular/router";
 import {ConfirmationService, MessageService} from "primeng/api";
+import {ConfirmDialogModule} from "primeng/confirmdialog";
+import {ToastModule} from "primeng/toast";
+import {ReturnMessage} from "../../../models/exercise.model";
 
 @Component({
   selector: 'app-athlete',
@@ -17,7 +20,9 @@ import {ConfirmationService, MessageService} from "primeng/api";
     DialogModule,
     CommonModule,
     ModalAtletaComponent,
-    RouterLink
+    RouterLink,
+    ConfirmDialogModule,
+    ToastModule
   ],
   templateUrl: './athlete.component.html',
   styleUrl: './athlete.component.css',
@@ -26,15 +31,62 @@ import {ConfirmationService, MessageService} from "primeng/api";
 export class AtletasComponent implements OnInit {
   atletas: ClientsModel[];
 
-  constructor(private clientService: AthletesService) {}
+  constructor(private athleteService: AthletesService,
+              private router: Router,
+              private confirmationService: ConfirmationService,
+              private messageService: MessageService,){}
   ngOnInit() {
     this.listAllUsers();
   }
   listAllUsers() {
-    return this.clientService.listAllAthletas().subscribe(
+    return this.athleteService.listAllAthletas().subscribe(
       (users: ClientsModel[]) => {
         this.atletas = users;
       }
     )
+  }
+  deleteAthlete(id_client: number | undefined) {
+    this.athleteService.delete(id_client).subscribe({
+      next: (res: ReturnMessage) => {
+        this.messageService.add({
+          key: 'tc',
+          severity: 'success',
+          detail: res.message,
+          life: 1500
+        })
+      },
+      error: err => {
+        this.messageService.add({
+          key: 'tc',
+          severity: 'error',
+          detail: err.message,
+          life: 1500
+        })
+      },
+      complete: () => {
+        this.listAllUsers()
+      }
+    })
+  }
+  confirm(event: Event, id: number | undefined) {
+    this.confirmationService.confirm({
+      target: event.target as EventTarget,
+      message: 'Você deseja deletar esse Atleta?',
+      header: 'Confirmação',
+      icon: 'pi pi-info-circle',
+      acceptButtonStyleClass:"p-button-danger p-button-text",
+      rejectButtonStyleClass:"m-2 p-button-text p-button-text",
+      acceptIcon:"none",
+      rejectIcon:"none",
+
+      accept: () => {
+        this.deleteAthlete(id);
+        this.listAllUsers();
+        this.messageService.add({ severity: 'info', summary: 'Confirmed', detail: 'Atleta deletado', life: 1500 });
+      },
+      reject: () => {
+        this.listAllUsers();
+      }
+    });
   }
 }

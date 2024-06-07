@@ -24,6 +24,10 @@ export class AthletesService {
 
   }
 
+  delete(id: number | undefined): Observable<ReturnMessage> {
+    return this.httpClient.delete<ReturnMessage>(this.url + "/" + id);
+  }
+
   create(newClient: any): Observable<ReturnMessage> {
     const token = this.storageService.getUser();
     const authRoles: AuthRoles = jwtDecode(token);

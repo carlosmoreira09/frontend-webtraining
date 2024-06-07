@@ -61,18 +61,8 @@ export class ExercisesComponent implements  OnInit {
   }
 
   deleteExercise(id: number | undefined) {
-     this.exerciseService.deleteExercise(id).subscribe(
-       (res: ReturnMessage) => {
-       this.listExercisesByType();
-         this.messageService.add({
-           key: 'tc',
-           severity: 'success',
-           detail: res.message,
-           life: 1500
-         });
-     })
+    return this.exerciseService.deleteExercise(id);
   }
-
   listExercisesByType() {
     this.router.params.subscribe((objeto: any) => {
       this.title = objeto.type;
