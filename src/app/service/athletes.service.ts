@@ -10,7 +10,7 @@ import {ReturnMessage} from "../models/exercise.model";
 @Injectable({
   providedIn: 'root'
 })
-export class AtletasService {
+export class AthletesService {
 
   private url: string = "http://localhost:3000/api/clients";
 
@@ -24,7 +24,7 @@ export class AtletasService {
 
   }
 
-  create(newClient: any, id_user: number) {
+  create(newClient: any, id_user: number): Observable<ReturnMessage> {
     return this.httpClient.post<ReturnMessage>(this.url, newClient, {headers: new HttpHeaders({'id_user': id_user})});
   }
 }

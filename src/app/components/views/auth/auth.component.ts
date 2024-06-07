@@ -85,7 +85,7 @@ export class AuthComponent  implements OnInit {
           this.messageService.add({
             severity: 'error',
             key: 'tc',
-            detail: err.message,
+            detail: 'Erro ao realizar login',
             life: 1500,
           })
         },

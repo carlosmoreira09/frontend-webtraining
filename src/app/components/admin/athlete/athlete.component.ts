@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {FormBuilder, ReactiveFormsModule, Validators} from "@angular/forms";
 import {ClientsModel} from "../../../models/clients.model";
-import {AtletasService} from "../../../service/atletas.service";
+import {AthletesService} from "../../../service/athletes.service";
 import {ModalAtletaComponent} from "./components/modal-athlete.component";
 import {HttpClient, HttpClientModule} from "@angular/common/http";
 import {CommonModule} from "@angular/common";
@@ -26,7 +26,7 @@ import {ConfirmationService, MessageService} from "primeng/api";
 export class AtletasComponent implements OnInit {
   atletas: ClientsModel[];
 
-  constructor(private clientService: AtletasService) {}
+  constructor(private clientService: AthletesService) {}
   ngOnInit() {
     this.listAllUsers();
   }
