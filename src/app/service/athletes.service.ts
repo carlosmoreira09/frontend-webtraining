@@ -24,7 +24,9 @@ export class AthletesService {
 
   }
 
-  create(newClient: any, id_user: number): Observable<ReturnMessage> {
-    return this.httpClient.post<ReturnMessage>(this.url, newClient, {headers: new HttpHeaders({'id_user': id_user})});
+  create(newClient: any): Observable<ReturnMessage> {
+    const token = this.storageService.getUser();
+    const authRoles: AuthRoles = jwtDecode(token);
+    return this.httpClient.post<ReturnMessage>(this.url, newClient, {headers: new HttpHeaders({'id_user': authRoles.id})});
   }
 }

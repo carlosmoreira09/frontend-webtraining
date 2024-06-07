@@ -1,12 +1,17 @@
-import {Component, OnInit, Input, ViewChild, ElementRef, AfterViewInit} from '@angular/core';
+import {Component, Input, ViewChild, ElementRef, AfterViewInit} from '@angular/core';
 import {AthletesService} from "../../../../service/athletes.service";
-import {FormBuilder, FormGroup, ReactiveFormsModule, UntypedFormGroup, Validators} from "@angular/forms";
+import {FormBuilder, ReactiveFormsModule, UntypedFormGroup, Validators} from "@angular/forms";
 import {ClientsModel} from "../../../../models/clients.model";
 import {DialogModule} from "primeng/dialog";
 import {HttpClient, HttpClientModule} from "@angular/common/http";
 import {CommonModule} from "@angular/common";
 import {Router} from "@angular/router";
-import {StrongPasswordRegx} from "../../../../models/auth.model";
+import { SpecialCharacterRegx } from "../../../../models/auth.model";
+
+import {ConfirmationService, MessageService} from "primeng/api";
+import {AuthService} from "../../../../service/auth.service";
+import {AtletasComponent} from "../athlete.component";
+import {ReturnMessage} from "../../../../models/exercise.model";
 
 
 @Component({
@@ -14,11 +19,11 @@ import {StrongPasswordRegx} from "../../../../models/auth.model";
   standalone: true,
   imports: [
     DialogModule,
-    ReactiveFormsModule, HttpClientModule, CommonModule
+    ReactiveFormsModule, CommonModule
   ],
   templateUrl: './modal-athlete.component.html',
   styleUrl: './modal-athlete.component.css',
-  providers: [AthletesService,HttpClient]
+  providers: [AthletesService,HttpClient,MessageService,]
 })
 export class ModalAtletaComponent implements AfterViewInit {
   @ViewChild('openDialog')
@@ -41,7 +46,10 @@ export class ModalAtletaComponent implements AfterViewInit {
   constructor(
               private formBuilder: FormBuilder,
               private athletesService: AthletesService,
-              private router: Router) {}
+              private router: Router,
+              private messageService: MessageService,
+              private athleteComponent: AtletasComponent,
+              ) {}
 
   ngAfterViewInit() {
     this.formClient = this.initControlForm();
@@ -77,25 +85,55 @@ export class ModalAtletaComponent implements AfterViewInit {
       this.errorMessage = 'Senhas não coincidem';
       return false;
     }
-    let regxOneCarac = new RegExp("(?=.*[!@#$%^&*])");
+    let regxOneCarac = new RegExp(SpecialCharacterRegx);
+    console.log(regxOneCarac)
     if (!regxOneCarac.test(password)) {
       this.formValid = true;
       this.errorMessage = 'Acrescente um caracter especial do tipo !@#$%^&* ';
       return false;
     }
-
+    console.log(id_training);
     return {
       fullName: fullName,
       password: password,
       age: age,
       phone: phone,
       email: email,
-      id_training: id_training,
     }
   }
   onSubmit() {
+
     const clientForm = this.getFormValues();
-    console.log(clientForm)
+    if(!clientForm) {
+      this.messageService.add({
+        severity: 'error',
+        key: 'tc',
+        detail: 'Confirá o formulário',
+        life: 1500,
+      })
+      return
+    }
+    this.athletesService.create(clientForm).subscribe({
+
+      next: (client) => {
+        this.showCreateUser = false;
+        this.athleteComponent.listAllUsers();
+        this.messageService.add({
+          severity: 'success',
+          key: 'tc',
+          detail: client.message,
+          life: 1500,
+        })
+      },
+      error: (err: ReturnMessage) => {
+        this.messageService.add({
+          severity: 'error',
+          key: 'tc',
+          detail: err.message,
+          life: 1500,
+        })
+      }
+    })
   }
   navigate(endpoint: string) {
     return this.router.navigate([endpoint]);
