@@ -20,6 +20,14 @@ export class AuthService {
      let authRoles: AuthRoles = jwtDecode(tokenExist);
      return authRoles.role === role;
    }
+   getUserId() {
+     const token = this.storageService.getUser();
+     const tokenLocal = this.storageService.getUserLocalStorage();
+     let tokenExist = tokenLocal? tokenLocal : token
+     let authRoles: AuthRoles = jwtDecode(tokenExist);
+     return authRoles.id;
+   }
+
 
   register(data: ClientDTO | undefined, role: string) {
 

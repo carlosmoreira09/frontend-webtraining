@@ -10,6 +10,8 @@ import {ExercisesService} from "../../../../../service/exercises.service";
 import {ExerciseModel, ReturnMessage} from "../../../../../models/exercise.model";
 import {createNewSheet} from "../../../../../models/sheets.model";
 import {SheetsService} from "../../../../../service/sheets.service";
+import {SheetsComponent} from "../../sheets.component";
+import {AuthService} from "../../../../../service/auth.service";
 
 interface Modalidade  {
   name: string;
@@ -56,7 +58,9 @@ export class ModalSheetComponent implements  AfterViewInit {
   constructor(private formBuilder: FormBuilder,
               private messageService: MessageService,
               private exerciseService: ExercisesService,
-              private sheetService: SheetsService
+              private sheetService: SheetsService,
+              private sheetsComponent: SheetsComponent,
+              private authService: AuthService,
               ) {
   }
 
@@ -138,8 +142,11 @@ export class ModalSheetComponent implements  AfterViewInit {
       training_a: idExercisesA.toString(),
       training_b: idExercisesB.toString(),
       training_c: idExercisesC.toString(),
-      training_d: idExercisesD.toString(),
+      training_d: idExercisesD.toString()
     }
+  }
+  getAtleteList() {
+
   }
   submitNewSheet() {
     const newSheet: createNewSheet = this.getValues();
@@ -151,6 +158,7 @@ export class ModalSheetComponent implements  AfterViewInit {
           detail: res.message,
           life: 1500
         });
+        this.sheetsComponent.listSheets();
       }
     )
   }

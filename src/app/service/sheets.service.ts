@@ -1,5 +1,5 @@
 import {Injectable, Self} from '@angular/core';
-import {HttpClient} from "@angular/common/http";
+import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {createNewSheet, SheetsModel} from "../models/sheets.model";
 import {ReturnMessage} from "../models/exercise.model";
 import {Observable} from "rxjs";
@@ -22,8 +22,10 @@ export class SheetsService {
     return this.httpClient.get<SheetsModel[]>(this.url+"/client/"+authRoles.id);
   }
 
-  addNewSheet(newSheet: createNewSheet): Observable<any> {
-    return this.httpClient.post<ReturnMessage>(this.url, newSheet)
+  addNewSheet(newSheet: createNewSheet): Observable<ReturnMessage> {
+    const token = this.storageService.getUser();
+    const authRoles: AuthRoles = jwtDecode(token);
+    return this.httpClient.post<ReturnMessage>(this.url, newSheet, { headers: new HttpHeaders({ 'id_user': authRoles.id})})
   }
   delete(id: number | undefined): Observable<any> {
     return this.httpClient.delete<ReturnMessage>(this.url + "/" + id);
