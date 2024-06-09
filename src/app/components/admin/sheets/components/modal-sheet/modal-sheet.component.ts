@@ -1,9 +1,9 @@
-import {AfterViewInit, Component} from '@angular/core';
+import {AfterViewInit, Component, ElementRef, OnInit, ViewChild} from '@angular/core';
 import {DialogModule} from "primeng/dialog";
 import {MessageModule} from "primeng/message";
 import {CommonModule, NgIf} from "@angular/common";
 import {PaginatorModule} from "primeng/paginator";
-import {FormBuilder, ReactiveFormsModule, UntypedFormGroup, Validators} from "@angular/forms";
+import {FormBuilder, FormGroup, ReactiveFormsModule, UntypedFormGroup, Validators} from "@angular/forms";
 import {MessageService, SharedModule} from "primeng/api";
 import {ToastModule} from "primeng/toast";
 import {ExercisesService} from "../../../../../service/exercises.service";
@@ -11,7 +11,9 @@ import {ExerciseModel, ReturnMessage} from "../../../../../models/exercise.model
 import {createNewSheet} from "../../../../../models/sheets.model";
 import {SheetsService} from "../../../../../service/sheets.service";
 import {SheetsComponent} from "../../sheets.component";
-import {AuthService} from "../../../../../service/auth.service";
+import {AthletesService} from "../../../../../service/athletes.service";
+import {AthleteInfo, ClientsModel} from "../../../../../models/clients.model";
+import {ButtonModule} from "primeng/button";
 
 interface Modalidade  {
   name: string;
@@ -32,39 +34,46 @@ interface Exercise  {
     CommonModule,
     PaginatorModule,
     ReactiveFormsModule,
-    SharedModule,
     ToastModule,
   ],
   templateUrl: './modal-sheet.component.html',
   styleUrl: './modal-sheet.component.css',
   providers: [MessageService]
 })
-export class ModalSheetComponent implements  AfterViewInit {
+export class ModalSheetComponent implements  OnInit {
+  @ViewChild('openDialog')
+  dialog: ElementRef
+
+  id_client: number;
   showCreateSheet: boolean = false;
   showEditSheet: boolean = false;
   formValid: boolean = false;
   sheetFormGroup: UntypedFormGroup;
+  formAthleta: UntypedFormGroup;
   exercises: ExerciseModel[]
   listExercise: Exercise[] = [];
   sheets: any[]  = [];
   resultExercise: Exercise | undefined;
   resultSheet: string;
+  listAthlete: AthleteInfo[];
+  athletes: ClientsModel[] = [];
   public addExercisesA: Exercise[] = [];
   public addExercisesB: Exercise[] = [];
   public addExercisesC: Exercise[] = [];
   public addExercisesD: Exercise[] = [];
   public modalidades: Modalidade[] = [];
+  dialogAthlete: boolean = false;
 
   constructor(private formBuilder: FormBuilder,
               private messageService: MessageService,
               private exerciseService: ExercisesService,
               private sheetService: SheetsService,
               private sheetsComponent: SheetsComponent,
-              private authService: AuthService,
+              private athleteService: AthletesService,
               ) {
   }
 
-  ngAfterViewInit() {
+  ngOnInit(): void {
     this.initNewControlForm();
     this.onSelectExercise();
   }
@@ -85,8 +94,37 @@ export class ModalSheetComponent implements  AfterViewInit {
       exercise_type: ['peito',Validators.required],
       sheet_id: ['training_a',Validators.required],
       quantity: ['1'],
-      sheet_details: ['']
+      sheet_details: [''],
+
     });
+    this.formAthleta = this.formBuilder.group({
+      id_client: ['', Validators.required],
+    });
+  }
+
+  saveAthlete() {
+    const id_client = this.formAthleta.get('id_client')?.value
+    console.log('id_client', id_client)
+  }
+  addAthlete() {
+    this.athleteService.listAllAthletas().subscribe( {
+      next: (athletes: ClientsModel[]) => {
+
+        this.listAthlete = [];
+        this.athletes = athletes;
+        console.log(this.athletes)
+        for (let k of this.athletes) {
+          const athlete: AthleteInfo = {name: k.fullName, id: k.id_client};
+          this.listAthlete.push(athlete);
+        }
+        return this.listAthlete
+      },
+      error: (err: any) => {},
+      complete: () => {
+        this.dialogAthlete = true;
+      }
+    })
+
   }
 
   onSelectExercise() {
@@ -145,9 +183,7 @@ export class ModalSheetComponent implements  AfterViewInit {
       training_d: idExercisesD.toString()
     }
   }
-  getAtleteList() {
 
-  }
   submitNewSheet() {
     const newSheet: createNewSheet = this.getValues();
     this.sheetService.addNewSheet(newSheet).subscribe(
@@ -170,6 +206,7 @@ export class ModalSheetComponent implements  AfterViewInit {
       detail: detail,
     })
   }
+
    addExercise() {
      this.resultSheet =  this.getField('sheet_id')?.value;
       this.resultExercise = this.listExercise.find(({ name }) => name === this.getField('exercises')?.value);

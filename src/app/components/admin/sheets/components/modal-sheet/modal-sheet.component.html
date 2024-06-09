@@ -65,9 +65,7 @@
 
               </div>
             </div>
-              <hr class="line-clamp-1">
-              <h2 class="flex justify-center"> Adicione os Exercícios a Planilha</h2>
-
+              <h2 class="flex justify-center mt-2 border-blue-900 font-semibold space-x-1"> Adicione os Exercícios a Planilha</h2>
               <div class="grid grid-rows-1 grid-cols-2 grid-flow-row gap-1">
                 <fieldset class="p-fieldset p-2">
                   <legend htmlFor="exercise_type" class="block mt-2 text-sm font-medium text-gray-900 dark:text-white">Escolha o Tipo de Exercício:</legend>
@@ -91,13 +89,17 @@
               </div>
 
               <button (click)="addExercise()" class="text-white mt-1 bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
-                Adicionar Exercício</button>
+                Adicionar Exercício
+              </button>
+            <button (click)="addAthlete()" class="text-white mt-1 bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+              Adicionar Atleta
+            </button>
             </div>
 
           <!-- Modal footer -->
           <div class="flex justify-center p-6 space-x-3">
             <div class="rtl:space-x-reverse border-t border-gray-200 rounded-b dark:border-gray-600">
-              <button (click)="submitNewSheet()" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Save</button>
+              <button (click)="submitNewSheet()" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Salvar</button>
             </div>
             <div class="rtl:space-x-reverse border-t border-gray-200 rounded-b dark:border-gray-600">
               <button (click)="onCloseCreate()" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Cancelar</button>
@@ -206,5 +208,26 @@
       </div>
     </div>
   </ng-template>
+</p-dialog>
+<p-dialog header="Adicionar Atleta"  [(visible)]="dialogAthlete" [style]="{ width: '50rem' }">
+  <span class="p-text-secondary block mb-5">Escolha o Atleta.</span>
+  <form [formGroup]="formAthleta">
+  <fieldset class="p-fieldset p-2">
+    <legend htmlFor="id_client" class="block mt-1 text-sm font-medium text-gray-900 dark:text-white">Nome:</legend>
+    <select
+      formControlName="id_client"
+      id="id_client"
+      class="block py-1.5 px-0 w-full text-sm text-gray-500 bg-transparent border-0 border-b-2 border-gray-200 appearance-none dark:text-gray-400 dark:border-gray-700 focus:outline-none focus:ring-0 focus:border-gray-200 peer">
+      @for (athlete of listAthlete; track athlete.id) {
+        <option [value]="athlete.id"> {{ athlete.name }}</option>
+      }
+    </select>
+  </fieldset>
+  <div class="flex justify-center gap-2">
+    <button (click)="saveAthlete()" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Save</button>
+    <button (click)="saveAthlete()" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Cancelar</button>
+
+  </div>
+  </form>
 </p-dialog>
 
