@@ -109,6 +109,26 @@
             </div>
           </div>
         </form>
+        <div *ngIf="id_client">
+          <table class="w-full font-thin border-collapse border border-slate-400">
+            <thead>
+            <tr>
+              <td>Nome</td>
+              <td>Idade</td>
+              <td>Contato</td>
+              <td>Objetivo</td>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+              <td>{{  athlete?.fullName }}</td>
+              <td>{{ athlete?.age }}</td>
+              <td>{{  athlete?.phone }}</td>
+              <td>{{  athlete?.id_training }}</td>
+            </tr>
+            </tbody>
+          </table>
+        </div>
         <div class="p-2 flex justify-center items-center mb-2.5 divide-x ml-2">
           <table class="w-full border-collapse border border-slate-400">
             <caption class="caption-top">

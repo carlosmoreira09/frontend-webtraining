@@ -1,10 +1,10 @@
-import {AfterViewInit, Component, ElementRef, OnInit, ViewChild} from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild} from '@angular/core';
 import {DialogModule} from "primeng/dialog";
 import {MessageModule} from "primeng/message";
 import {CommonModule, NgIf} from "@angular/common";
 import {PaginatorModule} from "primeng/paginator";
-import {FormBuilder, FormGroup, ReactiveFormsModule, UntypedFormGroup, Validators} from "@angular/forms";
-import {MessageService, SharedModule} from "primeng/api";
+import {FormBuilder, ReactiveFormsModule, UntypedFormGroup, Validators} from "@angular/forms";
+import {MessageService} from "primeng/api";
 import {ToastModule} from "primeng/toast";
 import {ExercisesService} from "../../../../../service/exercises.service";
 import {ExerciseModel, ReturnMessage} from "../../../../../models/exercise.model";
@@ -13,7 +13,6 @@ import {SheetsService} from "../../../../../service/sheets.service";
 import {SheetsComponent} from "../../sheets.component";
 import {AthletesService} from "../../../../../service/athletes.service";
 import {AthleteInfo, ClientsModel} from "../../../../../models/clients.model";
-import {ButtonModule} from "primeng/button";
 
 interface Modalidade  {
   name: string;
@@ -56,6 +55,7 @@ export class ModalSheetComponent implements  OnInit {
   resultExercise: Exercise | undefined;
   resultSheet: string;
   listAthlete: AthleteInfo[];
+  athlete: ClientsModel | undefined;
   athletes: ClientsModel[] = [];
   public addExercisesA: Exercise[] = [];
   public addExercisesB: Exercise[] = [];
@@ -103,24 +103,31 @@ export class ModalSheetComponent implements  OnInit {
   }
 
   saveAthlete() {
-    const id_client = this.formAthleta.get('id_client')?.value
-    console.log('id_client', id_client)
+    this.id_client = this.formAthleta.get('id_client')?.value;
+    console.log(this.id_client);
+    this.athletes.find((value) =>  {
+      if(value.id_client === parseInt(this.formAthleta.get('id_client')?.value)) {
+        this.athlete = value;
+        this.dialogAthlete = false;
+
+      }
+    });
+
+
   }
+
   addAthlete() {
     this.athleteService.listAllAthletas().subscribe( {
       next: (athletes: ClientsModel[]) => {
-
-        this.listAthlete = [];
         this.athletes = athletes;
-        console.log(this.athletes)
+      },
+      error: (err: any) => {},
+      complete: () => {
+        this.listAthlete = [];
         for (let k of this.athletes) {
           const athlete: AthleteInfo = {name: k.fullName, id: k.id_client};
           this.listAthlete.push(athlete);
         }
-        return this.listAthlete
-      },
-      error: (err: any) => {},
-      complete: () => {
         this.dialogAthlete = true;
       }
     })
@@ -180,7 +187,8 @@ export class ModalSheetComponent implements  OnInit {
       training_a: idExercisesA.toString(),
       training_b: idExercisesB.toString(),
       training_c: idExercisesC.toString(),
-      training_d: idExercisesD.toString()
+      training_d: idExercisesD.toString(),
+      id_client: this.id_client,
     }
   }
 
