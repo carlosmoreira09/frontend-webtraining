@@ -13,10 +13,15 @@
     <div class="p-4 bg-white border-b rounded-t dark:border-gray-600 flex items-center justify-center w-full">
       <div class="w-full h-full">
         <!-- Modal header -->
-        <div class="mb-2 border-b rounded-t dark:border-gray-600">
-          <div class="p-2 text-xl font-semibold text-gray-900 dark:text-white">
+        <div class="grid grid-rows-1 grid-cols-2 gap-2 border-b rounded-t dark:border-gray-600">
+          <div class="text-xl font-semibold text-gray-900 dark:text-white">
             <i class="ml-2 pi pi-plus-circle" style="color: blue; font-size: 1rem"></i>
             Criar Planilha
+          </div>
+          <div class="flex justify-end items-end mb-2 ">
+          <button (click)="addAthlete()" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+            Adicionar Atleta
+          </button>
           </div>
         </div>
         <!-- Modal content -->
@@ -87,13 +92,11 @@
                   </select>
                 </fieldset>
               </div>
-
-              <button (click)="addExercise()" class="text-white mt-1 bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+              <div class="grid grid-rows-1 grid-cols-1 gap-2">
+              <button (click)="addExercise()" class="w-1/2 text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
                 Adicionar Exercício
               </button>
-            <button (click)="addAthlete()" class="text-white mt-1 bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
-              Adicionar Atleta
-            </button>
+              </div>
             </div>
 
           <!-- Modal footer -->
