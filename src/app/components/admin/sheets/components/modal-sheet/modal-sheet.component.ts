@@ -13,6 +13,7 @@ import {SheetsService} from "../../../../../service/sheets.service";
 import {SheetsComponent} from "../../sheets.component";
 import {AthletesService} from "../../../../../service/athletes.service";
 import {AthleteInfo, ClientsModel} from "../../../../../models/clients.model";
+import {AuthService} from "../../../../../service/auth.service";
 
 interface Modalidade  {
   name: string;
@@ -70,6 +71,7 @@ export class ModalSheetComponent implements  OnInit {
               private sheetService: SheetsService,
               private sheetsComponent: SheetsComponent,
               private athleteService: AthletesService,
+              private authService: AuthService,
               ) {
   }
 
@@ -135,6 +137,7 @@ export class ModalSheetComponent implements  OnInit {
   }
 
   onSelectExercise() {
+
     const type = this.getField('exercise_type')?.value === 'Biceps/AnteBraço'? 'braco' : this.getField('exercise_type')?.value;
     this.exerciseService.listExerciseByType(type).subscribe(
       (users: ExerciseModel[]) => {

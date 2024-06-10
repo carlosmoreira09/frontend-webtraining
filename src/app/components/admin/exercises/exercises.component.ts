@@ -8,6 +8,7 @@ import {MessagesModule} from "primeng/messages";
 import {ConfirmationService, MessageService} from "primeng/api";
 import {ToastModule} from "primeng/toast";
 import {ConfirmDialogModule} from "primeng/confirmdialog";
+import {AuthService} from "../../../service/auth.service";
 
 @Component({
   selector: 'app-exercicios',
@@ -32,7 +33,8 @@ export class ExercisesComponent implements  OnInit {
   constructor(private exerciseService: ExercisesService,
               private router: ActivatedRoute,
               private messageService: MessageService,
-              private confirmationService: ConfirmationService
+              private confirmationService: ConfirmationService,
+              private authService: AuthService,
   ) {}
   ngOnInit() {
     this.listExercisesByType();
