@@ -10,6 +10,7 @@ import {ModalSheetComponent} from "./components/modal-sheet/modal-sheet.componen
 import {initFlowbite} from "flowbite";
 import {ReturnMessage} from "../../../models/exercise.model";
 import {MessagesModule} from "primeng/messages";
+import {PreviewSheetComponent} from "./components/preview-sheet/preview-sheet.component";
 
 @Component({
   selector: 'app-sheets',
@@ -20,7 +21,8 @@ import {MessagesModule} from "primeng/messages";
     NgForOf,
     ToastModule,
     MessagesModule,
-    ModalSheetComponent
+    ModalSheetComponent,
+    PreviewSheetComponent
   ],
   templateUrl: './sheets.component.html',
   styleUrl: './sheets.component.css',
@@ -32,7 +34,7 @@ export class SheetsComponent implements  OnInit {
   sheets: SheetsModel[];
    constructor(private sheetsService: SheetsService,
                private messageService: MessageService,
-               private confirmationService: ConfirmationService){}
+               private confirmationService: ConfirmationService,){}
   ngOnInit() {
     initFlowbite();
     this.listSheets();
@@ -44,6 +46,7 @@ export class SheetsComponent implements  OnInit {
        }
      );
   }
+
   deleteSheet(id: number | undefined) {
      this.sheetsService.delete(id).subscribe({
        next: (res: ReturnMessage) => {

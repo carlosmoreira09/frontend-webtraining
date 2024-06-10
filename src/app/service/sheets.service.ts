@@ -21,6 +21,10 @@ export class SheetsService {
     const authRoles: AuthRoles = jwtDecode(token);
     return this.httpClient.get<SheetsModel[]>(this.url+"/client/"+authRoles.id);
   }
+  listSheetByClient(id_sheet: number) {
+    return this.httpClient.get<SheetsModel>(this.url+"/"+id_sheet);
+  }
+
 
   addNewSheet(newSheet: createNewSheet): Observable<ReturnMessage> {
     const token = this.storageService.getUser();
