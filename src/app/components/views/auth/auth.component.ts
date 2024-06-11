@@ -80,6 +80,7 @@ export class AuthComponent  implements OnInit {
       {
         next: (value: any) => {
           payload = value;
+
         },
         error: (err: { message: any; }) => {
           this.messageService.add({
@@ -90,6 +91,7 @@ export class AuthComponent  implements OnInit {
           })
         },
         complete: () => {
+          this.storageService.clean();
           let saveLocal = this.getField('saveData')?.value
           if(saveLocal) {
             this.storageService.saveUserLocalStorage(payload.accessToken);
@@ -98,6 +100,7 @@ export class AuthComponent  implements OnInit {
           this.authService.home(payload).subscribe({
               next: (res: ClientDTO) => {
                 this.user = res;
+                console.log(this.user)
               },
             complete: () => {
               this.storageService.saveItem('user', this.user);

@@ -1,16 +1,23 @@
-<nav class="fixed top-0 w-full bg-indigo-900 shadow dark:bg-gray-800 z-50">
-  <div class="flex flex-wrap justify-between items-center mx-auto max-w-screen-xl p-4">
-    <a routerLink="/home" class="flex items-center space-x-3 rtl:space-x-reverse">
-      <img src="../../../../assets/img/banner.png"
-           class="h-12 rounded-full"
-           alt="Web Training Logo"
-           />
-      <span class="self-center text-2xl font-semibold whitespace-nowrap text-white">WebTraining</span>
-    </a>
-    <div class="flex items-center space-x-6 rtl:space-x-reverse">
-      <p class="text-sm  text-white dark:text-white hover:underline">{{ loggedUser.fullName }}</p>
-      <img (click)="logout()"  src="assets/img/logout2.png" class="hover:cursor-pointer h-12 rounded-2xl" alt=""/>
+<nav class="fixed top-0 w-full h-16 bg-indigo-900 shadow dark:bg-gray-800 z-50">
+  <div class="grid grid-flow-row grid-rows-1 grid-cols-3">
+    <div class="content-start ml-4 my-auto col-span-1">
+      <a routerLink="/home" class="space-x-3 rtl:space-x-reverse">
+        <img src="../../../../assets/img/banner.png"
+             class="h-12 rounded-full"
+             alt="Web Training Logo"
+        />
+      </a>
     </div>
+    <div class="place-self-center col-span-1">
+      <p class="text-3xl tracking-widest font-bold text-blue-400">WEB<strong class="text-2xl overline font-semibold whitespace-nowrap text-white">TRAINING</strong></p>
+    </div>
+    <div class="col-span-1 place-self-end my-auto">
+      <div class="flex flew-row mr-5 mt-2">
+        <p class="text-lg text-white mr-5 my-auto"> {{ loggedUser.userType === 'client'? 'Professor: ' : 'Aluno: ' }} {{ loggedUser.fullName }}</p>
+        <img (click)="logout()"  src="assets/img/logout2.png" class="hover:cursor-pointer h-12 rounded-2xl" alt=""/>
+      </div>
+    </div>
+
   </div>
 </nav>
 

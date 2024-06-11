@@ -41,10 +41,12 @@ export class AuthService {
 
    home(data: AuthPayload) {
      const token = data.accessToken;
+     const id_user = this.getUserId()
      let headers: HttpHeaders;
      headers = new HttpHeaders({
        'Content-Type': 'application/json',
-       'Authorization': 'Bearer ' + token
+       'Authorization': 'Bearer ' + token,
+       'id_user' : id_user
      });
      let options: { headers: HttpHeaders };
      options= { headers: headers };
