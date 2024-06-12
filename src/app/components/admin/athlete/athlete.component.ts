@@ -1,9 +1,8 @@
 import {Component, OnInit} from '@angular/core';
-import {FormBuilder, ReactiveFormsModule, Validators} from "@angular/forms";
+import {ReactiveFormsModule} from "@angular/forms";
 import {ClientsModel} from "../../../models/clients.model";
 import {AthletesService} from "../../../service/athletes.service";
 import {ModalAtletaComponent} from "./components/modal-athlete.component";
-import {HttpClient, HttpClientModule} from "@angular/common/http";
 import {CommonModule} from "@angular/common";
 import {DialogModule} from "primeng/dialog";
 import {Router, RouterLink} from "@angular/router";

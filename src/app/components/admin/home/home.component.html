@@ -1,4 +1,4 @@
-<div [ngClass]="isAdmin? 'grid grid-cols-2 gap-2 justify-items-center p-5' : 'grid grid-cols-1 gap-2 justify-items-center p-5'">
+<div [ngClass]="isAdmin? 'grid grid-cols-2 gap-2 place-items-center p-5' : 'grid grid-cols-1 gap-2 place-items-center p-5'">
   <div [ngClass]="isAdmin? 'w-1/2 h-48': 'w-1/3 h-48'" >
     <app-card-home class="hover:cursor-pointer" footer="footer" header="Atletas" body="body" imgPath="./assets/img/athletes.png" routerLink="/athletas"></app-card-home>
   </div>

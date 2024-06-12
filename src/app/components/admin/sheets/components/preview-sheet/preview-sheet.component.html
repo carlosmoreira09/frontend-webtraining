@@ -7,7 +7,7 @@
   [draggable]="false"
   [modal]="true"
   styleClass="overflow-auto"
-  [style]="{ width: '70%', minHeight: '400px'}">
+  [style]="{ width: '70%'}">
   <ng-template pTemplate="headless">
     <div class="p-4 bg-white border-b rounded-t dark:border-gray-600 flex items-center justify-center w-full">
       <div class="w-full h-full">
@@ -18,34 +18,14 @@
             Preview Planilha
           </div>
           <div class="flex justify-end items-end mb-2 ">
-          <button  class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
-            Adicionar Atleta
+          <button class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+            Atribuir Atleta a Planilha
           </button>
           </div>
         </div>
         <!-- Modal content -->
-        <div>
-          <table class="w-full h-1/6 font-thin border-collapse border border-slate-400">
-            <thead>
-            <tr>
-              <td>Nome</td>
-              <td>Idade</td>
-              <td>Contato</td>
-              <td>Objetivo</td>
-            </tr>
-            </thead>
-            <tbody>
-            <tr>
-              <td>{{  clientInfo.fullName }}</td>
-              <td>{{ clientInfo.age }}</td>
-              <td>{{  clientInfo.phone }}</td>
-              <td>{{  clientInfo.id_training }}</td>
-            </tr>
-            </tbody>
-          </table>
-        </div>
         <div class="p-2 flex justify-center items-center mb-2.5 divide-x ml-2">
-          <table class="w-full border-collapse border border-slate-400">
+          <table class="w-full h-full border-collapse border border-slate-400">
             <caption class="caption-top">
                 Preview Planilha
             </caption>
