@@ -9,23 +9,25 @@
   styleClass="overflow-auto"
   [style]="{ width: '70%'}">
   <ng-template pTemplate="headless">
-    <div class="p-4 bg-white border-b rounded-t dark:border-gray-600 flex items-center justify-center w-full">
-      <div class="w-full h-full">
+    <div class="grid grid-flow-row grid-cols-1 bg-white border-b rounded-t dark:border-gray-600 w-full">
+      <div class="grid grid-cols-2 gap-2 p-2 w-full">
         <!-- Modal header -->
-        <div class="grid grid-rows-1 grid-cols-2 gap-2 border-b rounded-t dark:border-gray-600">
           <div class="text-xl font-semibold text-gray-900 dark:text-white">
             <i class="ml-2 pi pi-plus-circle" style="color: blue; font-size: 1rem"></i>
             Preview Planilha
           </div>
-          <div class="flex justify-end items-end mb-2 ">
-          <button class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+          <div class="place-self-end">
+          <button class="mr-2 text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
             Atribuir Atleta a Planilha
           </button>
+              <button class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+                Fechar
+              </button>
+            </div>
           </div>
-        </div>
         <!-- Modal content -->
-        <div class="p-2 flex justify-center items-center mb-2.5 divide-x ml-2">
-          <table class="w-full h-full border-collapse border border-slate-400">
+        <div class="row-span-1 p-2">
+          <table class="border border-slate-400">
             <caption class="caption-top">
                 Preview Planilha
             </caption>
@@ -39,37 +41,75 @@
             </thead>
             <tbody>
               <tr>
-                <td class="w-1/4 border border-slate-300">
-
-              @for(exercise of sheetA; track exercise) {
-                <div class=" grid grid-rows-1 grid-cols-2 m-2 gap-2">
-                  <p class="capitalize border-l-blue-900"> {{ exercise.exercise }} </p>
-                  <p class="flex justify-center capitalize border-l-blue-900"> {{ exercise.repetition }} </p>
-                </div>              }
+                <td>
+              <table class="border border-slate-400">
+                <tr>
+                <td class="w-1/4 border border-slate-800">
+                  <p class="flex justify-center">Exercício</p>
+                  @for(exercise of sheetA; track exercise) {
+                    <p class="border capitalize border-l-blue-900"> {{ exercise.exercise }} </p>
+                  }
+                <td class="w-1/4 border border-slate-800">
+                  <p class="flex justify-center">Repetição</p>
+                @for(exercise of sheetA; track exercise) {
+                  <p class="border capitalize border-l-blue-900"> {{ exercise.repetition }} </p>
+                }
+                </td>
+              </tr>
+              </table>
                 </td>
 
                 <td  *ngIf="sheetB.length > 0" class="w-1/4 border border-slate-300">
-              @for(exercise of sheetB; track exercise) {
-                <div class=" grid grid-rows-1 grid-cols-2 m-2 gap-2">
-                  <p class="capitalize border-l-blue-900"> {{ exercise.exercise }} </p>
-                  <p class="flex justify-center capitalize border-l-blue-900"> {{ exercise.repetition }} </p>
-                </div>
-              }
+                  <table class="border border-slate-400">
+                    <tr>
+                      <td class="w-1/4 border border-slate-800">
+                        <p class="flex justify-center">Exercício</p>
+                        @for(exercise of sheetB; track exercise) {
+                          <p class="border capitalize border-l-blue-900"> {{ exercise.exercise }} </p>
+                        }
+                      <td class="w-1/4 border border-slate-800">
+                        <p class="flex justify-center">Repetição</p>
+                        @for(exercise of sheetB; track exercise) {
+                          <p class="border capitalize border-l-blue-900"> {{ exercise.repetition }} </p>
+                        }
+                      </td>
+                    </tr>
+                  </table>
                 </td>
 
               <td  *ngIf="sheetC.length > 0" class="w-1/4 border border-slate-300">
-              @for(exercise of sheetC; track exercise) {
-                <div class=" grid grid-rows-1 grid-cols-2 m-2 gap-2">
-                  <p class="capitalize border-l-blue-900"> {{ exercise.exercise }} </p>
-                  <p class="flex justify-center capitalize border-l-blue-900"> {{ exercise.repetition }} </p>
-                </div>              }
+                <table class="border border-slate-400">
+                  <tr>
+                    <td class="w-1/4 border border-slate-800">
+                      <p class="flex justify-center">Exercício</p>
+                      @for(exercise of sheetC; track exercise) {
+                        <p class="border capitalize border-l-blue-900"> {{ exercise.exercise }} </p>
+                      }
+                    <td class="w-1/4 border border-slate-800">
+                      <p class="flex justify-center">Repetição</p>
+                      @for(exercise of sheetC; track exercise) {
+                        <p class="border capitalize border-l-blue-900"> {{ exercise.repetition }} </p>
+                      }
+                    </td>
+                  </tr>
+                </table>
                 </td>
                 <td  *ngIf="sheetD.length > 0" class="w-1/4 border border-slate-300">
-              @for(exercise of sheetD; track exercise) {
-                <div class=" grid grid-rows-1 grid-cols-2 m-2 gap-2">
-                  <p class="capitalize border-l-blue-900"> {{ exercise.exercise }} </p>
-                  <p class="flex justify-center capitalize border-l-blue-900"> {{ exercise.repetition }} </p>
-                </div>              }
+                  <table class="border border-slate-400">
+                    <tr>
+                      <td class="w-1/4 border border-slate-800">
+                        <p class="flex justify-center">Exercício</p>
+                        @for(exercise of sheetD; track exercise) {
+                          <p class="border capitalize border-l-blue-900"> {{ exercise.exercise }} </p>
+                        }
+                      <td class="w-1/4 border border-slate-800">
+                        <p class="flex justify-center">Repetição</p>
+                        @for(exercise of sheetD; track exercise) {
+                          <p class="border capitalize border-l-blue-900"> {{ exercise.repetition }} </p>
+                        }
+                      </td>
+                    </tr>
+                  </table>
                 </td>
               </tr>
             </tbody>
@@ -84,7 +124,6 @@
           </table>
         </div>
       </div>
-    </div>
   </ng-template>
 </p-dialog>
 
