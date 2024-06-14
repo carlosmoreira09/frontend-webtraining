@@ -3,20 +3,15 @@ import {DialogModule} from "primeng/dialog";
 import {MessageModule} from "primeng/message";
 import {CommonModule, NgIf} from "@angular/common";
 import {PaginatorModule} from "primeng/paginator";
-import {ReactiveFormsModule, UntypedFormGroup} from "@angular/forms";
+import {ReactiveFormsModule} from "@angular/forms";
 import {MessageService} from "primeng/api";
 import {ToastModule} from "primeng/toast";
 import {ExerciseModel} from "../../../../../models/exercise.model";
-
-import {AthletesService} from "../../../../../service/athletes.service";
-import {AthleteInfo, ClientsModel} from "../../../../../models/clients.model";
-import {SheetsService} from "../../../../../service/sheets.service";
+import { ClientsModel} from "../../../../../models/clients.model";
 import {SheetsModel} from "../../../../../models/sheets.model";
+import {TrainingComponent} from "./table-component/training.component";
+import {HeaderTableComponent} from "./header-component/header-table.component";
 
-interface Exercise  {
-  name: string;
-  id?: number;
-}
 
 @Component({
   selector: 'app-preview-sheet',
@@ -29,10 +24,15 @@ interface Exercise  {
     PaginatorModule,
     ReactiveFormsModule,
     ToastModule,
+    TrainingComponent,
+    TrainingComponent,
+    TrainingComponent,
+    TrainingComponent,
+    HeaderTableComponent,
   ],
   templateUrl: './preview-sheet.component.html',
   styleUrl: './preview-sheet.component.css',
-  providers: [MessageService]
+  providers: [MessageService, TrainingComponent]
 })
 export class PreviewSheetComponent implements  OnInit {
   @ViewChild('openDialog')
@@ -40,18 +40,13 @@ export class PreviewSheetComponent implements  OnInit {
   @Input() sheetInfo: SheetsModel;
   showPreviewSheet: boolean = false;
   exercises: ExerciseModel[]
-  athlete: SheetsModel;
   clientInfo: ClientsModel;
   public sheetA: ExerciseModel[];
   public sheetB: ExerciseModel[];
   public sheetC: ExerciseModel[];
   public sheetD: ExerciseModel[];
 
-  constructor(
-              private athleteService: AthletesService,
-              private sheetService: SheetsService,
-              ) {
-  }
+  constructor() {}
 
   ngOnInit(): void {
 
