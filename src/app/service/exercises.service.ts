@@ -23,7 +23,7 @@ export class ExercisesService {
   addExercise(newExercise: ExerciseModel): Observable<any> {
     const id_user = this.authService.getUserId();
     const header = new HttpHeaders({ 'id_user': id_user})
-    return this.httpClient.post(this.url,newExercise,  { headers: header
+    return this.httpClient.post(this.url, newExercise,  { headers: header
     });
   }
 

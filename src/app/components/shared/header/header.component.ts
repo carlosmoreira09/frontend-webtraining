@@ -25,15 +25,12 @@ export class HeaderComponent implements OnInit {
 
   ngOnInit(): void {
     this.loggedUser = this.storageService.getItem('user')
-    console.log(this.loggedUser);
   }
 
   logout() {
     this.navigate('auth').then(
       () => {
         this.storageService.clean();
-        localStorage.clear();
-        sessionStorage.clear();
       }
     )
   }

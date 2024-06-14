@@ -128,13 +128,13 @@ export class ModalExercisesComponent implements AfterViewInit{
       .subscribe(
         (res: ReturnMessage) => {
           this.showCreateExercise = false;
-          this.exerciseComponent.listExercisesByType();
           this.messageService.add({
             key: 'tc',
             severity: 'success',
             detail: res.message,
             life: 1500
           })
+          this.exerciseComponent.listExercisesByType();
         }
  )}
 

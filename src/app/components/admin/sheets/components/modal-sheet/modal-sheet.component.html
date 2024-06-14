@@ -76,7 +76,7 @@
                   <legend htmlFor="exercise_type" class="block mt-2 text-sm font-medium text-gray-900 dark:text-white">Escolha o Tipo de Exercício:</legend>
                   <select (change)="onSelectExercise()" formControlName="exercise_type" id="exercise_type" class="block py-2.5 px-0 w-full text-sm text-gray-500 bg-transparent border-0 border-b-2 border-gray-200 appearance-none dark:text-gray-400 dark:border-gray-700 focus:outline-none focus:ring-0 focus:border-gray-200 peer">
                     @for (modalidade of modalidades; track modalidade.abbrev) {
-                      <option> {{ modalidade.name }}</option>
+                      <option [value]="modalidade.abbrev"> {{ modalidade.name }}</option>
                     }
                   </select>
                 </fieldset>
@@ -87,7 +87,7 @@
                     id="exercises"
                     class="block py-2.5 px-0 w-full text-sm text-gray-500 bg-transparent border-0 border-b-2 border-gray-200 appearance-none dark:text-gray-400 dark:border-gray-700 focus:outline-none focus:ring-0 focus:border-gray-200 peer">
                     @for (exercise of listExercise; track exercise) {
-                      <option> {{ exercise.name }}</option>
+                      <option [value]="exercise.id_exercise"> {{ exercise.exercise }}</option>
                     }
                   </select>
                 </fieldset>
@@ -146,25 +146,25 @@
               <tr>
                 <td class="w-1/4 border border-slate-300">
 
-              @for(exercise of addExercisesA; track exercise.name) {
-                <p class="capitalize border-l-blue-900"> {{ exercise.name }} <button (click)="removeExercise(exercise)" style="color: white" class="rounded-full pi pi-times-circle bg-red-600"></button></p>
+              @for(exercise of addExercisesA; track exercise) {
+                <p class="capitalize border-l-blue-900"> {{ exercise.exercise }} <button (click)="removeExercise(exercise)" style="color: white" class="rounded-full pi pi-times-circle bg-red-600"></button></p>
               }
                 </td>
 
                 <td  *ngIf="getField('quantity')?.value > 1" class="w-1/4 border border-slate-300">
-              @for(exercise of addExercisesB; track exercise.name) {
-                <p class="capitalize border-l-blue-900"> {{ exercise.name }} <button (click)="removeExercise(exercise)" style="color: white" class="rounded-full pi pi-times-circle bg-red-600"></button></p>
+              @for(exercise of addExercisesB; track exercise) {
+                <p class="capitalize border-l-blue-900"> {{ exercise.exercise }} <button (click)="removeExercise(exercise)" style="color: white" class="rounded-full pi pi-times-circle bg-red-600"></button></p>
               }
                 </td>
 
               <td  *ngIf="getField('quantity')?.value > 2" class="w-1/4 border border-slate-300">
-              @for(exercise of addExercisesC; track exercise.name) {
-                <p class="capitalize"> {{ exercise.name }} <button (click)="removeExercise(exercise)" style="color: white" class="rounded-full pi pi-times-circle bg-red-600"></button> </p>
+              @for(exercise of addExercisesC; track exercise) {
+                <p class="capitalize"> {{ exercise.exercise }} <button (click)="removeExercise(exercise)" style="color: white" class="rounded-full pi pi-times-circle bg-red-600"></button> </p>
               }
                 </td>
                 <td  *ngIf="getField('quantity')?.value > 3" class="w-1/4 border border-slate-300">
-              @for(exercise of addExercisesD; track exercise.name) {
-                <p class="capitalize border-l-blue-900"> {{ exercise.name }} <button (click)="removeExercise(exercise)" style="color: white" class="rounded-full pi pi-times-circle bg-red-600"></button></p>
+              @for(exercise of addExercisesD; track exercise) {
+                <p class="capitalize border-l-blue-900"> {{ exercise.exercise }} <button (click)="removeExercise(exercise)" style="color: white" class="rounded-full pi pi-times-circle bg-red-600"></button></p>
               }
                 </td>
               </tr>

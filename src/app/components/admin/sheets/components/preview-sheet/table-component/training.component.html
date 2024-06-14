@@ -1,12 +1,12 @@
-<table class="table-fixed">
+<table class="items-center w-full">
   <tr>
-    <td class="border-r min-w-max">
+    <td class="ml-2 min-w-max text-left">
       @for(exercise of sheet; track exercise) {
-        <p class="flex justify-center"> {{ exercise.exercise }} </p>
+        <p class="ml-2"> {{ exercise.exercise }} </p>
       }
-    <td class="min-w-max">
+    <td class="min-w-max text-right mr-2">
       @for(exercise of sheet; track exercise) {
-        <p class="flex justify-center"> {{ exercise.repetition }} </p>
+        <p class="mr-2"> {{ exercise.repetition }} </p>
       }
     </td>
   </tr>

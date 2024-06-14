@@ -86,13 +86,11 @@ export class ModalAtletaComponent implements AfterViewInit {
       return false;
     }
     let regxOneCarac = new RegExp(SpecialCharacterRegx);
-    console.log(regxOneCarac)
     if (!regxOneCarac.test(password)) {
       this.formValid = true;
       this.errorMessage = 'Acrescente um caracter especial do tipo !@#$%^&* ';
       return false;
     }
-    console.log(id_training);
     return {
       fullName: fullName,
       password: password,

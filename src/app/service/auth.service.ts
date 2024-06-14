@@ -23,7 +23,7 @@ export class AuthService {
    getUserId() {
      const token = this.storageService.getUser();
      const tokenLocal = this.storageService.getUserLocalStorage();
-     let tokenExist = tokenLocal? tokenLocal : token
+     let tokenExist = tokenLocal? tokenLocal : token;
      let authRoles: AuthRoles = jwtDecode(tokenExist);
      return authRoles.id;
    }
