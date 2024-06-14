@@ -42,7 +42,6 @@ interface Exercise  {
 export class ModalSheetComponent implements  OnInit {
   @ViewChild('openDialog')
   dialog: ElementRef
-
   id_client: number;
   showCreateSheet: boolean = false;
   showEditSheet: boolean = false;
@@ -55,6 +54,7 @@ export class ModalSheetComponent implements  OnInit {
   resultExercise: ExerciseModel | undefined;
   resultSheet: string;
   listAthlete: AthleteInfo[];
+  firstExercise: ExerciseModel;
   athlete: ClientsModel | undefined;
   athletes: ClientsModel[] = [];
   public addExercisesA: ExerciseModel[] = [];
@@ -75,7 +75,6 @@ export class ModalSheetComponent implements  OnInit {
 
   ngOnInit(): void {
     this.initNewControlForm()
-    this.onSelectExercise();
   }
   initNewControlForm() {
     this.modalidades  = [
@@ -88,7 +87,7 @@ export class ModalSheetComponent implements  OnInit {
       {name: 'Fortalecimento', abbrev: 'fortalecimento'},
     ];
     this.sheetFormGroup = this.formBuilder.group({
-      exercises: [ 'Supino Reto', [Validators.required]],
+      exercises: [ this.setExercise('peito'), [Validators.required]],
       sheet_desc: ['',Validators.required],
       sheet_name: ['', Validators.required],
       exercise_type: [this.modalidades[0].abbrev,Validators.required],
@@ -111,9 +110,22 @@ export class ModalSheetComponent implements  OnInit {
 
       }
     });
-
-
   }
+  setExercise(type: string) {
+    this.exerciseService.listExerciseByType(type).subscribe({
+      next: (users: ExerciseModel[]) => {
+        this.listExercise = [];
+        this.exercises = users;
+        for (let exercise of this.exercises) {
+          this.listExercise.push(exercise);
+        }
+      },
+      complete: () => {
+        this.getField('exercises')?.setValue(this.listExercise[0]);
+      }
+    });
+    return this.listExercise[0];
+    }
 
   addAthlete() {
     this.athleteService.listAllAthletas().subscribe( {
@@ -130,24 +142,11 @@ export class ModalSheetComponent implements  OnInit {
         this.dialogAthlete = true;
       }
     })
-
   }
 
   onSelectExercise() {
-
     const type = this.getField('exercise_type')?.value;
-    this.exerciseService.listExerciseByType(type).subscribe({
-      next: (users: ExerciseModel[]) => {
-        this.listExercise = [];
-        this.exercises = users;
-        for (let exercise of this.exercises) {
-          this.listExercise.push(exercise);
-        }
-      },
-      complete: () => {
-        this.getField('exercises')?.setValue(this.listExercise[0]);
-      }
-    });
+    this.setExercise(type);
   }
   getValues(): createNewSheet {
     const sheet_name: string = this.getField('sheet_name')?.value;
