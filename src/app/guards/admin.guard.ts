@@ -8,10 +8,10 @@ export const AdminGuard: CanActivateFn = (route, state) => {
   const storageService: StorageService = inject(StorageService);
   const authService: AuthService = inject(AuthService);
   const router: Router = inject(Router);
-  if(!authService.getAccessLevel('admin')) {
+  if (!authService.getAccessLevel('admin')) {
     router.navigate(['/no-access']).then(
       () => {
-      storageService.clean()
+        storageService.clean()
       }
     );
     return false;

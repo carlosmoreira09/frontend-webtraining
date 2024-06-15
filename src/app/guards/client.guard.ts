@@ -7,16 +7,16 @@ export const ClientGuard: CanActivateFn = (route, state) => {
   const storageService: StorageService = inject(StorageService);
   const authService: AuthService = inject(AuthService);
   const router: Router = inject(Router);
-  if(authService.getAccessLevel('admin')) {
+  if (authService.getAccessLevel('admin')) {
     return true;
   }
-  if(!authService.getAccessLevel('client')) {
+  if (!authService.getAccessLevel('client')) {
     router.navigate(['/no-access']).then(
       () => {
         storageService.clean();
       }
     );
-      return false;
+    return false;
   }
   return true
 };

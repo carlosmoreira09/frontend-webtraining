@@ -1,6 +1,6 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import {ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { PreviewSheetComponent } from './preview-sheet.component';
+import {PreviewSheetComponent} from './preview-sheet.component';
 
 describe('ModalSheetComponent', () => {
   let component: PreviewSheetComponent;
@@ -10,7 +10,7 @@ describe('ModalSheetComponent', () => {
     await TestBed.configureTestingModule({
       imports: [PreviewSheetComponent]
     })
-    .compileComponents();
+      .compileComponents();
 
     fixture = TestBed.createComponent(PreviewSheetComponent);
     component = fixture.componentInstance;

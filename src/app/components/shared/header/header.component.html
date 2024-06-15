@@ -9,12 +9,14 @@
       </a>
     </div>
     <div class="place-self-center col-span-1">
-      <p class="text-3xl tracking-widest font-bold text-blue-400">WEB<strong class="text-2xl overline font-semibold whitespace-nowrap text-white">TRAINING</strong></p>
+      <p class="text-3xl tracking-widest font-bold text-blue-400">WEB<strong
+        class="text-2xl overline font-semibold whitespace-nowrap text-white">TRAINING</strong></p>
     </div>
     <div class="col-span-1 place-self-end my-auto">
       <div class="flex flew-row mr-5 mt-2">
-        <p class="text-lg text-white mr-5 my-auto"> {{ loggedUser.userType === 'client'? 'Professor: ' : 'Aluno: ' }} {{ loggedUser.fullName }}</p>
-        <img (click)="logout()"  src="assets/img/logout2.png" class="hover:cursor-pointer h-12 rounded-2xl" alt=""/>
+        <p
+          class="text-lg text-white mr-5 my-auto"> {{ loggedUser.userType === 'client' ? 'Professor: ' : 'Aluno: ' }} {{ loggedUser.fullName }}</p>
+        <img (click)="logout()" src="assets/img/logout2.png" class="hover:cursor-pointer h-12 rounded-2xl" alt=""/>
       </div>
     </div>
 

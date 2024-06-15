@@ -33,10 +33,13 @@ export class AtletasComponent implements OnInit {
   constructor(private athleteService: AthletesService,
               private router: Router,
               private confirmationService: ConfirmationService,
-              private messageService: MessageService,){}
+              private messageService: MessageService,) {
+  }
+
   ngOnInit() {
     this.listAllUsers();
   }
+
   listAllUsers() {
     return this.athleteService.listAllAthletas().subscribe(
       (users: ClientsModel[]) => {
@@ -44,6 +47,7 @@ export class AtletasComponent implements OnInit {
       }
     )
   }
+
   deleteAthlete(id_client: number | undefined) {
     this.athleteService.delete(id_client).subscribe({
       next: (res: ReturnMessage) => {
@@ -67,21 +71,22 @@ export class AtletasComponent implements OnInit {
       }
     })
   }
+
   confirm(event: Event, id: number | undefined) {
     this.confirmationService.confirm({
       target: event.target as EventTarget,
       message: 'Você deseja deletar esse Atleta?',
       header: 'Confirmação',
       icon: 'pi pi-info-circle',
-      acceptButtonStyleClass:"p-button-danger p-button-text",
-      rejectButtonStyleClass:"m-2 p-button-text p-button-text",
-      acceptIcon:"none",
-      rejectIcon:"none",
+      acceptButtonStyleClass: "p-button-danger p-button-text",
+      rejectButtonStyleClass: "m-2 p-button-text p-button-text",
+      acceptIcon: "none",
+      rejectIcon: "none",
 
       accept: () => {
         this.deleteAthlete(id);
         this.listAllUsers();
-        this.messageService.add({ severity: 'info', summary: 'Confirmed', detail: 'Atleta deletado', life: 1500 });
+        this.messageService.add({severity: 'info', summary: 'Confirmed', detail: 'Atleta deletado', life: 1500});
       },
       reject: () => {
         this.listAllUsers();

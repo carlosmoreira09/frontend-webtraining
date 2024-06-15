@@ -1,6 +1,6 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import {ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { ModalExercisesComponent } from './modal-exercises.component';
+import {ModalExercisesComponent} from './modal-exercises.component';
 
 describe('ModalExercisesComponent', () => {
   let component: ModalExercisesComponent;
@@ -10,8 +10,8 @@ describe('ModalExercisesComponent', () => {
     await TestBed.configureTestingModule({
       imports: [ModalExercisesComponent]
     })
-    .compileComponents();
-    
+      .compileComponents();
+
     fixture = TestBed.createComponent(ModalExercisesComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();

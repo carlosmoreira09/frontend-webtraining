@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, Input} from '@angular/core';
 import {DialogModule} from "primeng/dialog";
 import {MessageModule} from "primeng/message";
 import {CommonModule, NgIf} from "@angular/common";
@@ -23,11 +23,12 @@ import {ExerciseModel} from "../../../../../../models/exercise.model";
   templateUrl: './training.component.html',
   providers: [MessageService]
 })
-export class TrainingComponent  {
+export class TrainingComponent {
 
   exercises: ExerciseModel[]
   @Input() sheet: ExerciseModel[];
 
-  constructor() {}
+  constructor() {
+  }
 
 }

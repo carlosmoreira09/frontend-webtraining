@@ -1,6 +1,6 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import {ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { ModalSheetComponent } from './modal-sheet.component';
+import {ModalSheetComponent} from './modal-sheet.component';
 
 describe('ModalSheetComponent', () => {
   let component: ModalSheetComponent;
@@ -10,8 +10,8 @@ describe('ModalSheetComponent', () => {
     await TestBed.configureTestingModule({
       imports: [ModalSheetComponent]
     })
-    .compileComponents();
-    
+      .compileComponents();
+
     fixture = TestBed.createComponent(ModalSheetComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();

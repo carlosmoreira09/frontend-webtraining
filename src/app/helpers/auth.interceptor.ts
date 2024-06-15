@@ -1,7 +1,6 @@
-
 import {HttpErrorResponse, HttpInterceptorFn} from '@angular/common/http';
 import {catchError, throwError} from "rxjs";
-import {assertInInjectionContext, inject} from "@angular/core";
+import {inject} from "@angular/core";
 import {Router} from "@angular/router";
 import {StorageService} from "../service/storage.service";
 import {AuthRoles} from "../models/auth.model";
@@ -14,45 +13,45 @@ export const AuthInterceptor: HttpInterceptorFn = (req, next) => {
   const auth = storageService.getUser();
   const authLocal = storageService.getUserLocalStorage()
 
-  if(!auth) {
+  if (!auth) {
     router.navigate(['auth']).then(
       () => {
         storageService.clean();
       }
     )
   }
-  if(!authLocal && !auth) {
+  if (!authLocal && !auth) {
     router.navigate(['auth']).then(
       () => {
         storageService.clean();
       }
     )
   }
-  if(auth) {
+  if (auth) {
     const decodetoken: AuthRoles = jwtDecode(auth.toString());
     const dateNow = new Date();
-    const expirationTime = new Date(decodetoken.exp*1000)
-  if(dateNow > expirationTime) {
-    return next(req).pipe(
-      catchError((err: any) => {
-        if (err instanceof HttpErrorResponse) {
-          if (err.status === 401) {
-            router.navigate(['auth']).then(
-              () => {
-                storageService.clean();
-              }
-            )
+    const expirationTime = new Date(decodetoken.exp * 1000)
+    if (dateNow > expirationTime) {
+      return next(req).pipe(
+        catchError((err: any) => {
+          if (err instanceof HttpErrorResponse) {
+            if (err.status === 401) {
+              router.navigate(['auth']).then(
+                () => {
+                  storageService.clean();
+                }
+              )
+            }
           }
-        }
-        return throwError(() => err);
-      }));
+          return throwError(() => err);
+        }));
     }
   }
-  if(authLocal) {
+  if (authLocal) {
     const decodetoken: AuthRoles = jwtDecode(authLocal.toString());
     const dateNow2 = new Date();
-    const expirationTime = new Date(decodetoken.exp*1000)
-    if(dateNow2 > expirationTime) {
+    const expirationTime = new Date(decodetoken.exp * 1000)
+    if (dateNow2 > expirationTime) {
       return next(req).pipe(
         catchError((err: any) => {
           if (err instanceof HttpErrorResponse) {
@@ -71,7 +70,7 @@ export const AuthInterceptor: HttpInterceptorFn = (req, next) => {
 
   const authReq = req.clone({
     setHeaders: {
-      Authorization: `Bearer ${auth? auth : authLocal}`
+      Authorization: `Bearer ${auth ? auth : authLocal}`
     }
   });
   return next(authReq).pipe(

@@ -1,6 +1,6 @@
-import { Component, OnInit} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {NgForOf, NgOptimizedImage} from "@angular/common";
-import {ExerciseModel, ReturnMessage} from "../../../models/exercise.model";
+import {ExerciseModel} from "../../../models/exercise.model";
 import {ExercisesService} from "../../../service/exercises.service";
 import {ActivatedRoute, RouterLink} from "@angular/router";
 import {ModalExercisesComponent} from "./components/modal-exercises/modal-exercises.component";
@@ -26,7 +26,7 @@ import {AuthService} from "../../../service/auth.service";
   styleUrl: './exercises.component.css',
   providers: [MessageService, ConfirmationService]
 })
-export class ExercisesComponent implements  OnInit {
+export class ExercisesComponent implements OnInit {
   exercises: ExerciseModel[] = [];
   title: string;
 
@@ -35,7 +35,9 @@ export class ExercisesComponent implements  OnInit {
               private messageService: MessageService,
               private confirmationService: ConfirmationService,
               private authService: AuthService,
-  ) {}
+  ) {
+  }
+
   ngOnInit() {
     this.listExercisesByType();
   }
@@ -46,15 +48,15 @@ export class ExercisesComponent implements  OnInit {
       message: 'Você deseja deletar esse exercício?',
       header: 'Confirmação',
       icon: 'pi pi-info-circle',
-      acceptButtonStyleClass:"p-button-danger p-button-text",
-      rejectButtonStyleClass:"m-2 p-button-text p-button-text",
-      acceptIcon:"none",
-      rejectIcon:"none",
+      acceptButtonStyleClass: "p-button-danger p-button-text",
+      rejectButtonStyleClass: "m-2 p-button-text p-button-text",
+      acceptIcon: "none",
+      rejectIcon: "none",
 
       accept: () => {
         this.deleteExercise(id);
         this.listExercisesByType();
-        this.messageService.add({ severity: 'info', summary: 'Confirmed', detail: 'Exercício deletado', life: 1500 });
+        this.messageService.add({severity: 'info', summary: 'Confirmed', detail: 'Exercício deletado', life: 1500});
       },
       reject: () => {
         this.listExercisesByType();
@@ -65,6 +67,7 @@ export class ExercisesComponent implements  OnInit {
   deleteExercise(id: number | undefined) {
     return this.exerciseService.deleteExercise(id);
   }
+
   listExercisesByType() {
     this.router.params.subscribe((objeto: any) => {
       this.title = objeto.type;

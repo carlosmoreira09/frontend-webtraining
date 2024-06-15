@@ -20,8 +20,9 @@ export class MenuComponent implements OnInit {
 
   constructor(@Inject(PLATFORM_ID) private platformId: Object) {
   }
+
   ngOnInit() {
-    if(isPlatformBrowser(this.platformId)){
+    if (isPlatformBrowser(this.platformId)) {
       initFlowbite();
     }
   }

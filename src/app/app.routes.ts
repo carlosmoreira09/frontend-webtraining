@@ -1,4 +1,4 @@
-import { Routes } from '@angular/router';
+import {Routes} from '@angular/router';
 import {AtletasComponent} from "./components/admin/athlete/athlete.component";
 import {ExercisesComponent} from "./components/admin/exercises/exercises.component";
 import {SheetsComponent} from "./components/admin/sheets/sheets.component";
@@ -29,7 +29,7 @@ export const routes: Routes = [
   {
     path: 'new-register',
     component: NewUserComponent,
-    canActivate:[AdminGuard]
+    canActivate: [AdminGuard]
 
   },
   {
@@ -39,33 +39,33 @@ export const routes: Routes = [
   {
     path: 'home',
     component: HomeComponent,
-    data: { loggedIn: true, homepage: true   },
-    canActivate:[ClientGuard]
+    data: {loggedIn: true, homepage: true},
+    canActivate: [ClientGuard]
   },
   {
     path: 'register',
     component: RegisterComponent,
-    canActivate:[AdminGuard]
+    canActivate: [AdminGuard]
   },
   {
     path: 'athletas',
     component: AtletasComponent,
-    data: { loggedIn: true, homepage: false },
-    canActivate:[ClientGuard]
+    data: {loggedIn: true, homepage: false},
+    canActivate: [ClientGuard]
 
   },
   {
     path: 'sheets',
     component: SheetsComponent,
-    data: { loggedIn: true, homepage: false },
-    canActivate:[ClientGuard]
+    data: {loggedIn: true, homepage: false},
+    canActivate: [ClientGuard]
 
   },
   {
     path: 'exercises/:type',
     component: ExercisesComponent,
-    data: { loggedIn: true, homepage: false },
-    canActivate:[ClientGuard]
+    data: {loggedIn: true, homepage: false},
+    canActivate: [ClientGuard]
   },
   {
     path: '**',

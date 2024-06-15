@@ -1,15 +1,14 @@
-import {Component, Input, ViewChild, ElementRef, AfterViewInit} from '@angular/core';
+import {AfterViewInit, Component, ElementRef, Input, ViewChild} from '@angular/core';
 import {AthletesService} from "../../../../service/athletes.service";
 import {FormBuilder, ReactiveFormsModule, UntypedFormGroup, Validators} from "@angular/forms";
 import {ClientsModel} from "../../../../models/clients.model";
 import {DialogModule} from "primeng/dialog";
-import {HttpClient, HttpClientModule} from "@angular/common/http";
+import {HttpClient} from "@angular/common/http";
 import {CommonModule} from "@angular/common";
 import {Router} from "@angular/router";
-import { SpecialCharacterRegx } from "../../../../models/auth.model";
+import {SpecialCharacterRegx} from "../../../../models/auth.model";
 
-import {ConfirmationService, MessageService} from "primeng/api";
-import {AuthService} from "../../../../service/auth.service";
+import {MessageService} from "primeng/api";
 import {AtletasComponent} from "../athlete.component";
 import {ReturnMessage} from "../../../../models/exercise.model";
 
@@ -23,7 +22,7 @@ import {ReturnMessage} from "../../../../models/exercise.model";
   ],
   templateUrl: './modal-athlete.component.html',
   styleUrl: './modal-athlete.component.css',
-  providers: [AthletesService,HttpClient,MessageService,]
+  providers: [AthletesService, HttpClient, MessageService,]
 })
 export class ModalAtletaComponent implements AfterViewInit {
   @ViewChild('openDialog')
@@ -44,12 +43,13 @@ export class ModalAtletaComponent implements AfterViewInit {
   ];
 
   constructor(
-              private formBuilder: FormBuilder,
-              private athletesService: AthletesService,
-              private router: Router,
-              private messageService: MessageService,
-              private athleteComponent: AtletasComponent,
-              ) {}
+    private formBuilder: FormBuilder,
+    private athletesService: AthletesService,
+    private router: Router,
+    private messageService: MessageService,
+    private athleteComponent: AtletasComponent,
+  ) {
+  }
 
   ngAfterViewInit() {
     this.formClient = this.initControlForm();
@@ -58,20 +58,23 @@ export class ModalAtletaComponent implements AfterViewInit {
   openDialogCreate() {
     this.showCreateUser = !this.showCreateUser;
   }
+
   openDialogEdit() {
     this.showEditUser = !this.showEditUser;
   }
+
   initControlForm() {
     return this.formBuilder.group({
       fullName: ['', [Validators.required]],
-      password: ['', [Validators.required,Validators.minLength(8)]],
+      password: ['', [Validators.required, Validators.minLength(8)]],
       passwordCheck: ['', [Validators.required, Validators.minLength(8)]],
-      age: ['',[Validators.required]],
-      phone: ['',[Validators.required]],
-      email: ['',[Validators.email, Validators.required] ],
-      id_training: ['',[Validators.required]]
+      age: ['', [Validators.required]],
+      phone: ['', [Validators.required]],
+      email: ['', [Validators.email, Validators.required]],
+      id_training: ['', [Validators.required]]
     });
   }
+
   getFormValues() {
     const fullName = this.getField('fullName')?.value;
     const password = this.getField('password')?.value;
@@ -99,10 +102,11 @@ export class ModalAtletaComponent implements AfterViewInit {
       email: email,
     }
   }
+
   onSubmit() {
 
     const clientForm = this.getFormValues();
-    if(!clientForm) {
+    if (!clientForm) {
       this.messageService.add({
         severity: 'error',
         key: 'tc',
@@ -133,9 +137,11 @@ export class ModalAtletaComponent implements AfterViewInit {
       }
     })
   }
+
   navigate(endpoint: string) {
     return this.router.navigate([endpoint]);
   }
+
   getField(field: string) {
     return this.formClient.get(field);
   }

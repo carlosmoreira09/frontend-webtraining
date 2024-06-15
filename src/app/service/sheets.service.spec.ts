@@ -1,6 +1,6 @@
-import { TestBed } from '@angular/core/testing';
+import {TestBed} from '@angular/core/testing';
 
-import { SheetsService } from './sheets.service';
+import {SheetsService} from './sheets.service';
 
 describe('PlanilhasService', () => {
   let service: SheetsService;

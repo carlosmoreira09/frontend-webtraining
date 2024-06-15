@@ -5,7 +5,7 @@ import {Router, RouterLink} from "@angular/router";
 import {ToastModule} from "primeng/toast";
 import {ConfirmationService, MessageService} from "primeng/api";
 import {AuthService} from "../../../service/auth.service";
-import {AuthRoles, ClientDTO, StrongPasswordRegx} from "../../../models/auth.model";
+import {AuthRoles, StrongPasswordRegx} from "../../../models/auth.model";
 import {ReturnMessage} from "../../../models/exercise.model";
 import {StorageService} from "../../../service/storage.service";
 import {MessageModule} from "primeng/message";
@@ -45,18 +45,20 @@ export class RegisterComponent implements OnInit {
   ngOnInit(): void {
     this.initControlForm();
   }
+
   initControlForm() {
     this.registerForm = this.formBuilder.group({
       username: ['', []],
       password: ['', Validators.pattern(StrongPasswordRegx)],
-      passwordCheck: ['',Validators.pattern(StrongPasswordRegx)],
+      passwordCheck: ['', Validators.pattern(StrongPasswordRegx)],
       email: ['', []],
       fullName: ['', []],
     });
   }
+
   onSubmit() {
-    const registerValues  = this.getFormValues();
-    if(registerValues === undefined) {
+    const registerValues = this.getFormValues();
+    if (registerValues === undefined) {
       this.errorMessage = 'Senhas Não Coincidem'
       this.messageService.add({
         severity: 'error',
@@ -68,7 +70,7 @@ export class RegisterComponent implements OnInit {
       const authRoles: AuthRoles = jwtDecode(this.storageService.getUser())
       this.authService.register(registerValues, authRoles.role).subscribe({
         next: (res: ReturnMessage) => {
-          if(res.status !== 200) {
+          if (res.status !== 200) {
             this.messageService.add({
               severity: 'error',
               key: 'tc',
@@ -98,6 +100,7 @@ export class RegisterComponent implements OnInit {
       })
     }
   }
+
   checkPassword() {
     let pass = this.getField('password')?.value;
     let passwordRegx: RegExp = new RegExp(StrongPasswordRegx);
@@ -125,13 +128,14 @@ export class RegisterComponent implements OnInit {
         return false;
       }
       let checkPassword = this.getField('passwordCheck')?.value
-      if(pass !== checkPassword) {
+      if (pass !== checkPassword) {
         this.errorMessage = 'Senhas não Coincidem';
         return false;
       }
     }
     return true;
   }
+
   addMessage(type: string, message: string): void {
     return this.messageService.add({
       severity: type,
@@ -140,11 +144,12 @@ export class RegisterComponent implements OnInit {
       life: 1500,
     })
   }
+
   getFormValues(): any {
 
     const username = this.getField('username')?.value;
     const checkPass = this.checkPassword();
-    if(!checkPass) {
+    if (!checkPass) {
       this.getField('password')?.setValue('');
       this.getField('passwordCheck')?.setValue('');
       return this.addMessage('error', 'Verifique sua senha')
@@ -163,10 +168,12 @@ export class RegisterComponent implements OnInit {
       paymentStatus: 'Nao Pago'
     }
   }
+
   navigate(endpoint: string) {
     return this.router.navigate([endpoint]);
   }
+
   getField(field: string) {
-  return this.registerForm.get(field);
+    return this.registerForm.get(field);
   }
 }

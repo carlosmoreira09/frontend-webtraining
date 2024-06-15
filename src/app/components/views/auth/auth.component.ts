@@ -1,7 +1,7 @@
-import { Component, OnInit} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {FormBuilder, ReactiveFormsModule, UntypedFormGroup, Validators} from "@angular/forms";
 import {NgOptimizedImage} from "@angular/common";
-import { Router, RouterLink} from "@angular/router";
+import {Router, RouterLink} from "@angular/router";
 import {MessageService} from "primeng/api";
 import {ToastModule} from "primeng/toast";
 import {HttpClient} from "@angular/common/http";
@@ -23,7 +23,7 @@ import {AuthDTO, AuthPayload, AuthRoles, ClientDTO} from "../../../models/auth.m
   templateUrl: './auth.component.html',
   styleUrl: './auth.component.css',
 })
-export class AuthComponent  implements OnInit {
+export class AuthComponent implements OnInit {
   authForm: UntypedFormGroup;
   public user: ClientDTO;
 
@@ -32,7 +32,7 @@ export class AuthComponent  implements OnInit {
               private authService: AuthService,
               private messageService: MessageService,
               private router: Router,
-              ) {
+  ) {
 
   }
 
@@ -45,7 +45,7 @@ export class AuthComponent  implements OnInit {
     });
     if (this.storageService.isLoggedIn() || this.storageService.isLoggedInLocal()) {
       let token = this.storageService.getUser();
-      if(!token) {
+      if (!token) {
         token = this.storageService.getUserLocalStorage();
       }
       this.authService.home(token).subscribe({
@@ -73,6 +73,7 @@ export class AuthComponent  implements OnInit {
       password: password,
     }
   }
+
   onSubmit() {
     let payload: AuthPayload;
     const authData: AuthDTO = this.getFormValues()
@@ -93,7 +94,7 @@ export class AuthComponent  implements OnInit {
         complete: () => {
           this.storageService.clean();
           let saveLocal = this.getField('saveData')?.value
-          if(saveLocal) {
+          if (saveLocal) {
             this.storageService.saveUserLocalStorage(payload.accessToken);
           }
           this.storageService.saveUser(payload.accessToken);
@@ -101,13 +102,13 @@ export class AuthComponent  implements OnInit {
               next: (res: ClientDTO) => {
                 this.user = res;
               },
-            complete: () => {
-              this.storageService.saveItem('user', this.user);
-              if(saveLocal) {
-                this.storageService.saveItemLocalStorage('user', this.user);
+              complete: () => {
+                this.storageService.saveItem('user', this.user);
+                if (saveLocal) {
+                  this.storageService.saveItemLocalStorage('user', this.user);
+                }
+                this.navigate('home').then()
               }
-              this.navigate('home').then()
-            }
             }
           )
         }
@@ -134,26 +135,26 @@ export class AuthComponent  implements OnInit {
         complete: () => {
           this.storageService.saveUser(payload.accessToken);
           let saveLocal = this.getField('saveData')?.value
-          if(saveLocal) {
+          if (saveLocal) {
             this.storageService.saveUserLocalStorage(payload.accessToken);
           }
           this.authService.home(payload).subscribe({
-                next: (res: ClientDTO) => {
-                  this.user = res;
+              next: (res: ClientDTO) => {
+                this.user = res;
               },
               complete: () => {
                 this.storageService.saveItem('user', this.user);
-                if(saveLocal) {
+                if (saveLocal) {
                   this.storageService.saveItemLocalStorage('user', this.user);
                 }
-                  const token = this.storageService.getUser();
-                  const authRoles: AuthRoles = jwtDecode(token);
-                  if (authRoles.role === 'admin') {
-                    this.navigate('register').then()
-                  } else {
-                    this.navigate('no-access').then()
-                  }
+                const token = this.storageService.getUser();
+                const authRoles: AuthRoles = jwtDecode(token);
+                if (authRoles.role === 'admin') {
+                  this.navigate('register').then()
+                } else {
+                  this.navigate('no-access').then()
                 }
+              }
             }
           )
         }
@@ -165,6 +166,7 @@ export class AuthComponent  implements OnInit {
   navigate(endpoint: string) {
     return this.router.navigate([endpoint]);
   }
+
   getField(field: string) {
     return this.authForm.get(field);
   }

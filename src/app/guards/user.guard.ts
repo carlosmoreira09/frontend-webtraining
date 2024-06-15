@@ -7,10 +7,10 @@ export const UserGuard: CanActivateFn = (route, state) => {
   const storageService: StorageService = inject(StorageService);
   const authService: AuthService = inject(AuthService);
   const router: Router = inject(Router);
-  if(authService.getAccessLevel('admin')) {
-  return true;
+  if (authService.getAccessLevel('admin')) {
+    return true;
   }
-  if(!authService.getAccessLevel('user')) {
+  if (!authService.getAccessLevel('user')) {
     router.navigate(['/no-access']).then(
       () => {
         storageService.clean();

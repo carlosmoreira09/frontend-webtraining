@@ -1,4 +1,4 @@
-import {AfterContentInit, AfterViewInit, Component, OnInit} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {NgIf, NgOptimizedImage} from "@angular/common";
 import {ClientDTO} from "../../../models/auth.model";
 import {StorageService} from "../../../service/storage.service";
@@ -21,7 +21,8 @@ export class HeaderComponent implements OnInit {
   public loggedUser: ClientDTO;
 
   constructor(private storageService: StorageService, private router: Router,
-              ) {}
+  ) {
+  }
 
   ngOnInit(): void {
     this.loggedUser = this.storageService.getItem('user')
@@ -34,6 +35,7 @@ export class HeaderComponent implements OnInit {
       }
     )
   }
+
   navigate(endpoint: string) {
     return this.router.navigate([endpoint]);
   }

@@ -1,6 +1,6 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import {ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { ErrorAuthorizeComponent } from './error401.component';
+import {ErrorAuthorizeComponent} from './error401.component';
 
 describe('RegisterComponent', () => {
   let component: ErrorAuthorizeComponent;
@@ -10,7 +10,7 @@ describe('RegisterComponent', () => {
     await TestBed.configureTestingModule({
       imports: [ErrorAuthorizeComponent]
     })
-    .compileComponents();
+      .compileComponents();
 
     fixture = TestBed.createComponent(ErrorAuthorizeComponent);
     component = fixture.componentInstance;

@@ -7,7 +7,7 @@ import {ReactiveFormsModule} from "@angular/forms";
 import {MessageService} from "primeng/api";
 import {ToastModule} from "primeng/toast";
 import {ExerciseModel} from "../../../../../models/exercise.model";
-import { ClientsModel} from "../../../../../models/clients.model";
+import {ClientsModel} from "../../../../../models/clients.model";
 import {SheetsModel} from "../../../../../models/sheets.model";
 import {TrainingComponent} from "./table-component/training.component";
 import {HeaderTableComponent} from "./header-component/header-table.component";
@@ -34,7 +34,7 @@ import {HeaderTableComponent} from "./header-component/header-table.component";
   styleUrl: './preview-sheet.component.css',
   providers: [MessageService, TrainingComponent]
 })
-export class PreviewSheetComponent implements  OnInit {
+export class PreviewSheetComponent implements OnInit {
   @ViewChild('openDialog')
   dialog: ElementRef
   @Input() sheetInfo: SheetsModel;
@@ -46,7 +46,8 @@ export class PreviewSheetComponent implements  OnInit {
   public sheetC: ExerciseModel[];
   public sheetD: ExerciseModel[];
 
-  constructor() {}
+  constructor() {
+  }
 
   ngOnInit(): void {
 
@@ -62,6 +63,7 @@ export class PreviewSheetComponent implements  OnInit {
     this.showPreviewSheet = true;
 
   }
+
   onCloseCreate() {
     this.showPreviewSheet = false;
   }

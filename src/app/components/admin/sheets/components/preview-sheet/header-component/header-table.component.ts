@@ -33,6 +33,7 @@ export class HeaderTableComponent {
   @Input() sheetC: ExerciseModel[];
   @Input() sheetD: ExerciseModel[];
 
-  constructor() {}
+  constructor() {
+  }
 
 }

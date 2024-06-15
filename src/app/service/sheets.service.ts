@@ -14,23 +14,26 @@ export class SheetsService {
   private url: string = "http://localhost:3000/api/sheets";
 
   constructor(@Self() private httpClient: HttpClient,
-              private storageService: StorageService,) { }
+              private storageService: StorageService,) {
+  }
 
   listSheets() {
     const token = this.storageService.getUser();
     const authRoles: AuthRoles = jwtDecode(token);
-    return this.httpClient.get<SheetsModel[]>(this.url+"/client/"+authRoles.id);
+    return this.httpClient.get<SheetsModel[]>(this.url + "/client/" + authRoles.id);
   }
+
   listSheetByClient(id_sheet: number) {
-    return this.httpClient.get<SheetsModel>(this.url+"/"+id_sheet);
+    return this.httpClient.get<SheetsModel>(this.url + "/" + id_sheet);
   }
 
 
   addNewSheet(newSheet: createNewSheet): Observable<ReturnMessage> {
     const token = this.storageService.getUser();
     const authRoles: AuthRoles = jwtDecode(token);
-    return this.httpClient.post<ReturnMessage>(this.url, newSheet, { headers: new HttpHeaders({ 'id_user': authRoles.id})})
+    return this.httpClient.post<ReturnMessage>(this.url, newSheet, {headers: new HttpHeaders({'id_user': authRoles.id})})
   }
+
   delete(id: number | undefined): Observable<any> {
     return this.httpClient.delete<ReturnMessage>(this.url + "/" + id);
   }

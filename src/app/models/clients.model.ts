@@ -11,7 +11,7 @@ export interface ClientsModel {
   "createdAt": string;
 }
 
-export interface AthleteInfo  {
+export interface AthleteInfo {
   name: string;
   id?: number;
 }
