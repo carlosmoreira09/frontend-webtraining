@@ -145,18 +145,15 @@
             <tbody>
               <tr>
                 <td class="w-1/4 border border-slate-300">
-
               @for(exercise of addExercisesA; track exercise) {
                 <p class="capitalize border-l-blue-900"> {{ exercise.exercise }} <button (click)="removeExercise(exercise)" style="color: white" class="rounded-full pi pi-times-circle bg-red-600"></button></p>
               }
                 </td>
-
                 <td  *ngIf="getField('quantity')?.value > 1" class="w-1/4 border border-slate-300">
               @for(exercise of addExercisesB; track exercise) {
                 <p class="capitalize border-l-blue-900"> {{ exercise.exercise }} <button (click)="removeExercise(exercise)" style="color: white" class="rounded-full pi pi-times-circle bg-red-600"></button></p>
               }
                 </td>
-
               <td  *ngIf="getField('quantity')?.value > 2" class="w-1/4 border border-slate-300">
               @for(exercise of addExercisesC; track exercise) {
                 <p class="capitalize"> {{ exercise.exercise }} <button (click)="removeExercise(exercise)" style="color: white" class="rounded-full pi pi-times-circle bg-red-600"></button> </p>
