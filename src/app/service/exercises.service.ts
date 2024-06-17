@@ -3,12 +3,15 @@ import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {ExerciseModel} from "../models/exercise.model";
 import {Observable} from "rxjs";
 import {AuthService} from "./auth.service";
+import {environment} from "../../environments/environment";
 
 @Injectable({
   providedIn: 'root'
 })
 export class ExercisesService {
+
   private url: string = "http://localhost:3000/api/exercises";
+  private baseUrl: string = environment.baseUrl;
 
   constructor(@Self() private httpClient: HttpClient,
               private authService: AuthService) {

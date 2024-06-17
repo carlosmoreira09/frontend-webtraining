@@ -4,16 +4,18 @@ import {AuthDTO, AuthPayload, AuthRoles, ClientDTO} from "../models/auth.model";
 import {StorageService} from "./storage.service";
 import {jwtDecode} from "jwt-decode";
 import {ReturnMessage} from "../models/exercise.model";
+import {environment} from "../../environments/environment";
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
+  authURL = 'http://localhost:3000/api/auth';
+  private baseUrl: string = environment.baseUrl;
+
   constructor(private httpClient: HttpClient,
               private storageService: StorageService,) {
   }
-
-  authURL = 'http://localhost:3000/api/auth';
 
   getAccessLevel(role: string): boolean {
     const token = this.storageService.getUser();
@@ -33,13 +35,12 @@ export class AuthService {
 
 
   register(data: ClientDTO | undefined, role: string) {
-
-    return this.httpClient.post<ReturnMessage>(this.authURL + "/register", data, {headers: new HttpHeaders({'user_role': role})});
+    return this.httpClient.post<ReturnMessage>(this.baseUrl + "auth/register", data, {headers: new HttpHeaders({'user_role': role})});
   }
 
 
   login(data: AuthDTO) {
-    return this.httpClient.post<AuthPayload>(this.authURL + "/login", data);
+    return this.httpClient.post<AuthPayload>(this.baseUrl + "auth/login", data);
   }
 
   home(data: AuthPayload) {
@@ -53,7 +54,7 @@ export class AuthService {
     });
     let options: { headers: HttpHeaders };
     options = {headers: headers};
-    return this.httpClient.get<ClientDTO>(this.authURL + "/profile",
+    return this.httpClient.get<ClientDTO>(this.baseUrl + "auth/profile",
       options
     );
   }

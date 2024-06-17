@@ -38,7 +38,7 @@ interface Modalidade {
 export class ModalSheetComponent implements OnInit {
   @ViewChild('openDialog')
   dialog: ElementRef
-  id_client: number;
+  id_client: number | null = null;
   showCreateSheet: boolean = false;
   showEditSheet: boolean = false;
   formValid: boolean = false;
@@ -50,7 +50,6 @@ export class ModalSheetComponent implements OnInit {
   resultExercise: ExerciseModel | undefined;
   resultSheet: string;
   listAthlete: AthleteInfo[];
-  firstExercise: ExerciseModel;
   athlete: ClientsModel | undefined;
   athletes: ClientsModel[] = [];
   public addExercisesA: ExerciseModel[] = [];
@@ -179,15 +178,27 @@ export class ModalSheetComponent implements OnInit {
       }
     }
 
-    return {
-      sheet_name: sheet_name,
-      sheet_desc: sheet_desc,
-      sheet_details: sheet_detais,
-      training_a: idExercisesA.toString(),
-      training_b: idExercisesB.toString(),
-      training_c: idExercisesC.toString(),
-      training_d: idExercisesD.toString(),
-      id_client: this.id_client,
+    if(this.id_client != null) {
+      return {
+        sheet_name: sheet_name,
+        sheet_desc: sheet_desc,
+        sheet_details: sheet_detais,
+        training_a: idExercisesA.toString(),
+        training_b: idExercisesB.toString(),
+        training_c: idExercisesC.toString(),
+        training_d: idExercisesD.toString(),
+        id_client: this.id_client,
+      }
+    } else {
+      return {
+        sheet_name: sheet_name,
+        sheet_desc: sheet_desc,
+        sheet_details: sheet_detais,
+        training_a: idExercisesA.toString(),
+        training_b: idExercisesB.toString(),
+        training_c: idExercisesC.toString(),
+        training_d: idExercisesD.toString(),
+      }
     }
   }
 
@@ -217,25 +228,25 @@ export class ModalSheetComponent implements OnInit {
     this.resultExercise = this.listExercise.find((value) => value.id_exercise === parseInt(addNewExercise));
     if (this.resultExercise) {
       if (this.resultSheet === 'training_a') {
-        if (!(this.addExercisesA.find(({exercise}) => exercise === addNewExercise.exercise))) {
+        if (!(this.addExercisesA.find((value) => value.id_exercise === parseInt(addNewExercise)))) {
           this.addExercisesA.push(this.resultExercise)
         } else {
           this.addMessage('error', 'Exercício Já Existe na Planilha');
         }
       } else if (this.resultSheet === 'training_b') {
-        if (!(this.addExercisesB.find(({id_exercise}) => id_exercise === this.resultExercise?.id_exercise))) {
+        if (!(this.addExercisesB.find((value) => value.id_exercise === parseInt(addNewExercise)))) {
           this.addExercisesB.push(this.resultExercise)
         } else {
           this.addMessage('error', 'Exercício Já Existe na Planilha');
         }
       } else if (this.resultSheet === 'training_c') {
-        if (!(this.addExercisesC.find(({id_exercise}) => id_exercise === this.resultExercise?.id_exercise))) {
+        if (!(this.addExercisesC.find((value) => value.id_exercise === parseInt(addNewExercise)))) {
           this.addExercisesC.push(this.resultExercise)
         } else {
           this.addMessage('error', 'Exercício Já Existe na Planilha');
         }
       } else if (this.resultSheet === 'training_d') {
-        if (!(this.addExercisesD.find(({id_exercise}) => id_exercise === this.resultExercise?.id_exercise))) {
+        if (!(this.addExercisesD.find((value) => value.id_exercise === parseInt(addNewExercise)))) {
           this.addExercisesD.push(this.resultExercise)
         } else {
           this.addMessage('error', 'Exercício Já Existe na Planilha');
@@ -248,7 +259,6 @@ export class ModalSheetComponent implements OnInit {
 
   removeExercise(exercise: ExerciseModel) {
     const resultSheet = this.getField('sheet_id')?.value;
-
     if (exercise) {
       if (resultSheet === 'training_a') {
         this.addExercisesA.splice(this.addExercisesA.indexOf(exercise), 1);

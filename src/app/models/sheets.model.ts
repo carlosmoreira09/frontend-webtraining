@@ -21,6 +21,6 @@ export interface createNewSheet {
   training_b: string;
   training_c: string;
   training_d: string;
-  id_client?: number,
+  id_client?: number | null,
 }
 
