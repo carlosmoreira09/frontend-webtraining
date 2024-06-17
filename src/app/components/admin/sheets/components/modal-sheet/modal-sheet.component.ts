@@ -115,6 +115,9 @@ export class ModalSheetComponent implements OnInit {
         for (let exercise of this.exercises) {
           this.listExercise.push(exercise);
         }
+        if(users.length == 0) {
+          this.addMessage('warn', 'Adicione Exercícios na Aba de Exercícios');
+        }
       },
       complete: () => {
         this.getField('exercises')?.setValue(this.listExercise[0].id_exercise);
@@ -208,6 +211,7 @@ export class ModalSheetComponent implements OnInit {
       (res: ReturnMessage) => {
         this.addMessage('success', res.message)
         this.sheetsComponent.listSheets();
+        this.showCreateSheet = false;
       }
     )
   }
