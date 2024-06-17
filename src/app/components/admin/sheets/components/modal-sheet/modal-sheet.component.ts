@@ -8,16 +8,11 @@ import {MessageService} from "primeng/api";
 import {ToastModule} from "primeng/toast";
 import {ExercisesService} from "../../../../../service/exercises.service";
 import {ExerciseModel, ReturnMessage} from "../../../../../models/exercise.model";
-import {createNewSheet} from "../../../../../models/sheets.model";
+import {createNewSheet, Modalidade} from "../../../../../models/sheets.model";
 import {SheetsService} from "../../../../../service/sheets.service";
 import {SheetsComponent} from "../../sheets.component";
 import {AthletesService} from "../../../../../service/athletes.service";
 import {AthleteInfo, ClientsModel} from "../../../../../models/clients.model";
-
-interface Modalidade {
-  name: string;
-  abbrev: string;
-}
 
 @Component({
   selector: 'app-modal-sheet',
@@ -97,6 +92,14 @@ export class ModalSheetComponent implements OnInit {
     });
   }
 
+  clearForm() {
+    this.addExercisesA = [];
+    this.addExercisesB = [];
+    this.addExercisesC= [];
+    this.addExercisesD = [];
+    this.initNewControlForm();
+  }
+
   saveAthlete() {
     this.id_client = this.formAthleta.get('id_client')?.value;
     this.athletes.find((value) => {
@@ -151,7 +154,7 @@ export class ModalSheetComponent implements OnInit {
     this.setExercise(type);
   }
 
-  getValues(): createNewSheet {
+  getValues() {
     const sheet_name: string = this.getField('sheet_name')?.value;
     const sheet_desc: string = this.getField('sheet_desc')?.value;
     const sheet_detais: string = this.getField('sheet_details')?.value;
@@ -207,13 +210,19 @@ export class ModalSheetComponent implements OnInit {
 
   submitNewSheet() {
     const newSheet: createNewSheet = this.getValues();
-    this.sheetService.addNewSheet(newSheet).subscribe(
-      (res: ReturnMessage) => {
-        this.addMessage('success', res.message)
+    this.sheetService.addNewSheet(newSheet).subscribe({
+    next: (res: ReturnMessage) => {
+      this.showCreateSheet = false;
+      this.addMessage('success', res.message)
+    },
+      error: (res: ReturnMessage) => {
+      this.addMessage('error', res.message);
+      },
+      complete: () => {
+        this.clearForm();
         this.sheetsComponent.listSheets();
-        this.showCreateSheet = false;
       }
-    )
+  })
   }
 
   addMessage(severity: string, detail: string) {

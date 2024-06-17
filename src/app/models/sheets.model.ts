@@ -21,6 +21,10 @@ export interface createNewSheet {
   training_b: string;
   training_c: string;
   training_d: string;
-  id_client?: number | null,
+  id_client?: number,
+}
+export interface Modalidade {
+  name: string;
+  abbrev: string;
 }
 

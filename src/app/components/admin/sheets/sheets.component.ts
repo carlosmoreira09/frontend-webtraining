@@ -47,7 +47,6 @@ export class SheetsComponent implements OnInit {
     this.sheetsService.listSheets().subscribe(
       (res: SheetsModel[]) => {
         this.sheets = res;
-        console.log(res);
       }
     );
   }
