@@ -10,6 +10,7 @@ import {ConfirmationService, MessageService} from "primeng/api";
 import {ConfirmDialogModule} from "primeng/confirmdialog";
 import {ToastModule} from "primeng/toast";
 import {ReturnMessage} from "../../../models/exercise.model";
+import {CardAthleteComponent} from "./components/card-athlete/card-athlete.component";
 
 @Component({
   selector: 'app-athlete',
@@ -21,7 +22,8 @@ import {ReturnMessage} from "../../../models/exercise.model";
     ModalAtletaComponent,
     RouterLink,
     ConfirmDialogModule,
-    ToastModule
+    ToastModule,
+    CardAthleteComponent
   ],
   templateUrl: './athlete.component.html',
   styleUrl: './athlete.component.css',
@@ -29,7 +31,9 @@ import {ReturnMessage} from "../../../models/exercise.model";
 })
 export class AtletasComponent implements OnInit {
   atletas: ClientsModel[];
-
+  titleAds1: string;
+  titleAds2: string;
+  titleAds3: string;
   constructor(private athleteService: AthletesService,
               private router: Router,
               private confirmationService: ConfirmationService,
@@ -38,6 +42,10 @@ export class AtletasComponent implements OnInit {
 
   ngOnInit() {
     this.listAllUsers();
+    this.titleAds1 = 'Parceria 1'
+    this.titleAds2 = 'Parceria 2'
+    this.titleAds3 = 'Parceria 3'
+
   }
 
   listAllUsers() {

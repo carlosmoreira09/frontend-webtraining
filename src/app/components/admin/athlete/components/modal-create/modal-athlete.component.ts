@@ -99,7 +99,6 @@ export class ModalAtletaComponent implements AfterViewInit {
   }
 
   onSubmit() {
-
     const clientForm = this.getFormValues();
     if (!clientForm) {
       this.messageService.add({
