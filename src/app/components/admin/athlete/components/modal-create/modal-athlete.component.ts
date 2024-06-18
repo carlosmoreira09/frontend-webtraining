@@ -1,16 +1,16 @@
 import {AfterViewInit, Component, ElementRef, Input, ViewChild} from '@angular/core';
-import {AthletesService} from "../../../../service/athletes.service";
+import {AthletesService} from "../../../../../service/athletes.service";
 import {FormBuilder, ReactiveFormsModule, UntypedFormGroup, Validators} from "@angular/forms";
-import {ClientsModel} from "../../../../models/clients.model";
+import {ClientsModel} from "../../../../../models/clients.model";
 import {DialogModule} from "primeng/dialog";
 import {HttpClient} from "@angular/common/http";
 import {CommonModule} from "@angular/common";
 import {Router} from "@angular/router";
-import {SpecialCharacterRegx} from "../../../../models/auth.model";
+import {SpecialCharacterRegx} from "../../../../../models/auth.model";
 
 import {MessageService} from "primeng/api";
-import {AtletasComponent} from "../athlete.component";
-import {ReturnMessage} from "../../../../models/exercise.model";
+import {AtletasComponent} from "../../athlete.component";
+import {ReturnMessage} from "../../../../../models/exercise.model";
 
 
 @Component({
@@ -35,12 +35,6 @@ export class ModalAtletaComponent implements AfterViewInit {
   formClient: UntypedFormGroup;
   formValid: boolean = false;
   errorMessage: string;
-  public modalidades = [
-    {name: 'Hipertrofia', abbrev: '1'},
-    {name: 'Emagrecimento', abbrev: '2'},
-    {name: 'Fortalecimento', abbrev: '3'},
-    {name: 'Tratamento de Lesões', abbrev: '4'},
-  ];
 
   constructor(
     private formBuilder: FormBuilder,
@@ -71,7 +65,7 @@ export class ModalAtletaComponent implements AfterViewInit {
       age: ['', [Validators.required]],
       phone: ['', [Validators.required]],
       email: ['', [Validators.email, Validators.required]],
-      id_training: ['', [Validators.required]]
+      training_type: ['', [Validators.required]]
     });
   }
 
@@ -82,7 +76,7 @@ export class ModalAtletaComponent implements AfterViewInit {
     const age = this.getField('age')?.value;
     const phone = this.getField('phone')?.value;
     const email = this.getField('email')?.value;
-    const id_training = this.getField('id_training')?.value;
+    const training_type = this.getField('training_type')?.value;
     if (password !== passwordCheck) {
       this.formValid = true;
       this.errorMessage = 'Senhas não coincidem';
@@ -98,6 +92,7 @@ export class ModalAtletaComponent implements AfterViewInit {
       fullName: fullName,
       password: password,
       age: age,
+      training_type: training_type,
       phone: phone,
       email: email,
     }

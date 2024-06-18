@@ -4,7 +4,7 @@ export interface ClientsModel {
   "age": number;
   "email": string;
   "phone": string;
-  "id_training": string;
+  "training_type": string;
   "isActive": boolean;
   "ids_sheets": number;
   "updatedAt": string;
