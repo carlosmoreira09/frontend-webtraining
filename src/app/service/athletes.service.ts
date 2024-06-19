@@ -18,18 +18,20 @@ export class AthletesService {
 
   constructor(@Self() private httpClient: HttpClient, private storageService: StorageService) {
   }
-
   listAllAthletas(): Observable<ClientsModel[]> {
     const token = this.storageService.getUser();
     const authRoles: AuthRoles = jwtDecode(token);
     return this.httpClient.get<ClientsModel[]>(this.baseUrl + "clients/" + authRoles.id);
-
   }
-
+  saveAddSheetAthlete(id_sheet: number, id_client: number): Observable<ReturnMessage> {
+    const header = new HttpHeaders({'id_client': id_client})
+    return this.httpClient.post<ReturnMessage>(this.baseUrl + "clients/sheets/" + id_sheet, '',{
+      headers: header
+    });
+  }
   delete(id: number | undefined): Observable<ReturnMessage> {
     return this.httpClient.delete<ReturnMessage>(this.baseUrl + "clients/" + id);
   }
-
   create(newClient: any): Observable<ReturnMessage> {
     const token = this.storageService.getUser();
     const authRoles: AuthRoles = jwtDecode(token);

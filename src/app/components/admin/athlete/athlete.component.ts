@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
-import {ReactiveFormsModule} from "@angular/forms";
-import {ClientsModel} from "../../../models/clients.model";
+import {FormBuilder, ReactiveFormsModule, UntypedFormGroup, Validators} from "@angular/forms";
+import {AthleteInfo, ClientsModel} from "../../../models/clients.model";
 import {AthletesService} from "../../../service/athletes.service";
 import {ModalAtletaComponent} from "./components/modal-create/modal-athlete.component";
 import {CommonModule} from "@angular/common";
@@ -11,6 +11,11 @@ import {ConfirmDialogModule} from "primeng/confirmdialog";
 import {ToastModule} from "primeng/toast";
 import {ReturnMessage} from "../../../models/exercise.model";
 import {CardAthleteComponent} from "./components/card-athlete/card-athlete.component";
+import {DockModule} from "primeng/dock";
+import {TooltipModule} from "primeng/tooltip";
+import {SheetsModel} from "../../../models/sheets.model";
+import {SheetsService} from "../../../service/sheets.service";
+import {PreviewSheetComponent} from "../sheets/components/preview-sheet/preview-sheet.component";
 
 @Component({
   selector: 'app-athlete',
@@ -23,7 +28,10 @@ import {CardAthleteComponent} from "./components/card-athlete/card-athlete.compo
     RouterLink,
     ConfirmDialogModule,
     ToastModule,
-    CardAthleteComponent
+    CardAthleteComponent,
+    DockModule,
+    TooltipModule,
+    PreviewSheetComponent
   ],
   templateUrl: './athlete.component.html',
   styleUrl: './athlete.component.css',
@@ -34,28 +42,92 @@ export class AtletasComponent implements OnInit {
   titleAds1: string;
   titleAds2: string;
   titleAds3: string;
+  dialogAddSheet: boolean = false;
+  formAddSheet: UntypedFormGroup;
+  listSheet: SheetsModel[];
+  id_sheet: number | null;
+  id_client: number | null;
   constructor(private athleteService: AthletesService,
-              private router: Router,
               private confirmationService: ConfirmationService,
-              private messageService: MessageService,) {
+              private messageService: MessageService,
+              private sheetsService: SheetsService,
+              private formBuilder: FormBuilder,
+              ) {
   }
 
   ngOnInit() {
     this.listAllUsers();
+    this.initFormSheet();
     this.titleAds1 = 'Parceria 1'
     this.titleAds2 = 'Parceria 2'
     this.titleAds3 = 'Parceria 3'
 
   }
 
+  initFormSheet() {
+    this.formAddSheet = this.formBuilder.group({
+      id_sheet: ['', Validators.required],
+    });
+  }
   listAllUsers() {
     return this.athleteService.listAllAthletas().subscribe(
       (users: ClientsModel[]) => {
         this.atletas = users;
+        console.log(this.atletas[1]);
       }
     )
   }
+  addMessage(severity: string, detail: string) {
+    return this.messageService.add({
+      severity: severity,
+      key: 'tc',
+      life: 1500,
+      detail: detail,
+    })
+  }
+  addSheet(id_client: number) {
+    this.sheetsService.listSheets().subscribe({
+      next: (sheets: SheetsModel[]) => {
+        this.listSheet = sheets;
+     },
+      error: (err: any) => {
+        this.addMessage('error', 'Erro ao Carregar Planilhas:' + err);
 
+      },
+      complete: () => {
+        this.dialogAddSheet = true;
+        this.id_client = id_client? id_client : null;
+      }
+    })
+  }
+  saveSheet() {
+    this.id_sheet = this.getField('id_sheet')?.value;
+    if(this.id_client === null || this.id_sheet === null) {
+      return this.addMessage('error', 'Erro ao carregar dados do cliente.:');
+    }
+    this.athleteService.saveAddSheetAthlete(this.id_sheet, this.id_client).subscribe({
+      next: (value) => {
+        console.log(value)
+      },
+      error: (err: any) => {
+        this.addMessage('error', 'Erro ao Carregar Planilhas:' + err);
+        this.id_client = null;
+        this.id_sheet = null;
+      },
+      complete: () => {
+        this.addMessage('success', 'Planilha adicionada ao Cliente');
+        this.dialogAddSheet = false;
+        this.id_client = null;
+        this.id_sheet = null;
+      }
+    })
+  }
+  cancelAddSheet() {
+    this.id_client = null;
+    this.id_sheet = null;
+    this.dialogAddSheet = false;
+    this.getField('id_sheet')?.setValue('')
+  }
   deleteAthlete(id_client: number | undefined) {
     this.athleteService.delete(id_client).subscribe({
       next: (res: ReturnMessage) => {
@@ -100,5 +172,8 @@ export class AtletasComponent implements OnInit {
         this.listAllUsers();
       }
     });
+  }
+  getField(field: string) {
+    return this.formAddSheet.get(field);
   }
 }

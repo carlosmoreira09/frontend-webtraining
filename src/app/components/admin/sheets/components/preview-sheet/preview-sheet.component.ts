@@ -38,10 +38,10 @@ import * as XLSX from 'xlsx';
 export class PreviewSheetComponent implements OnInit {
   @ViewChild('openDialog') dialog: ElementRef;
   @ViewChild('tablepreview') table: ElementRef;
-  @Input() sheetInfo: SheetsModel;
+  @Input() sheetInfo: SheetsModel | null;
   showPreviewSheet: boolean = false;
   exercises: ExerciseModel[]
-  clientInfo: ClientsModel;
+  clientInfo: ClientsModel | null;
   public sheetA: ExerciseModel[];
   public sheetB: ExerciseModel[];
   public sheetC: ExerciseModel[];
@@ -54,15 +54,26 @@ export class PreviewSheetComponent implements OnInit {
 
   }
 
-  openDialogCreate(sheet: SheetsModel) {
-    this.sheetInfo = sheet;
-    this.clientInfo = this.sheetInfo.id_client;
-    this.sheetA = this.sheetInfo.training_a;
-    this.sheetB = this.sheetInfo.training_b;
-    this.sheetC = this.sheetInfo.training_c;
-    this.sheetD = this.sheetInfo.training_d;
-    this.showPreviewSheet = true;
-
+  openPreviewSheet() {
+    if(this.sheetInfo) {
+      this.clientInfo = this.sheetInfo.id_client;
+      this.sheetA = this.sheetInfo.training_a;
+      this.sheetB = this.sheetInfo.training_b;
+      this.sheetC = this.sheetInfo.training_c;
+      this.sheetD = this.sheetInfo.training_d;
+      this.showPreviewSheet = true;
+    }
+  }
+  openPreviewInClient(sheet: any) {
+      if(sheet) {
+        console.log(sheet)
+        this.clientInfo = sheet.id_client;
+        this.sheetA = sheet.training_a;
+        this.sheetB = sheet.training_b;
+        this.sheetC = sheet.training_c;
+        this.sheetD = sheet.training_d;
+        this.showPreviewSheet = true;
+      }
   }
 
   onCloseCreate() {
