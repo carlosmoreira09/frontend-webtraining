@@ -1,4 +1,4 @@
 export const environment = {
   production: true,
-  baseUrl: 'https://webperformance.pro/api/',
+  baseUrl: 'https://app.webperformance.pro/api/',
 };
