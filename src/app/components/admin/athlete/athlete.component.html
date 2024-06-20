@@ -79,8 +79,11 @@
               {{ atleta.phone }}
             </div>
           </td>
-          <td class="px-6 py-4" (click)="preview.athletaInfo = atleta; preview.openPreviewSheet(atleta.id_sheets)">
+          <td *ngIf="atleta.id_sheets?.sheet_name" class="px-6 py-4 underline hover:cursor-pointer" pTooltip="Visualizar Planilha" tooltipPosition="top" (click)="preview.athletaInfo = atleta; preview.openPreviewSheet(atleta.id_sheets)">
             {{ atleta.id_sheets?.sheet_name? atleta.id_sheets?.sheet_name : 'Cliente sem Planilha' }}
+          </td>
+          <td *ngIf="!atleta.id_sheets?.sheet_name" class="px-6 py-4">
+             Cliente sem Planilha
           </td>
           <td class="px-6 py-4">
             {{ atleta.training_type }}

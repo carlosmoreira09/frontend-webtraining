@@ -1,11 +1,11 @@
 import {Component, OnInit} from '@angular/core';
 import {FormBuilder, ReactiveFormsModule, UntypedFormGroup, Validators} from "@angular/forms";
-import {AthleteInfo, ClientsModel} from "../../../models/clients.model";
+import { ClientsModel} from "../../../models/clients.model";
 import {AthletesService} from "../../../service/athletes.service";
 import {ModalAtletaComponent} from "./components/modal-create/modal-athlete.component";
 import {CommonModule} from "@angular/common";
 import {DialogModule} from "primeng/dialog";
-import {Router, RouterLink} from "@angular/router";
+import { RouterLink} from "@angular/router";
 import {ConfirmationService, MessageService} from "primeng/api";
 import {ConfirmDialogModule} from "primeng/confirmdialog";
 import {ToastModule} from "primeng/toast";
@@ -16,8 +16,6 @@ import {TooltipModule} from "primeng/tooltip";
 import {SheetsModel} from "../../../models/sheets.model";
 import {SheetsService} from "../../../service/sheets.service";
 import {PreviewSheetComponent} from "../sheets/components/preview-sheet/preview-sheet.component";
-import {TrainingComponent} from "../sheets/components/preview-sheet/table-component/training.component";
-import {HeaderTableComponent} from "../sheets/components/preview-sheet/header-component/header-table.component";
 
 @Component({
   selector: 'app-athlete',
@@ -72,6 +70,7 @@ export class AtletasComponent implements OnInit {
       id_sheet: ['', Validators.required],
     });
   }
+
   listAllUsers() {
     return this.athleteService.listAllAthletas().subscribe(
       (users: ClientsModel[]) => {

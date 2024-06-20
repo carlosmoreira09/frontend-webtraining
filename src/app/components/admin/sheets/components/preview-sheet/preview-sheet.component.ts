@@ -1,4 +1,4 @@
-import {AfterViewInit, Component, ElementRef, Input, OnInit, ViewChild} from '@angular/core';
+import { Component, ElementRef, Input, OnInit, ViewChild} from '@angular/core';
 import {DialogModule} from "primeng/dialog";
 import {MessageModule} from "primeng/message";
 import {CommonModule, NgIf} from "@angular/common";
@@ -10,7 +10,6 @@ import {ExerciseModel} from "../../../../../models/exercise.model";
 import {ClientsModel} from "../../../../../models/clients.model";
 import {SheetsModel} from "../../../../../models/sheets.model";
 import {TrainingComponent} from "./table-component/training.component";
-import {HeaderTableComponent} from "./header-component/header-table.component";
 
 
 @Component({
@@ -25,7 +24,6 @@ import {HeaderTableComponent} from "./header-component/header-table.component";
     ReactiveFormsModule,
     ToastModule,
     TrainingComponent,
-    HeaderTableComponent,
   ],
   templateUrl: './preview-sheet.component.html',
   styleUrl: './preview-sheet.component.css',
@@ -62,7 +60,20 @@ export class PreviewSheetComponent implements OnInit {
     }
   }
 
+  setClass() {
+      if(this.sheetB.length === 0) {
+        return 'p-2 grid grid-rows-1 grid-cols-1 w-full'
+    }
+    if(this.sheetC.length === 0) {
+      return 'p-2 grid grid-rows-1 grid-cols-2 w-full'
+    }
+    if(this.sheetD.length === 0) {
+      return 'p-2 grid grid-rows-1 grid-cols-3 w-full'
+    } else {
+      return 'p-2 grid grid-rows-1 grid-cols-4 w-full'
 
+    }
+  }
   onCloseCreate() {
     this.showPreviewSheet = false;
     this.sheetInfo = undefined;

@@ -7,9 +7,10 @@
   [draggable]="false"
   [modal]="true"
   styleClass="overflow-auto"
-  [style]="{ width: '70%'}">
+  [style]="{ width: '80%'}"
+  [maximizable]="true">
   <ng-template pTemplate="headless">
-    <div class="grid grid-flow-row grid-cols-1 bg-white border-b rounded-t dark:border-gray-600">
+    <div class="grid grid-flow-row grid-cols-1 bg-white h-1/2 border-b rounded-t dark:border-gray-600">
       <div class="grid grid-cols-2 gap-2 p-2">
         <!-- Modal header -->
         <div class="text-xl font-semibold text-gray-900 dark:text-white">
@@ -24,53 +25,23 @@
         </div>
       </div>
       <!-- Modal content -->
-      <div class="row-span-1 p-2">
-        <table class="w-full border border-slate-400">
-          <thead>
-          <tr class="bg-gray-200">
-            <td class="border border-slate-900">
-              <app-header-table training_id="Treino A"></app-header-table>
-            </td>
-            <td *ngIf="sheetB.length > 0" class="border border-slate-900">
-              <app-header-table training_id="Treino B"></app-header-table>
-            </td>
-            <td *ngIf="sheetC.length > 0" class="border border-slate-900">
-              <app-header-table training_id="Treino C"></app-header-table>
-            </td>
-            <td *ngIf="sheetD.length > 0" class="border border-slate-900">
-              <app-header-table training_id="Treino D"></app-header-table>
-            </td>
-          </tr>
-
-          </thead>
-          <tbody class="align-top">
-          <tr>
-            <td class="border border-slate-900 align-text-top">
-              <app-training-table [sheet]="sheetA"></app-training-table>
-            </td>
-            <td *ngIf="sheetB.length > 0" class="border border-slate-900">
-              <app-training-table [sheet]="sheetB"></app-training-table>
-            </td>
-
-            <td *ngIf="sheetC.length > 0" class="border border-slate-900">
-              <app-training-table [sheet]="sheetC"></app-training-table>
-            </td>
-            <td *ngIf="sheetD.length > 0" class="border border-slate-900">
-              <app-training-table [sheet]="sheetD"></app-training-table>
-            </td>
-          </tr>
-          </tbody>
-          <tfoot class="border-spacing-2">
-          <tr>
-            <td colspan="1" class="col-span-1 border-slate-500 border-separate">Observações:</td>
-            <td colspan="4" class="capitalize border-slate-500 border-separate">
-              {{ sheetInfo?.sheet_details }}
-            </td>
-          </tr>
-          </tfoot>
-        </table>
+      <div [class]="setClass()">
+        <div class="col-span-1">
+          <app-training-table training="Treino A" [sheet]="sheetA" ></app-training-table>
+        </div>
+        <div class="col-span-1">
+          <app-training-table *ngIf="sheetB.length > 0" training="Treino B" [sheet]="sheetB" ></app-training-table>
+        </div>
+        <div class="col-span-1">
+          <app-training-table *ngIf="sheetC.length > 0"  training="Treino C" [sheet]="sheetC" ></app-training-table>
+        </div>
+        <div class="col-span-1">
+          <app-training-table *ngIf="sheetD.length > 0"   training="Treino D" [sheet]="sheetD" ></app-training-table>
+        </div>
+      </div>
+      <div class="p-2 mt-6">
+        Observações:  {{ sheetInfo?.sheet_details }}
       </div>
     </div>
   </ng-template>
 </p-dialog>
-

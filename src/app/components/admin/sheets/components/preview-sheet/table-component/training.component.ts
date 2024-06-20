@@ -7,6 +7,7 @@ import {ReactiveFormsModule} from "@angular/forms";
 import {MessageService} from "primeng/api";
 import {ToastModule} from "primeng/toast";
 import {ExerciseModel} from "../../../../../../models/exercise.model";
+import {ClientsModel} from "../../../../../../models/clients.model";
 
 @Component({
   selector: 'app-training-table',
@@ -22,13 +23,11 @@ import {ExerciseModel} from "../../../../../../models/exercise.model";
   templateUrl: './training.component.html',
   providers: [MessageService]
 })
-export class TrainingComponent implements OnInit {
+export class TrainingComponent {
 
   @Input() sheet: ExerciseModel[];
-  exercise: ExerciseModel;
+  @Input() training: string;
   constructor() {
   }
 
-  ngOnInit() {
-  }
 }
