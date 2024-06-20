@@ -26,7 +26,7 @@
 }
 
 .pi:before {
-  --webkit-backface-visibility: hidden;
+  --webkit-backface-visibility:hidden;
   backface-visibility: hidden;
 }
 
@@ -1321,13 +1321,15 @@
   /*
 ! tailwindcss v3.4.3 | MIT License | https://tailwindcss.com
 */
+
   /*
 1. Prevent padding and border from affecting element width. (https://github.com/mozdevs/cssremedy/issues/4)
 2. Allow adding a border to an element by just adding a border-width. (https://github.com/tailwindcss/tailwindcss/pull/116)
 */
+
   *,
-  ::before,
-  ::after {
+::before,
+::after {
     box-sizing: border-box;
     /* 1 */
     border-width: 0;
@@ -1339,7 +1341,7 @@
   }
 
   ::before,
-  ::after {
+::after {
     --tw-content: '';
   }
 
@@ -1352,8 +1354,9 @@
 6. Use the user's configured `sans` font-variation-settings by default.
 7. Disable tap highlights on iOS
 */
+
   html,
-  :host {
+:host {
     line-height: 1.5;
     /* 1 */
     -webkit-text-size-adjust: 100%;
@@ -1361,7 +1364,7 @@
     -moz-tab-size: 4;
     /* 3 */
     -o-tab-size: 4;
-    tab-size: 4;
+       tab-size: 4;
     /* 3 */
     font-family: ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
     /* 4 */
@@ -1377,6 +1380,7 @@
 1. Remove the margin in all browsers.
 2. Inherit line-height from `html` so users can set them as a class directly on the `html` element.
 */
+
   body {
     margin: 0;
     /* 1 */
@@ -1389,6 +1393,7 @@
 2. Correct the inheritance of border color in Firefox. (https://bugzilla.mozilla.org/show_bug.cgi?id=190655)
 3. Ensure horizontal rules are visible by default.
 */
+
   hr {
     height: 0;
     /* 1 */
@@ -1401,20 +1406,22 @@
   /*
 Add the correct text decoration in Chrome, Edge, and Safari.
 */
+
   abbr:where([title]) {
     -webkit-text-decoration: underline dotted;
-    text-decoration: underline dotted;
+            text-decoration: underline dotted;
   }
 
   /*
 Remove the default font size and weight for headings.
 */
+
   h1,
-  h2,
-  h3,
-  h4,
-  h5,
-  h6 {
+h2,
+h3,
+h4,
+h5,
+h6 {
     font-size: inherit;
     font-weight: inherit;
   }
@@ -1422,6 +1429,7 @@ Remove the default font size and weight for headings.
   /*
 Reset links to optimize for opt-in styling instead of opt-out.
 */
+
   a {
     color: inherit;
     text-decoration: inherit;
@@ -1430,8 +1438,9 @@ Reset links to optimize for opt-in styling instead of opt-out.
   /*
 Add the correct font weight in Edge and Safari.
 */
+
   b,
-  strong {
+strong {
     font-weight: bolder;
   }
 
@@ -1441,10 +1450,11 @@ Add the correct font weight in Edge and Safari.
 3. Use the user's configured `mono` font-variation-settings by default.
 4. Correct the odd `em` font sizing in all browsers.
 */
+
   code,
-  kbd,
-  samp,
-  pre {
+kbd,
+samp,
+pre {
     font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
     /* 1 */
     font-feature-settings: normal;
@@ -1458,6 +1468,7 @@ Add the correct font weight in Edge and Safari.
   /*
 Add the correct font size in all browsers.
 */
+
   small {
     font-size: 80%;
   }
@@ -1465,8 +1476,9 @@ Add the correct font size in all browsers.
   /*
 Prevent `sub` and `sup` elements from affecting the line height in all browsers.
 */
+
   sub,
-  sup {
+sup {
     font-size: 75%;
     line-height: 0;
     position: relative;
@@ -1486,6 +1498,7 @@ Prevent `sub` and `sup` elements from affecting the line height in all browsers.
 2. Correct table border color inheritance in all Chrome and Safari. (https://bugs.chromium.org/p/chromium/issues/detail?id=935729, https://bugs.webkit.org/show_bug.cgi?id=195016)
 3. Remove gaps between table borders by default.
 */
+
   table {
     text-indent: 0;
     /* 1 */
@@ -1500,11 +1513,12 @@ Prevent `sub` and `sup` elements from affecting the line height in all browsers.
 2. Remove the margin in Firefox and Safari.
 3. Remove default padding in all browsers.
 */
+
   button,
-  input,
-  optgroup,
-  select,
-  textarea {
+input,
+optgroup,
+select,
+textarea {
     font-family: inherit;
     /* 1 */
     font-feature-settings: inherit;
@@ -1530,8 +1544,9 @@ Prevent `sub` and `sup` elements from affecting the line height in all browsers.
   /*
 Remove the inheritance of text transform in Edge and Firefox.
 */
+
   button,
-  select {
+select {
     text-transform: none;
   }
 
@@ -1539,10 +1554,11 @@ Remove the inheritance of text transform in Edge and Firefox.
 1. Correct the inability to style clickable types in iOS and Safari.
 2. Remove default button styles.
 */
+
   button,
-  input:where([type='button']),
-  input:where([type='reset']),
-  input:where([type='submit']) {
+input:where([type='button']),
+input:where([type='reset']),
+input:where([type='submit']) {
     -webkit-appearance: button;
     /* 1 */
     background-color: transparent;
@@ -1554,6 +1570,7 @@ Remove the inheritance of text transform in Edge and Firefox.
   /*
 Use the modern Firefox focus style for all focusable elements.
 */
+
   :-moz-focusring {
     outline: auto;
   }
@@ -1561,6 +1578,7 @@ Use the modern Firefox focus style for all focusable elements.
   /*
 Remove the additional `:invalid` styles in Firefox. (https://github.com/mozilla/gecko-dev/blob/2f9eacd9d3d995c937b4251a5557d95d494c9be1/layout/style/res/forms.css#L728-L737)
 */
+
   :-moz-ui-invalid {
     box-shadow: none;
   }
@@ -1568,6 +1586,7 @@ Remove the additional `:invalid` styles in Firefox. (https://github.com/mozilla/
   /*
 Add the correct vertical alignment in Chrome and Firefox.
 */
+
   progress {
     vertical-align: baseline;
   }
@@ -1575,8 +1594,9 @@ Add the correct vertical alignment in Chrome and Firefox.
   /*
 Correct the cursor style of increment and decrement buttons in Safari.
 */
+
   ::-webkit-inner-spin-button,
-  ::-webkit-outer-spin-button {
+::-webkit-outer-spin-button {
     height: auto;
   }
 
@@ -1584,6 +1604,7 @@ Correct the cursor style of increment and decrement buttons in Safari.
 1. Correct the odd appearance in Chrome and Safari.
 2. Correct the outline style in Safari.
 */
+
   [type='search'] {
     -webkit-appearance: textfield;
     /* 1 */
@@ -1594,6 +1615,7 @@ Correct the cursor style of increment and decrement buttons in Safari.
   /*
 Remove the inner padding in Chrome and Safari on macOS.
 */
+
   ::-webkit-search-decoration {
     -webkit-appearance: none;
   }
@@ -1602,6 +1624,7 @@ Remove the inner padding in Chrome and Safari on macOS.
 1. Correct the inability to style clickable types in iOS and Safari.
 2. Change font properties to `inherit` in Safari.
 */
+
   ::-webkit-file-upload-button {
     -webkit-appearance: button;
     /* 1 */
@@ -1612,6 +1635,7 @@ Remove the inner padding in Chrome and Safari on macOS.
   /*
 Add the correct display in Chrome and Safari.
 */
+
   summary {
     display: list-item;
   }
@@ -1619,19 +1643,20 @@ Add the correct display in Chrome and Safari.
   /*
 Removes the default spacing and border for appropriate elements.
 */
+
   blockquote,
-  dl,
-  dd,
-  h1,
-  h2,
-  h3,
-  h4,
-  h5,
-  h6,
-  hr,
-  figure,
-  p,
-  pre {
+dl,
+dd,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+hr,
+figure,
+p,
+pre {
     margin: 0;
   }
 
@@ -1645,8 +1670,8 @@ Removes the default spacing and border for appropriate elements.
   }
 
   ol,
-  ul,
-  menu {
+ul,
+menu {
     list-style: none;
     margin: 0;
     padding: 0;
@@ -1655,6 +1680,7 @@ Removes the default spacing and border for appropriate elements.
   /*
 Reset default styling for dialogs.
 */
+
   dialog {
     padding: 0;
   }
@@ -1662,6 +1688,7 @@ Reset default styling for dialogs.
   /*
 Prevent resizing textareas horizontally by default.
 */
+
   textarea {
     resize: vertical;
   }
@@ -1670,6 +1697,7 @@ Prevent resizing textareas horizontally by default.
 1. Reset the default placeholder opacity in Firefox. (https://github.com/tailwindlabs/tailwindcss/issues/3300)
 2. Set the default placeholder color to the user's configured gray 400 color.
 */
+
   input::-moz-placeholder, textarea::-moz-placeholder {
     opacity: 1;
     /* 1 */
@@ -1678,7 +1706,7 @@ Prevent resizing textareas horizontally by default.
   }
 
   input::placeholder,
-  textarea::placeholder {
+textarea::placeholder {
     opacity: 1;
     /* 1 */
     color: #9CA3AF;
@@ -1688,14 +1716,16 @@ Prevent resizing textareas horizontally by default.
   /*
 Set the default cursor for buttons.
 */
+
   button,
-  [role="button"] {
+[role="button"] {
     cursor: pointer;
   }
 
   /*
 Make sure disabled buttons don't get the pointer cursor.
 */
+
   :disabled {
     cursor: default;
   }
@@ -1705,14 +1735,15 @@ Make sure disabled buttons don't get the pointer cursor.
 2. Add `vertical-align: middle` to align replaced elements more sensibly by default. (https://github.com/jensimmons/cssremedy/issues/14#issuecomment-634934210)
    This can trigger a poorly considered lint error in some tools but is included by design.
 */
+
   img,
-  svg,
-  video,
-  canvas,
-  audio,
-  iframe,
-  embed,
-  object {
+svg,
+video,
+canvas,
+audio,
+iframe,
+embed,
+object {
     display: block;
     /* 1 */
     vertical-align: middle;
@@ -1722,18 +1753,20 @@ Make sure disabled buttons don't get the pointer cursor.
   /*
 Constrain images and videos to the parent width and preserve their intrinsic aspect ratio. (https://github.com/mozdevs/cssremedy/issues/14)
 */
+
   img,
-  video {
+video {
     max-width: 100%;
     height: auto;
   }
 
   /* Make elements with the HTML hidden attribute stay hidden by default */
+
   [hidden] {
     display: none;
   }
 
-  .tooltip-arrow, .tooltip-arrow:before {
+  .tooltip-arrow,.tooltip-arrow:before {
     position: absolute;
     width: 8px;
     height: 8px;
@@ -1795,7 +1828,7 @@ Constrain images and videos to the parent width and preserve their intrinsic asp
     visibility: hidden;
   }
 
-  [data-popper-arrow], [data-popper-arrow]:before {
+  [data-popper-arrow],[data-popper-arrow]:before {
     position: absolute;
     width: 8px;
     height: 8px;
@@ -1906,10 +1939,10 @@ Constrain images and videos to the parent width and preserve their intrinsic asp
     visibility: hidden;
   }
 
-  [type='text'], [type='email'], [type='url'], [type='password'], [type='number'], [type='date'], [type='datetime-local'], [type='month'], [type='search'], [type='tel'], [type='time'], [type='week'], [multiple], textarea, select {
+  [type='text'],[type='email'],[type='url'],[type='password'],[type='number'],[type='date'],[type='datetime-local'],[type='month'],[type='search'],[type='tel'],[type='time'],[type='week'],[multiple],textarea,select {
     -webkit-appearance: none;
-    -moz-appearance: none;
-    appearance: none;
+       -moz-appearance: none;
+            appearance: none;
     background-color: #fff;
     border-color: #6B7280;
     border-width: 1px;
@@ -1926,7 +1959,7 @@ Constrain images and videos to the parent width and preserve their intrinsic asp
   [type='text']:focus, [type='email']:focus, [type='url']:focus, [type='password']:focus, [type='number']:focus, [type='date']:focus, [type='datetime-local']:focus, [type='month']:focus, [type='search']:focus, [type='tel']:focus, [type='time']:focus, [type='week']:focus, [multiple]:focus, textarea:focus, select:focus {
     outline: 2px solid transparent;
     outline-offset: 2px;
-    --tw-ring-inset: var(--tw-empty, /*!*/ /*!*/);
+    --tw-ring-inset: var(--tw-empty,/*!*/ /*!*/);
     --tw-ring-offset-width: 0px;
     --tw-ring-offset-color: #fff;
     --tw-ring-color: #1C64F2;
@@ -1941,7 +1974,7 @@ Constrain images and videos to the parent width and preserve their intrinsic asp
     opacity: 1;
   }
 
-  input::placeholder, textarea::placeholder {
+  input::placeholder,textarea::placeholder {
     color: #6B7280;
     opacity: 1;
   }
@@ -1961,7 +1994,7 @@ Constrain images and videos to the parent width and preserve their intrinsic asp
     background-size: 0.75em 0.75em;
     padding-right: 2.5rem;
     -webkit-print-color-adjust: exact;
-    print-color-adjust: exact;
+            print-color-adjust: exact;
   }
 
   :is([dir=rtl]) select:not([size]) {
@@ -1977,22 +2010,22 @@ Constrain images and videos to the parent width and preserve their intrinsic asp
     background-size: initial;
     padding-right: 0.75rem;
     -webkit-print-color-adjust: unset;
-    print-color-adjust: unset;
+            print-color-adjust: unset;
   }
 
-  [type='checkbox'], [type='radio'] {
+  [type='checkbox'],[type='radio'] {
     -webkit-appearance: none;
-    -moz-appearance: none;
-    appearance: none;
+       -moz-appearance: none;
+            appearance: none;
     padding: 0;
     -webkit-print-color-adjust: exact;
-    print-color-adjust: exact;
+            print-color-adjust: exact;
     display: inline-block;
     vertical-align: middle;
     background-origin: border-box;
     -webkit-user-select: none;
-    -moz-user-select: none;
-    user-select: none;
+       -moz-user-select: none;
+            user-select: none;
     flex-shrink: 0;
     height: 1rem;
     width: 1rem;
@@ -2011,10 +2044,10 @@ Constrain images and videos to the parent width and preserve their intrinsic asp
     border-radius: 100%;
   }
 
-  [type='checkbox']:focus, [type='radio']:focus {
+  [type='checkbox']:focus,[type='radio']:focus {
     outline: 2px solid transparent;
     outline-offset: 2px;
-    --tw-ring-inset: var(--tw-empty, /*!*/ /*!*/);
+    --tw-ring-inset: var(--tw-empty,/*!*/ /*!*/);
     --tw-ring-offset-width: 2px;
     --tw-ring-offset-color: #fff;
     --tw-ring-color: #1C64F2;
@@ -2023,7 +2056,7 @@ Constrain images and videos to the parent width and preserve their intrinsic asp
     box-shadow: var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-shadow);
   }
 
-  [type='checkbox']:checked, [type='radio']:checked, .dark [type='checkbox']:checked, .dark [type='radio']:checked {
+  [type='checkbox']:checked,[type='radio']:checked,.dark [type='checkbox']:checked,.dark [type='radio']:checked {
     border-color: transparent;
     background-color: currentColor;
     background-size: 0.55em 0.55em;
@@ -2036,7 +2069,7 @@ Constrain images and videos to the parent width and preserve their intrinsic asp
     background-repeat: no-repeat;
     background-size: 0.55em 0.55em;
     -webkit-print-color-adjust: exact;
-    print-color-adjust: exact;
+            print-color-adjust: exact;
   }
 
   [type='radio']:checked {
@@ -2057,10 +2090,10 @@ Constrain images and videos to the parent width and preserve their intrinsic asp
     background-repeat: no-repeat;
     background-size: 0.55em 0.55em;
     -webkit-print-color-adjust: exact;
-    print-color-adjust: exact;
+            print-color-adjust: exact;
   }
 
-  [type='checkbox']:indeterminate:hover, [type='checkbox']:indeterminate:focus {
+  [type='checkbox']:indeterminate:hover,[type='checkbox']:indeterminate:focus {
     border-color: transparent;
     background-color: currentColor;
   }
@@ -2181,7 +2214,7 @@ Constrain images and videos to the parent width and preserve their intrinsic asp
     border-radius: 9999px;
     height: 1.25rem;
     width: 1.25rem;
-    transition-property: background-color, border-color, color, fill, stroke, opacity, box-shadow, transform, filter, backdrop-filter, -webkit-backdrop-filter;
+    transition-property: background-color,border-color,color,fill,stroke,opacity,box-shadow,transform,filter,backdrop-filter,-webkit-backdrop-filter;
     transition-duration: .15s;
     box-shadow: var(--tw-ring-inset) 0 0 0 calc(0px + var(--tw-ring-offset-width)) var(--tw-ring-color);
   }
@@ -2206,19 +2239,19 @@ Constrain images and videos to the parent width and preserve their intrinsic asp
     --tw-skew-y: 0;
     --tw-scale-x: 1;
     --tw-scale-y: 1;
-    --tw-pan-x: ;
-    --tw-pan-y: ;
-    --tw-pinch-zoom: ;
+    --tw-pan-x:  ;
+    --tw-pan-y:  ;
+    --tw-pinch-zoom:  ;
     --tw-scroll-snap-strictness: proximity;
-    --tw-gradient-from-position: ;
-    --tw-gradient-via-position: ;
-    --tw-gradient-to-position: ;
-    --tw-ordinal: ;
-    --tw-slashed-zero: ;
-    --tw-numeric-figure: ;
-    --tw-numeric-spacing: ;
-    --tw-numeric-fraction: ;
-    --tw-ring-inset: ;
+    --tw-gradient-from-position:  ;
+    --tw-gradient-via-position:  ;
+    --tw-gradient-to-position:  ;
+    --tw-ordinal:  ;
+    --tw-slashed-zero:  ;
+    --tw-numeric-figure:  ;
+    --tw-numeric-spacing:  ;
+    --tw-numeric-fraction:  ;
+    --tw-ring-inset:  ;
     --tw-ring-offset-width: 0px;
     --tw-ring-offset-color: #fff;
     --tw-ring-color: rgb(63 131 248 / 0.5);
@@ -2226,28 +2259,28 @@ Constrain images and videos to the parent width and preserve their intrinsic asp
     --tw-ring-shadow: 0 0 #0000;
     --tw-shadow: 0 0 #0000;
     --tw-shadow-colored: 0 0 #0000;
-    --tw-blur: ;
-    --tw-brightness: ;
-    --tw-contrast: ;
-    --tw-grayscale: ;
-    --tw-hue-rotate: ;
-    --tw-invert: ;
-    --tw-saturate: ;
-    --tw-sepia: ;
-    --tw-drop-shadow: ;
-    --tw-backdrop-blur: ;
-    --tw-backdrop-brightness: ;
-    --tw-backdrop-contrast: ;
-    --tw-backdrop-grayscale: ;
-    --tw-backdrop-hue-rotate: ;
-    --tw-backdrop-invert: ;
-    --tw-backdrop-opacity: ;
-    --tw-backdrop-saturate: ;
-    --tw-backdrop-sepia: ;
-    --tw-contain-size: ;
-    --tw-contain-layout: ;
-    --tw-contain-paint: ;
-    --tw-contain-style: ;
+    --tw-blur:  ;
+    --tw-brightness:  ;
+    --tw-contrast:  ;
+    --tw-grayscale:  ;
+    --tw-hue-rotate:  ;
+    --tw-invert:  ;
+    --tw-saturate:  ;
+    --tw-sepia:  ;
+    --tw-drop-shadow:  ;
+    --tw-backdrop-blur:  ;
+    --tw-backdrop-brightness:  ;
+    --tw-backdrop-contrast:  ;
+    --tw-backdrop-grayscale:  ;
+    --tw-backdrop-hue-rotate:  ;
+    --tw-backdrop-invert:  ;
+    --tw-backdrop-opacity:  ;
+    --tw-backdrop-saturate:  ;
+    --tw-backdrop-sepia:  ;
+    --tw-contain-size:  ;
+    --tw-contain-layout:  ;
+    --tw-contain-paint:  ;
+    --tw-contain-style:  ;
   }
 
   ::backdrop {
@@ -2260,19 +2293,19 @@ Constrain images and videos to the parent width and preserve their intrinsic asp
     --tw-skew-y: 0;
     --tw-scale-x: 1;
     --tw-scale-y: 1;
-    --tw-pan-x: ;
-    --tw-pan-y: ;
-    --tw-pinch-zoom: ;
+    --tw-pan-x:  ;
+    --tw-pan-y:  ;
+    --tw-pinch-zoom:  ;
     --tw-scroll-snap-strictness: proximity;
-    --tw-gradient-from-position: ;
-    --tw-gradient-via-position: ;
-    --tw-gradient-to-position: ;
-    --tw-ordinal: ;
-    --tw-slashed-zero: ;
-    --tw-numeric-figure: ;
-    --tw-numeric-spacing: ;
-    --tw-numeric-fraction: ;
-    --tw-ring-inset: ;
+    --tw-gradient-from-position:  ;
+    --tw-gradient-via-position:  ;
+    --tw-gradient-to-position:  ;
+    --tw-ordinal:  ;
+    --tw-slashed-zero:  ;
+    --tw-numeric-figure:  ;
+    --tw-numeric-spacing:  ;
+    --tw-numeric-fraction:  ;
+    --tw-ring-inset:  ;
     --tw-ring-offset-width: 0px;
     --tw-ring-offset-color: #fff;
     --tw-ring-color: rgb(63 131 248 / 0.5);
@@ -2280,28 +2313,28 @@ Constrain images and videos to the parent width and preserve their intrinsic asp
     --tw-ring-shadow: 0 0 #0000;
     --tw-shadow: 0 0 #0000;
     --tw-shadow-colored: 0 0 #0000;
-    --tw-blur: ;
-    --tw-brightness: ;
-    --tw-contrast: ;
-    --tw-grayscale: ;
-    --tw-hue-rotate: ;
-    --tw-invert: ;
-    --tw-saturate: ;
-    --tw-sepia: ;
-    --tw-drop-shadow: ;
-    --tw-backdrop-blur: ;
-    --tw-backdrop-brightness: ;
-    --tw-backdrop-contrast: ;
-    --tw-backdrop-grayscale: ;
-    --tw-backdrop-hue-rotate: ;
-    --tw-backdrop-invert: ;
-    --tw-backdrop-opacity: ;
-    --tw-backdrop-saturate: ;
-    --tw-backdrop-sepia: ;
-    --tw-contain-size: ;
-    --tw-contain-layout: ;
-    --tw-contain-paint: ;
-    --tw-contain-style: ;
+    --tw-blur:  ;
+    --tw-brightness:  ;
+    --tw-contrast:  ;
+    --tw-grayscale:  ;
+    --tw-hue-rotate:  ;
+    --tw-invert:  ;
+    --tw-saturate:  ;
+    --tw-sepia:  ;
+    --tw-drop-shadow:  ;
+    --tw-backdrop-blur:  ;
+    --tw-backdrop-brightness:  ;
+    --tw-backdrop-contrast:  ;
+    --tw-backdrop-grayscale:  ;
+    --tw-backdrop-hue-rotate:  ;
+    --tw-backdrop-invert:  ;
+    --tw-backdrop-opacity:  ;
+    --tw-backdrop-saturate:  ;
+    --tw-backdrop-sepia:  ;
+    --tw-contain-size:  ;
+    --tw-contain-layout:  ;
+    --tw-contain-paint:  ;
+    --tw-contain-style:  ;
   }
 }
 
@@ -2396,12 +2429,20 @@ Constrain images and videos to the parent width and preserve their intrinsic asp
     left: 0px;
   }
 
+  .left-1\/3 {
+    left: 33.333333%;
+  }
+
   .right-0 {
     right: 0px;
   }
 
   .top-0 {
     top: 0px;
+  }
+
+  .top-1\/3 {
+    top: 33.333333%;
   }
 
   .z-10 {
@@ -2426,6 +2467,10 @@ Constrain images and videos to the parent width and preserve their intrinsic asp
 
   .col-span-1 {
     grid-column: span 1 / span 1;
+  }
+
+  .col-span-2 {
+    grid-column: span 2 / span 2;
   }
 
   .col-span-3 {
@@ -2466,6 +2511,11 @@ Constrain images and videos to the parent width and preserve their intrinsic asp
     margin-bottom: 2rem;
   }
 
+  .my-auto {
+    margin-top: auto;
+    margin-bottom: auto;
+  }
+
   .mb-0 {
     margin-bottom: 0px;
   }
@@ -2488,6 +2538,10 @@ Constrain images and videos to the parent width and preserve their intrinsic asp
 
   .mb-4 {
     margin-bottom: 1rem;
+  }
+
+  .mb-5 {
+    margin-bottom: 1.25rem;
   }
 
   .mb-6 {
@@ -2518,12 +2572,20 @@ Constrain images and videos to the parent width and preserve their intrinsic asp
     margin-left: 0.75rem;
   }
 
+  .ml-4 {
+    margin-left: 1rem;
+  }
+
   .ml-64 {
     margin-left: 16rem;
   }
 
   .mr-1 {
     margin-right: 0.25rem;
+  }
+
+  .mr-16 {
+    margin-right: 4rem;
   }
 
   .mr-2 {
@@ -2534,20 +2596,16 @@ Constrain images and videos to the parent width and preserve their intrinsic asp
     margin-right: 1.25rem;
   }
 
-  .ms-2 {
-    margin-inline-start: 0.5rem;
-  }
-
-  .ms-2\.5 {
-    margin-inline-start: 0.625rem;
-  }
-
   .mt-0 {
     margin-top: 0px;
   }
 
   .mt-1 {
     margin-top: 0.25rem;
+  }
+
+  .mt-10 {
+    margin-top: 2.5rem;
   }
 
   .mt-16 {
@@ -2570,11 +2628,8 @@ Constrain images and videos to the parent width and preserve their intrinsic asp
     margin-top: 1.25rem;
   }
 
-  .line-clamp-1 {
-    overflow: hidden;
-    display: -webkit-box;
-    -webkit-box-orient: vertical;
-    -webkit-line-clamp: 1;
+  .mt-6 {
+    margin-top: 1.5rem;
   }
 
   .block {
@@ -2593,12 +2648,12 @@ Constrain images and videos to the parent width and preserve their intrinsic asp
     display: flex;
   }
 
-  .inline-flex {
-    display: inline-flex;
-  }
-
   .table {
     display: table;
+  }
+
+  .table-row {
+    display: table-row;
   }
 
   .grid {
@@ -2607,6 +2662,22 @@ Constrain images and videos to the parent width and preserve their intrinsic asp
 
   .hidden {
     display: none;
+  }
+
+  .h-1\/2 {
+    height: 50%;
+  }
+
+  .h-1\/6 {
+    height: 16.666667%;
+  }
+
+  .h-12 {
+    height: 3rem;
+  }
+
+  .h-16 {
+    height: 4rem;
   }
 
   .h-2 {
@@ -2657,6 +2728,10 @@ Constrain images and videos to the parent width and preserve their intrinsic asp
     width: 50%;
   }
 
+  .w-1\/3 {
+    width: 33.333333%;
+  }
+
   .w-1\/4 {
     width: 25%;
   }
@@ -2671,10 +2746,6 @@ Constrain images and videos to the parent width and preserve their intrinsic asp
 
   .w-4 {
     width: 1rem;
-  }
-
-  .w-44 {
-    width: 11rem;
   }
 
   .w-6 {
@@ -2693,12 +2764,18 @@ Constrain images and videos to the parent width and preserve their intrinsic asp
     width: 100%;
   }
 
-  .max-w-md {
-    max-width: 28rem;
+  .w-max {
+    width: -moz-max-content;
+    width: max-content;
   }
 
-  .max-w-screen-xl {
-    max-width: 1280px;
+  .min-w-max {
+    min-width: -moz-max-content;
+    min-width: max-content;
+  }
+
+  .max-w-md {
+    max-width: 28rem;
   }
 
   .flex-1 {
@@ -2711,6 +2788,10 @@ Constrain images and videos to the parent width and preserve their intrinsic asp
 
   .flex-shrink-0 {
     flex-shrink: 0;
+  }
+
+  .table-auto {
+    table-layout: auto;
   }
 
   .caption-top {
@@ -2787,8 +2868,12 @@ Constrain images and videos to the parent width and preserve their intrinsic asp
 
   .appearance-none {
     -webkit-appearance: none;
-    -moz-appearance: none;
-    appearance: none;
+       -moz-appearance: none;
+            appearance: none;
+  }
+
+  .grid-flow-row {
+    grid-auto-flow: row;
   }
 
   .grid-cols-1 {
@@ -2833,6 +2918,18 @@ Constrain images and videos to the parent width and preserve their intrinsic asp
 
   .flex-wrap {
     flex-wrap: wrap;
+  }
+
+  .place-items-center {
+    place-items: center;
+  }
+
+  .content-center {
+    align-content: center;
+  }
+
+  .content-start {
+    align-content: flex-start;
   }
 
   .items-start {
@@ -2883,6 +2980,12 @@ Constrain images and videos to the parent width and preserve their intrinsic asp
     gap: 1.5rem;
   }
 
+  .space-x-1 > :not([hidden]) ~ :not([hidden]) {
+    --tw-space-x-reverse: 0;
+    margin-right: calc(0.25rem * var(--tw-space-x-reverse));
+    margin-left: calc(0.25rem * calc(1 - var(--tw-space-x-reverse)));
+  }
+
   .space-x-2 > :not([hidden]) ~ :not([hidden]) {
     --tw-space-x-reverse: 0;
     margin-right: calc(0.5rem * var(--tw-space-x-reverse));
@@ -2893,12 +2996,6 @@ Constrain images and videos to the parent width and preserve their intrinsic asp
     --tw-space-x-reverse: 0;
     margin-right: calc(0.75rem * var(--tw-space-x-reverse));
     margin-left: calc(0.75rem * calc(1 - var(--tw-space-x-reverse)));
-  }
-
-  .space-x-6 > :not([hidden]) ~ :not([hidden]) {
-    --tw-space-x-reverse: 0;
-    margin-right: calc(1.5rem * var(--tw-space-x-reverse));
-    margin-left: calc(1.5rem * calc(1 - var(--tw-space-x-reverse)));
   }
 
   .space-x-9 > :not([hidden]) ~ :not([hidden]) {
@@ -2937,19 +3034,12 @@ Constrain images and videos to the parent width and preserve their intrinsic asp
     border-left-width: calc(1px * calc(1 - var(--tw-divide-x-reverse)));
   }
 
-  .divide-y > :not([hidden]) ~ :not([hidden]) {
-    --tw-divide-y-reverse: 0;
-    border-top-width: calc(1px * calc(1 - var(--tw-divide-y-reverse)));
-    border-bottom-width: calc(1px * var(--tw-divide-y-reverse));
+  .place-self-end {
+    place-self: end;
   }
 
-  .divide-gray-100 > :not([hidden]) ~ :not([hidden]) {
-    --tw-divide-opacity: 1;
-    border-color: rgb(243 244 246 / var(--tw-divide-opacity));
-  }
-
-  .self-center {
-    align-self: center;
+  .place-self-center {
+    place-self: center;
   }
 
   .overflow-auto {
@@ -2974,6 +3064,10 @@ Constrain images and videos to the parent width and preserve their intrinsic asp
 
   .rounded {
     border-radius: 0.25rem;
+  }
+
+  .rounded-2xl {
+    border-radius: 1rem;
   }
 
   .rounded-full {
@@ -3052,6 +3146,11 @@ Constrain images and videos to the parent width and preserve their intrinsic asp
     border-color: rgb(26 86 219 / var(--tw-border-opacity));
   }
 
+  .border-blue-900 {
+    --tw-border-opacity: 1;
+    border-color: rgb(35 56 118 / var(--tw-border-opacity));
+  }
+
   .border-gray-100 {
     --tw-border-opacity: 1;
     border-color: rgb(243 244 246 / var(--tw-border-opacity));
@@ -3102,6 +3201,11 @@ Constrain images and videos to the parent width and preserve their intrinsic asp
     background-color: rgb(26 86 219 / var(--tw-bg-opacity));
   }
 
+  .bg-blue-800 {
+    --tw-bg-opacity: 1;
+    background-color: rgb(30 66 159 / var(--tw-bg-opacity));
+  }
+
   .bg-blue-900 {
     --tw-bg-opacity: 1;
     background-color: rgb(35 56 118 / var(--tw-bg-opacity));
@@ -3115,6 +3219,11 @@ Constrain images and videos to the parent width and preserve their intrinsic asp
   .bg-gray-200 {
     --tw-bg-opacity: 1;
     background-color: rgb(229 231 235 / var(--tw-bg-opacity));
+  }
+
+  .bg-gray-300 {
+    --tw-bg-opacity: 1;
+    background-color: rgb(209 213 219 / var(--tw-bg-opacity));
   }
 
   .bg-gray-50 {
@@ -3200,11 +3309,6 @@ Constrain images and videos to the parent width and preserve their intrinsic asp
   .px-3 {
     padding-left: 0.75rem;
     padding-right: 0.75rem;
-  }
-
-  .px-4 {
-    padding-left: 1rem;
-    padding-right: 1rem;
   }
 
   .px-5 {
@@ -3298,6 +3402,14 @@ Constrain images and videos to the parent width and preserve their intrinsic asp
     text-align: center;
   }
 
+  .text-right {
+    text-align: right;
+  }
+
+  .align-text-top {
+    vertical-align: text-top;
+  }
+
   .font-mono {
     font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
   }
@@ -3305,6 +3417,11 @@ Constrain images and videos to the parent width and preserve their intrinsic asp
   .text-2xl {
     font-size: 1.5rem;
     line-height: 2rem;
+  }
+
+  .text-3xl {
+    font-size: 1.875rem;
+    line-height: 2.25rem;
   }
 
   .text-9xl {
@@ -3357,12 +3474,20 @@ Constrain images and videos to the parent width and preserve their intrinsic asp
     font-weight: 600;
   }
 
+  .font-thin {
+    font-weight: 100;
+  }
+
   .uppercase {
     text-transform: uppercase;
   }
 
   .capitalize {
     text-transform: capitalize;
+  }
+
+  .italic {
+    font-style: italic;
   }
 
   .leading-6 {
@@ -3385,6 +3510,11 @@ Constrain images and videos to the parent width and preserve their intrinsic asp
     letter-spacing: 0.1em;
   }
 
+  .text-blue-400 {
+    --tw-text-opacity: 1;
+    color: rgb(118 169 250 / var(--tw-text-opacity));
+  }
+
   .text-blue-600 {
     --tw-text-opacity: 1;
     color: rgb(28 100 242 / var(--tw-text-opacity));
@@ -3400,9 +3530,19 @@ Constrain images and videos to the parent width and preserve their intrinsic asp
     color: rgb(35 56 118 / var(--tw-text-opacity));
   }
 
+  .text-blue-950 {
+    --tw-text-opacity: 1;
+    color: rgb(23 37 84 / var(--tw-text-opacity));
+  }
+
   .text-gray-400 {
     --tw-text-opacity: 1;
     color: rgb(156 163 175 / var(--tw-text-opacity));
+  }
+
+  .text-gray-50 {
+    --tw-text-opacity: 1;
+    color: rgb(249 250 251 / var(--tw-text-opacity));
   }
 
   .text-gray-500 {
@@ -3428,6 +3568,14 @@ Constrain images and videos to the parent width and preserve their intrinsic asp
   .text-white {
     --tw-text-opacity: 1;
     color: rgb(255 255 255 / var(--tw-text-opacity));
+  }
+
+  .underline {
+    text-decoration-line: underline;
+  }
+
+  .overline {
+    text-decoration-line: overline;
   }
 
   .opacity-0 {
@@ -3517,6 +3665,10 @@ Constrain images and videos to the parent width and preserve their intrinsic asp
   }
 }
 
+.hover\:cursor-pointer:hover {
+  cursor: pointer;
+}
+
 .hover\:border-gray-300:hover {
   --tw-border-opacity: 1;
   border-color: rgb(209 213 219 / var(--tw-border-opacity));
@@ -3535,6 +3687,11 @@ Constrain images and videos to the parent width and preserve their intrinsic asp
 .hover\:bg-gray-50:hover {
   --tw-bg-opacity: 1;
   background-color: rgb(249 250 251 / var(--tw-bg-opacity));
+}
+
+.hover\:bg-violet-900:hover {
+  --tw-bg-opacity: 1;
+  background-color: rgb(76 29 149 / var(--tw-bg-opacity));
 }
 
 .hover\:bg-white:hover {
@@ -3609,11 +3766,6 @@ Constrain images and videos to the parent width and preserve their intrinsic asp
   --tw-ring-color: rgb(28 100 242 / var(--tw-ring-opacity));
 }
 
-.focus\:ring-gray-100:focus {
-  --tw-ring-opacity: 1;
-  --tw-ring-color: rgb(243 244 246 / var(--tw-ring-opacity));
-}
-
 .focus\:ring-gray-200:focus {
   --tw-ring-opacity: 1;
   --tw-ring-color: rgb(229 231 235 / var(--tw-ring-opacity));
@@ -3622,11 +3774,6 @@ Constrain images and videos to the parent width and preserve their intrinsic asp
 .group:hover .group-hover\:text-gray-900 {
   --tw-text-opacity: 1;
   color: rgb(17 24 39 / var(--tw-text-opacity));
-}
-
-.dark\:divide-gray-600:is(.dark *) > :not([hidden]) ~ :not([hidden]) {
-  --tw-divide-opacity: 1;
-  border-color: rgb(75 85 99 / var(--tw-divide-opacity));
 }
 
 .dark\:border-blue-500:is(.dark *) {
@@ -3711,11 +3858,6 @@ Constrain images and videos to the parent width and preserve their intrinsic asp
   color: rgb(30 66 159 / var(--tw-text-opacity));
 }
 
-.dark\:text-gray-200:is(.dark *) {
-  --tw-text-opacity: 1;
-  color: rgb(229 231 235 / var(--tw-text-opacity));
-}
-
 .dark\:text-gray-400:is(.dark *) {
   --tw-text-opacity: 1;
   color: rgb(156 163 175 / var(--tw-text-opacity));
@@ -3763,11 +3905,6 @@ Constrain images and videos to the parent width and preserve their intrinsic asp
 
 .dark\:ring-offset-gray-800:is(.dark *) {
   --tw-ring-offset-color: #1F2937;
-}
-
-.dark\:hover\:border-gray-600:hover:is(.dark *) {
-  --tw-border-opacity: 1;
-  border-color: rgb(75 85 99 / var(--tw-border-opacity));
 }
 
 .dark\:hover\:bg-blue-700:hover:is(.dark *) {
@@ -3825,11 +3962,6 @@ Constrain images and videos to the parent width and preserve their intrinsic asp
   --tw-ring-color: rgb(30 66 159 / var(--tw-ring-opacity));
 }
 
-.dark\:focus\:ring-gray-700:focus:is(.dark *) {
-  --tw-ring-opacity: 1;
-  --tw-ring-color: rgb(55 65 81 / var(--tw-ring-opacity));
-}
-
 .dark\:focus\:ring-offset-gray-800:focus:is(.dark *) {
   --tw-ring-offset-color: #1F2937;
 }
@@ -3842,6 +3974,10 @@ Constrain images and videos to the parent width and preserve their intrinsic asp
 @media (min-width: 640px) {
   .sm\:col-span-3 {
     grid-column: span 3 / span 3;
+  }
+
+  .sm\:table-auto {
+    table-layout: auto;
   }
 
   .sm\:translate-x-0 {
@@ -3873,6 +4009,10 @@ Constrain images and videos to the parent width and preserve their intrinsic asp
 
   .md\:shrink-0 {
     flex-shrink: 0;
+  }
+
+  .md\:table-auto {
+    table-layout: auto;
   }
 
   .md\:flex-row {
