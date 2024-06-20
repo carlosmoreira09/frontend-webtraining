@@ -79,7 +79,7 @@
               {{ atleta.phone }}
             </div>
           </td>
-          <td (click)="preview.openPreviewInClient(atleta.id_sheets);" class="px-6 py-4">
+          <td class="px-6 py-4" (click)="preview.athletaInfo = atleta; preview.openPreviewSheet(atleta.id_sheets)">
             {{ atleta.id_sheets?.sheet_name? atleta.id_sheets?.sheet_name : 'Cliente sem Planilha' }}
           </td>
           <td class="px-6 py-4">
@@ -119,7 +119,6 @@
       </table>
       <app-modal-atleta #modal></app-modal-atleta>
       <app-preview-sheet #preview></app-preview-sheet>
-
     </div>
   </div>
 </div>
@@ -150,3 +149,4 @@
     </div>
   </form>
 </p-dialog>
+

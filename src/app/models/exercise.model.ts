@@ -1,9 +1,9 @@
 export interface ExerciseModel {
-  id_exercise?: number | undefined;
-  exercise: string;
-  exercise_desc: string;
-  exercise_type: string;
-  repetition: string;
+  id_exercise?: number;
+  exercise?: string;
+  exercise_desc?: string;
+  exercise_type?: string;
+  repetition?: string;
   training_type?: string;
 }
 

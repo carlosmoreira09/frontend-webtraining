@@ -16,6 +16,8 @@ import {TooltipModule} from "primeng/tooltip";
 import {SheetsModel} from "../../../models/sheets.model";
 import {SheetsService} from "../../../service/sheets.service";
 import {PreviewSheetComponent} from "../sheets/components/preview-sheet/preview-sheet.component";
+import {TrainingComponent} from "../sheets/components/preview-sheet/table-component/training.component";
+import {HeaderTableComponent} from "../sheets/components/preview-sheet/header-component/header-table.component";
 
 @Component({
   selector: 'app-athlete',
@@ -31,11 +33,12 @@ import {PreviewSheetComponent} from "../sheets/components/preview-sheet/preview-
     CardAthleteComponent,
     DockModule,
     TooltipModule,
-    PreviewSheetComponent
+    PreviewSheetComponent,
+
   ],
   templateUrl: './athlete.component.html',
   styleUrl: './athlete.component.css',
-  providers: [MessageService, ConfirmationService]
+  providers: [MessageService, ConfirmationService ]
 })
 export class AtletasComponent implements OnInit {
   atletas: ClientsModel[];
@@ -99,6 +102,7 @@ export class AtletasComponent implements OnInit {
         this.id_client = id_client? id_client : null;
       }
     })
+
   }
   saveSheet() {
     this.id_sheet = this.getField('id_sheet')?.value;

@@ -1,4 +1,4 @@
-import {Component, Input} from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {DialogModule} from "primeng/dialog";
 import {MessageModule} from "primeng/message";
 import {CommonModule, NgIf} from "@angular/common";
@@ -16,19 +16,19 @@ import {ExerciseModel} from "../../../../../../models/exercise.model";
     MessageModule,
     NgIf,
     CommonModule,
-    PaginatorModule,
     ReactiveFormsModule,
     ToastModule,
   ],
   templateUrl: './training.component.html',
   providers: [MessageService]
 })
-export class TrainingComponent {
+export class TrainingComponent implements OnInit {
 
-  exercises: ExerciseModel[]
   @Input() sheet: ExerciseModel[];
-
+  exercise: ExerciseModel;
   constructor() {
   }
 
+  ngOnInit() {
+  }
 }

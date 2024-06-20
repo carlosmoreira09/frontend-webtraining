@@ -1,4 +1,4 @@
-import {Component, ElementRef, Input, OnInit, ViewChild} from '@angular/core';
+import {AfterViewInit, Component, ElementRef, Input, OnInit, ViewChild} from '@angular/core';
 import {DialogModule} from "primeng/dialog";
 import {MessageModule} from "primeng/message";
 import {CommonModule, NgIf} from "@angular/common";
@@ -11,7 +11,6 @@ import {ClientsModel} from "../../../../../models/clients.model";
 import {SheetsModel} from "../../../../../models/sheets.model";
 import {TrainingComponent} from "./table-component/training.component";
 import {HeaderTableComponent} from "./header-component/header-table.component";
-import * as XLSX from 'xlsx';
 
 
 @Component({
@@ -26,9 +25,6 @@ import * as XLSX from 'xlsx';
     ReactiveFormsModule,
     ToastModule,
     TrainingComponent,
-    TrainingComponent,
-    TrainingComponent,
-    TrainingComponent,
     HeaderTableComponent,
   ],
   templateUrl: './preview-sheet.component.html',
@@ -37,10 +33,9 @@ import * as XLSX from 'xlsx';
 })
 export class PreviewSheetComponent implements OnInit {
   @ViewChild('openDialog') dialog: ElementRef;
-  @ViewChild('tablepreview') table: ElementRef;
-  @Input() sheetInfo: SheetsModel | null;
+  @Input() sheetInfo?: SheetsModel;
+  @Input() athletaInfo: ClientsModel;
   showPreviewSheet: boolean = false;
-  exercises: ExerciseModel[]
   clientInfo: ClientsModel | null;
   public sheetA: ExerciseModel[];
   public sheetB: ExerciseModel[];
@@ -51,10 +46,12 @@ export class PreviewSheetComponent implements OnInit {
   }
 
   ngOnInit(): void {
-
   }
 
-  openPreviewSheet() {
+  openPreviewSheet(sheet: SheetsModel | undefined) {
+    this.sheetInfo = sheet;
+    console.log(sheet)
+    console.log(this.athletaInfo)
     if(this.sheetInfo) {
       this.clientInfo = this.sheetInfo.id_client;
       this.sheetA = this.sheetInfo.training_a;
@@ -64,20 +61,11 @@ export class PreviewSheetComponent implements OnInit {
       this.showPreviewSheet = true;
     }
   }
-  openPreviewInClient(sheet: any) {
-      if(sheet) {
-        console.log(sheet)
-        this.clientInfo = sheet.id_client;
-        this.sheetA = sheet.training_a;
-        this.sheetB = sheet.training_b;
-        this.sheetC = sheet.training_c;
-        this.sheetD = sheet.training_d;
-        this.showPreviewSheet = true;
-      }
-  }
+
 
   onCloseCreate() {
     this.showPreviewSheet = false;
+    this.sheetInfo = undefined;
   }
 
 }

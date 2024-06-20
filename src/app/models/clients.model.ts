@@ -8,7 +8,7 @@ export interface ClientsModel {
   phone: string;
   training_type: string;
   isActive: boolean;
-  id_sheets: SheetsModel | null;
+  id_sheets?: SheetsModel;
   updatedAt: string;
   createdAt: string;
 }
