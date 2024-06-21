@@ -9,6 +9,7 @@ import {environment} from "../../environments/environment";
   providedIn: 'root'
 })
 export class ExercisesService {
+
   private baseUrl: string = environment.baseUrl;
 
   constructor(@Self() private httpClient: HttpClient,
@@ -18,7 +19,7 @@ export class ExercisesService {
   listExerciseByType(type: string) {
     const id_user = this.authService.getUserId();
     const header = new HttpHeaders({'id_user': id_user})
-    return this.httpClient.get<ExerciseModel[]>(this.baseUrl + "/" + type, {
+    return this.httpClient.get<ExerciseModel[]>(this.baseUrl + "exercises/" + type, {
       headers: header
     });
   }
@@ -26,12 +27,12 @@ export class ExercisesService {
   addExercise(newExercise: ExerciseModel): Observable<any> {
     const id_user = this.authService.getUserId();
     const header = new HttpHeaders({'id_user': id_user})
-    return this.httpClient.post(this.baseUrl, newExercise, {
+    return this.httpClient.post(this.baseUrl + "exercises", newExercise, {
       headers: header
     });
   }
 
   deleteExercise(id: number | undefined): Observable<any> {
-    return this.httpClient.delete(this.baseUrl + "/" + id);
+    return this.httpClient.delete(this.baseUrl + "exercises/" + id);
   }
 }
