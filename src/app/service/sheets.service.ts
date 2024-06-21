@@ -12,7 +12,6 @@ import {environment} from "../../environments/environment";
   providedIn: 'root'
 })
 export class SheetsService {
-  private url: string = "http://localhost:3000/api/sheets";
   private baseUrl: string = environment.baseUrl;
   constructor(@Self() private httpClient: HttpClient,
               private storageService: StorageService,) {

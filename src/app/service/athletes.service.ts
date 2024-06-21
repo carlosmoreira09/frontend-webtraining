@@ -13,7 +13,6 @@ import {environment} from "../../environments/environment";
 })
 export class AthletesService {
 
-  private url: string = "http://localhost:3000/api/clients";
   private baseUrl: string = environment.baseUrl;
 
   constructor(@Self() private httpClient: HttpClient, private storageService: StorageService) {
