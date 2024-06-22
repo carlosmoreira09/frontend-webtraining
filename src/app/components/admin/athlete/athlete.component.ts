@@ -75,7 +75,6 @@ export class AtletasComponent implements OnInit {
     return this.athleteService.listAllAthletas().subscribe(
       (users: ClientsModel[]) => {
         this.atletas = users;
-        console.log(this.atletas[1]);
       }
     )
   }
@@ -110,7 +109,6 @@ export class AtletasComponent implements OnInit {
     }
     this.athleteService.saveAddSheetAthlete(this.id_sheet, this.id_client).subscribe({
       next: (value) => {
-        console.log(value)
       },
       error: (err: any) => {
         this.addMessage('error', 'Erro ao Carregar Planilhas:' + err);

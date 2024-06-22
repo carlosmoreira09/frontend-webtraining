@@ -48,8 +48,6 @@ export class PreviewSheetComponent implements OnInit {
 
   openPreviewSheet(sheet: SheetsModel | undefined) {
     this.sheetInfo = sheet;
-    console.log(sheet)
-    console.log(this.athletaInfo)
     if(this.sheetInfo) {
       this.clientInfo = this.sheetInfo.id_client;
       this.sheetA = this.sheetInfo.training_a;

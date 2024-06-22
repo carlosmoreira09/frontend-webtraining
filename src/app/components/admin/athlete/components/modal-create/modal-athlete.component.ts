@@ -132,6 +132,10 @@ export class ModalAtletaComponent implements AfterViewInit {
     })
   }
 
+  clearModal() {
+    this.initControlForm();
+    this.showCreateUser = false;
+  }
   navigate(endpoint: string) {
     return this.router.navigate([endpoint]);
   }

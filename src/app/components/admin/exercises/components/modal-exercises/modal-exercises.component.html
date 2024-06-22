@@ -1,6 +1,6 @@
 <p-toast class="bg-green bg-green-500 dark:bg-green-500 text-white rounded" position="center" key="tc"></p-toast>
 <!-- Create Client modal -->
-<p-dialog (onHide)="onCloseCreate()" position="center" [(visible)]="showCreateExercise" [draggable]="false"
+<p-dialog #openDialog (onHide)="onCloseCreate()" position="center" [(visible)]="showCreateExercise" [draggable]="false"
           [modal]="true" [style]="{ width: '50%', minHeight: '500px'}">
   <ng-template pTemplate="headless">
     <div class="bg-white border-b rounded-t dark:border-gray-600 flex items-center justify-center w-full">

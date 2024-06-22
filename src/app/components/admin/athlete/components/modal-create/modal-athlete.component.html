@@ -1,5 +1,5 @@
 <!-- Create Client modal -->
-<p-dialog position="center" [(visible)]="showCreateUser" [draggable]="false" [modal]="true"
+<p-dialog #openDialog position="center" [(visible)]="showCreateUser" [draggable]="false" [modal]="true"
           [style]="{ width: '50%', minHeight: '500px'}">
   <ng-template pTemplate="content">
     <div class="bg-white border-b rounded-t dark:border-gray-600 flex items-center justify-center w-full">
@@ -75,6 +75,10 @@
             <button (click)="onSubmit()"
                     class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
               Save
+            </button>
+            <button (click)="clearModal()"
+                    class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+              Cancelar
             </button>
           </div>
         </form>

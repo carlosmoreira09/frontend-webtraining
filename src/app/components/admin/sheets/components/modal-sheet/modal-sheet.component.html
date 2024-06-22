@@ -1,6 +1,7 @@
 <p-toast class="bg-green bg-green-500 dark:bg-green-500 text-white rounded" position="center" key="tc"></p-toast>
 <!-- Create Client modal -->
 <p-dialog
+  #openDialog
   (onHide)="onCloseCreate()"
   position="center"
   [(visible)]="showCreateSheet"
