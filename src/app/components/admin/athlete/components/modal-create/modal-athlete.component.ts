@@ -28,8 +28,7 @@ export class ModalAtletaComponent implements AfterViewInit {
   @ViewChild('openDialog')
   dialog!: ElementRef;
 
-  @Input() service!: string;
-  @Input() clientInfo: ClientsModel;
+  clientInfo: ClientsModel;
   showCreateUser = false;
   showEditUser = false;
   formClient: UntypedFormGroup;
@@ -46,15 +45,17 @@ export class ModalAtletaComponent implements AfterViewInit {
   }
 
   ngAfterViewInit() {
-    this.formClient = this.initControlForm();
   }
 
   openDialogCreate() {
     this.showCreateUser = !this.showCreateUser;
+    this.formClient = this.initControlForm();
+
   }
 
   openDialogEdit() {
     this.showEditUser = !this.showEditUser;
+    this.formClient = this.initEditControlForm();
   }
 
   initControlForm() {
@@ -66,6 +67,16 @@ export class ModalAtletaComponent implements AfterViewInit {
       phone: ['', [Validators.required]],
       email: ['', [Validators.email, Validators.required]],
       training_type: ['', [Validators.required]]
+    });
+  }
+  initEditControlForm() {
+    return this.formBuilder.group({
+      fullName: [this.clientInfo.fullName, [Validators.required]],
+      age: [this.clientInfo.age, [Validators.required]],
+      phone: [this.clientInfo.phone, [Validators.required]],
+      email: [this.clientInfo.email, [Validators.email, Validators.required]],
+      training_type: [this.clientInfo.training_type, [Validators.required]],
+      id_client: [this.clientInfo.id_client]
     });
   }
 
@@ -97,37 +108,65 @@ export class ModalAtletaComponent implements AfterViewInit {
       email: email,
     }
   }
+  getValuesEdit() {
+    const fullName = this.getField('fullName')?.value;
+    const age = this.getField('age')?.value;
+    const phone = this.getField('phone')?.value;
+    const email = this.getField('email')?.value;
+    const training_type = this.getField('training_type')?.value;
+    const id_client = this.getField('id_client')?.value;
+    return {
+      id_client: id_client,
+      fullName: fullName,
+      age: age,
+      training_type: training_type,
+      phone: phone,
+      email: email,
+    }
+  }
+  onSubmitEdit(){
+    let returnMessage: ReturnMessage;
+    const editAthlete = this.getValuesEdit();
+    this.athletesService.updateAthlete(editAthlete).subscribe({
+      next: (value) => {
+        returnMessage = value;
+      },
+      complete: () => {
+        this.addMessage('success', returnMessage.message);
+      }
+    })
+  }
+  addMessage(type: string, message: string): void {
+    return this.messageService.add({
+      severity: type,
+      key: 'tc',
+      detail: message,
+      life: 1500,
+    })
+  }
+  onCancelEdit() {
+    this.showEditUser = false;
+    this.initEditControlForm();
 
+  }
   onSubmit() {
+    let returnMessage: ReturnMessage;
     const clientForm = this.getFormValues();
     if (!clientForm) {
-      this.messageService.add({
-        severity: 'error',
-        key: 'tc',
-        detail: 'Confirá o formulário',
-        life: 1500,
-      })
+      this.addMessage('error', 'Verifique o Dados')
       return
     }
     this.athletesService.create(clientForm).subscribe({
-
-      next: (client) => {
-        this.showCreateUser = false;
-        this.athleteComponent.listAllUsers();
-        this.messageService.add({
-          severity: 'success',
-          key: 'tc',
-          detail: client.message,
-          life: 1500,
-        })
+      next: (value) => {
+        returnMessage = value;
       },
       error: (err: ReturnMessage) => {
-        this.messageService.add({
-          severity: 'error',
-          key: 'tc',
-          detail: err.message,
-          life: 1500,
-        })
+        this.addMessage('error', err.message)
+      },
+      complete: () => {
+        this.showCreateUser = false;
+        this.athleteComponent.listAllUsers();
+        this.addMessage('success', returnMessage.message);
       }
     })
   }
