@@ -132,8 +132,9 @@ export class ModalAtletaComponent implements AfterViewInit {
         returnMessage = value;
       },
       complete: () => {
-        this.addMessage('success', returnMessage.message);
-      }
+        this.showEditUser = false;
+        this.athleteComponent.listAllUsers();
+        this.addMessage('success', returnMessage.message);      }
     })
   }
   addMessage(type: string, message: string): void {
