@@ -39,13 +39,6 @@
                        class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                        placeholder="4 x 10" required="">
               </div>
-              <div class="col-span-1 mb-2 sm:col-span-3">
-                <label htmlFor="training_type" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Modalidade
-                  do Exercício</label>
-                <input type="text" formControlName="training_type"
-                       class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                       placeholder="Musculação" required="">
-              </div>
             </div>
           </div>
           <!-- Modal footer -->
@@ -72,7 +65,7 @@
 <p-dialog (close)="onCloseEdit()" position="center" [(visible)]="showEditExercise" [draggable]="false" [modal]="true"
           [style]="{ width: '50%', minHeight: '500px'}">
   <ng-template pTemplate="headless">
-    <div class="bg-white border-b rounded-t dark:border-gray-600 flex items-center justify-center w-full">
+    <div class="p-2 bg-white border-b rounded-t dark:border-gray-600 flex items-center justify-center w-full">
       <div class="w-full h-full">
         <!-- Modal header -->
         <div class="mb-2 border-b rounded-t dark:border-gray-600">
@@ -103,20 +96,15 @@
                 <input type="text" formControlName="repetition"
                        class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                        placeholder="4 x 10" required="">
-              </div>
-              <div class="col-span-1 mb-2 sm:col-span-3">
-                <label htmlFor="training_type" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Modalidade
-                  do Exercício</label>
-                <input type="text" formControlName="training_type"
-                       class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                       placeholder="Musculação" required="">
+                <input hidden type="text" formControlName="id_exercise"
+                        required="">
               </div>
             </div>
           </div>
           <!-- Modal footer -->
           <div class="flex justify-center p-6 space-x-3">
             <div class="rtl:space-x-reverse border-t border-gray-200 rounded-b dark:border-gray-600">
-              <button (click)="submitExercise()"
+              <button (click)="submitEditExercise()"
                       class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
                 Save
               </button>

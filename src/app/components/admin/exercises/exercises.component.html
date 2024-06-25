@@ -44,9 +44,6 @@
                 Repetições Padrão
               </th>
               <th scope="col" class="px-6 py-3">
-                Modalidade
-              </th>
-              <th scope="col" class="px-6 py-3">
                 Ação
               </th>
             </tr>
@@ -74,11 +71,7 @@
                   {{ exercise.repetition }}
                 </div>
               </td>
-              <td class="px-6 py-4">
-                <div class="capitalize flex items-center">
-                  {{ exercise.exercise_type == 'braco' ? 'Bíceps / Antebraço' : title }}
-                </div>
-              </td>
+
               <td class="px-6 py-4">
                 <!-- Modal toggle -->
                 <button type="button" (click)="modal.exerciseInfo = exercise; modal.openDialogEdit();"

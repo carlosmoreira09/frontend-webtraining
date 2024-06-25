@@ -40,7 +40,6 @@ export class ModalExercisesComponent implements AfterViewInit {
   exerciseFormGroup: UntypedFormGroup;
   showCreateExercise = false;
   showEditExercise = false;
-  categories: any;
   formValid = true;
 
   constructor(private formBuilder: FormBuilder,
@@ -51,15 +50,7 @@ export class ModalExercisesComponent implements AfterViewInit {
   }
 
   ngAfterViewInit() {
-    this.categories = [
-      {name: 'Abdômen', code: 'abdomen'},
-      {name: 'Costas', code: 'costas'},
-      {name: 'Peito', code: 'peito'},
-      {name: 'Bíceps/Ante-braço', code: 'braco'},
-      {name: 'Quadríceps', code: 'perna'},
-      {name: 'Posterior', code: 'posterior'},
-      {name: 'Fortalecimento', code: 'fortalecimento'}
-    ];
+
   }
 
   openDialogCreate() {
@@ -68,8 +59,8 @@ export class ModalExercisesComponent implements AfterViewInit {
   }
 
   openDialogEdit() {
-    this.showEditExercise = !this.showEditExercise;
     this.initEditControlForm();
+    this.showEditExercise = !this.showEditExercise;
   }
 
   initEditControlForm() {
@@ -77,16 +68,15 @@ export class ModalExercisesComponent implements AfterViewInit {
       exercise: [this.exerciseInfo?.exercise, Validators.compose([Validators.minLength(5), Validators.requiredTrue])],
       exercise_desc: [this.exerciseInfo?.exercise_desc, Validators.requiredTrue],
       repetition: [this.exerciseInfo?.repetition, Validators.requiredTrue],
-      training_type: [this.exerciseInfo?.training_type, Validators.requiredTrue],
+      id_exercise: [this.exerciseInfo?.id_exercise, Validators.requiredTrue],
     });
   }
 
   initNewControlForm() {
     this.exerciseFormGroup = this.formBuilder.group({
       exercise: ['', [Validators.required, Validators.minLength(5)]],
-      exercise_desc: [''],
+      exercise_desc: ['', Validators.required],
       repetition: ['', Validators.required],
-      training_type: ['', Validators.required],
     });
   }
 
@@ -94,22 +84,18 @@ export class ModalExercisesComponent implements AfterViewInit {
     return this.exerciseFormGroup.get(field);
   }
 
-  getFormValues(): ExerciseModel | any {
-    if (this.exerciseFormGroup.valid) {
+  getFormValues(): ExerciseModel {
+
       const exercise = this.getField('exercise')?.value;
       const exercise_desc = this.getField('exercise_desc')?.value;
       const repetition = this.getField('repetition')?.value;
-      const training_type = this.getField('training_type')?.value;
 
       return {
         exercise: exercise,
         exercise_desc: exercise_desc,
-        training_type: training_type,
         repetition: repetition,
         exercise_type: this.router.snapshot.params['type']
-      }
-    } else {
-      this.formValid = false;
+
     }
   }
 
@@ -122,24 +108,53 @@ export class ModalExercisesComponent implements AfterViewInit {
   onCloseEdit() {
     this.openDialogEdit();
   }
-
+  addMessage(severity: string, detail: string) {
+    return this.messageService.add({
+      severity: severity,
+      key: 'tc',
+      life: 1500,
+      detail: detail,
+    })
+  }
+  submitEditExercise() {
+    let returnMessage: ReturnMessage
+    let updateExercise: ExerciseModel = this.getFormValues();
+    const id_exercise = this.getField('id_exercise')?.value
+    updateExercise = { ...updateExercise, id_exercise: id_exercise };
+    this.exerciseService.updateExercise(updateExercise).subscribe({
+      next: (res: ReturnMessage) => {
+        returnMessage = res;
+      },
+      error: (err: ReturnMessage) => {
+        this.addMessage('error', err.message)
+      },
+      complete: () => {
+        this.showEditExercise = false;
+        this.addMessage('success', returnMessage.message)
+        this.exerciseComponent.listExercisesByType();
+      }
+    })
+  }
   submitExercise() {
+    let returnMessage: ReturnMessage;
     const newExercise: ExerciseModel = this.getFormValues();
 
     this.exerciseService
       .addExercise(newExercise)
-      .subscribe(
-        (res: ReturnMessage) => {
+      .subscribe({
+        next: (res:ReturnMessage) => {
+        returnMessage = res;
+         },
+        error: (err: ReturnMessage) => {
+          this.addMessage('error', err.message)
+
+        },
+        complete: () => {
           this.showCreateExercise = false;
-          this.messageService.add({
-            key: 'tc',
-            severity: 'success',
-            detail: res.message,
-            life: 1500
-          })
+          this.addMessage('success', returnMessage.message)
           this.exerciseComponent.listExercisesByType();
         }
-      )
+  })
   }
 
 }
