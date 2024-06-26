@@ -13,7 +13,3 @@ export interface ClientsModel {
   createdAt: string;
 }
 
-export interface AthleteInfo {
-  name: string;
-  id?: number;
-}

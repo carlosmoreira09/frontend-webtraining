@@ -12,7 +12,7 @@ import {createNewSheet, Modalidade} from "../../../../../models/sheets.model";
 import {SheetsService} from "../../../../../service/sheets.service";
 import {SheetsComponent} from "../../sheets.component";
 import {AthletesService} from "../../../../../service/athletes.service";
-import {AthleteInfo, ClientsModel} from "../../../../../models/clients.model";
+import { ClientsModel} from "../../../../../models/clients.model";
 
 @Component({
   selector: 'app-modal-sheet',
@@ -31,8 +31,9 @@ import {AthleteInfo, ClientsModel} from "../../../../../models/clients.model";
   providers: [MessageService]
 })
 export class ModalSheetComponent implements OnInit {
-  @ViewChild('openDialog')
-  dialog: ElementRef
+  @ViewChild('openDialog') dialog: ElementRef
+  @ViewChild('editDialog') editDialog: ElementRef;
+  @ViewChild('athleteDialog') athleteDialog: ElementRef;
   id_client: number | null = null;
   showCreateSheet: boolean = false;
   showEditSheet: boolean = false;
@@ -44,15 +45,17 @@ export class ModalSheetComponent implements OnInit {
   sheets: any[] = [];
   resultExercise: ExerciseModel | undefined;
   resultSheet: string;
-  listAthlete: AthleteInfo[];
+  listAthlete: ClientsModel[];
   athlete: ClientsModel | undefined;
   athletes: ClientsModel[] = [];
+  dialogAthlete: boolean = false;
+
   public addExercisesA: ExerciseModel[] = [];
   public addExercisesB: ExerciseModel[] = [];
   public addExercisesC: ExerciseModel[] = [];
   public addExercisesD: ExerciseModel[] = [];
   public modalidades: Modalidade[] = [];
-  dialogAthlete: boolean = false;
+
 
   constructor(private formBuilder: FormBuilder,
               private messageService: MessageService,
@@ -83,7 +86,7 @@ export class ModalSheetComponent implements OnInit {
       sheet_name: ['', Validators.required],
       exercise_type: [this.modalidades[0].abbrev, Validators.required],
       sheet_id: ['training_a', Validators.required],
-      quantity: ['1'],
+      quantity: ['1', Validators.required],
       sheet_details: [''],
 
     });
@@ -113,17 +116,16 @@ export class ModalSheetComponent implements OnInit {
   setExercise(type: string) {
     this.exerciseService.listExerciseByType(type).subscribe({
       next: (users: ExerciseModel[]) => {
-        this.listExercise = [];
         this.exercises = users;
+      },
+      complete: () => {
+        this.listExercise = [];
         for (let exercise of this.exercises) {
           this.listExercise.push(exercise);
         }
-        if(users.length == 0) {
+        if(this.exercises.length == 0) {
           this.addMessage('warn', 'Adicione Exercícios na Aba de Exercícios');
         }
-      },
-      complete: () => {
-        this.getField('exercises')?.setValue(this.listExercise[0].id_exercise);
       }
     });
     return this.listExercise;
@@ -140,8 +142,7 @@ export class ModalSheetComponent implements OnInit {
       },
       complete: () => {
         this.listAthlete = [];
-        for (let k of this.athletes) {
-          const athlete: AthleteInfo = {name: k.fullName, id: k.id_client};
+        for (let athlete of this.athletes) {
           this.listAthlete.push(athlete);
         }
         this.dialogAthlete = true;

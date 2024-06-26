@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
 import {ConfirmDialogModule} from "primeng/confirmdialog";
 import {ModalExercisesComponent} from "../exercises/components/modal-exercises/modal-exercises.component";
 import {NgForOf} from "@angular/common";
@@ -11,6 +11,7 @@ import {initFlowbite} from "flowbite";
 import {ReturnMessage} from "../../../models/exercise.model";
 import {MessagesModule} from "primeng/messages";
 import {PreviewSheetComponent} from "./components/preview-sheet/preview-sheet.component";
+import {TooltipModule} from "primeng/tooltip";
 
 @Component({
   selector: 'app-sheets',
@@ -22,7 +23,8 @@ import {PreviewSheetComponent} from "./components/preview-sheet/preview-sheet.co
     ToastModule,
     MessagesModule,
     ModalSheetComponent,
-    PreviewSheetComponent
+    PreviewSheetComponent,
+    TooltipModule
   ],
   templateUrl: './sheets.component.html',
   styleUrl: './sheets.component.css',
@@ -30,6 +32,8 @@ import {PreviewSheetComponent} from "./components/preview-sheet/preview-sheet.co
 
 })
 export class SheetsComponent implements OnInit {
+  @ViewChild('openDialog')
+  dialog: ElementRef;
 
   sheets: SheetsModel[];
 
