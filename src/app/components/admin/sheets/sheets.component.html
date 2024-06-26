@@ -66,21 +66,20 @@
             </td>
             <td (click)="preview.openPreviewSheet(sheet); preview.sheetInfo = sheet;" class="px-6 py-4">
               <div class="capitalize flex items-center">
-                @if (sheet.training_d.length == 0) {
+                @if (sheet.training_d.length === 0 && sheet.training_c.length !== 0) {
                   <p>Planilha com 3 treinos</p>
-                } @else if (sheet.training_c.length == 0) {
+                } @else if (sheet.training_c.length === 0) {
                   <p>Planilha com 2 treinos</p>
-                } @else if (sheet.training_b.length == 0) {
+                } @else if (sheet.training_b.length === 0 && sheet.training_c.length === 0) {
                   <p>Planilha com 1 treinos</p>
                 } @else {
                   <p>Planilha com 4 treinos</p>
                 }
-
               </div>
             </td>
             <td class="px-6 py-4">
               <!-- Modal toggle -->
-              <button type="button" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">
+              <button (click)="modal.editSheet = sheet; modal.openDialogEdit()" type="button" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 26 26" stroke-width="1.5"
                      stroke="currentColor" class="w-6 h-6">
                   <path stroke-linecap="round" stroke-linejoin="round"

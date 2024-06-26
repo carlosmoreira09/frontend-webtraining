@@ -53,28 +53,28 @@
               <div class="grid grid-rows-1 grid-flow-row gap-1">
                 <fieldset class="p-fieldset p-2">
                   <legend>Escolha a Quantidade de Treino(s) da Planilha:</legend>
-                  <label class="mr-1"><input id="quantity_a" type="radio" formControlName="quantity" value="1" checked>
+                  <label class="mr-1"><input type="radio" formControlName="quantity" value="1" checked>
                     1</label>
-                  <label class="mr-1"><input id="quantity_b" type="radio" formControlName="quantity" value="2"/>
+                  <label class="mr-1"><input type="radio" formControlName="quantity" value="2"/>
                     2</label>
-                  <label class="mr-1"><input id="quantity_c" type="radio" formControlName="quantity" value="3"/>
+                  <label class="mr-1"><input type="radio" formControlName="quantity" value="3"/>
                     3</label>
-                  <label class="mr-1"><input id="quantity_d" type="radio" formControlName="quantity" value="4"/>
+                  <label class="mr-1"><input type="radio" formControlName="quantity" value="4"/>
                     4</label>
                 </fieldset>
                 <fieldset class="p-fieldset p-2">
                   <legend>Escolha em Qual Treino deseja adicionar o(s) Exercícios:</legend>
-                  <label class="mr-1"><input id="training_a" type="radio" formControlName="sheet_id" value="training_a"
+                  <label class="mr-1"><input type="radio" formControlName="sheet_id" value="training_a"
                                              checked> Treino A</label>
-                  <label *ngIf="getField('quantity')?.value > 1" class="mr-1"><input id="training_b" type="radio"
+                  <label *ngIf="getField('quantity')?.value > 1" class="mr-1"><input type="radio"
                                                                                      formControlName="sheet_id"
                                                                                      value="training_b"/> Treino
                     B</label>
-                  <label *ngIf="getField('quantity')?.value > 2" class="mr-1"><input id="training_c" type="radio"
+                  <label *ngIf="getField('quantity')?.value > 2" class="mr-1"><input type="radio"
                                                                                      formControlName="sheet_id"
                                                                                      value="training_c"/> Treino
                     C</label>
-                  <label *ngIf="getField('quantity')?.value > 3" class="mr-1"><input id="training_d" type="radio"
+                  <label *ngIf="getField('quantity')?.value > 3" class="mr-1"><input type="radio"
                                                                                      formControlName="sheet_id"
                                                                                      value="training_d"/> Treino
                     D</label>
@@ -87,7 +87,7 @@
                   </legend>
                   <input type="text"
                          formControlName="sheet_details"
-                         id="sheet_details"
+
                          class="block py-1.5 px-0 w-full text-sm text-gray-500 bg-transparent border-0 border-b-2 border-gray-200 appearance-none dark:text-gray-400 dark:border-gray-700 focus:outline-none focus:ring-0 focus:border-gray-200 peer"/>
                 </fieldset>
 
@@ -231,71 +231,227 @@
   </ng-template>
 </p-dialog>
 
-<p-dialog #editDialog (close)="onCloseEdit()" position="center" [(visible)]="showEditSheet" [draggable]="false" [modal]="true"
+<p-dialog (close)="onCloseEdit()" position="center" [(visible)]="showEditSheet" [draggable]="false" [modal]="true"
           [style]="{ width: '50%', minHeight: '500px'}">
   <ng-template pTemplate="headless">
-    <div class="bg-white border-b rounded-t dark:border-gray-600 flex items-center justify-center w-full">
+    <div class="p-4 bg-white border-b rounded-t dark:border-gray-600 flex items-center justify-center w-full">
       <div class="w-full h-full">
         <!-- Modal header -->
-        <div class="mb-2 border-b rounded-t dark:border-gray-600">
+        <div class="grid grid-rows-1 grid-cols-2 gap-2 border-b rounded-t dark:border-gray-600">
           <div class="text-xl font-semibold text-gray-900 dark:text-white">
-            Editar Dados Atleta
+            <i class="ml-2 pi pi-plus-circle" style="color: blue; font-size: 1rem"></i>
+            Alterar Planilha
+          </div>
+          <div class="flex justify-end items-end mb-2 ">
+            <button (click)="addAthlete()"
+                    class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+              Adicionar Atleta
+            </button>
           </div>
         </div>
         <!-- Modal content -->
-        <form [formGroup]="sheetFormGroup" class="relative mt-3 bg-white rounded-lg shadow dark:bg-gray-700">
+        <div class="flex justify-center">
+          <p-message *ngIf="formValid" severity="error" text="Field is required"></p-message>
+        </div>
+        <form [formGroup]="sheetFormGroup" class="relative mt-1 bg-white rounded-lg shadow dark:bg-gray-700">
           <!-- Modal body -->
-          <div class="p-6 space-y-1">
-            <div class="grid grid-cols-1">
-              <div class="col-span-1 mb-2 sm:col-span-3">
-                <label htmlFor="exercise" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Nome do
-                  Exercicio</label>
-                <input formControlName="exercise" type="text"
-                       class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                       required="">
+          <div class="p-2 space-y-1">
+            <div class="grid grid-cols-2 grid-flow-row gap-2">
+
+              <div class="grid grid-rows-1 grid-flow-row gap-1">
+                <fieldset class="p-fieldset p-2">
+                  <legend>Nome da Planilha:</legend>
+                  <input formControlName="sheet_name" type="text"
+                         class="shadow-sm h-8 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                         required="">
+                </fieldset>
+                <fieldset class="p-fieldset p-2">
+                  <legend>Descrição da Planilha:</legend>
+                  <input type="text" formControlName="sheet_desc"
+                         class="shadow-sm h-8 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                         required=""/>
+                </fieldset>
               </div>
-              <div class="col-span-1 mb-2 sm:col-span-3">
-                <label htmlFor="exercise_desc" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Descrição</label>
-                <input type="text" formControlName="exercise_desc"
-                       class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                       required="">
+              <div class="grid grid-rows-1 grid-flow-row gap-1">
+                <fieldset class="p-fieldset p-2">
+                  <legend>Escolha a Quantidade de Treino(s) da Planilha:</legend>
+                  <label class="mr-1"><input type="radio" formControlName="quantity" value="1">
+                    1</label>
+                  <label class="mr-1"><input type="radio" formControlName="quantity" value="2"/>
+                    2</label>
+                  <label class="mr-1"><input type="radio" formControlName="quantity" value="3"/>
+                    3</label>
+                  <label class="mr-1"><input type="radio" formControlName="quantity" value="4"/>
+                    4</label>
+                </fieldset>
+                <fieldset class="p-fieldset p-2">
+                  <legend>Escolha em Qual Treino deseja adicionar o(s) Exercícios:</legend>
+                  <label class="mr-1"><input id="training_a" type="radio" formControlName="sheet_id" value="training_a"
+                                             checked> Treino A</label>
+                  <label *ngIf="getField('quantity')?.value > 1" class="mr-1"><input id="training_b" type="radio"
+                                                                                     formControlName="sheet_id"
+                                                                                     value="training_b"/> Treino
+                    B</label>
+                  <label *ngIf="getField('quantity')?.value > 2" class="mr-1"><input id="training_c" type="radio"
+                                                                                     formControlName="sheet_id"
+                                                                                     value="training_c"/> Treino
+                    C</label>
+                  <label *ngIf="getField('quantity')?.value > 3" class="mr-1"><input id="training_d" type="radio"
+                                                                                     formControlName="sheet_id"
+                                                                                     value="training_d"/> Treino
+                    D</label>
+                </fieldset>
               </div>
-              <div class="col-span-1 mb-2 sm:col-span-3">
-                <label htmlFor="repetition" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Repetições</label>
-                <input type="text" formControlName="repetition"
-                       class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                       placeholder="4 x 10" required="">
-              </div>
-              <div class="col-span-1 mb-2 sm:col-span-3">
-                <label htmlFor="training_type" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Modalidade
-                  do Exercício</label>
-                <input type="text" formControlName="training_type"
-                       class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                       placeholder="Musculação" required="">
+              <div class="grid grid-rows-1 col-span-2 grid-flow-row gap-1">
+                <fieldset class="p-fieldset p-2">
+                  <legend htmlFor="sheet_details" class="block mt-1 text-sm font-medium text-gray-900 dark:text-white">
+                    Observações:
+                  </legend>
+                  <input type="text"
+                         formControlName="sheet_details"
+                         id="sheet_details"
+                         class="block py-1.5 px-0 w-full text-sm text-gray-500 bg-transparent border-0 border-b-2 border-gray-200 appearance-none dark:text-gray-400 dark:border-gray-700 focus:outline-none focus:ring-0 focus:border-gray-200 peer"/>
+                </fieldset>
+
               </div>
             </div>
+            <h2 class="flex justify-center mt-2 border-blue-900 font-semibold space-x-1"> Adicione os Exercícios a
+              Planilha</h2>
+            <div class="grid grid-rows-1 grid-cols-2 grid-flow-row gap-1">
+              <fieldset class="p-fieldset p-2">
+                <legend htmlFor="exercise_type" class="block mt-2 text-sm font-medium text-gray-900 dark:text-white">
+                  Escolha o Tipo de Exercício:
+                </legend>
+                <select (change)="onSelectExercise()" formControlName="exercise_type"
+                        class="block py-2.5 px-0 w-full text-sm text-gray-500 bg-transparent border-0 border-b-2 border-gray-200 appearance-none dark:text-gray-400 dark:border-gray-700 focus:outline-none focus:ring-0 focus:border-gray-200 peer">
+                  @for (modalidade of modalidades; track modalidade.abbrev) {
+                    <option [value]="modalidade.abbrev"> {{ modalidade.name }}</option>
+                  }
+                </select>
+              </fieldset>
+              <fieldset class="p-fieldset p-2">
+                <legend htmlFor="exercises" class="block mt-1 text-sm font-medium text-gray-900 dark:text-white">Escolha
+                  o Exercício:
+                </legend>
+                <select
+                  formControlName="exercises"
+                  class="block py-2.5 px-0 w-full text-sm text-gray-500 bg-transparent border-0 border-b-2 border-gray-200 appearance-none dark:text-gray-400 dark:border-gray-700 focus:outline-none focus:ring-0 focus:border-gray-200 peer">
+                  @for (exercise of listExercise; track exercise) {
+                    <option [value]="exercise.id_exercise"> {{ exercise.exercise }}</option>
+                  }
+                </select>
+              </fieldset>
+            </div>
+            <div class="grid grid-rows-1 grid-cols-1 gap-2">
+              <button (click)="addExercise()"
+                      class="w-1/2 text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+                Adicionar Exercício
+              </button>
+            </div>
           </div>
+
           <!-- Modal footer -->
           <div class="flex justify-center p-6 space-x-3">
             <div class="rtl:space-x-reverse border-t border-gray-200 rounded-b dark:border-gray-600">
-              <button (click)="submitNewSheet()"
+              <button (click)="submitEditSheet()"
                       class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
-                Save
+                Editar
               </button>
             </div>
             <div class="rtl:space-x-reverse border-t border-gray-200 rounded-b dark:border-gray-600">
-              <button (click)="onCloseEdit()"
+              <button (click)="closeEditModal()"
                       class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
                 Cancelar
               </button>
             </div>
           </div>
         </form>
+        <div *ngIf="id_client">
+          <table class="w-full h-1/6 font-thin border-collapse border border-slate-400">
+            <thead>
+            <tr>
+              <td>Nome</td>
+              <td>Idade</td>
+              <td>Contato</td>
+              <td>Objetivo</td>
+              <td *ngIf="athlete?.id_sheets">Planilha Antiga</td>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+              <td>{{ athlete?.fullName }}</td>
+              <td>{{ athlete?.age }}</td>
+              <td>{{ athlete?.phone }}</td>
+              <td>{{ athlete?.training_type }}</td>
+              <td *ngIf="athlete?.id_sheets">{{athlete?.id_sheets?.sheet_name}}</td>
+            </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="p-2 flex justify-center items-center mb-2.5 divide-x ml-2">
+          <table class="w-full border-collapse border border-slate-400">
+            <caption class="caption-top">
+              Preview Planilha
+            </caption>
+            <thead>
+            <tr class="bg-gray-200">
+              <td class="border border-slate-900">Treino A</td>
+              <td *ngIf="getField('quantity')?.value > 1" class="border border-slate-900">Treino B</td>
+              <td *ngIf="getField('quantity')?.value > 2" class="border border-slate-900">Treino C</td>
+              <td *ngIf="getField('quantity')?.value > 3" class="border border-slate-900">Treino D</td>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+              <td class="w-1/4 border border-slate-300">
+                @for (exercise of addExercisesA; track exercise) {
+                  <p class="capitalize border-l-blue-900"> {{ exercise.exercise }}
+                    <button (click)="removeExercise(exercise)" style="color: white"
+                            class="rounded-full pi pi-times-circle bg-red-600"></button>
+                  </p>
+                }
+              </td>
+              <td *ngIf="quantitySheet > 1" class="w-1/4 border border-slate-300">
+                @for (exercise of addExercisesB; track exercise) {
+                  <p class="capitalize border-l-blue-900"> {{ exercise.exercise }}
+                    <button (click)="removeExercise(exercise)" style="color: white"
+                            class="rounded-full pi pi-times-circle bg-red-600"></button>
+                  </p>
+                }
+              </td>
+              <td *ngIf="quantitySheet > 2" class="w-1/4 border border-slate-300">
+                @for (exercise of addExercisesC; track exercise) {
+                  <p class="capitalize"> {{ exercise.exercise }}
+                    <button (click)="removeExercise(exercise)" style="color: white"
+                            class="rounded-full pi pi-times-circle bg-red-600"></button>
+                  </p>
+                }
+              </td>
+              <td *ngIf="quantitySheet > 3" class="w-1/4 border border-slate-300">
+                @for (exercise of addExercisesD; track exercise) {
+                  <p class="capitalize border-l-blue-900"> {{ exercise.exercise }}
+                    <button (click)="removeExercise(exercise)" style="color: white"
+                            class="rounded-full pi pi-times-circle bg-red-600"></button>
+                  </p>
+                }
+              </td>
+            </tr>
+            </tbody>
+            <tfoot class="border-spacing-2">
+            <tr class="capitalize">
+              <td class="col-span-1 border-slate-500 border-separate">Observações:</td>
+              <td class="col-span-4 capitalize border-slate-500 border-separate">
+                {{ this.getField('sheet_details')?.value }}
+              </td>
+            </tr>
+            </tfoot>
+          </table>
+        </div>
       </div>
     </div>
   </ng-template>
 </p-dialog>
-<p-dialog #athleteDialog header="Adicionar Atleta" [(visible)]="dialogAthlete" [style]="{ width: '50rem' }">
+<p-dialog header="Adicionar Atleta" [(visible)]="dialogAthlete" [style]="{ width: '50rem' }">
   <span class="p-text-secondary block mb-5">Escolha o Atleta.</span>
   <form [formGroup]="formAthleta">
     <fieldset class="p-fieldset p-2">
@@ -314,7 +470,7 @@
               class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
         Save
       </button>
-      <button (click)="this.id_client = null; dialogAthlete = false"
+      <button (click)="cancelAddAthlete()"
               class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
         Cancelar
       </button>

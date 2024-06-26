@@ -17,6 +17,18 @@ export class AthletesService {
 
   constructor(@Self() private httpClient: HttpClient, private storageService: StorageService) {
   }
+
+  getOptions() {
+    return [
+      {name: 'Peito', abbrev: 'peito'},
+      {name: 'Biceps/AnteBraço', abbrev: 'braco'},
+      {name: 'Costas', abbrev: 'costas'},
+      {name: 'Abdomen', abbrev: 'abdomen'},
+      {name: 'Posterior', abbrev: 'posterior'},
+      {name: 'Quadriceps', abbrev: 'pernas'},
+      {name: 'Fortalecimento', abbrev: 'fortalecimento'},
+    ];
+  }
   listAllAthletas(): Observable<ClientsModel[]> {
     const token = this.storageService.getUser();
     const authRoles: AuthRoles = jwtDecode(token);
