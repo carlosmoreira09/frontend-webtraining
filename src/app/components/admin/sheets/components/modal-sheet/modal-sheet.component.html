@@ -1,4 +1,5 @@
 <p-toast class="bg-green bg-green-500 dark:bg-green-500 text-white rounded" position="center" key="tc"></p-toast>
+
 <!-- Create Client modal -->
 <p-dialog
   #openDialog
@@ -152,6 +153,7 @@
               <td>Idade</td>
               <td>Contato</td>
               <td>Objetivo</td>
+              <td *ngIf="athlete?.id_sheets">Planilha Antiga</td>
             </tr>
             </thead>
             <tbody>
@@ -160,6 +162,7 @@
               <td>{{ athlete?.age }}</td>
               <td>{{ athlete?.phone }}</td>
               <td>{{ athlete?.training_type }}</td>
+              <td *ngIf="athlete?.id_sheets">{{athlete?.id_sheets?.sheet_name}}</td>
             </tr>
             </tbody>
           </table>

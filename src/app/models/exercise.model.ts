@@ -9,4 +9,5 @@ export interface ExerciseModel {
 export interface ReturnMessage {
   message: string;
   status: number;
+  id?: any;
 }

@@ -32,8 +32,7 @@ import { ClientsModel} from "../../../../../models/clients.model";
 })
 export class ModalSheetComponent implements OnInit {
   @ViewChild('openDialog') dialog: ElementRef
-  @ViewChild('editDialog') editDialog: ElementRef;
-  @ViewChild('athleteDialog') athleteDialog: ElementRef;
+
   id_client: number | null = null;
   showCreateSheet: boolean = false;
   showEditSheet: boolean = false;
@@ -110,7 +109,8 @@ export class ModalSheetComponent implements OnInit {
         this.athlete = value;
         this.dialogAthlete = false;
       }
-    });
+    }
+    );
   }
 
   setExercise(type: string) {
@@ -126,6 +126,7 @@ export class ModalSheetComponent implements OnInit {
         if(this.exercises.length == 0) {
           this.addMessage('warn', 'Adicione Exercícios na Aba de Exercícios');
         }
+        this.getField('exercises')?.setValue(this.listExercise[0].id_exercise);
       }
     });
     return this.listExercise;
@@ -137,7 +138,7 @@ export class ModalSheetComponent implements OnInit {
         this.athletes = athletes;
       },
       error: (err: any) => {
-        this.addMessage('error', 'Erro ao Adicionar Exercício:' + err);
+        this.addMessage('error', 'Erro ao Carregar Atletas:' + err);
 
       },
       complete: () => {
@@ -210,9 +211,11 @@ export class ModalSheetComponent implements OnInit {
   }
 
   submitNewSheet() {
+    let returnMessage: ReturnMessage;
     const newSheet: createNewSheet = this.getValues();
     this.sheetService.addNewSheet(newSheet).subscribe({
     next: (res: ReturnMessage) => {
+      returnMessage = res;
       this.showCreateSheet = false;
       this.addMessage('success', res.message)
     },
@@ -220,6 +223,19 @@ export class ModalSheetComponent implements OnInit {
       this.addMessage('error', res.message);
       },
       complete: () => {
+        if(this.athlete?.id_client) {
+          this.athleteService.saveAddSheetAthlete(parseInt(returnMessage.id), this.athlete.id_client).subscribe({
+            next: (value) => {
+            },
+            error: (err: any) => {
+              this.addMessage('error', 'Erro ao Salvar Cliente na Planilha:' + err);
+            },
+            complete: () => {
+              this.addMessage('success', 'Planilha adicionada ao Cliente');
+            }
+          })
+        }
+
         this.clearForm();
         this.sheetsComponent.listSheets();
       }
