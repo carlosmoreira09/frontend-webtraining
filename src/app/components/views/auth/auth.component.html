@@ -1,4 +1,4 @@
-<p-toast class="bg-green bg-green-500 dark:bg-green-500 text-white rounded" position="center" key="tc"></p-toast>
+<p-toast class="bg-green bg-green-500 dark:bg-green-500 text-white rounded" key="tc" position="center"></p-toast>
 
 <section class="h-screen">
   <div class="h-full">
@@ -8,11 +8,11 @@
       <div
         class="flex justify-center items-center md:mb-0 md:w-9/12 md:shrink-0 lg:w-6/12 xl:w-6/12">
         <img
+          alt="Banner Web Training"
+          height="500"
           ngSrc="../../../../assets/img/banner.png"
           priority="true"
-          width="500"
-          height="500"
-          alt="Banner Web Training"/>
+          width="500"/>
       </div>
 
       <!-- Right column container -->
@@ -26,25 +26,25 @@
 
           <!-- Username input -->
           <div class="relative mb-6">
-            <label htmlFor="username"
-                   class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Usuário</label>
-            <input autocomplete="usuario" formControlName="username" type="text"
-                   class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                   required="">
+            <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                   htmlFor="username">Usuário</label>
+            <input autocomplete="usuario" class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" formControlName="username"
+                   required=""
+                   type="text">
           </div>
 
           <!-- Password input -->
           <div class="relative mb-6">
-            <label htmlFor="password" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Senha</label>
-            <input autocomplete="password" formControlName="password" type="password"
-                   class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                   required="">
+            <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white" htmlFor="password">Senha</label>
+            <input autocomplete="password" class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" formControlName="password"
+                   required=""
+                   type="password">
           </div>
 
           <div class="mb-6 flex items-center justify-between">
             <!--Forgot password link-->
             <span>
-            <input type="checkbox" formControlName="saveData" class="mr-2">Manter-se Conectado?</span>
+            <input class="mr-2" formControlName="saveData" type="checkbox">Manter-se Conectado?</span>
           </div>
 
           <!-- Login button -->

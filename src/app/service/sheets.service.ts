@@ -13,6 +13,7 @@ import {environment} from "../../environments/environment";
 })
 export class SheetsService {
   private baseUrl: string = environment.baseUrl;
+
   constructor(@Self() private httpClient: HttpClient,
               private storageService: StorageService,) {
   }
@@ -26,7 +27,6 @@ export class SheetsService {
   updateSheet(updateSheet: createNewSheet): Observable<ReturnMessage> {
     return this.httpClient.put<ReturnMessage>(this.baseUrl + "sheets", updateSheet);
   }
-
 
 
   addNewSheet(newSheet: createNewSheet): Observable<ReturnMessage> {

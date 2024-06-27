@@ -1,4 +1,4 @@
-import { Component, ElementRef, Input, OnInit, ViewChild} from '@angular/core';
+import {Component, ElementRef, Input, OnInit, ViewChild} from '@angular/core';
 import {DialogModule} from "primeng/dialog";
 import {MessageModule} from "primeng/message";
 import {CommonModule, NgIf} from "@angular/common";
@@ -48,7 +48,7 @@ export class PreviewSheetComponent implements OnInit {
 
   openPreviewSheet(sheet: SheetsModel | undefined) {
     this.sheetInfo = sheet;
-    if(this.sheetInfo) {
+    if (this.sheetInfo) {
       this.clientInfo = this.sheetInfo.id_client;
       this.sheetA = this.sheetInfo.training_a;
       this.sheetB = this.sheetInfo.training_b;
@@ -59,19 +59,20 @@ export class PreviewSheetComponent implements OnInit {
   }
 
   setClass() {
-      if(this.sheetB.length === 0) {
-        return 'p-2 grid grid-rows-1 grid-cols-1 w-full'
+    if (this.sheetB.length === 0) {
+      return 'p-2 grid grid-rows-1 grid-cols-1 w-full'
     }
-    if(this.sheetC.length === 0) {
+    if (this.sheetC.length === 0) {
       return 'p-2 grid grid-rows-1 grid-cols-2 w-full'
     }
-    if(this.sheetD.length === 0) {
+    if (this.sheetD.length === 0) {
       return 'p-2 grid grid-rows-1 grid-cols-3 w-full'
     } else {
       return 'p-2 grid grid-rows-1 grid-cols-4 w-full'
 
     }
   }
+
   onCloseCreate() {
     this.showPreviewSheet = false;
     this.sheetInfo = undefined;

@@ -1,7 +1,7 @@
-<p-toast class="bg-green bg-green-500 dark:bg-green-500 text-white rounded" position="center" key="tc"></p-toast>
+<p-toast class="bg-green bg-green-500 dark:bg-green-500 text-white rounded" key="tc" position="center"></p-toast>
 <!-- Create Client modal -->
-<p-dialog #openDialog (onHide)="onCloseCreate()" position="center" [(visible)]="showCreateExercise" [draggable]="false"
-          [modal]="true" [style]="{ width: '50%'}">
+<p-dialog #openDialog (onHide)="onCloseCreate()" [(visible)]="showCreateExercise" [draggable]="false" [modal]="true"
+          [style]="{ width: '50%'}" position="center">
   <ng-template pTemplate="headless">
     <div class="p-2 bg-white border-b rounded-t dark:border-gray-600 flex items-center justify-center w-full">
       <div class="w-full h-full">
@@ -21,23 +21,23 @@
           <div class="p-6 space-y-1">
             <div class="grid grid-cols-1">
               <div class="col-span-1 mb-2 sm:col-span-3">
-                <label htmlFor="exercise" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Nome do
+                <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white" htmlFor="exercise">Nome do
                   Exercicio</label>
-                <input formControlName="exercise" type="text"
-                       class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                       required="">
+                <input class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" formControlName="exercise"
+                       required=""
+                       type="text">
               </div>
               <div class="col-span-1 mb-2 sm:col-span-3">
-                <label htmlFor="exercise_desc" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Descrição</label>
-                <input type="text" formControlName="exercise_desc"
-                       class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                       required=""/>
+                <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white" htmlFor="exercise_desc">Descrição</label>
+                <input class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" formControlName="exercise_desc"
+                       required=""
+                       type="text"/>
               </div>
               <div class="col-span-1 mb-2 sm:col-span-3">
-                <label htmlFor="repetition" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Repetições</label>
-                <input type="text" formControlName="repetition"
-                       class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                       placeholder="4 x 10" required="">
+                <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white" htmlFor="repetition">Repetições</label>
+                <input class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" formControlName="repetition"
+                       placeholder="4 x 10"
+                       required="" type="text">
               </div>
             </div>
           </div>
@@ -62,8 +62,8 @@
   </ng-template>
 </p-dialog>
 
-<p-dialog (close)="onCloseEdit()" position="center" [(visible)]="showEditExercise" [draggable]="false" [modal]="true"
-          [style]="{ width: '50%'}">
+<p-dialog (close)="onCloseEdit()" [(visible)]="showEditExercise" [draggable]="false" [modal]="true" [style]="{ width: '50%'}"
+          position="center">
   <ng-template pTemplate="headless">
     <div class="p-2 bg-white border-b rounded-t dark:border-gray-600 flex items-center justify-center w-full">
       <div class="w-full h-full">
@@ -79,25 +79,25 @@
           <div class="p-6 space-y-1">
             <div class="grid grid-cols-1">
               <div class="col-span-1 mb-2 sm:col-span-3">
-                <label htmlFor="exercise" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Nome do
+                <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white" htmlFor="exercise">Nome do
                   Exercicio</label>
-                <input formControlName="exercise" type="text"
-                       class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                       required="">
+                <input class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" formControlName="exercise"
+                       required=""
+                       type="text">
               </div>
               <div class="col-span-1 mb-2 sm:col-span-3">
-                <label htmlFor="exercise_desc" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Descrição</label>
-                <input type="text" formControlName="exercise_desc"
-                       class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                       required="">
+                <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white" htmlFor="exercise_desc">Descrição</label>
+                <input class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" formControlName="exercise_desc"
+                       required=""
+                       type="text">
               </div>
               <div class="col-span-1 mb-2 sm:col-span-3">
-                <label htmlFor="repetition" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Repetições</label>
-                <input type="text" formControlName="repetition"
-                       class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                       placeholder="4 x 10" required="">
-                <input hidden type="text" formControlName="id_exercise"
-                        required="">
+                <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white" htmlFor="repetition">Repetições</label>
+                <input class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" formControlName="repetition"
+                       placeholder="4 x 10"
+                       required="" type="text">
+                <input formControlName="id_exercise" hidden required=""
+                       type="text">
               </div>
             </div>
           </div>

@@ -1,6 +1,6 @@
 <!-- Create Client modal -->
-<p-dialog #openDialog position="center" [(visible)]="showCreateUser" [draggable]="false" [modal]="true"
-          [style]="{ width: '50%', minHeight: '500px'}">
+<p-dialog #openDialog [(visible)]="showCreateUser" [draggable]="false" [modal]="true" [style]="{ width: '50%', minHeight: '500px'}"
+          position="center">
   <ng-template pTemplate="content">
     <div class="bg-white border-b rounded-t dark:border-gray-600 flex items-center justify-center w-full">
       <div class="w-full h-full">
@@ -12,60 +12,60 @@
         </div>
         <!-- Modal content -->
         <form [formGroup]="formClient" class="relative mt-3 bg-white rounded-lg shadow dark:bg-gray-700">
-          <div class="flex justify-center items-center p-4 mt-3 rounded-full bg-red-600 text-white"
-               *ngIf="formValid"> {{ this.errorMessage }}
+          <div *ngIf="formValid"
+               class="flex justify-center items-center p-4 mt-3 rounded-full bg-red-600 text-white"> {{ this.errorMessage }}
           </div>
 
           <!-- Modal body -->
           <div class="p-6 space-y-6">
             <div class="grid grid-cols-6 gap-6">
               <div class="col-span-6 sm:col-span-3">
-                <label htmlFor="fullName" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Nome
+                <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white" htmlFor="fullName">Nome
                   Completo</label>
-                <input formControlName="fullName" type="text"
-                       class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                       required="">
+                <input class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" formControlName="fullName"
+                       required=""
+                       type="text">
               </div>
               <div class="col-span-6 sm:col-span-3">
-                <label htmlFor="age" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Idade</label>
-                <input type="number" formControlName="age"
-                       class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                       required="">
+                <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white" htmlFor="age">Idade</label>
+                <input class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" formControlName="age"
+                       required=""
+                       type="number">
               </div>
               <div class="col-span-6 sm:col-span-3">
-                <label htmlFor="password"
-                       class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Senha</label>
-                <input type="password" autocomplete="password" formControlName="password"
-                       class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                       required="">
+                <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                       htmlFor="password">Senha</label>
+                <input autocomplete="password" class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" formControlName="password"
+                       required=""
+                       type="password">
               </div>
               <div class="col-span-6 sm:col-span-3">
-                <label htmlFor="passwordCheck" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Confirme
+                <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white" htmlFor="passwordCheck">Confirme
                   a Senha</label>
-                <input type="password" [autocomplete]="false" formControlName="passwordCheck"
-                       class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                       required="">
+                <input [autocomplete]="false" class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" formControlName="passwordCheck"
+                       required=""
+                       type="password">
               </div>
               <div class="col-span-6 sm:col-span-3">
-                <label htmlFor="email"
-                       class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Email</label>
-                <input type="email" formControlName="email"
-                       class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                       placeholder="example@company.com" required="">
+                <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                       htmlFor="email">Email</label>
+                <input class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" formControlName="email"
+                       placeholder="example@company.com"
+                       required="" type="email">
               </div>
               <div class="col-span-6 sm:col-span-3">
-                <label htmlFor="phone"
-                       class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Contato</label>
-                <input type="text" formControlName="phone"
-                       class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                       placeholder="(22)99999-9999" required="">
+                <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                       htmlFor="phone">Contato</label>
+                <input class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" formControlName="phone"
+                       placeholder="(22)99999-9999"
+                       required="" type="text">
               </div>
               <div class="col-span-6 sm:col-span-3">
-                <label htmlFor="phone"
-                       class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Objetivo</label>
-                <input type="text" formControlName="training_type"
-                       class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                       placeholder="Hipertrofia/Emagrecimento/Fortalecimento" required="">
+                <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                       htmlFor="phone">Objetivo</label>
+                <input class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" formControlName="training_type"
+                       placeholder="Hipertrofia/Emagrecimento/Fortalecimento"
+                       required="" type="text">
               </div>
             </div>
           </div>
@@ -87,8 +87,8 @@
   </ng-template>
 </p-dialog>
 
-<p-dialog position="center" [(visible)]="showEditUser" [draggable]="false" [modal]="true"
-          [style]="{ width: '50%', minHeight: '500px'}">
+<p-dialog [(visible)]="showEditUser" [draggable]="false" [modal]="true" [style]="{ width: '50%', minHeight: '500px'}"
+          position="center">
   <ng-template pTemplate="content">
     <div class="bg-white border-b rounded-t dark:border-gray-600 flex items-center justify-center w-full">
       <div class="w-full h-full">
@@ -104,40 +104,40 @@
           <div class="p-6 space-y-6">
             <div class="grid grid-cols-6 gap-6">
               <div class="col-span-6 sm:col-span-3">
-                <label htmlFor="fullName" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Nome
+                <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white" htmlFor="fullName">Nome
                   Completo</label>
-                <input formControlName="fullName" type="text" [placeholder]="clientInfo.fullName"
-                       class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                       required="">
+                <input [placeholder]="clientInfo.fullName" class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" formControlName="fullName"
+                       required=""
+                       type="text">
               </div>
               <div class="col-span-6 sm:col-span-3">
-                <label htmlFor="age" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Idade</label>
-                <input type="number" formControlName="age" [placeholder]="clientInfo.age"
-                       class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                       required="">
+                <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white" htmlFor="age">Idade</label>
+                <input [placeholder]="clientInfo.age" class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" formControlName="age"
+                       required=""
+                       type="number">
               </div>
               <div class="col-span-6 sm:col-span-3">
-                <label htmlFor="email"
-                       class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Email</label>
-                <input type="email" formControlName="email"
-                       class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                       [placeholder]="clientInfo.email" required="">
+                <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                       htmlFor="email">Email</label>
+                <input [placeholder]="clientInfo.email" class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                       formControlName="email"
+                       required="" type="email">
               </div>
               <div class="col-span-6 sm:col-span-3">
-                <label htmlFor="phone"
-                       class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Contato</label>
-                <input type="text" formControlName="phone"
-                       class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                       [placeholder]="clientInfo.phone" required="">
+                <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                       htmlFor="phone">Contato</label>
+                <input [placeholder]="clientInfo.phone" class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                       formControlName="phone"
+                       required="" type="text">
               </div>
               <div class="col-span-6 sm:col-span-3">
-                <label htmlFor="phone"
-                       class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Objetivo</label>
-                <input type="text" formControlName="training_type"
-                       class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                       [placeholder]="clientInfo.training_type" required="">
-                <input [hidden]="true" formControlName="id_client"
-                       [value]="clientInfo.id_client" required="">
+                <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                       htmlFor="phone">Objetivo</label>
+                <input [placeholder]="clientInfo.training_type" class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                       formControlName="training_type"
+                       required="" type="text">
+                <input [hidden]="true" [value]="clientInfo.id_client"
+                       formControlName="id_client" required="">
               </div>
             </div>
           </div>

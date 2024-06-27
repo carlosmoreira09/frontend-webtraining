@@ -1,4 +1,4 @@
-<p-toast class="bg-green bg-green-500 dark:bg-green-500 text-white rounded" position="center" key="tc"></p-toast>
+<p-toast class="bg-green bg-green-500 dark:bg-green-500 text-white rounded" key="tc" position="center"></p-toast>
 <div class="p-1">
   <div class="grid grid-cols-1">
     <div class="flex items-center justify-center h-24 rounded bg-gray-100 dark:bg-gray-800">
@@ -13,11 +13,11 @@
         class="flex items-center justify-between flex-column md:flex-row flex-wrap space-y-4 md:space-y-0 py-4 bg-white dark:bg-gray-900">
         <div class="flex m-3">
 
-          <button type="button" (click)="modal.openDialogCreate()"
-                  class="ml-2 font-medium border border-blue-600 rounded-xl text-blue-600 dark:text-blue-500 hover:underline">
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2"
-                 stroke="currentColor" class="w-7 h-7">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15"/>
+          <button (click)="modal.openDialogCreate()" class="ml-2 font-medium border border-blue-600 rounded-xl text-blue-600 dark:text-blue-500 hover:underline"
+                  type="button">
+            <svg class="w-7 h-7" fill="none" stroke="currentColor" stroke-width="2"
+                 viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <path d="M12 4.5v15m7.5-7.5h-15" stroke-linecap="round" stroke-linejoin="round"/>
             </svg>
           </button>
         </div>
@@ -26,80 +26,81 @@
             <p class="text-center col-span-3 capitalize space-x-9">Não Possui planilhas cadastradas</p>
           </div>
         } @else {
-        <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
-          <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
-          <tr>
-            <th scope="col" class="px-6 py-3">
-              Nome da Planilha
-            </th>
-            <th scope="col" class="px-6 py-3">
-              Descrição da Planilha
-            </th>
-            <th scope="col" class="px-6 py-3">
-              Observações
-            </th>
-            <th scope="col" class="px-6 py-3">
-              Modalidade
-            </th>
-            <th scope="col" class="px-6 py-3">
-              Ação
-            </th>
-          </tr>
-          </thead>
-          <tbody>
-          <tr pTooltip="Click para visualizar" tooltipPosition="top" *ngFor="let sheet of sheets"
-              class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
-            <td (click)="preview.openPreviewSheet(sheet); preview.sheetInfo = sheet;" class="px-6 py-4">
-              <div class="ps-3">
-                <div  class="text-base font-semibold">
-                  {{ sheet.sheet_name }}
+          <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
+            <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+            <tr>
+              <th scope="col" class="px-6 py-3">
+                Nome da Planilha
+              </th>
+              <th scope="col" class="px-6 py-3">
+                Descrição da Planilha
+              </th>
+              <th scope="col" class="px-6 py-3">
+                Observações
+              </th>
+              <th scope="col" class="px-6 py-3">
+                Modalidade
+              </th>
+              <th scope="col" class="px-6 py-3">
+                Ação
+              </th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr pTooltip="Click para visualizar" tooltipPosition="top" *ngFor="let sheet of sheets"
+                class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
+              <td (click)="preview.openPreviewSheet(sheet); preview.sheetInfo = sheet;" class="px-6 py-4">
+                <div class="ps-3">
+                  <div class="text-base font-semibold">
+                    {{ sheet.sheet_name }}
+                  </div>
                 </div>
-              </div>
-            </td>
-            <td (click)="preview.openPreviewSheet(sheet); preview.sheetInfo = sheet;" class="px-6 py-4">
-              <p>{{ sheet.sheet_desc }}</p>
-            </td>
-            <td (click)="preview.openPreviewSheet(sheet); preview.sheetInfo = sheet;" class="px-6 py-4">
-              <div class="flex items-center">
-                <p>{{ sheet.sheet_details }}</p>
-              </div>
-            </td>
-            <td (click)="preview.openPreviewSheet(sheet); preview.sheetInfo = sheet;" class="px-6 py-4">
-              <div class="capitalize flex items-center">
-                @if (sheet.training_d.length === 0 && sheet.training_c.length !== 0) {
-                  <p>Planilha com 3 treinos</p>
-                } @else if (sheet.training_c.length === 0) {
-                  <p>Planilha com 2 treinos</p>
-                } @else if (sheet.training_b.length === 0 && sheet.training_c.length === 0) {
-                  <p>Planilha com 1 treinos</p>
-                } @else {
-                  <p>Planilha com 4 treinos</p>
-                }
-              </div>
-            </td>
-            <td class="px-6 py-4">
-              <!-- Modal toggle -->
-              <button (click)="modal.editSheet = sheet; modal.openDialogEdit()" type="button" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 26 26" stroke-width="1.5"
-                     stroke="currentColor" class="w-6 h-6">
-                  <path stroke-linecap="round" stroke-linejoin="round"
-                        d="M15 9h3.75M15 12h3.75M15 15h3.75M4.5 19.5h15a2.25 2.25 0 0 0 2.25-2.25V6.75A2.25 2.25 0 0 0 19.5 4.5h-15a2.25 2.25 0 0 0-2.25 2.25v10.5A2.25 2.25 0 0 0 4.5 19.5Zm6-10.125a1.875 1.875 0 1 1-3.75 0 1.875 1.875 0 0 1 3.75 0Zm1.294 6.336a6.721 6.721 0 0 1-3.17.789 6.721 6.721 0 0 1-3.168-.789 3.376 3.376 0 0 1 6.338 0Z"/>
-                </svg>
+              </td>
+              <td (click)="preview.openPreviewSheet(sheet); preview.sheetInfo = sheet;" class="px-6 py-4">
+                <p>{{ sheet.sheet_desc }}</p>
+              </td>
+              <td (click)="preview.openPreviewSheet(sheet); preview.sheetInfo = sheet;" class="px-6 py-4">
+                <div class="flex items-center">
+                  <p>{{ sheet.sheet_details }}</p>
+                </div>
+              </td>
+              <td (click)="preview.openPreviewSheet(sheet); preview.sheetInfo = sheet;" class="px-6 py-4">
+                <div class="capitalize flex items-center">
+                  @if (sheet.training_d.length === 0 && sheet.training_c.length !== 0) {
+                    <p>Planilha com 3 treinos</p>
+                  } @else if (sheet.training_c.length === 0) {
+                    <p>Planilha com 2 treinos</p>
+                  } @else if (sheet.training_b.length === 0 && sheet.training_c.length === 0) {
+                    <p>Planilha com 1 treinos</p>
+                  } @else {
+                    <p>Planilha com 4 treinos</p>
+                  }
+                </div>
+              </td>
+              <td class="px-6 py-4">
+                <!-- Modal toggle -->
+                <button (click)="modal.editSheet = sheet; modal.openDialogEdit()" type="button"
+                        class="font-medium text-blue-600 dark:text-blue-500 hover:underline">
+                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 26 26" stroke-width="1.5"
+                       stroke="currentColor" class="w-6 h-6">
+                    <path stroke-linecap="round" stroke-linejoin="round"
+                          d="M15 9h3.75M15 12h3.75M15 15h3.75M4.5 19.5h15a2.25 2.25 0 0 0 2.25-2.25V6.75A2.25 2.25 0 0 0 19.5 4.5h-15a2.25 2.25 0 0 0-2.25 2.25v10.5A2.25 2.25 0 0 0 4.5 19.5Zm6-10.125a1.875 1.875 0 1 1-3.75 0 1.875 1.875 0 0 1 3.75 0Zm1.294 6.336a6.721 6.721 0 0 1-3.17.789 6.721 6.721 0 0 1-3.168-.789 3.376 3.376 0 0 1 6.338 0Z"/>
+                  </svg>
 
-              </button>
-              <p-confirmDialog/>
-              <button type="button" (click)="confirm($event, sheet.id_sheet)"
-                      class="font-medium ml-1 text-blue-600 dark:text-blue-500 hover:underline">
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 26 26" stroke-width="1.5"
-                     stroke="currentColor" class="w-6 h-6">
-                  <path stroke-linecap="round" stroke-linejoin="round"
-                        d="m14.74 9-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 0 1-2.244 2.077H8.084a2.25 2.25 0 0 1-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 0 0-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 0 1 3.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 0 0-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 0 0-7.5 0"/>
-                </svg>
-              </button>
-            </td>
-          </tr>
-          </tbody>
-        </table>
+                </button>
+                <p-confirmDialog/>
+                <button type="button" (click)="confirm($event, sheet.id_sheet)"
+                        class="font-medium ml-1 text-blue-600 dark:text-blue-500 hover:underline">
+                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 26 26" stroke-width="1.5"
+                       stroke="currentColor" class="w-6 h-6">
+                    <path stroke-linecap="round" stroke-linejoin="round"
+                          d="m14.74 9-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 0 1-2.244 2.077H8.084a2.25 2.25 0 0 1-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 0 0-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 0 1 3.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 0 0-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 0 0-7.5 0"/>
+                  </svg>
+                </button>
+              </td>
+            </tr>
+            </tbody>
+          </table>
         }
         <app-modal-sheet #modal></app-modal-sheet>
         <app-preview-sheet #preview></app-preview-sheet>

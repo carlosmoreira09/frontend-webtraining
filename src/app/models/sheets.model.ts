@@ -24,6 +24,7 @@ export interface createNewSheet {
   training_d: string;
   id_client?: number,
 }
+
 export interface Modalidade {
   name: string;
   abbrev: string;

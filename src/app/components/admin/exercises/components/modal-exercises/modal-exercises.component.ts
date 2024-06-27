@@ -86,15 +86,15 @@ export class ModalExercisesComponent implements AfterViewInit {
 
   getFormValues(): ExerciseModel {
 
-      const exercise = this.getField('exercise')?.value;
-      const exercise_desc = this.getField('exercise_desc')?.value;
-      const repetition = this.getField('repetition')?.value;
+    const exercise = this.getField('exercise')?.value;
+    const exercise_desc = this.getField('exercise_desc')?.value;
+    const repetition = this.getField('repetition')?.value;
 
-      return {
-        exercise: exercise,
-        exercise_desc: exercise_desc,
-        repetition: repetition,
-        exercise_type: this.router.snapshot.params['type']
+    return {
+      exercise: exercise,
+      exercise_desc: exercise_desc,
+      repetition: repetition,
+      exercise_type: this.router.snapshot.params['type']
 
     }
   }
@@ -108,6 +108,7 @@ export class ModalExercisesComponent implements AfterViewInit {
   onCloseEdit() {
     this.openDialogEdit();
   }
+
   addMessage(severity: string, detail: string) {
     return this.messageService.add({
       severity: severity,
@@ -116,11 +117,12 @@ export class ModalExercisesComponent implements AfterViewInit {
       detail: detail,
     })
   }
+
   submitEditExercise() {
     let returnMessage: ReturnMessage
     let updateExercise: ExerciseModel = this.getFormValues();
     const id_exercise = this.getField('id_exercise')?.value
-    updateExercise = { ...updateExercise, id_exercise: id_exercise };
+    updateExercise = {...updateExercise, id_exercise: id_exercise};
     this.exerciseService.updateExercise(updateExercise).subscribe({
       next: (res: ReturnMessage) => {
         returnMessage = res;
@@ -135,6 +137,7 @@ export class ModalExercisesComponent implements AfterViewInit {
       }
     })
   }
+
   submitExercise() {
     let returnMessage: ReturnMessage;
     const newExercise: ExerciseModel = this.getFormValues();
@@ -142,9 +145,9 @@ export class ModalExercisesComponent implements AfterViewInit {
     this.exerciseService
       .addExercise(newExercise)
       .subscribe({
-        next: (res:ReturnMessage) => {
-        returnMessage = res;
-         },
+        next: (res: ReturnMessage) => {
+          returnMessage = res;
+        },
         error: (err: ReturnMessage) => {
           this.addMessage('error', err.message)
 
@@ -154,7 +157,7 @@ export class ModalExercisesComponent implements AfterViewInit {
           this.addMessage('success', returnMessage.message)
           this.exerciseComponent.listExercisesByType();
         }
-  })
+      })
   }
 
 }

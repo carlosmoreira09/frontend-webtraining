@@ -1,10 +1,10 @@
 <nav class="fixed top-0 w-full h-16 bg-indigo-900 shadow dark:bg-gray-800 z-50">
   <div class="grid grid-flow-row grid-rows-1 grid-cols-3">
     <div class="content-start ml-4 my-auto col-span-1">
-      <a routerLink="/home" class="space-x-3 rtl:space-x-reverse">
-        <img src="../../../../assets/img/banner.png"
+      <a class="space-x-3 rtl:space-x-reverse" routerLink="/home">
+        <img alt="Web Training Logo"
              class="h-12 rounded-full"
-             alt="Web Training Logo"
+             src="../../../../assets/img/banner.png"
         />
       </a>
     </div>
@@ -16,7 +16,7 @@
       <div class="flex flew-row mr-5 mt-2">
         <p
           class="text-lg text-white mr-5 my-auto"> {{ loggedUser.userType === 'client' ? 'Professor: ' : 'Aluno: ' }} {{ loggedUser.fullName }}</p>
-        <img (click)="logout()" src="assets/img/logout2.png" class="hover:cursor-pointer h-12 rounded-2xl" alt=""/>
+        <img (click)="logout()" alt="" class="hover:cursor-pointer h-12 rounded-2xl" src="assets/img/logout2.png"/>
       </div>
     </div>
 

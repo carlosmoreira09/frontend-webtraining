@@ -26,7 +26,7 @@
 }
 
 .pi:before {
-  --webkit-backface-visibility:hidden;
+  --webkit-backface-visibility: hidden;
   backface-visibility: hidden;
 }
 
@@ -1321,15 +1321,13 @@
   /*
 ! tailwindcss v3.4.3 | MIT License | https://tailwindcss.com
 */
-
   /*
 1. Prevent padding and border from affecting element width. (https://github.com/mozdevs/cssremedy/issues/4)
 2. Allow adding a border to an element by just adding a border-width. (https://github.com/tailwindcss/tailwindcss/pull/116)
 */
-
   *,
-::before,
-::after {
+  ::before,
+  ::after {
     box-sizing: border-box;
     /* 1 */
     border-width: 0;
@@ -1341,7 +1339,7 @@
   }
 
   ::before,
-::after {
+  ::after {
     --tw-content: '';
   }
 
@@ -1354,9 +1352,8 @@
 6. Use the user's configured `sans` font-variation-settings by default.
 7. Disable tap highlights on iOS
 */
-
   html,
-:host {
+  :host {
     line-height: 1.5;
     /* 1 */
     -webkit-text-size-adjust: 100%;
@@ -1364,7 +1361,7 @@
     -moz-tab-size: 4;
     /* 3 */
     -o-tab-size: 4;
-       tab-size: 4;
+    tab-size: 4;
     /* 3 */
     font-family: ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
     /* 4 */
@@ -1380,7 +1377,6 @@
 1. Remove the margin in all browsers.
 2. Inherit line-height from `html` so users can set them as a class directly on the `html` element.
 */
-
   body {
     margin: 0;
     /* 1 */
@@ -1393,7 +1389,6 @@
 2. Correct the inheritance of border color in Firefox. (https://bugzilla.mozilla.org/show_bug.cgi?id=190655)
 3. Ensure horizontal rules are visible by default.
 */
-
   hr {
     height: 0;
     /* 1 */
@@ -1406,22 +1401,20 @@
   /*
 Add the correct text decoration in Chrome, Edge, and Safari.
 */
-
   abbr:where([title]) {
     -webkit-text-decoration: underline dotted;
-            text-decoration: underline dotted;
+    text-decoration: underline dotted;
   }
 
   /*
 Remove the default font size and weight for headings.
 */
-
   h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
     font-size: inherit;
     font-weight: inherit;
   }
@@ -1429,7 +1422,6 @@ h6 {
   /*
 Reset links to optimize for opt-in styling instead of opt-out.
 */
-
   a {
     color: inherit;
     text-decoration: inherit;
@@ -1438,9 +1430,8 @@ Reset links to optimize for opt-in styling instead of opt-out.
   /*
 Add the correct font weight in Edge and Safari.
 */
-
   b,
-strong {
+  strong {
     font-weight: bolder;
   }
 
@@ -1450,11 +1441,10 @@ strong {
 3. Use the user's configured `mono` font-variation-settings by default.
 4. Correct the odd `em` font sizing in all browsers.
 */
-
   code,
-kbd,
-samp,
-pre {
+  kbd,
+  samp,
+  pre {
     font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
     /* 1 */
     font-feature-settings: normal;
@@ -1468,7 +1458,6 @@ pre {
   /*
 Add the correct font size in all browsers.
 */
-
   small {
     font-size: 80%;
   }
@@ -1476,9 +1465,8 @@ Add the correct font size in all browsers.
   /*
 Prevent `sub` and `sup` elements from affecting the line height in all browsers.
 */
-
   sub,
-sup {
+  sup {
     font-size: 75%;
     line-height: 0;
     position: relative;
@@ -1498,7 +1486,6 @@ sup {
 2. Correct table border color inheritance in all Chrome and Safari. (https://bugs.chromium.org/p/chromium/issues/detail?id=935729, https://bugs.webkit.org/show_bug.cgi?id=195016)
 3. Remove gaps between table borders by default.
 */
-
   table {
     text-indent: 0;
     /* 1 */
@@ -1513,12 +1500,11 @@ sup {
 2. Remove the margin in Firefox and Safari.
 3. Remove default padding in all browsers.
 */
-
   button,
-input,
-optgroup,
-select,
-textarea {
+  input,
+  optgroup,
+  select,
+  textarea {
     font-family: inherit;
     /* 1 */
     font-feature-settings: inherit;
@@ -1544,9 +1530,8 @@ textarea {
   /*
 Remove the inheritance of text transform in Edge and Firefox.
 */
-
   button,
-select {
+  select {
     text-transform: none;
   }
 
@@ -1554,11 +1539,10 @@ select {
 1. Correct the inability to style clickable types in iOS and Safari.
 2. Remove default button styles.
 */
-
   button,
-input:where([type='button']),
-input:where([type='reset']),
-input:where([type='submit']) {
+  input:where([type='button']),
+  input:where([type='reset']),
+  input:where([type='submit']) {
     -webkit-appearance: button;
     /* 1 */
     background-color: transparent;
@@ -1570,7 +1554,6 @@ input:where([type='submit']) {
   /*
 Use the modern Firefox focus style for all focusable elements.
 */
-
   :-moz-focusring {
     outline: auto;
   }
@@ -1578,7 +1561,6 @@ Use the modern Firefox focus style for all focusable elements.
   /*
 Remove the additional `:invalid` styles in Firefox. (https://github.com/mozilla/gecko-dev/blob/2f9eacd9d3d995c937b4251a5557d95d494c9be1/layout/style/res/forms.css#L728-L737)
 */
-
   :-moz-ui-invalid {
     box-shadow: none;
   }
@@ -1586,7 +1568,6 @@ Remove the additional `:invalid` styles in Firefox. (https://github.com/mozilla/
   /*
 Add the correct vertical alignment in Chrome and Firefox.
 */
-
   progress {
     vertical-align: baseline;
   }
@@ -1594,9 +1575,8 @@ Add the correct vertical alignment in Chrome and Firefox.
   /*
 Correct the cursor style of increment and decrement buttons in Safari.
 */
-
   ::-webkit-inner-spin-button,
-::-webkit-outer-spin-button {
+  ::-webkit-outer-spin-button {
     height: auto;
   }
 
@@ -1604,7 +1584,6 @@ Correct the cursor style of increment and decrement buttons in Safari.
 1. Correct the odd appearance in Chrome and Safari.
 2. Correct the outline style in Safari.
 */
-
   [type='search'] {
     -webkit-appearance: textfield;
     /* 1 */
@@ -1615,7 +1594,6 @@ Correct the cursor style of increment and decrement buttons in Safari.
   /*
 Remove the inner padding in Chrome and Safari on macOS.
 */
-
   ::-webkit-search-decoration {
     -webkit-appearance: none;
   }
@@ -1624,7 +1602,6 @@ Remove the inner padding in Chrome and Safari on macOS.
 1. Correct the inability to style clickable types in iOS and Safari.
 2. Change font properties to `inherit` in Safari.
 */
-
   ::-webkit-file-upload-button {
     -webkit-appearance: button;
     /* 1 */
@@ -1635,7 +1612,6 @@ Remove the inner padding in Chrome and Safari on macOS.
   /*
 Add the correct display in Chrome and Safari.
 */
-
   summary {
     display: list-item;
   }
@@ -1643,20 +1619,19 @@ Add the correct display in Chrome and Safari.
   /*
 Removes the default spacing and border for appropriate elements.
 */
-
   blockquote,
-dl,
-dd,
-h1,
-h2,
-h3,
-h4,
-h5,
-h6,
-hr,
-figure,
-p,
-pre {
+  dl,
+  dd,
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6,
+  hr,
+  figure,
+  p,
+  pre {
     margin: 0;
   }
 
@@ -1670,8 +1645,8 @@ pre {
   }
 
   ol,
-ul,
-menu {
+  ul,
+  menu {
     list-style: none;
     margin: 0;
     padding: 0;
@@ -1680,7 +1655,6 @@ menu {
   /*
 Reset default styling for dialogs.
 */
-
   dialog {
     padding: 0;
   }
@@ -1688,7 +1662,6 @@ Reset default styling for dialogs.
   /*
 Prevent resizing textareas horizontally by default.
 */
-
   textarea {
     resize: vertical;
   }
@@ -1697,7 +1670,6 @@ Prevent resizing textareas horizontally by default.
 1. Reset the default placeholder opacity in Firefox. (https://github.com/tailwindlabs/tailwindcss/issues/3300)
 2. Set the default placeholder color to the user's configured gray 400 color.
 */
-
   input::-moz-placeholder, textarea::-moz-placeholder {
     opacity: 1;
     /* 1 */
@@ -1706,7 +1678,7 @@ Prevent resizing textareas horizontally by default.
   }
 
   input::placeholder,
-textarea::placeholder {
+  textarea::placeholder {
     opacity: 1;
     /* 1 */
     color: #9CA3AF;
@@ -1716,16 +1688,14 @@ textarea::placeholder {
   /*
 Set the default cursor for buttons.
 */
-
   button,
-[role="button"] {
+  [role="button"] {
     cursor: pointer;
   }
 
   /*
 Make sure disabled buttons don't get the pointer cursor.
 */
-
   :disabled {
     cursor: default;
   }
@@ -1735,15 +1705,14 @@ Make sure disabled buttons don't get the pointer cursor.
 2. Add `vertical-align: middle` to align replaced elements more sensibly by default. (https://github.com/jensimmons/cssremedy/issues/14#issuecomment-634934210)
    This can trigger a poorly considered lint error in some tools but is included by design.
 */
-
   img,
-svg,
-video,
-canvas,
-audio,
-iframe,
-embed,
-object {
+  svg,
+  video,
+  canvas,
+  audio,
+  iframe,
+  embed,
+  object {
     display: block;
     /* 1 */
     vertical-align: middle;
@@ -1753,20 +1722,18 @@ object {
   /*
 Constrain images and videos to the parent width and preserve their intrinsic aspect ratio. (https://github.com/mozdevs/cssremedy/issues/14)
 */
-
   img,
-video {
+  video {
     max-width: 100%;
     height: auto;
   }
 
   /* Make elements with the HTML hidden attribute stay hidden by default */
-
   [hidden] {
     display: none;
   }
 
-  .tooltip-arrow,.tooltip-arrow:before {
+  .tooltip-arrow, .tooltip-arrow:before {
     position: absolute;
     width: 8px;
     height: 8px;
@@ -1828,7 +1795,7 @@ video {
     visibility: hidden;
   }
 
-  [data-popper-arrow],[data-popper-arrow]:before {
+  [data-popper-arrow], [data-popper-arrow]:before {
     position: absolute;
     width: 8px;
     height: 8px;
@@ -1939,10 +1906,10 @@ video {
     visibility: hidden;
   }
 
-  [type='text'],[type='email'],[type='url'],[type='password'],[type='number'],[type='date'],[type='datetime-local'],[type='month'],[type='search'],[type='tel'],[type='time'],[type='week'],[multiple],textarea,select {
+  [type='text'], [type='email'], [type='url'], [type='password'], [type='number'], [type='date'], [type='datetime-local'], [type='month'], [type='search'], [type='tel'], [type='time'], [type='week'], [multiple], textarea, select {
     -webkit-appearance: none;
-       -moz-appearance: none;
-            appearance: none;
+    -moz-appearance: none;
+    appearance: none;
     background-color: #fff;
     border-color: #6B7280;
     border-width: 1px;
@@ -1959,7 +1926,7 @@ video {
   [type='text']:focus, [type='email']:focus, [type='url']:focus, [type='password']:focus, [type='number']:focus, [type='date']:focus, [type='datetime-local']:focus, [type='month']:focus, [type='search']:focus, [type='tel']:focus, [type='time']:focus, [type='week']:focus, [multiple]:focus, textarea:focus, select:focus {
     outline: 2px solid transparent;
     outline-offset: 2px;
-    --tw-ring-inset: var(--tw-empty,/*!*/ /*!*/);
+    --tw-ring-inset: var(--tw-empty, /*!*/ /*!*/);
     --tw-ring-offset-width: 0px;
     --tw-ring-offset-color: #fff;
     --tw-ring-color: #1C64F2;
@@ -1974,7 +1941,7 @@ video {
     opacity: 1;
   }
 
-  input::placeholder,textarea::placeholder {
+  input::placeholder, textarea::placeholder {
     color: #6B7280;
     opacity: 1;
   }
@@ -1994,7 +1961,7 @@ video {
     background-size: 0.75em 0.75em;
     padding-right: 2.5rem;
     -webkit-print-color-adjust: exact;
-            print-color-adjust: exact;
+    print-color-adjust: exact;
   }
 
   :is([dir=rtl]) select:not([size]) {
@@ -2010,22 +1977,22 @@ video {
     background-size: initial;
     padding-right: 0.75rem;
     -webkit-print-color-adjust: unset;
-            print-color-adjust: unset;
+    print-color-adjust: unset;
   }
 
-  [type='checkbox'],[type='radio'] {
+  [type='checkbox'], [type='radio'] {
     -webkit-appearance: none;
-       -moz-appearance: none;
-            appearance: none;
+    -moz-appearance: none;
+    appearance: none;
     padding: 0;
     -webkit-print-color-adjust: exact;
-            print-color-adjust: exact;
+    print-color-adjust: exact;
     display: inline-block;
     vertical-align: middle;
     background-origin: border-box;
     -webkit-user-select: none;
-       -moz-user-select: none;
-            user-select: none;
+    -moz-user-select: none;
+    user-select: none;
     flex-shrink: 0;
     height: 1rem;
     width: 1rem;
@@ -2044,10 +2011,10 @@ video {
     border-radius: 100%;
   }
 
-  [type='checkbox']:focus,[type='radio']:focus {
+  [type='checkbox']:focus, [type='radio']:focus {
     outline: 2px solid transparent;
     outline-offset: 2px;
-    --tw-ring-inset: var(--tw-empty,/*!*/ /*!*/);
+    --tw-ring-inset: var(--tw-empty, /*!*/ /*!*/);
     --tw-ring-offset-width: 2px;
     --tw-ring-offset-color: #fff;
     --tw-ring-color: #1C64F2;
@@ -2056,7 +2023,7 @@ video {
     box-shadow: var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-shadow);
   }
 
-  [type='checkbox']:checked,[type='radio']:checked,.dark [type='checkbox']:checked,.dark [type='radio']:checked {
+  [type='checkbox']:checked, [type='radio']:checked, .dark [type='checkbox']:checked, .dark [type='radio']:checked {
     border-color: transparent;
     background-color: currentColor;
     background-size: 0.55em 0.55em;
@@ -2069,7 +2036,7 @@ video {
     background-repeat: no-repeat;
     background-size: 0.55em 0.55em;
     -webkit-print-color-adjust: exact;
-            print-color-adjust: exact;
+    print-color-adjust: exact;
   }
 
   [type='radio']:checked {
@@ -2090,10 +2057,10 @@ video {
     background-repeat: no-repeat;
     background-size: 0.55em 0.55em;
     -webkit-print-color-adjust: exact;
-            print-color-adjust: exact;
+    print-color-adjust: exact;
   }
 
-  [type='checkbox']:indeterminate:hover,[type='checkbox']:indeterminate:focus {
+  [type='checkbox']:indeterminate:hover, [type='checkbox']:indeterminate:focus {
     border-color: transparent;
     background-color: currentColor;
   }
@@ -2214,7 +2181,7 @@ video {
     border-radius: 9999px;
     height: 1.25rem;
     width: 1.25rem;
-    transition-property: background-color,border-color,color,fill,stroke,opacity,box-shadow,transform,filter,backdrop-filter,-webkit-backdrop-filter;
+    transition-property: background-color, border-color, color, fill, stroke, opacity, box-shadow, transform, filter, backdrop-filter, -webkit-backdrop-filter;
     transition-duration: .15s;
     box-shadow: var(--tw-ring-inset) 0 0 0 calc(0px + var(--tw-ring-offset-width)) var(--tw-ring-color);
   }
@@ -2239,19 +2206,19 @@ video {
     --tw-skew-y: 0;
     --tw-scale-x: 1;
     --tw-scale-y: 1;
-    --tw-pan-x:  ;
-    --tw-pan-y:  ;
-    --tw-pinch-zoom:  ;
+    --tw-pan-x: ;
+    --tw-pan-y: ;
+    --tw-pinch-zoom: ;
     --tw-scroll-snap-strictness: proximity;
-    --tw-gradient-from-position:  ;
-    --tw-gradient-via-position:  ;
-    --tw-gradient-to-position:  ;
-    --tw-ordinal:  ;
-    --tw-slashed-zero:  ;
-    --tw-numeric-figure:  ;
-    --tw-numeric-spacing:  ;
-    --tw-numeric-fraction:  ;
-    --tw-ring-inset:  ;
+    --tw-gradient-from-position: ;
+    --tw-gradient-via-position: ;
+    --tw-gradient-to-position: ;
+    --tw-ordinal: ;
+    --tw-slashed-zero: ;
+    --tw-numeric-figure: ;
+    --tw-numeric-spacing: ;
+    --tw-numeric-fraction: ;
+    --tw-ring-inset: ;
     --tw-ring-offset-width: 0px;
     --tw-ring-offset-color: #fff;
     --tw-ring-color: rgb(63 131 248 / 0.5);
@@ -2259,28 +2226,28 @@ video {
     --tw-ring-shadow: 0 0 #0000;
     --tw-shadow: 0 0 #0000;
     --tw-shadow-colored: 0 0 #0000;
-    --tw-blur:  ;
-    --tw-brightness:  ;
-    --tw-contrast:  ;
-    --tw-grayscale:  ;
-    --tw-hue-rotate:  ;
-    --tw-invert:  ;
-    --tw-saturate:  ;
-    --tw-sepia:  ;
-    --tw-drop-shadow:  ;
-    --tw-backdrop-blur:  ;
-    --tw-backdrop-brightness:  ;
-    --tw-backdrop-contrast:  ;
-    --tw-backdrop-grayscale:  ;
-    --tw-backdrop-hue-rotate:  ;
-    --tw-backdrop-invert:  ;
-    --tw-backdrop-opacity:  ;
-    --tw-backdrop-saturate:  ;
-    --tw-backdrop-sepia:  ;
-    --tw-contain-size:  ;
-    --tw-contain-layout:  ;
-    --tw-contain-paint:  ;
-    --tw-contain-style:  ;
+    --tw-blur: ;
+    --tw-brightness: ;
+    --tw-contrast: ;
+    --tw-grayscale: ;
+    --tw-hue-rotate: ;
+    --tw-invert: ;
+    --tw-saturate: ;
+    --tw-sepia: ;
+    --tw-drop-shadow: ;
+    --tw-backdrop-blur: ;
+    --tw-backdrop-brightness: ;
+    --tw-backdrop-contrast: ;
+    --tw-backdrop-grayscale: ;
+    --tw-backdrop-hue-rotate: ;
+    --tw-backdrop-invert: ;
+    --tw-backdrop-opacity: ;
+    --tw-backdrop-saturate: ;
+    --tw-backdrop-sepia: ;
+    --tw-contain-size: ;
+    --tw-contain-layout: ;
+    --tw-contain-paint: ;
+    --tw-contain-style: ;
   }
 
   ::backdrop {
@@ -2293,19 +2260,19 @@ video {
     --tw-skew-y: 0;
     --tw-scale-x: 1;
     --tw-scale-y: 1;
-    --tw-pan-x:  ;
-    --tw-pan-y:  ;
-    --tw-pinch-zoom:  ;
+    --tw-pan-x: ;
+    --tw-pan-y: ;
+    --tw-pinch-zoom: ;
     --tw-scroll-snap-strictness: proximity;
-    --tw-gradient-from-position:  ;
-    --tw-gradient-via-position:  ;
-    --tw-gradient-to-position:  ;
-    --tw-ordinal:  ;
-    --tw-slashed-zero:  ;
-    --tw-numeric-figure:  ;
-    --tw-numeric-spacing:  ;
-    --tw-numeric-fraction:  ;
-    --tw-ring-inset:  ;
+    --tw-gradient-from-position: ;
+    --tw-gradient-via-position: ;
+    --tw-gradient-to-position: ;
+    --tw-ordinal: ;
+    --tw-slashed-zero: ;
+    --tw-numeric-figure: ;
+    --tw-numeric-spacing: ;
+    --tw-numeric-fraction: ;
+    --tw-ring-inset: ;
     --tw-ring-offset-width: 0px;
     --tw-ring-offset-color: #fff;
     --tw-ring-color: rgb(63 131 248 / 0.5);
@@ -2313,28 +2280,28 @@ video {
     --tw-ring-shadow: 0 0 #0000;
     --tw-shadow: 0 0 #0000;
     --tw-shadow-colored: 0 0 #0000;
-    --tw-blur:  ;
-    --tw-brightness:  ;
-    --tw-contrast:  ;
-    --tw-grayscale:  ;
-    --tw-hue-rotate:  ;
-    --tw-invert:  ;
-    --tw-saturate:  ;
-    --tw-sepia:  ;
-    --tw-drop-shadow:  ;
-    --tw-backdrop-blur:  ;
-    --tw-backdrop-brightness:  ;
-    --tw-backdrop-contrast:  ;
-    --tw-backdrop-grayscale:  ;
-    --tw-backdrop-hue-rotate:  ;
-    --tw-backdrop-invert:  ;
-    --tw-backdrop-opacity:  ;
-    --tw-backdrop-saturate:  ;
-    --tw-backdrop-sepia:  ;
-    --tw-contain-size:  ;
-    --tw-contain-layout:  ;
-    --tw-contain-paint:  ;
-    --tw-contain-style:  ;
+    --tw-blur: ;
+    --tw-brightness: ;
+    --tw-contrast: ;
+    --tw-grayscale: ;
+    --tw-hue-rotate: ;
+    --tw-invert: ;
+    --tw-saturate: ;
+    --tw-sepia: ;
+    --tw-drop-shadow: ;
+    --tw-backdrop-blur: ;
+    --tw-backdrop-brightness: ;
+    --tw-backdrop-contrast: ;
+    --tw-backdrop-grayscale: ;
+    --tw-backdrop-hue-rotate: ;
+    --tw-backdrop-invert: ;
+    --tw-backdrop-opacity: ;
+    --tw-backdrop-saturate: ;
+    --tw-backdrop-sepia: ;
+    --tw-contain-size: ;
+    --tw-contain-layout: ;
+    --tw-contain-paint: ;
+    --tw-contain-style: ;
   }
 }
 
@@ -2868,8 +2835,8 @@ video {
 
   .appearance-none {
     -webkit-appearance: none;
-       -moz-appearance: none;
-            appearance: none;
+    -moz-appearance: none;
+    appearance: none;
   }
 
   .grid-flow-row {

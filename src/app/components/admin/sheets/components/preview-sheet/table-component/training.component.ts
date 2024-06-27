@@ -1,13 +1,11 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, Input} from '@angular/core';
 import {DialogModule} from "primeng/dialog";
 import {MessageModule} from "primeng/message";
 import {CommonModule, NgIf} from "@angular/common";
-import {PaginatorModule} from "primeng/paginator";
 import {ReactiveFormsModule} from "@angular/forms";
 import {MessageService} from "primeng/api";
 import {ToastModule} from "primeng/toast";
 import {ExerciseModel} from "../../../../../../models/exercise.model";
-import {ClientsModel} from "../../../../../../models/clients.model";
 
 @Component({
   selector: 'app-training-table',
@@ -27,6 +25,7 @@ export class TrainingComponent {
 
   @Input() sheet: ExerciseModel[];
   @Input() training: string;
+
   constructor() {
   }
 

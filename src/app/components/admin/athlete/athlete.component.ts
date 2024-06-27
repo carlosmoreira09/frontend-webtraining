@@ -1,11 +1,11 @@
 import {Component, OnInit} from '@angular/core';
 import {FormBuilder, ReactiveFormsModule, UntypedFormGroup, Validators} from "@angular/forms";
-import { ClientsModel} from "../../../models/clients.model";
+import {ClientsModel} from "../../../models/clients.model";
 import {AthletesService} from "../../../service/athletes.service";
 import {ModalAtletaComponent} from "./components/modal-create/modal-athlete.component";
 import {CommonModule} from "@angular/common";
 import {DialogModule} from "primeng/dialog";
-import { RouterLink} from "@angular/router";
+import {RouterLink} from "@angular/router";
 import {ConfirmationService, MessageService} from "primeng/api";
 import {ConfirmDialogModule} from "primeng/confirmdialog";
 import {ToastModule} from "primeng/toast";
@@ -36,7 +36,7 @@ import {PreviewSheetComponent} from "../sheets/components/preview-sheet/preview-
   ],
   templateUrl: './athlete.component.html',
   styleUrl: './athlete.component.css',
-  providers: [MessageService, ConfirmationService ]
+  providers: [MessageService, ConfirmationService]
 })
 export class AtletasComponent implements OnInit {
   atletas: ClientsModel[];
@@ -48,12 +48,13 @@ export class AtletasComponent implements OnInit {
   listSheet: SheetsModel[];
   id_sheet: number | null;
   id_client: number | null;
+
   constructor(private athleteService: AthletesService,
               private confirmationService: ConfirmationService,
               private messageService: MessageService,
               private sheetsService: SheetsService,
               private formBuilder: FormBuilder,
-              ) {
+  ) {
   }
 
   ngOnInit() {
@@ -78,6 +79,7 @@ export class AtletasComponent implements OnInit {
       }
     )
   }
+
   addMessage(severity: string, detail: string) {
     return this.messageService.add({
       severity: severity,
@@ -86,25 +88,27 @@ export class AtletasComponent implements OnInit {
       detail: detail,
     })
   }
+
   addSheet(id_client: number) {
     this.sheetsService.listSheets().subscribe({
       next: (sheets: SheetsModel[]) => {
         this.listSheet = sheets;
-     },
+      },
       error: (err: any) => {
         this.addMessage('error', 'Erro ao Carregar Planilhas:' + err);
 
       },
       complete: () => {
         this.dialogAddSheet = true;
-        this.id_client = id_client? id_client : null;
+        this.id_client = id_client ? id_client : null;
       }
     })
 
   }
+
   saveSheet() {
     this.id_sheet = this.getField('id_sheet')?.value;
-    if(this.id_client === null || this.id_sheet === null) {
+    if (this.id_client === null || this.id_sheet === null) {
       return this.addMessage('error', 'Erro ao carregar dados do cliente.:');
     }
     this.athleteService.saveAddSheetAthlete(this.id_sheet, this.id_client).subscribe({
@@ -123,12 +127,14 @@ export class AtletasComponent implements OnInit {
       }
     })
   }
+
   cancelAddSheet() {
     this.id_client = null;
     this.id_sheet = null;
     this.dialogAddSheet = false;
     this.getField('id_sheet')?.setValue('')
   }
+
   deleteAthlete(id_client: number | undefined) {
     this.athleteService.delete(id_client).subscribe({
       next: (res: ReturnMessage) => {
@@ -174,6 +180,7 @@ export class AtletasComponent implements OnInit {
       }
     });
   }
+
   getField(field: string) {
     return this.formAddSheet.get(field);
   }

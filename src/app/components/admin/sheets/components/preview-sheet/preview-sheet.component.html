@@ -2,14 +2,14 @@
 <p-dialog
   #openDialog
   (onHide)="onCloseCreate()"
-  position="center"
   [(visible)]="showPreviewSheet"
   [breakpoints]="{ '650px': '75vw', '575px': '90vw' }"
   [draggable]="false"
+  [maximizable]="true"
   [modal]="true"
-  styleClass="overflow-auto"
   [style]="{ width: 'auto'}"
-  [maximizable]="true">
+  position="center"
+  styleClass="overflow-auto">
   <ng-template pTemplate="headless">
     <div class="grid grid-flow-row grid-cols-1 bg-white h-1/2 border-b rounded-t dark:border-gray-600">
       <div class="grid grid-cols-2 gap-2 p-2">
@@ -28,16 +28,16 @@
       <!-- Modal content -->
       <div [class]="setClass()">
         <div class="col-span-1">
-          <app-training-table training="Treino A" [sheet]="sheetA" ></app-training-table>
+          <app-training-table [sheet]="sheetA" training="Treino A"></app-training-table>
         </div>
         <div class="col-span-1">
-          <app-training-table *ngIf="sheetB.length > 0" training="Treino B" [sheet]="sheetB" ></app-training-table>
+          <app-training-table *ngIf="sheetB.length > 0" [sheet]="sheetB" training="Treino B"></app-training-table>
         </div>
         <div class="col-span-1">
-          <app-training-table *ngIf="sheetC.length > 0"  training="Treino C" [sheet]="sheetC" ></app-training-table>
+          <app-training-table *ngIf="sheetC.length > 0" [sheet]="sheetC" training="Treino C"></app-training-table>
         </div>
         <div class="col-span-1">
-          <app-training-table *ngIf="sheetD.length > 0"   training="Treino D" [sheet]="sheetD" ></app-training-table>
+          <app-training-table *ngIf="sheetD.length > 0" [sheet]="sheetD" training="Treino D"></app-training-table>
         </div>
       </div>
       <div class="p-2 mt-6">

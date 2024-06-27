@@ -25,7 +25,7 @@ export class ExercisesService {
   }
 
   getCategories() {
-    return  [
+    return [
       {name: 'Abdômen', code: 'abdomen'},
       {name: 'Costas', code: 'costas'},
       {name: 'Peito', code: 'peito'},

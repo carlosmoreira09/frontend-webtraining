@@ -12,7 +12,7 @@ import {createNewSheet, Modalidade, SheetsModel} from "../../../../../models/she
 import {SheetsService} from "../../../../../service/sheets.service";
 import {SheetsComponent} from "../../sheets.component";
 import {AthletesService} from "../../../../../service/athletes.service";
-import { ClientsModel} from "../../../../../models/clients.model";
+import {ClientsModel} from "../../../../../models/clients.model";
 
 @Component({
   selector: 'app-modal-sheet',
@@ -92,16 +92,17 @@ export class ModalSheetComponent implements OnInit {
     this.addExercisesC = [];
     this.addExercisesD = [];
   }
+
   initEditControlForm() {
-  if (this.editSheet.training_d.length === 0 && this.editSheet.training_c.length !== 0) {
+    if (this.editSheet.training_d.length === 0 && this.editSheet.training_c.length !== 0) {
       this.quantitySheet = 3
     } else if (this.editSheet.training_c.length === 0) {
-    this.quantitySheet = 2
-  } else if (this.editSheet.training_b.length === 0 && this.editSheet.training_c.length === 0) {
-    this.quantitySheet = 1
-  } else {
-    this.quantitySheet = 4
-  }
+      this.quantitySheet = 2
+    } else if (this.editSheet.training_b.length === 0 && this.editSheet.training_c.length === 0) {
+      this.quantitySheet = 1
+    } else {
+      this.quantitySheet = 4
+    }
     this.sheetFormGroup = this.formBuilder.group({
       exercises: [this.setExercise('peito'), [Validators.required]],
       sheet_desc: [this.editSheet.sheet_desc, Validators.required],
@@ -120,10 +121,12 @@ export class ModalSheetComponent implements OnInit {
       id_client: ['', Validators.required],
     });
   }
+
   closeEditModal() {
     this.dialogAthlete = true;
     this.initEditControlForm();
   }
+
   clearForm() {
     this.addExercisesA = [];
     this.addExercisesB = [];
@@ -135,17 +138,19 @@ export class ModalSheetComponent implements OnInit {
   saveAthlete() {
     this.id_client = this.formAthleta.get('id_client')?.value;
     this.athletes.find((value) => {
-      if (value.id_client === parseInt(this.formAthleta.get('id_client')?.value)) {
-        this.athlete = value;
-        this.dialogAthlete = false;
+        if (value.id_client === parseInt(this.formAthleta.get('id_client')?.value)) {
+          this.athlete = value;
+          this.dialogAthlete = false;
+        }
       }
-    }
     );
   }
-  cancelAddAthlete(){
+
+  cancelAddAthlete() {
     this.id_client = null;
     this.dialogAthlete = false;
   }
+
   setExercise(type: string) {
     this.exerciseService.listExerciseByType(type).subscribe({
       next: (users: ExerciseModel[]) => {
@@ -156,7 +161,7 @@ export class ModalSheetComponent implements OnInit {
         for (let exercise of this.exercises) {
           this.listExercise.push(exercise);
         }
-        if(this.exercises.length == 0) {
+        if (this.exercises.length == 0) {
           this.addMessage('warn', 'Adicione Exercícios na Aba de Exercícios');
         }
         this.getField('exercises')?.setValue(this.listExercise[0].id_exercise);
@@ -219,7 +224,7 @@ export class ModalSheetComponent implements OnInit {
       }
     }
 
-    if(this.id_client != null) {
+    if (this.id_client != null) {
       return {
         sheet_name: sheet_name,
         sheet_desc: sheet_desc,
@@ -242,6 +247,7 @@ export class ModalSheetComponent implements OnInit {
       }
     }
   }
+
   changeNumberOfTraining() {
     const quantity = this.getField('quantity')?.value;
     if (quantity == 1) {
@@ -253,14 +259,15 @@ export class ModalSheetComponent implements OnInit {
       this.addExercisesC = [];
       this.addExercisesD = [];
     }
-    if(quantity == 3) {
+    if (quantity == 3) {
       this.addExercisesD = [];
     }
   }
+
   submitEditSheet() {
 
     let updateSheet: createNewSheet = this.getValues();
-    updateSheet = { ...updateSheet, id_sheet: this.editSheet.id_sheet}
+    updateSheet = {...updateSheet, id_sheet: this.editSheet.id_sheet}
     this.sheetService.updateSheet(updateSheet).subscribe({
       next: (res: ReturnMessage) => {
         this.returnMessage = res;
@@ -271,7 +278,7 @@ export class ModalSheetComponent implements OnInit {
       complete: () => {
         this.showEditSheet = false;
         this.addMessage('success', this.returnMessage.message)
-        if(this.id_client && this.editSheet.id_sheet) {
+        if (this.id_client && this.editSheet.id_sheet) {
           let res: ReturnMessage;
           this.athleteService.saveAddSheetAthlete(this.editSheet.id_sheet, this.id_client).subscribe({
             next: (value: ReturnMessage) => {
@@ -295,16 +302,16 @@ export class ModalSheetComponent implements OnInit {
     let returnMessage: ReturnMessage;
     const newSheet: createNewSheet = this.getValues();
     this.sheetService.addNewSheet(newSheet).subscribe({
-    next: (res: ReturnMessage) => {
-      returnMessage = res;
-    },
+      next: (res: ReturnMessage) => {
+        returnMessage = res;
+      },
       error: (res: ReturnMessage) => {
-      this.addMessage('error', res.message);
+        this.addMessage('error', res.message);
       },
       complete: () => {
         this.showCreateSheet = false;
         this.addMessage('success', returnMessage.message)
-        if(this.id_client !== null) {
+        if (this.id_client !== null) {
           this.athleteService.saveAddSheetAthlete(parseInt(returnMessage.id), this.id_client).subscribe({
             next: (value) => {
             },
@@ -319,7 +326,7 @@ export class ModalSheetComponent implements OnInit {
         this.clearForm();
         this.sheetsComponent.listSheets();
       }
-  })
+    })
   }
 
   addMessage(severity: string, detail: string) {

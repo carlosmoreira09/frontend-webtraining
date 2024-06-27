@@ -1,4 +1,4 @@
-import {AfterViewInit, Component, ElementRef, Input, ViewChild} from '@angular/core';
+import {AfterViewInit, Component, ElementRef, ViewChild} from '@angular/core';
 import {AthletesService} from "../../../../../service/athletes.service";
 import {FormBuilder, ReactiveFormsModule, UntypedFormGroup, Validators} from "@angular/forms";
 import {ClientsModel} from "../../../../../models/clients.model";
@@ -69,6 +69,7 @@ export class ModalAtletaComponent implements AfterViewInit {
       training_type: ['', [Validators.required]]
     });
   }
+
   initEditControlForm() {
     return this.formBuilder.group({
       fullName: [this.clientInfo.fullName, [Validators.required]],
@@ -108,6 +109,7 @@ export class ModalAtletaComponent implements AfterViewInit {
       email: email,
     }
   }
+
   getValuesEdit() {
     const fullName = this.getField('fullName')?.value;
     const age = this.getField('age')?.value;
@@ -124,7 +126,8 @@ export class ModalAtletaComponent implements AfterViewInit {
       email: email,
     }
   }
-  onSubmitEdit(){
+
+  onSubmitEdit() {
     let returnMessage: ReturnMessage;
     const editAthlete = this.getValuesEdit();
     this.athletesService.updateAthlete(editAthlete).subscribe({
@@ -134,9 +137,11 @@ export class ModalAtletaComponent implements AfterViewInit {
       complete: () => {
         this.showEditUser = false;
         this.athleteComponent.listAllUsers();
-        this.addMessage('success', returnMessage.message);      }
+        this.addMessage('success', returnMessage.message);
+      }
     })
   }
+
   addMessage(type: string, message: string): void {
     return this.messageService.add({
       severity: type,
@@ -145,11 +150,13 @@ export class ModalAtletaComponent implements AfterViewInit {
       life: 1500,
     })
   }
+
   onCancelEdit() {
     this.showEditUser = false;
     this.initEditControlForm();
 
   }
+
   onSubmit() {
     let returnMessage: ReturnMessage;
     const clientForm = this.getFormValues();
@@ -176,6 +183,7 @@ export class ModalAtletaComponent implements AfterViewInit {
     this.initControlForm();
     this.showCreateUser = false;
   }
+
   navigate(endpoint: string) {
     return this.router.navigate([endpoint]);
   }
