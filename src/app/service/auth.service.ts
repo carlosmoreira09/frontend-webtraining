@@ -33,8 +33,8 @@ export class AuthService {
   }
 
 
-  register(data: ClientDTO | undefined, role: string) {
-    return this.httpClient.post<ReturnMessage>(this.baseUrl + "auth/register", data, {headers: new HttpHeaders({'user_role': role})});
+  register(data: ClientDTO | undefined) {
+    return this.httpClient.post<ReturnMessage>(this.baseUrl + "auth/register", data);
   }
 
 
