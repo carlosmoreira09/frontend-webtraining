@@ -62,7 +62,7 @@ export class RegisterComponent implements OnInit {
       this.errorMessage = 'Senhas Não Coincidem'
     } else {
 
-      const authRoles: AuthRoles = jwtDecode(this.storageService.getUser())
+      const authRoles: AuthRoles = jwtDecode(this.storageService.getUser().toString())
       this.authService.register(registerValues, authRoles.role).subscribe({
         next: (res: ReturnMessage) => {
           this.addMessage('success', res.message)
