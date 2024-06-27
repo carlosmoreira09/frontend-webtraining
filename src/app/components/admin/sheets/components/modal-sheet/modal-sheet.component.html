@@ -146,7 +146,7 @@
           </div>
         </form>
         <div *ngIf="id_client">
-          <table class="w-full h-1/6 font-thin border-collapse border border-slate-400">
+          <table class="table-auto w-full h-1/6 font-thin border-collapse border border-slate-400 sm:table-auto md:table-auto">
             <thead>
             <tr>
               <td>Nome</td>
@@ -168,7 +168,7 @@
           </table>
         </div>
         <div class="p-2 flex justify-center items-center mb-2.5 divide-x ml-2">
-          <table class="w-full border-collapse border border-slate-400">
+          <table class="table-auto w-full border-collapse border border-slate-400 sm:table-auto md:table-auto">
             <caption class="caption-top">
               Preview Planilha
             </caption>
@@ -275,13 +275,13 @@
               <div class="grid grid-rows-1 grid-flow-row gap-1">
                 <fieldset class="p-fieldset p-2">
                   <legend>Escolha a Quantidade de Treino(s) da Planilha:</legend>
-                  <label class="mr-1"><input type="radio" formControlName="quantity" value="1">
+                  <label class="mr-1"><input type="radio" (change)="changeNumberOfTraining()" formControlName="quantity" value="1">
                     1</label>
-                  <label class="mr-1"><input type="radio" formControlName="quantity" value="2"/>
+                  <label class="mr-1"><input type="radio" (change)="changeNumberOfTraining()" formControlName="quantity" value="2"/>
                     2</label>
-                  <label class="mr-1"><input type="radio" formControlName="quantity" value="3"/>
+                  <label class="mr-1"><input type="radio" (change)="changeNumberOfTraining()" formControlName="quantity" value="3"/>
                     3</label>
-                  <label class="mr-1"><input type="radio" formControlName="quantity" value="4"/>
+                  <label class="mr-1"><input type="radio" (change)="changeNumberOfTraining()" formControlName="quantity" value="4"/>
                     4</label>
                 </fieldset>
                 <fieldset class="p-fieldset p-2">
@@ -411,7 +411,7 @@
                   </p>
                 }
               </td>
-              <td *ngIf="quantitySheet > 1" class="w-1/4 border border-slate-300">
+              <td *ngIf="getField('quantity')?.value > 1" class="w-1/4 border border-slate-300">
                 @for (exercise of addExercisesB; track exercise) {
                   <p class="capitalize border-l-blue-900"> {{ exercise.exercise }}
                     <button (click)="removeExercise(exercise)" style="color: white"
@@ -419,7 +419,7 @@
                   </p>
                 }
               </td>
-              <td *ngIf="quantitySheet > 2" class="w-1/4 border border-slate-300">
+              <td *ngIf="getField('quantity')?.value > 2" class="w-1/4 border border-slate-300">
                 @for (exercise of addExercisesC; track exercise) {
                   <p class="capitalize"> {{ exercise.exercise }}
                     <button (click)="removeExercise(exercise)" style="color: white"
@@ -427,7 +427,7 @@
                   </p>
                 }
               </td>
-              <td *ngIf="quantitySheet > 3" class="w-1/4 border border-slate-300">
+              <td *ngIf="getField('quantity')?.value > 3" class="w-1/4 border border-slate-300">
                 @for (exercise of addExercisesD; track exercise) {
                   <p class="capitalize border-l-blue-900"> {{ exercise.exercise }}
                     <button (click)="removeExercise(exercise)" style="color: white"

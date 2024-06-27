@@ -2,7 +2,7 @@ import {ExerciseModel} from "./exercise.model";
 import {ClientsModel} from "./clients.model";
 
 export interface SheetsModel {
-  id_sheet: number;
+  id_sheet?: number;
   sheet_desc: string;
   sheet_details: string;
   sheet_name: string;
@@ -14,6 +14,7 @@ export interface SheetsModel {
 }
 
 export interface createNewSheet {
+  id_sheet?: number;
   sheet_name: string;
   sheet_desc: string;
   sheet_details: string;

@@ -189,7 +189,7 @@ export class ModalSheetComponent implements OnInit {
     this.setExercise(type);
   }
 
-  getValues() {
+  getValues(): createNewSheet {
     const sheet_name: string = this.getField('sheet_name')?.value;
     const sheet_desc: string = this.getField('sheet_desc')?.value;
     const sheet_detais: string = this.getField('sheet_details')?.value;
@@ -242,36 +242,53 @@ export class ModalSheetComponent implements OnInit {
       }
     }
   }
+  changeNumberOfTraining() {
+    const quantity = this.getField('quantity')?.value;
+    if (quantity == 1) {
+      this.addExercisesB = [];
+      this.addExercisesC = [];
+      this.addExercisesD = [];
+    }
+    if (quantity == 2) {
+      this.addExercisesC = [];
+      this.addExercisesD = [];
+    }
+    if(quantity == 3) {
+      this.addExercisesD = [];
+    }
+  }
   submitEditSheet() {
 
-    const editSheet: createNewSheet = this.getValues();
-    console.log(editSheet)
-    // this.sheetService.addNewSheet(newSheet).subscribe({
-    //   next: (res: ReturnMessage) => {
-    //     returnMessage = res;
-    //   },
-    //   error: (res: ReturnMessage) => {
-    //     this.addMessage('error', res.message);
-    //   },
-    //   complete: () => {
-    //     this.showCreateSheet = false;
-    //     this.addMessage('success', returnMessage.message)
-    //     if(this.athlete?.id_client) {
-    //       this.athleteService.saveAddSheetAthlete(parseInt(returnMessage.id), this.athlete.id_client).subscribe({
-    //         next: (value) => {
-    //         },
-    //         error: (err: any) => {
-    //           this.addMessage('error', 'Erro ao Salvar Cliente na Planilha:' + err);
-    //         },
-    //         complete: () => {
-    //           this.addMessage('success', 'Planilha adicionada ao Cliente');
-    //         }
-    //       })
-    //     }
-    //     this.clearForm();
-    //     this.sheetsComponent.listSheets();
-    //   }
-    // })
+    let updateSheet: createNewSheet = this.getValues();
+    updateSheet = { ...updateSheet, id_sheet: this.editSheet.id_sheet}
+    this.sheetService.updateSheet(updateSheet).subscribe({
+      next: (res: ReturnMessage) => {
+        this.returnMessage = res;
+      },
+      error: (res: ReturnMessage) => {
+        this.addMessage('error', res.message);
+      },
+      complete: () => {
+        this.showEditSheet = false;
+        this.addMessage('success', this.returnMessage.message)
+        if(this.id_client && this.editSheet.id_sheet) {
+          let res: ReturnMessage;
+          this.athleteService.saveAddSheetAthlete(this.editSheet.id_sheet, this.id_client).subscribe({
+            next: (value: ReturnMessage) => {
+              res = value;
+            },
+            error: (err: any) => {
+              this.addMessage('error', 'Erro ao Salvar Cliente na Planilha:' + err);
+            },
+            complete: () => {
+              this.addMessage('success', res.message);
+            }
+          })
+        }
+        this.clearForm();
+        this.sheetsComponent.listSheets();
+      }
+    })
   }
 
   submitNewSheet() {
@@ -287,8 +304,8 @@ export class ModalSheetComponent implements OnInit {
       complete: () => {
         this.showCreateSheet = false;
         this.addMessage('success', returnMessage.message)
-        if(this.athlete?.id_client) {
-          this.athleteService.saveAddSheetAthlete(parseInt(returnMessage.id), this.athlete.id_client).subscribe({
+        if(this.id_client !== null) {
+          this.athleteService.saveAddSheetAthlete(parseInt(returnMessage.id), this.id_client).subscribe({
             next: (value) => {
             },
             error: (err: any) => {
