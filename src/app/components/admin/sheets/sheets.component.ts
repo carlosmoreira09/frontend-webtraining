@@ -36,7 +36,7 @@ export class SheetsComponent implements OnInit {
   dialog: ElementRef;
 
   sheets: SheetsModel[];
-
+  showTable: boolean = true;
   constructor(private sheetsService: SheetsService,
               private messageService: MessageService,
               private confirmationService: ConfirmationService,) {
@@ -51,6 +51,9 @@ export class SheetsComponent implements OnInit {
     this.sheetsService.listSheets().subscribe(
       (res: SheetsModel[]) => {
         this.sheets = res;
+        if(this.sheets.length === 0) {
+          this.showTable = false;
+        }
       }
     );
   }

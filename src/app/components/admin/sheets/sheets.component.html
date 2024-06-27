@@ -21,7 +21,7 @@
             </svg>
           </button>
         </div>
-        @if (!sheets) {
+        @if (!showTable) {
           <div class="mt-3 flex justify-center">
             <p class="text-center col-span-3 capitalize space-x-9">Não Possui planilhas cadastradas</p>
           </div>
@@ -104,7 +104,9 @@
         }
         <app-modal-sheet #modal></app-modal-sheet>
         <app-preview-sheet #preview></app-preview-sheet>
+
       </div>
     </div>
   </div>
+
 </div>

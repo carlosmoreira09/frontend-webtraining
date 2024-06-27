@@ -60,41 +60,17 @@ export class RegisterComponent implements OnInit {
     const registerValues = this.getFormValues();
     if (registerValues === undefined) {
       this.errorMessage = 'Senhas Não Coincidem'
-      this.messageService.add({
-        severity: 'error',
-        key: 'tc',
-        detail: 'Verifique seu formulário',
-        life: 1500
-      })
     } else {
+
       const authRoles: AuthRoles = jwtDecode(this.storageService.getUser())
       this.authService.register(registerValues, authRoles.role).subscribe({
         next: (res: ReturnMessage) => {
-          if (res.status !== 200) {
-            this.messageService.add({
-              severity: 'error',
-              key: 'tc',
-              detail: res.message,
-              life: 1500
-            })
-          }
-          this.messageService.add({
-            severity: 'success',
-            key: 'tc',
-            detail: res.message,
-            life: 1500
-          })
+          this.addMessage('success', res.message)
         },
         error: (err: ReturnMessage) => {
-          this.messageService.add({
-            severity: 'error',
-            key: 'tc',
-            detail: err.message,
-            life: 1500
-          })
+          this.addMessage('error', err.message)
         },
         complete: () => {
-          this.storageService.clean();
           this.navigate('new-register').then();
         }
       })
