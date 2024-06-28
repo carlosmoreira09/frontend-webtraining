@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {NgIf, NgOptimizedImage} from "@angular/common";
+import {NgClass, NgIf, NgOptimizedImage} from "@angular/common";
 import {ClientDTO} from "../../../models/auth.model";
 import {StorageService} from "../../../service/storage.service";
 import {Router, RouterLink} from "@angular/router";
@@ -12,14 +12,14 @@ import {AuthComponent} from "../../views/auth/auth.component";
     NgIf,
     AuthComponent,
     RouterLink,
-    NgOptimizedImage
+    NgOptimizedImage,
+    NgClass
   ],
   templateUrl: './header.component.html',
   styleUrl: './header.component.css',
 })
 export class HeaderComponent implements OnInit {
   public loggedUser: ClientDTO;
-
   constructor(private storageService: StorageService, private router: Router,
   ) {
   }

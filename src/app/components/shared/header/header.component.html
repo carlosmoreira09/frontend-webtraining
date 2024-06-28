@@ -3,23 +3,21 @@
     <div class="content-start ml-4 my-auto col-span-1">
       <a class="space-x-3 rtl:space-x-reverse" routerLink="/home">
         <img alt="Web Training Logo"
-             class="h-12 rounded-full"
+             class="h-8 rounded-full"
              src="../../../../assets/img/banner.png"
         />
       </a>
     </div>
     <div class="place-self-center col-span-1">
-      <p class="text-3xl tracking-widest font-bold text-blue-400">WEB<strong
-        class="text-2xl overline font-semibold whitespace-nowrap text-white">PERFORMANCE</strong></p>
+      <p class="text-lg md:text-2xl tracking-widest font-bold text-blue-400">WEB<strong
+        class="text-lg md:text-2xl overline font-semibold whitespace-nowrap text-white">PERFORMANCE</strong></p>
     </div>
     <div class="col-span-1 place-self-end my-auto">
       <div class="flex flew-row mr-5 mt-2">
-        <p
-          class="text-lg text-white mr-5 my-auto"> {{ loggedUser.userType === 'client' ? 'Professor: ' : 'Aluno: ' }} {{ loggedUser.fullName }}</p>
-        <img (click)="logout()" alt="" class="hover:cursor-pointer h-12 rounded-2xl" src="assets/img/logout2.png"/>
+        <p class="hidden sm:flex text-md text-white mr-5 my-auto"> {{ loggedUser.userType === 'client' ? 'Professor: ' : 'Aluno: ' }} {{ loggedUser.fullName.split(' ')[0] }}</p>
+        <img (click)="logout()" alt="" class="hover:cursor-pointer h-12 rounded-xl" src="assets/img/logout2.png"/>
       </div>
     </div>
 
   </div>
 </nav>
-
