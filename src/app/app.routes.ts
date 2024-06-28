@@ -7,9 +7,9 @@ import {AdminGuard} from "./guards/admin.guard";
 import {ErrorComponent} from "./components/views/public/404/error404.component";
 import {ErrorAuthorizeComponent} from "./components/views/public/401/error401.component";
 import {AuthComponent} from "./components/views/auth/auth.component";
-import {RegisterComponent} from "./components/views/register/register.component";
+import {RegisterComponent} from "./components/admin/register/register.component";
 import {ClientGuard} from "./guards/client.guard";
-import {NewUserComponent} from "./components/views/register/user-register/user-register.component";
+import {NewUserComponent} from "./components/admin/register/user-register/user-register.component";
 
 
 export const routes: Routes = [
