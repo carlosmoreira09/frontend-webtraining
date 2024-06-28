@@ -12,7 +12,7 @@ import {initFlowbite} from "flowbite";
     RouterLink,
     RouterLinkActive
   ],
-  templateUrl: './menu.component.html',
+  templateUrl: './menu2.component.html',
   styleUrl: './menu.component.css',
   providers: []
 })
@@ -26,5 +26,6 @@ export class MenuComponent implements OnInit {
       initFlowbite();
     }
   }
+
 
 }
