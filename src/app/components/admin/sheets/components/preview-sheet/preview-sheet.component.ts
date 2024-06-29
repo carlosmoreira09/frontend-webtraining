@@ -60,15 +60,15 @@ export class PreviewSheetComponent implements OnInit {
 
   setClass() {
     if (this.sheetB.length === 0) {
-      return 'p-2 grid grid-rows-1 grid-cols-1 w-full'
+      return 'p-2 grid grid-rows-1 grid-cols-1 w-full md:grid-rows-1 md:grid-cols-1'
     }
     if (this.sheetC.length === 0) {
-      return 'p-2 grid grid-rows-1 grid-cols-2 w-full'
+      return 'p-2 grid grid-rows-2 grid-cols-1 w-full md:grid-rows-1 md:grid-cols-2'
     }
     if (this.sheetD.length === 0) {
-      return 'p-2 grid grid-rows-1 grid-cols-3 w-full'
+      return 'p-2 grid grid-rows-3 grid-cols-1 md:grid-rows-1 w-full xl:grid-cols-3'
     } else {
-      return 'p-2 grid grid-rows-1 grid-cols-4 w-full'
+      return 'p-2 grid grid-rows-4 grid-cols-1 md:grid-rows-1 w-full xl:grid-cols-4'
 
     }
   }
