@@ -1,14 +1,16 @@
 <div class="p-4">
-  <div class="grid grid-cols-3 gap-4 mb-4">
-    <div>
-      <app-card-athlete [title]="titleAds1"></app-card-athlete>
-    </div>
-    <div>
-      <app-card-athlete [title]="titleAds2"></app-card-athlete>
-    </div>
-    <div>
-      <app-card-athlete [title]="titleAds3"></app-card-athlete>
-    </div>
+  <div class="grid grid-cols-1">
+      <p-carousel
+        [value]="partnerships"
+        [numVisible]="1"
+        [numScroll]="1"
+        [responsiveOptions]="responsiveOptions"
+        autoplayInterval="3000">
+        <ng-template let-partnership pTemplate="item">
+          <app-card-athlete [imgSrc]="partnership.imgSrc" [alt]="partnership.alt" [width]="partnership.width" [height]="partnership.height"></app-card-athlete>
+        </ng-template>
+      </p-carousel>
+
   </div>
 
   <div class="relative overflow-x-auto shadow-md sm:rounded-lg">

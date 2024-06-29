@@ -3,19 +3,24 @@ import {FormBuilder, ReactiveFormsModule, UntypedFormGroup, Validators} from "@a
 import {ClientsModel} from "../../../models/clients.model";
 import {AthletesService} from "../../../service/athletes.service";
 import {ModalAtletaComponent} from "./components/modal-create/modal-athlete.component";
-import {CommonModule} from "@angular/common";
+import {CommonModule, NgOptimizedImage} from "@angular/common";
 import {DialogModule} from "primeng/dialog";
 import {RouterLink} from "@angular/router";
 import {ConfirmationService, MessageService} from "primeng/api";
 import {ConfirmDialogModule} from "primeng/confirmdialog";
 import {ToastModule} from "primeng/toast";
 import {ReturnMessage} from "../../../models/exercise.model";
-import {CardAthleteComponent} from "./components/card-athlete/card-athlete.component";
+import {CardPartnershipComponent} from "./components/card-partnership/card-partnership.component";
 import {DockModule} from "primeng/dock";
 import {TooltipModule} from "primeng/tooltip";
 import {SheetsModel} from "../../../models/sheets.model";
 import {SheetsService} from "../../../service/sheets.service";
 import {PreviewSheetComponent} from "../sheets/components/preview-sheet/preview-sheet.component";
+import {GalleriaModule} from "primeng/galleria";
+import {CheckboxModule} from "primeng/checkbox";
+import {RadioButtonModule} from "primeng/radiobutton";
+import {PaginatorModule} from "primeng/paginator";
+import {CarouselModule} from "primeng/carousel";
 
 @Component({
   selector: 'app-athlete',
@@ -28,10 +33,16 @@ import {PreviewSheetComponent} from "../sheets/components/preview-sheet/preview-
     RouterLink,
     ConfirmDialogModule,
     ToastModule,
-    CardAthleteComponent,
+    CardPartnershipComponent,
     DockModule,
     TooltipModule,
     PreviewSheetComponent,
+    GalleriaModule,
+    CheckboxModule,
+    RadioButtonModule,
+    PaginatorModule,
+    NgOptimizedImage,
+    CarouselModule,
 
   ],
   templateUrl: './athlete.component.html',
@@ -48,7 +59,45 @@ export class AtletasComponent implements OnInit {
   listSheet: SheetsModel[];
   id_sheet: number | null;
   id_client: number | null;
+  images: any[] | undefined;
 
+  position: string = 'bottom';
+
+  showIndicatorsOnItem: boolean = false;
+  positionOptions = [
+    {
+      label: 'Bottom',
+      value: 'bottom'
+    },
+    {
+      label: 'Top',
+      value: 'top'
+    },
+    {
+      label: 'Left',
+      value: 'left'
+    },
+    {
+      label: 'Right',
+      value: 'right'
+    }
+  ];
+
+  responsiveOptions: any[] = [
+    {
+      breakpoint: '1024px',
+      numVisible: 5
+    },
+    {
+      breakpoint: '768px',
+      numVisible: 3
+    },
+    {
+      breakpoint: '560px',
+      numVisible: 1
+    }
+  ];
+  partnerships: any = []
   constructor(private athleteService: AthletesService,
               private confirmationService: ConfirmationService,
               private messageService: MessageService,
@@ -60,9 +109,25 @@ export class AtletasComponent implements OnInit {
   ngOnInit() {
     this.listAllUsers();
     this.initFormSheet();
-    this.titleAds1 = 'Parceria 1'
-    this.titleAds2 = 'Parceria 2'
-    this.titleAds3 = 'Parceria 3'
+    this.partnerships = [ {
+      imgSrc: "assets/img/ramonxp.png",
+      alt: 'Ramon Dias XP',
+      width: 700,
+      height: 250,
+    },
+      {
+        imgSrc: 'assets/img/guinutri.png',
+        alt: 'Guilherme Morais Nutricionista',
+        width: 700,
+        height: 230,
+      },
+      {
+        imgSrc: 'assets/img/bodyfitness.png',
+        alt: 'BodyFitness Academia',
+        width: 900,
+        height: 250,
+      }
+    ];
 
   }
 
@@ -70,6 +135,16 @@ export class AtletasComponent implements OnInit {
     this.formAddSheet = this.formBuilder.group({
       id_sheet: ['', Validators.required],
     });
+    this.images = [{
+      itemImageSrc: './assets/img/ramonxp.png',
+      alt: 'Description for Image 1',
+      title: 'Title 1'
+    },
+      {
+        itemImageSrc: './assets/img/guinutri.png',
+        alt: 'Description for Image 1',
+        title: 'Title 1'
+      }];
   }
 
   listAllUsers() {
