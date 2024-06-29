@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {NgClass, NgIf, NgOptimizedImage} from "@angular/common";
 import {ClientDTO} from "../../../models/auth.model";
-import {StorageService} from "../../../service/storage.service";
+import {StorageService} from "../../../service/storage/storage.service";
 import {Router, RouterLink} from "@angular/router";
 import {AuthComponent} from "../../views/auth/auth.component";
 

@@ -6,7 +6,7 @@ import {MessageService, SharedModule} from "primeng/api";
 import {ExerciseModel, ReturnMessage} from "../../../../../models/exercise.model";
 import {DropdownModule} from "primeng/dropdown";
 import {ActivatedRoute} from "@angular/router";
-import {ExercisesService} from "../../../../../service/exercises.service";
+import {ExercisesService} from "../../../../../service/exercises/exercises.service";
 import {ExercisesComponent} from "../../exercises.component";
 import {MessagesModule} from "primeng/messages";
 import {ToastModule} from "primeng/toast";
@@ -31,7 +31,7 @@ import {MessageModule} from "primeng/message";
   styleUrl: './modal-exercises.component.css',
   providers: [MessageService]
 })
-export class ModalExercisesComponent implements AfterViewInit {
+export class ModalExercisesComponent {
   @ViewChild('openDialog')
   dialog: ElementRef
 
@@ -49,9 +49,6 @@ export class ModalExercisesComponent implements AfterViewInit {
               private exerciseComponent: ExercisesComponent) {
   }
 
-  ngAfterViewInit() {
-
-  }
 
   openDialogCreate() {
     this.initNewControlForm();

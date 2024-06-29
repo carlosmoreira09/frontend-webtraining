@@ -1,10 +1,10 @@
 import {Injectable} from '@angular/core';
 import {HttpClient, HttpHeaders} from "@angular/common/http";
-import {AuthDTO, AuthPayload, AuthRoles, ClientDTO} from "../models/auth.model";
-import {StorageService} from "./storage.service";
+import {AuthDTO, AuthPayload, AuthRoles, ClientDTO} from "../../models/auth.model";
+import {StorageService} from "../storage/storage.service";
 import {jwtDecode} from "jwt-decode";
-import {ReturnMessage} from "../models/exercise.model";
-import {environment} from "../../environments/environment";
+import {ReturnMessage} from "../../models/exercise.model";
+import {environment} from "../../../environments/environment";
 
 @Injectable({
   providedIn: 'root'

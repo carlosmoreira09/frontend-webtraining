@@ -1,5 +1,5 @@
 import {AfterViewInit, Component, ElementRef, ViewChild} from '@angular/core';
-import {AthletesService} from "../../../../../service/athletes.service";
+import {AthletesService} from "../../../../../service/athletes/athletes.service";
 import {FormBuilder, ReactiveFormsModule, UntypedFormGroup, Validators} from "@angular/forms";
 import {ClientsModel} from "../../../../../models/clients.model";
 import {DialogModule} from "primeng/dialog";

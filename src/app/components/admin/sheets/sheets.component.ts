@@ -4,7 +4,7 @@ import {ModalExercisesComponent} from "../exercises/components/modal-exercises/m
 import {NgForOf} from "@angular/common";
 import {ToastModule} from "primeng/toast";
 import {ConfirmationService, MessageService} from "primeng/api";
-import {SheetsService} from "../../../service/sheets.service";
+import {SheetsService} from "../../../service/sheets/sheets.service";
 import {SheetsModel} from "../../../models/sheets.model";
 import {ModalSheetComponent} from "./components/modal-sheet/modal-sheet.component";
 import {initFlowbite} from "flowbite";

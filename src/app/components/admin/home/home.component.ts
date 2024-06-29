@@ -3,7 +3,7 @@ import {CardHomeComponent} from "./components/card-home.component";
 import {RouterLink} from "@angular/router";
 import {isPlatformBrowser, NgClass} from "@angular/common";
 import {initFlowbite} from "flowbite";
-import {StorageService} from "../../../service/storage.service";
+import {StorageService} from "../../../service/storage/storage.service";
 import {MessageService} from "primeng/api";
 import {ToastModule} from "primeng/toast";
 import {AuthRoles} from "../../../models/auth.model";

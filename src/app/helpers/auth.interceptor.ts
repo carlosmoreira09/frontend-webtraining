@@ -2,7 +2,7 @@ import {HttpErrorResponse, HttpInterceptorFn} from '@angular/common/http';
 import {catchError, throwError} from "rxjs";
 import {inject} from "@angular/core";
 import {Router} from "@angular/router";
-import {StorageService} from "../service/storage.service";
+import {StorageService} from "../service/storage/storage.service";
 import {AuthRoles} from "../models/auth.model";
 import {jwtDecode} from "jwt-decode";
 

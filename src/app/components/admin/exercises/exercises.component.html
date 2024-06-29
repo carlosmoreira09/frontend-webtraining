@@ -1,5 +1,6 @@
 <p-toast class="bg-green bg-green-500 dark:bg-green-500 text-white rounded" key="tc" position="center"></p-toast>
-
+<p-toast position="center"/>
+<p-confirmDialog/>
 <div class="p-1">
   <div class="grid grid-cols-1 grid-rows-1 justify-items-center items-center h-24 rounded bg-gray-100 dark:bg-gray-800">
     <p
@@ -58,7 +59,13 @@
                 </div>
               </td>
 
-              <td class="px-6 py-4">
+              <td class="flex px-6 py-4">
+                <button type="button" (click)="openDialogAddVideo(exercise)"
+                        class="font-medium mr-1 text-blue-600 dark:text-blue-500 hover:underline">
+                  <i class="fas fa-video" style='font-size:1rem'></i>
+
+                </button>
+
                 <!-- Modal toggle -->
                 <button type="button" (click)="modal.exerciseInfo = exercise; modal.openDialogEdit();"
                         class="font-medium text-blue-600 dark:text-blue-500 hover:underline">
@@ -69,8 +76,6 @@
                   </svg>
 
                 </button>
-                <p-toast position="center"/>
-                <p-confirmDialog/>
                 <button type="button" (click)="confirm($event, exercise.id_exercise)"
                         class="font-medium ml-1 text-blue-600 dark:text-blue-500 hover:underline">
                   <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 26 26" stroke-width="1.5"
@@ -90,3 +95,30 @@
     </div>
   </div>
 </div>
+<p-dialog [(visible)]="dialogAddVideo" [style]="{ width: '50rem' }" header="Adicionar Video">
+  <form [formGroup]="formAddvideo">
+    <div class="grid grid-rows-1 grid-flow-row gap-1">
+        <fieldset class="p-fieldset p-2">
+          <legend>Nome do video:</legend>
+          <input class="shadow-sm h-8 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                 formControlName="videoName" type="text">
+        </fieldset>
+        <fieldset class="p-fieldset p-2">
+        <legend>Carregue o video:</legend>
+        <input (change)="selectFile($event)" class="shadow-md h-16 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-3.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+               formControlName="inputVideo" type="file" name="inputVideo" accept="video/mp4, video/mov">
+      </fieldset>
+    </div>
+    <div class="flex justify-center mt-3 gap-2">
+      <button (click)="saveAddVideo()"
+              class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+        Adicionar
+      </button>
+      <button (click)="cancelAddVideo()"
+              class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+        Cancelar
+      </button>
+
+    </div>
+  </form>
+</p-dialog>

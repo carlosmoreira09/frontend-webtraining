@@ -6,12 +6,12 @@ import {PaginatorModule} from "primeng/paginator";
 import {FormBuilder, ReactiveFormsModule, UntypedFormGroup, Validators} from "@angular/forms";
 import {MessageService} from "primeng/api";
 import {ToastModule} from "primeng/toast";
-import {ExercisesService} from "../../../../../service/exercises.service";
+import {ExercisesService} from "../../../../../service/exercises/exercises.service";
 import {ExerciseModel, ReturnMessage} from "../../../../../models/exercise.model";
 import {createNewSheet, Modalidade, SheetsModel} from "../../../../../models/sheets.model";
-import {SheetsService} from "../../../../../service/sheets.service";
+import {SheetsService} from "../../../../../service/sheets/sheets.service";
 import {SheetsComponent} from "../../sheets.component";
-import {AthletesService} from "../../../../../service/athletes.service";
+import {AthletesService} from "../../../../../service/athletes/athletes.service";
 import {ClientsModel} from "../../../../../models/clients.model";
 
 @Component({

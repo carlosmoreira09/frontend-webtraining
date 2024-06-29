@@ -1,8 +1,8 @@
 import {CanActivateFn, Router} from '@angular/router';
 
 import {inject} from "@angular/core";
-import {AuthService} from "../service/auth.service";
-import {StorageService} from "../service/storage.service";
+import {AuthService} from "../service/auth/auth.service";
+import {StorageService} from "../service/storage/storage.service";
 
 export const AdminGuard: CanActivateFn = (route, state) => {
   const storageService: StorageService = inject(StorageService);

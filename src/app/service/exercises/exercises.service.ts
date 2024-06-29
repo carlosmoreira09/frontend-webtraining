@@ -1,9 +1,9 @@
 import {Injectable, Self} from '@angular/core';
 import {HttpClient, HttpHeaders} from "@angular/common/http";
-import {ExerciseModel, ReturnMessage} from "../models/exercise.model";
+import {ExerciseModel, ReturnMessage} from "../../models/exercise.model";
 import {Observable} from "rxjs";
-import {AuthService} from "./auth.service";
-import {environment} from "../../environments/environment";
+import {AuthService} from "../auth/auth.service";
+import {environment} from "../../../environments/environment";
 
 @Injectable({
   providedIn: 'root'
@@ -24,16 +24,14 @@ export class ExercisesService {
     });
   }
 
-  getCategories() {
-    return [
-      {name: 'Abdômen', code: 'abdomen'},
-      {name: 'Costas', code: 'costas'},
-      {name: 'Peito', code: 'peito'},
-      {name: 'Bíceps/Ante-braço', code: 'braco'},
-      {name: 'Quadríceps', code: 'perna'},
-      {name: 'Posterior', code: 'posterior'},
-      {name: 'Fortalecimento', code: 'fortalecimento'}
-    ];
+  uploadVideo(file: File, id_exercise: number, videoName: string): Observable<ReturnMessage> {
+    const formData: FormData = new FormData();
+    formData.append('file', file);
+    formData.append('videoName', videoName);
+    formData.append('id_exercise', id_exercise.toString());
+
+
+    return this.httpClient.post<ReturnMessage>(this.baseUrl + "exercises/uploadVideo", formData);
   }
 
   updateExercise(updateExercise: ExerciseModel): Observable<ReturnMessage> {

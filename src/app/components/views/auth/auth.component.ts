@@ -6,8 +6,8 @@ import {MessageService} from "primeng/api";
 import {ToastModule} from "primeng/toast";
 import {HttpClient} from "@angular/common/http";
 import {jwtDecode} from "jwt-decode";
-import {StorageService} from "../../../service/storage.service";
-import {AuthService} from "../../../service/auth.service";
+import {StorageService} from "../../../service/storage/storage.service";
+import {AuthService} from "../../../service/auth/auth.service";
 import {AuthDTO, AuthPayload, AuthRoles, ClientDTO} from "../../../models/auth.model";
 
 @Component({

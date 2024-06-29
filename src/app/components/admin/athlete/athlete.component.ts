@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {FormBuilder, ReactiveFormsModule, UntypedFormGroup, Validators} from "@angular/forms";
 import {ClientsModel} from "../../../models/clients.model";
-import {AthletesService} from "../../../service/athletes.service";
+import {AthletesService} from "../../../service/athletes/athletes.service";
 import {ModalAtletaComponent} from "./components/modal-create/modal-athlete.component";
 import {CommonModule, NgOptimizedImage} from "@angular/common";
 import {DialogModule} from "primeng/dialog";
@@ -14,7 +14,7 @@ import {CardPartnershipComponent} from "./components/card-partnership/card-partn
 import {DockModule} from "primeng/dock";
 import {TooltipModule} from "primeng/tooltip";
 import {SheetsModel} from "../../../models/sheets.model";
-import {SheetsService} from "../../../service/sheets.service";
+import {SheetsService} from "../../../service/sheets/sheets.service";
 import {PreviewSheetComponent} from "../sheets/components/preview-sheet/preview-sheet.component";
 import {GalleriaModule} from "primeng/galleria";
 import {CheckboxModule} from "primeng/checkbox";
@@ -51,38 +51,11 @@ import {CarouselModule} from "primeng/carousel";
 })
 export class AtletasComponent implements OnInit {
   atletas: ClientsModel[];
-  titleAds1: string;
-  titleAds2: string;
-  titleAds3: string;
   dialogAddSheet: boolean = false;
   formAddSheet: UntypedFormGroup;
   listSheet: SheetsModel[];
   id_sheet: number | null;
   id_client: number | null;
-  images: any[] | undefined;
-
-  position: string = 'bottom';
-
-  showIndicatorsOnItem: boolean = false;
-  positionOptions = [
-    {
-      label: 'Bottom',
-      value: 'bottom'
-    },
-    {
-      label: 'Top',
-      value: 'top'
-    },
-    {
-      label: 'Left',
-      value: 'left'
-    },
-    {
-      label: 'Right',
-      value: 'right'
-    }
-  ];
-
   responsiveOptions: any[] = [
     {
       breakpoint: '1024px',
@@ -107,9 +80,7 @@ export class AtletasComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.listAllUsers();
-    this.initFormSheet();
-    this.partnerships = [ {
+    this.partnerships = [{
       imgSrc: "assets/img/ramonxp.png",
       alt: 'Ramon Dias XP',
       width: 700,
@@ -128,23 +99,14 @@ export class AtletasComponent implements OnInit {
         height: 250,
       }
     ];
-
+    this.listAllUsers();
+    this.initFormSheet();
   }
 
   initFormSheet() {
     this.formAddSheet = this.formBuilder.group({
       id_sheet: ['', Validators.required],
     });
-    this.images = [{
-      itemImageSrc: './assets/img/ramonxp.png',
-      alt: 'Description for Image 1',
-      title: 'Title 1'
-    },
-      {
-        itemImageSrc: './assets/img/guinutri.png',
-        alt: 'Description for Image 1',
-        title: 'Title 1'
-      }];
   }
 
   listAllUsers() {
@@ -163,7 +125,6 @@ export class AtletasComponent implements OnInit {
       detail: detail,
     })
   }
-
   addSheet(id_client: number) {
     this.sheetsService.listSheets().subscribe({
       next: (sheets: SheetsModel[]) => {
@@ -187,7 +148,7 @@ export class AtletasComponent implements OnInit {
       return this.addMessage('error', 'Erro ao carregar dados do cliente.:');
     }
     this.athleteService.saveAddSheetAthlete(this.id_sheet, this.id_client).subscribe({
-      next: (value) => {
+      next: () => {
       },
       error: (err: any) => {
         this.addMessage('error', 'Erro ao Carregar Planilhas:' + err);

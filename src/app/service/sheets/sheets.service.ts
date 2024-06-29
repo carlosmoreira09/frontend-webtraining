@@ -1,12 +1,12 @@
 import {Injectable, Self} from '@angular/core';
 import {HttpClient, HttpHeaders} from "@angular/common/http";
-import {createNewSheet, SheetsModel} from "../models/sheets.model";
-import {ReturnMessage} from "../models/exercise.model";
+import {createNewSheet, SheetsModel} from "../../models/sheets.model";
+import {ReturnMessage} from "../../models/exercise.model";
 import {Observable} from "rxjs";
-import {AuthRoles} from "../models/auth.model";
+import {AuthRoles} from "../../models/auth.model";
 import {jwtDecode} from "jwt-decode";
-import {StorageService} from "./storage.service";
-import {environment} from "../../environments/environment";
+import {StorageService} from "../storage/storage.service";
+import {environment} from "../../../environments/environment";
 
 @Injectable({
   providedIn: 'root'
