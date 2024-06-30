@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {NgForOf, NgOptimizedImage} from "@angular/common";
+import {NgForOf, NgIf, NgOptimizedImage} from "@angular/common";
 import {ExerciseModel, ReturnMessage} from "../../../models/exercise.model";
 import {ExercisesService} from "../../../service/exercises/exercises.service";
 import {ActivatedRoute, RouterLink} from "@angular/router";
@@ -15,17 +15,18 @@ import {FormBuilder, ReactiveFormsModule, UntypedFormGroup, Validators} from "@a
 @Component({
   selector: 'app-exercicios',
   standalone: true,
-    imports: [
-        NgForOf,
-        ModalExercisesComponent,
-        MessagesModule,
-        ToastModule,
-        ConfirmDialogModule,
-        NgOptimizedImage,
-        RouterLink,
-        DialogModule,
-        ReactiveFormsModule
-    ],
+  imports: [
+    NgForOf,
+    ModalExercisesComponent,
+    MessagesModule,
+    ToastModule,
+    ConfirmDialogModule,
+    NgOptimizedImage,
+    RouterLink,
+    DialogModule,
+    ReactiveFormsModule,
+    NgIf
+  ],
   templateUrl: './exercises.component.html',
   styleUrl: './exercises.component.css',
   providers: [MessageService, ConfirmationService]
@@ -37,6 +38,7 @@ export class ExercisesComponent implements OnInit {
   formAddvideo: UntypedFormGroup;
   currentFile?: File;
   exercise: ExerciseModel;
+  videoname: string;
   constructor(private exerciseService: ExercisesService,
               private router: ActivatedRoute,
               private messageService: MessageService,
@@ -47,12 +49,15 @@ export class ExercisesComponent implements OnInit {
 
   ngOnInit() {
     this.listExercisesByType();
+    this.initForm();
+  }
+
+  initForm() {
     this.formAddvideo = this.formBuilder.group({
       videoName: ['',Validators.required],
       inputVideo: ['',Validators.required],
     });
   }
-
 
   confirm(event: Event, id: number | undefined) {
     this.confirmationService.confirm({
@@ -90,6 +95,9 @@ export class ExercisesComponent implements OnInit {
     this.currentFile = event.target.files.item(0);
   }
   saveAddVideo() {
+    if(this.formAddvideo.invalid) {
+      return this.addMessage('error','Verifique Formulario');
+    }
     let returnMessage: ReturnMessage;
     if (this.currentFile && this.exercise.id_exercise) {
       const videoName = this.getField('videoName')?.value;
@@ -97,12 +105,14 @@ export class ExercisesComponent implements OnInit {
         next: value => {
           returnMessage = value;
         },
-        error: () => {
-            this.addMessage('error', 'Não foi Possível Salvar o video')
+        error: (err) => {
+            this.addMessage('error', 'Erro: '+err.error.message)
         },
         complete: () => {
           this.dialogAddVideo = false;
           this.addMessage('success', returnMessage.message)
+          this.currentFile = undefined;
+          this.initForm();
         },
       })
     }
@@ -110,6 +120,10 @@ export class ExercisesComponent implements OnInit {
   openDialogAddVideo(exercise: ExerciseModel) {
     this.exercise = exercise;
     this.dialogAddVideo = true;
+    if(exercise?.videoName) {
+      this.videoname = exercise.videoName.split('__')[2];
+    }
+    console.log(exercise)
   }
 
   cancelAddVideo() {

@@ -4,6 +4,7 @@ export interface ExerciseModel {
   exercise_desc?: string;
   exercise_type?: string;
   repetition?: string;
+  videoName?: string;
 }
 
 export interface ReturnMessage {

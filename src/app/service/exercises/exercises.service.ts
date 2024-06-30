@@ -24,14 +24,18 @@ export class ExercisesService {
     });
   }
 
-  uploadVideo(file: File, id_exercise: number, videoName: string): Observable<ReturnMessage> {
+  uploadVideo(file: File, id_exercise: number, videoName: string): Observable<any> {
+    const id_user = this.authService.getUserId();
+    const fileName = id_exercise + "__" + videoName +"__" + id_user;
+    const fileExtension:string | undefined = file.name.split('?')[0].split('.').pop();
+
     const formData: FormData = new FormData();
-    formData.append('file', file);
+    formData.append('file', file, fileName+"."+fileExtension);
     formData.append('videoName', videoName);
     formData.append('id_exercise', id_exercise.toString());
+    formData.append('fileName', fileName);
 
-
-    return this.httpClient.post<ReturnMessage>(this.baseUrl + "exercises/uploadVideo", formData);
+    return this.httpClient.post<any>(this.baseUrl + "exercises/uploadVideo", formData);
   }
 
   updateExercise(updateExercise: ExerciseModel): Observable<ReturnMessage> {
