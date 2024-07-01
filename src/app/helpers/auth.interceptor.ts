@@ -1,4 +1,4 @@
-import {HttpErrorResponse, HttpInterceptorFn} from '@angular/common/http';
+import {HttpErrorResponse, HttpHeaders, HttpInterceptorFn} from '@angular/common/http';
 import {catchError, throwError} from "rxjs";
 import {inject} from "@angular/core";
 import {Router} from "@angular/router";
@@ -12,7 +12,12 @@ export const AuthInterceptor: HttpInterceptorFn = (req, next) => {
   const storageService = inject(StorageService);
   const auth = storageService.getUser();
   const authLocal = storageService.getUserLocalStorage()
-
+  if (!req.headers.has('enctype')) {
+    req.headers.set('Content-Type', 'application/json');
+  }
+  if (req.headers.has('enctype')) {
+    req.headers.delete('Content-Type');
+  }
   if (!auth) {
     router.navigate(['auth']).then(
       () => {

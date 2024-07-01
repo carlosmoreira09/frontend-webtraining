@@ -95,9 +95,11 @@ export class ExercisesComponent implements OnInit {
   }
   selectFile(event: Event): void {
     const input = event.target as HTMLInputElement;
-    if (input.files && input.files.length > 0) {
-      this.currentFile = input.files[0];
-    }
+     if(input.files) {
+       this.currentFile = input.files[0];
+     } else {
+       this.addMessage('error','Erro ao Carregar Arquivo');
+     }
   }
   saveAddVideo() {
     if(this.formAddvideo.invalid) {

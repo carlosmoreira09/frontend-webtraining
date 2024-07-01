@@ -49,11 +49,10 @@ export class AuthService {
     headers = new HttpHeaders({
       'Content-Type': 'application/json',
       'Authorization': 'Bearer ' + token,
-      'id_user': id_user
     });
     let options: { headers: HttpHeaders };
     options = {headers: headers};
-    return this.httpClient.get<ClientDTO>(this.baseUrl + "auth/profile",
+    return this.httpClient.get<ClientDTO>(this.baseUrl + "auth/profile/" + id_user,
       options
     );
   }

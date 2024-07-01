@@ -31,7 +31,9 @@ export class ExercisesService {
 
     const formData: FormData = new FormData();
     formData.append('file', file, fileName+"."+fileExtension);
-    return this.httpClient.post<any>(this.baseUrl + "exercises/uploadVideo", formData);
+    let headers = new HttpHeaders();
+    headers = headers.append('enctype', 'multipart/form-data');
+    return this.httpClient.post<any>(this.baseUrl + "exercises/uploadVideo", formData, { headers: headers });
   }
 
   updateExercise(updateExercise: ExerciseModel): Observable<ReturnMessage> {

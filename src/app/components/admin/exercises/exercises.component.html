@@ -98,7 +98,7 @@
 <p-dialog [(visible)]="dialogAddVideo" [style]="{ width: '50rem' }" header="Adicionar Video">
   <p-progressBar mode="indeterminate" [style]="{ height: '6px' }" *ngIf="uploadingFile" />
   <hr>
-  <form [formGroup]="formAddvideo" enctype="multipart/form-data">
+  <form [formGroup]="formAddvideo">
     <div class="grid grid-rows-1 grid-flow-row gap-1">
         <fieldset class="p-fieldset p-2">
           <legend>Nome do video:</legend>
@@ -108,7 +108,7 @@
         <fieldset class="p-fieldset p-2">
         <legend>Carregue o video:</legend>
         <input (change)="selectFile($event)" class="shadow-md h-16 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-3.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-               formControlName="inputVideo" type="file" name="inputVideo" accept="video/mp4, video/mov">
+               formControlName="inputVideo" type="file" name="file" id="file" accept="video/*">
       </fieldset>
       <fieldset *ngIf="exercise?.videoName" class="p-fieldset p-2">
         <legend>Video Atual:</legend>

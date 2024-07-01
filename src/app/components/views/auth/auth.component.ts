@@ -101,6 +101,7 @@ export class AuthComponent implements OnInit {
           this.authService.home(payload).subscribe({
               next: (res: ClientDTO) => {
                 this.user = res;
+
               },
               complete: () => {
                 this.storageService.saveItem('user', this.user);
