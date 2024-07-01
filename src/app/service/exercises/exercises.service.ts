@@ -31,10 +31,6 @@ export class ExercisesService {
 
     const formData: FormData = new FormData();
     formData.append('file', file, fileName+"."+fileExtension);
-    formData.append('videoName', videoName);
-    formData.append('id_exercise', id_exercise.toString());
-    formData.append('fileName', fileName);
-
     return this.httpClient.post<any>(this.baseUrl + "exercises/uploadVideo", formData);
   }
 

@@ -8,9 +8,9 @@ import {MessagesModule} from "primeng/messages";
 import {ConfirmationService, MessageService} from "primeng/api";
 import {ToastModule} from "primeng/toast";
 import {ConfirmDialogModule} from "primeng/confirmdialog";
-import {AuthService} from "../../../service/auth/auth.service";
 import {DialogModule} from "primeng/dialog";
 import {FormBuilder, ReactiveFormsModule, UntypedFormGroup, Validators} from "@angular/forms";
+import {ProgressBarModule} from "primeng/progressbar";
 
 @Component({
   selector: 'app-exercicios',
@@ -25,7 +25,8 @@ import {FormBuilder, ReactiveFormsModule, UntypedFormGroup, Validators} from "@a
     RouterLink,
     DialogModule,
     ReactiveFormsModule,
-    NgIf
+    NgIf,
+    ProgressBarModule
   ],
   templateUrl: './exercises.component.html',
   styleUrl: './exercises.component.css',
@@ -39,6 +40,7 @@ export class ExercisesComponent implements OnInit {
   currentFile?: File;
   exercise: ExerciseModel;
   videoname: string;
+  uploadingFile: boolean = false;
   constructor(private exerciseService: ExercisesService,
               private router: ActivatedRoute,
               private messageService: MessageService,
@@ -91,13 +93,17 @@ export class ExercisesComponent implements OnInit {
   deleteExercise(id: number | undefined) {
     return this.exerciseService.deleteExercise(id);
   }
-  selectFile(event: any): void {
-    this.currentFile = event.target.files.item(0);
+  selectFile(event: Event): void {
+    const input = event.target as HTMLInputElement;
+    if (input.files && input.files.length > 0) {
+      this.currentFile = input.files[0];
+    }
   }
   saveAddVideo() {
     if(this.formAddvideo.invalid) {
       return this.addMessage('error','Verifique Formulario');
     }
+    this.uploadingFile = true;
     let returnMessage: ReturnMessage;
     if (this.currentFile && this.exercise.id_exercise) {
       const videoName = this.getField('videoName')?.value;
@@ -106,13 +112,16 @@ export class ExercisesComponent implements OnInit {
           returnMessage = value;
         },
         error: (err) => {
-            this.addMessage('error', 'Erro: '+err.error.message)
+            this.addMessage('error', 'Erro: '+err.error.message);
+            this.currentFile = undefined;
         },
         complete: () => {
+          this.uploadingFile = false;
           this.dialogAddVideo = false;
           this.addMessage('success', returnMessage.message)
           this.currentFile = undefined;
           this.initForm();
+          this.listExercisesByType()
         },
       })
     }
@@ -121,9 +130,8 @@ export class ExercisesComponent implements OnInit {
     this.exercise = exercise;
     this.dialogAddVideo = true;
     if(exercise?.videoName) {
-      this.videoname = exercise.videoName.split('__')[2];
+      this.videoname = exercise.videoName.split('__')[2].replace('-', ' ');
     }
-    console.log(exercise)
   }
 
   cancelAddVideo() {
