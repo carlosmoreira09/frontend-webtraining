@@ -95,7 +95,7 @@
     </div>
   </div>
 </div>
-<p-dialog [(visible)]="dialogAddVideo" [style]="{ width: '50rem' }" header="Adicionar Video">
+<p-dialog (onHide)="cancelAddVideo()" [(visible)]="dialogAddVideo" [style]="{ width: '50rem' }" header="Adicionar Video">
   <p-progressBar mode="indeterminate" [style]="{ height: '6px' }" *ngIf="uploadingFile" />
   <hr>
   <form [formGroup]="formAddvideo">
@@ -113,6 +113,10 @@
       <fieldset *ngIf="videoname" class="p-fieldset p-2">
         <legend>Video Atual:</legend>
         <p class="p-2 capitalize ml-2">{{ videoname }}</p>
+        <video width="320" height="240" controls>
+          <source [src]="videoSrc" type="video/mp4">
+          Your browser does not support the video tag.
+        </video>
       </fieldset>
     </div>
     <div class="flex justify-center mt-3 gap-2">

@@ -11,6 +11,7 @@ import {ConfirmDialogModule} from "primeng/confirmdialog";
 import {DialogModule} from "primeng/dialog";
 import {FormBuilder, ReactiveFormsModule, UntypedFormGroup, Validators} from "@angular/forms";
 import {ProgressBarModule} from "primeng/progressbar";
+import {environment} from "../../../../environments/environment";
 
 @Component({
   selector: 'app-exercicios',
@@ -41,6 +42,7 @@ export class ExercisesComponent implements OnInit {
   exercise: ExerciseModel;
   videoname?: string = undefined;
   uploadingFile: boolean = false;
+  videoSrc?: string;
   constructor(private exerciseService: ExercisesService,
               private router: ActivatedRoute,
               private messageService: MessageService,
@@ -121,6 +123,7 @@ export class ExercisesComponent implements OnInit {
           this.uploadingFile = false;
           this.dialogAddVideo = false;
           this.currentFile = undefined;
+          this.videoSrc = undefined;
           this.initForm();
           this.listExercisesByType();
           this.addMessage('success', returnMessage.message)
@@ -133,12 +136,15 @@ export class ExercisesComponent implements OnInit {
     this.dialogAddVideo = true;
     if(exercise?.videoName) {
       this.videoname = exercise.videoName.split('__')[2].replace('-', ' ');
+      this.videoSrc = environment.baseUrl + "media/"+exercise.videoName;
     }
   }
 
   cancelAddVideo() {
    this.currentFile = undefined;
    this.dialogAddVideo = false;
+   this.videoSrc = undefined;
+   this.videoname = undefined;
   }
 
   listExercisesByType() {
