@@ -39,7 +39,7 @@ export class ExercisesComponent implements OnInit {
   formAddvideo: UntypedFormGroup;
   currentFile?: File;
   exercise: ExerciseModel;
-  videoname: string;
+  videoname?: string = undefined;
   uploadingFile: boolean = false;
   constructor(private exerciseService: ExercisesService,
               private router: ActivatedRoute,
@@ -120,10 +120,10 @@ export class ExercisesComponent implements OnInit {
         complete: () => {
           this.uploadingFile = false;
           this.dialogAddVideo = false;
-          this.addMessage('success', returnMessage.message)
           this.currentFile = undefined;
           this.initForm();
-          this.listExercisesByType()
+          this.listExercisesByType();
+          this.addMessage('success', returnMessage.message)
         },
       })
     }
