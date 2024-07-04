@@ -26,6 +26,7 @@ export class AthletesService {
       {name: 'Abdomen', abbrev: 'abdomen'},
       {name: 'Posterior', abbrev: 'posterior'},
       {name: 'Quadriceps', abbrev: 'pernas'},
+      {name: 'Ombro', abbrev: 'ombro'},
       {name: 'Fortalecimento', abbrev: 'fortalecimento'},
     ];
   }

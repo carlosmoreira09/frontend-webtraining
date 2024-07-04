@@ -76,7 +76,6 @@ export class ExercisesComponent implements OnInit {
 
       accept: () => {
         this.deleteExercise(id);
-        this.listExercisesByType();
         this.addMessage('info', 'Exercicio Deletado')
       },
       reject: () => {
@@ -93,7 +92,13 @@ export class ExercisesComponent implements OnInit {
     })
   }
   deleteExercise(id: number | undefined) {
-    return this.exerciseService.deleteExercise(id);
+    return this.exerciseService.deleteExercise(id).subscribe(
+      {
+        complete: () => {
+          this.listExercisesByType();
+        }
+      }
+    );
   }
   selectFile(event: Event): void {
     const input = event.target as HTMLInputElement;
