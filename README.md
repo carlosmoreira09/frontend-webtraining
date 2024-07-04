@@ -38,7 +38,8 @@ The main objective of this application is to provide users with a practical and 
 | Frontend Releases | Estimated Date | Status  |
   |-------------------|----------------|---------|
 | Version           | Estimated Date | Status  |
-| 1.0               | 30th July      | In time |
+| 1.0               | 30th July      | Done    |
+| 2.0               | 30th August    | In time |
 
 | SubTasks - Frontend              | Estimated Date | Status  |
   |----------------------------------|----------------|---------|
@@ -48,7 +49,13 @@ The main objective of this application is to provide users with a practical and 
 | ExercicesPage                    | 30th May       | Done    |
 | ClientPage                       | 30th May       | Done    |
 | UserPage                         | 30th May       | Done    |
-| Integration Between UserXClient  | 5th June       | Ongoing |
-| Integration Between SheetXUser   | 10h June       | Waiting |
-| Integration Between SheetXClient | 15th June      | Waiting |
-  
+| Integration Between UserXClient  | 5th June       | Done    |
+| Integration Between SheetXUser   | 10h June       | Done    |
+| Integration Between SheetXClient | 15th June      | Done    |
+| Upload video to Exercise         | 02nd July      | Done    |
+| Preview Video                    | 03rd July      | Done    |
+| CRUD para view all user/admin    | 10th July      | Ongoing |
+| Change password for Client       | 12th July      | Ongoing |
+| Change password for user         | 13th July      | Ongoing |
+| View User(New Screen)            | 25th July      | Ongoing |
+
