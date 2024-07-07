@@ -100,6 +100,7 @@ export class ModalAtletaComponent implements AfterViewInit {
       this.errorMessage = 'Acrescente um caracter especial do tipo !@#$%^&* ';
       return false;
     }
+
     return {
       fullName: fullName,
       password: password,

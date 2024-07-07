@@ -7,6 +7,7 @@ import {StorageService} from "../storage/storage.service";
 import {Observable} from "rxjs";
 import {ReturnMessage} from "../../models/exercise.model";
 import {environment} from "../../../environments/environment";
+import {AuthService} from "../auth/auth.service";
 
 @Injectable({
   providedIn: 'root'
@@ -15,7 +16,8 @@ export class AthletesService {
 
   private baseUrl: string = environment.baseUrl;
 
-  constructor(@Self() private httpClient: HttpClient, private storageService: StorageService) {
+  constructor(@Self() private httpClient: HttpClient, private storageService: StorageService,
+              private authService: AuthService) {
   }
 
   getOptions() {
@@ -32,9 +34,8 @@ export class AthletesService {
   }
 
   listAllAthletas(): Observable<ClientsModel[]> {
-    const token = this.storageService.getUser();
-    const authRoles: AuthRoles = jwtDecode(token);
-    return this.httpClient.get<ClientsModel[]>(this.baseUrl + "clients/" + authRoles.id);
+    const id_user = this.authService.getUserId();
+    return this.httpClient.get<ClientsModel[]>(this.baseUrl + "clients/" + id_user);
   }
 
   saveAddSheetAthlete(id_sheet: number, id_client: number): Observable<ReturnMessage> {
@@ -53,8 +54,7 @@ export class AthletesService {
   }
 
   create(newClient: any): Observable<ReturnMessage> {
-    const token = this.storageService.getUser();
-    const authRoles: AuthRoles = jwtDecode(token);
-    return this.httpClient.post<ReturnMessage>(this.baseUrl + "clients", newClient, {headers: new HttpHeaders({'id_user': authRoles.id})});
+    const addClient = { ...newClient, id_user: this.authService.getUserId() };
+    return this.httpClient.post<ReturnMessage>(this.baseUrl + "clients", addClient);
   }
 }

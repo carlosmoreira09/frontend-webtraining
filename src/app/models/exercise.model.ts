@@ -1,4 +1,5 @@
 export interface ExerciseModel {
+  id_user?: number;
   id_exercise?: number;
   exercise?: string;
   exercise_desc?: string;
