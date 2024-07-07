@@ -1,9 +1,6 @@
 import {Injectable, Self} from '@angular/core';
 import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {ClientsModel} from "../../models/clients.model";
-import {AuthRoles} from "../../models/auth.model";
-import {jwtDecode} from "jwt-decode";
-import {StorageService} from "../storage/storage.service";
 import {Observable} from "rxjs";
 import {ReturnMessage} from "../../models/exercise.model";
 import {environment} from "../../../environments/environment";
@@ -16,7 +13,7 @@ export class AthletesService {
 
   private baseUrl: string = environment.baseUrl;
 
-  constructor(@Self() private httpClient: HttpClient, private storageService: StorageService,
+  constructor(@Self() private httpClient: HttpClient,
               private authService: AuthService) {
   }
 
