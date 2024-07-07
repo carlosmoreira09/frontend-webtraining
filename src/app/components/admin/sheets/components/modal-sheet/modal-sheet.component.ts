@@ -69,7 +69,7 @@ export class ModalSheetComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.modalidades = this.athleteService.getOptions();
+    this.modalidades = this.exerciseService.getOptions();
     this.initNewControlForm()
   }
 

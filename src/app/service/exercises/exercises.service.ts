@@ -16,6 +16,22 @@ export class ExercisesService {
               private authService: AuthService) {
   }
 
+  getOptions() {
+    return [
+      {name: 'Peito', abbrev: 'peito'},
+      {name: 'Biceps', abbrev: 'braco'},
+      {name: 'Tríceps', abbrev: 'triceps'},
+      {name: 'Trapézio', abbrev: 'trapezio'},
+      {name: 'Glúteo', abbrev: 'gluteo'},
+      {name: 'Costas', abbrev: 'costas'},
+      {name: 'Abdomen', abbrev: 'abdomen'},
+      {name: 'Posterior', abbrev: 'posterior'},
+      {name: 'Quadriceps', abbrev: 'pernas'},
+      {name: 'Ombro', abbrev: 'ombro'},
+      {name: 'Fortalecimento', abbrev: 'fortalecimento'}
+    ];
+  }
+
   listExerciseByType(type: string): Observable<ExerciseModel[]> {
     const id_user = this.authService.getUserId();
     const header = new HttpHeaders({'id_user': id_user})

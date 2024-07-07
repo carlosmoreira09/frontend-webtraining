@@ -17,18 +17,6 @@ export class AthletesService {
               private authService: AuthService) {
   }
 
-  getOptions() {
-    return [
-      {name: 'Peito', abbrev: 'peito'},
-      {name: 'Biceps/AnteBraço', abbrev: 'braco'},
-      {name: 'Costas', abbrev: 'costas'},
-      {name: 'Abdomen', abbrev: 'abdomen'},
-      {name: 'Posterior', abbrev: 'posterior'},
-      {name: 'Quadriceps', abbrev: 'pernas'},
-      {name: 'Ombro', abbrev: 'ombro'},
-      {name: 'Fortalecimento', abbrev: 'fortalecimento'},
-    ];
-  }
 
   listAllAthletas(): Observable<ClientsModel[]> {
     const id_user = this.authService.getUserId();

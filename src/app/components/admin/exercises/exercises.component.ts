@@ -12,6 +12,7 @@ import {DialogModule} from "primeng/dialog";
 import {FormBuilder, ReactiveFormsModule, UntypedFormGroup, Validators} from "@angular/forms";
 import {ProgressBarModule} from "primeng/progressbar";
 import {environment} from "../../../../environments/environment";
+import {defer} from "rxjs";
 
 @Component({
   selector: 'app-exercicios',
@@ -134,6 +135,24 @@ export class ExercisesComponent implements OnInit {
           this.addMessage('success', returnMessage.message)
         },
       })
+    }
+  }
+  fixTitle() {
+    switch (this.title) {
+      case 'braco':
+        return 'Bíceps'
+      case 'triceps':
+        return 'Tríceps'
+      case 'trapezio':
+        return 'Trapézio'
+      case 'abdomen':
+        return 'Abdômen'
+      case 'quadriceps':
+        return 'Quadríceps'
+      case 'gluteo':
+        return 'Glúteo'
+      default:
+        return this.title
     }
   }
   openDialogAddVideo(exercise: ExerciseModel) {
