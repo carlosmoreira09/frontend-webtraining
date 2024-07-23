@@ -1,18 +1,18 @@
 import {ComponentFixture, TestBed} from '@angular/core/testing';
 
-import {PreviewSheetComponent} from './preview-sheet.component';
+import {UserSheetComponent} from './user-sheet.component';
 
 describe('ModalSheetComponent', () => {
-  let component: PreviewSheetComponent;
-  let fixture: ComponentFixture<PreviewSheetComponent>;
+  let component: UserSheetComponent;
+  let fixture: ComponentFixture<UserSheetComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [PreviewSheetComponent]
+      imports: [UserSheetComponent]
     })
       .compileComponents();
 
-    fixture = TestBed.createComponent(PreviewSheetComponent);
+    fixture = TestBed.createComponent(UserSheetComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

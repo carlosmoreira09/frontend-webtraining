@@ -8,16 +8,16 @@
     <th class="text-center border border-slate-900 mr-2">Descrição</th>
   </tr>
   <tr class="table-row align-text-top w-max">
-    <td class="text-left">
+    <td class="min-w-72 text-center">
       @for (exercise of sheet; track sheet) {
         <p class="ml-2">{{ exercise.exercise }}</p>
       }
     </td>
-    <td class="text-left">
+    <td class="min-w-72 text-center">
       @for (exercise of sheet; track sheet) {
         <p class="ml-2">{{ exercise.repetition }}</p>
       }</td>
-    <td class="min-w-max text-right">
+    <td class="min-w-72 text-center">
       @for (exercise of sheet; track sheet) {
         <p class="mr-2">{{ exercise.exercise_desc }}</p>
       }</td>

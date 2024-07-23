@@ -20,6 +20,10 @@ export class SheetsService {
     const id_user = this.authService.getUserId()
     return this.httpClient.get<SheetsModel[]>(this.baseUrl + "sheets/client/" + id_user);
   }
+  getSheetByUser(id_client: number) {
+    return this.httpClient.get<SheetsModel>(this.baseUrl + "sheets/" + id_client );
+  }
+
 
   updateSheet(updateSheet: createNewSheet): Observable<ReturnMessage> {
     return this.httpClient.put<ReturnMessage>(this.baseUrl + "sheets", updateSheet);

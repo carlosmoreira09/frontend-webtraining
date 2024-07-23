@@ -11,6 +11,7 @@ import {RegisterComponent} from "./components/admin/register/register.component"
 import {ClientGuard} from "./guards/client.guard";
 import {NewUserComponent} from "./components/admin/register/user-register/user-register.component";
 import {UserProfileComponent} from "./components/user/user-profile/user-profile.component";
+import {UserSheetComponent} from "./components/user/sheets/user-sheet/user-sheet.component";
 
 
 export const routes: Routes = [
@@ -61,7 +62,13 @@ export const routes: Routes = [
       component: UserProfileComponent,
       data: {loggedIn: true, homepage: false},
       canActivate: [ClientGuard],
-    }]
+    },
+      {
+        path: 'sheet',
+        component: UserSheetComponent,
+        data: {loggedIn: true, homepage: false},
+        canActivate: [ClientGuard],
+      }]
 
   },
   {
