@@ -1,0 +1,68 @@
+ <section class="w-full px-6 py-6">
+      <div class="flex justify-between items-center w-full gap-2 border-b py-8">
+        <p class="uppercase text-gray-500 font-semibold">
+          Seus dados
+        </p>
+      </div>
+
+      <div class="my-4">
+        <p class="text-gray-500 text-xs font-semibold uppercase">Nome:</p>
+        <p class="font-semibold">{{clientInfo.fullName}} </p>
+      </div>
+      <div class="grid grid-cols-2  gap-4 py-4 border-b">
+        <div class="border p-2 rounded-md ">
+          <p class="text-gray-500 text-xs font-semibold">Email:</p>
+          <p class="font-bold text-xl">{{clientInfo.email}}</p>
+        </div>
+        <div class="border p-2 rounded-md ">
+          <p class="text-gray-500 text-xs font-semibold">Idade:</p>
+          <p class="font-bold text-xl">{{clientInfo.age}}</p>
+        </div>
+        <div class="border p-2 rounded-md ">
+          <p class="text-gray-500 text-xs font-semibold">Objetivo:</p>
+          <p class="font-bold text-xl">{{clientInfo.training_type}}</p>
+        </div>
+        <div class="border p-2 rounded-md ">
+          <p class="text-gray-500 text-xs font-semibold">Contato</p>
+          <p class="font-bold text-xl">{{clientInfo.phone }}</p>
+        </div>
+        <div class="border p-2 rounded-md ">
+          <p class="text-gray-500 text-xs font-semibold">Última atualização em:</p>
+          <p class="font-bold text-xl">{{clientInfo.updatedAt | date:'shortDate' }}</p>
+        </div>
+        <div class="border p-2 rounded-md ">
+          <p class="text-gray-500 text-xs font-semibold">Cadastrado em:</p>
+          <p class="font-bold text-xl">{{clientInfo.createdAt | date:'shortDate' }}</p>
+        </div>
+        <div *ngIf="clientInfo.isActive">
+          <p class="flex text-gray-500 text-xs font-semibold">Status:
+            <svg class="ml-2" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 1024 1024">
+              <path fill="#059669"
+                    d="M512 0C229.232 0 0 229.232 0 512c0 282.784 229.232 512 512 512c282.784 0 512-229.216 512-512C1024 229.232 794.784 0 512 0m0 961.008c-247.024 0-448-201.984-448-449.01c0-247.024 200.976-448 448-448s448 200.977 448 448s-200.976 449.01-448 449.01m204.336-636.352L415.935 626.944l-135.28-135.28c-12.496-12.496-32.752-12.496-45.264 0c-12.496 12.496-12.496 32.752 0 45.248l158.384 158.4c12.496 12.48 32.752 12.48 45.264 0c1.44-1.44 2.673-3.009 3.793-4.64l318.784-320.753c12.48-12.496 12.48-32.752 0-45.263c-12.512-12.496-32.768-12.496-45.28 0" />
+            </svg>
+          </p>
+        </div>
+        <div *ngIf="!clientInfo.isActive">
+          <p class="flex text-gray-500 text-xs font-semibold">Status:
+            <svg class="ml-2" viewBox="0 0 26 26" xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="#ff0a0a" stroke="#ff0a0a"><g id="SVGRepo_bgCarrier" stroke-width="1">
+            </g>
+              <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round">
+              </g>
+              <g id="SVGRepo_iconCarrier">
+                <title></title>
+                <g id="Complete">
+                  <g id="x-circle"> <g>
+                    <circle cx="12" cy="12" data-name="--Circle" fill="none" id="_--Circle" r="10" stroke="#f00000" stroke-linecap="round" stroke-linejoin="round" stroke-width="3">
+                    </circle>
+                    <line fill="none" stroke="#f00000" stroke-linecap="round" stroke-linejoin="round" stroke-width="3" x1="14.5" x2="9.5" y1="9.5" y2="14.5">
+                    </line>
+                    <line fill="none" stroke="#f00000" stroke-linecap="round" stroke-linejoin="round" stroke-width="3" x1="14.5" x2="9.5" y1="14.5" y2="9.5">
+                    </line> </g> </g> </g> </g></svg>
+          </p>
+        </div>
+        <div>
+
+      </div>
+      </div>
+    </section>
+

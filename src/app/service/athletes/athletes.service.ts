@@ -22,6 +22,9 @@ export class AthletesService {
     const id_user = this.authService.getUserId();
     return this.httpClient.get<ClientsModel[]>(this.baseUrl + "clients/" + id_user);
   }
+  getClientInfo(id_user: number): Observable<ClientsModel> {
+    return this.httpClient.get<ClientsModel>(this.baseUrl + "clients/user/" + id_user);
+  }
 
   saveAddSheetAthlete(id_sheet: number, id_client: number): Observable<ReturnMessage> {
     const header = new HttpHeaders({'id_client': id_client})

@@ -24,10 +24,10 @@ import {jwtDecode} from "jwt-decode";
 })
 export class HomeComponent implements OnInit {
   isAdmin: boolean = false;
+  isUser: boolean = true;
 
   constructor(@Inject(PLATFORM_ID) private platformId: Object,
               private storageService: StorageService,) {
-
   }
 
   ngOnInit() {

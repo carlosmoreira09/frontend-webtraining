@@ -10,6 +10,7 @@ import {AuthComponent} from "./components/views/auth/auth.component";
 import {RegisterComponent} from "./components/admin/register/register.component";
 import {ClientGuard} from "./guards/client.guard";
 import {NewUserComponent} from "./components/admin/register/user-register/user-register.component";
+import {UserProfileComponent} from "./components/user/user-profile/user-profile.component";
 
 
 export const routes: Routes = [
@@ -66,6 +67,12 @@ export const routes: Routes = [
     component: ExercisesComponent,
     data: {loggedIn: true, homepage: false},
     canActivate: [ClientGuard]
+  },
+  {
+    path: 'user/dados',
+    component: UserProfileComponent,
+    data: {loggedIn: true, homepage: false},
+    canActivate: []
   },
   {
     path: '**',
