@@ -50,9 +50,18 @@ export const routes: Routes = [
   },
   {
     path: 'athletas',
-    component: AtletasComponent,
-    data: {loggedIn: true, homepage: false},
-    canActivate: [ClientGuard]
+    children: [{
+      path: '',
+      component: AtletasComponent,
+      data: {loggedIn: true, homepage: false},
+      canActivate: [ClientGuard],
+    },
+      {
+      path: 'profile',
+      component: UserProfileComponent,
+      data: {loggedIn: true, homepage: false},
+      canActivate: [ClientGuard],
+    }]
 
   },
   {
@@ -67,12 +76,6 @@ export const routes: Routes = [
     component: ExercisesComponent,
     data: {loggedIn: true, homepage: false},
     canActivate: [ClientGuard]
-  },
-  {
-    path: 'user/dados',
-    component: UserProfileComponent,
-    data: {loggedIn: true, homepage: false},
-    canActivate: []
   },
   {
     path: '**',
