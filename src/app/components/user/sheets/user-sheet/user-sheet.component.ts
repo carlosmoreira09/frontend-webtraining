@@ -1,7 +1,7 @@
 import {Component, ElementRef, Input, OnInit, ViewChild} from '@angular/core';
 import {DialogModule} from "primeng/dialog";
 import {MessageModule} from "primeng/message";
-import {CommonModule, NgIf} from "@angular/common";
+import {CommonModule, NgIf, NgOptimizedImage} from "@angular/common";
 import {PaginatorModule} from "primeng/paginator";
 import {ReactiveFormsModule} from "@angular/forms";
 import {MessageService} from "primeng/api";
@@ -26,6 +26,7 @@ import {TrainingComponent} from "../../../admin/sheets/components/preview-sheet/
     ReactiveFormsModule,
     ToastModule,
     TrainingComponent,
+    NgOptimizedImage,
   ],
   templateUrl: './user-sheet.component.html',
   styleUrl: './user-sheet.component.css',

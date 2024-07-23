@@ -2,22 +2,22 @@
   <caption class="text-center caption-top bg-gray-300 border border-slate-900">
     {{ training }}
   </caption>
-  <tr class="h-8 border border-slate-900 bg-gray-200">
+  <tr class="h-5 border border-slate-900 bg-gray-200">
     <th class="text-center border border-slate-900 ml-2">Exercicio</th>
     <th class="text-center border border-slate-900 p-2">Repetição</th>
     <th class="text-center border border-slate-900 mr-2">Descrição</th>
   </tr>
   <tr class="table-row align-text-top w-max">
-    <td class="min-w-72 text-center">
+    <td class="min-w-24 md:min-w-72 text-center">
       @for (exercise of sheet; track sheet) {
         <p class="ml-2">{{ exercise.exercise }}</p>
       }
     </td>
-    <td class="min-w-72 text-center">
+    <td class="min-w-12 md:min-w-72 text-center">
       @for (exercise of sheet; track sheet) {
         <p class="ml-2">{{ exercise.repetition }}</p>
       }</td>
-    <td class="min-w-72 text-center">
+    <td class="min-w-12 md:min-w-72 text-center">
       @for (exercise of sheet; track sheet) {
         <p class="mr-2">{{ exercise.exercise_desc }}</p>
       }</td>
