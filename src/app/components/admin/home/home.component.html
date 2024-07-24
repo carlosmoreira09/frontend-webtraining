@@ -1,5 +1,7 @@
+
 <div
   [ngClass]="isAdmin? 'grid grid-cols-2 gap-2 place-items-center p-5' : 'grid grid-cols-1 gap-2 place-items-center p-5'">
+  @if(isClient) {
   <div [ngClass]="isAdmin? 'w-1/2 h-48': 'w-1/3 h-48'">
     <app-card-home body="body" class="hover:cursor-pointer" footer="" header="Atletas"
                    imgPath="./assets/img/athletes.png" routerLink="/athletas"></app-card-home>
@@ -12,26 +14,27 @@
     <app-card-home body="body" class="hover:cursor-pointer" footer="" header="Planilhas"
                    imgPath="./assets/img/sheet.png" routerLink="/sheets"></app-card-home>
   </div>
+  }
   @if (isAdmin) {
-    <div class="w-1/2 h-48">
+    <div [ngClass]="isAdmin? 'w-1/2 h-48': 'w-1/3 h-48'">
       <app-card-home class="hover:cursor-pointer" footer="" header="Financeiro" body="body"
                      imgPath="./assets/img/financeiro.png" routerLink="/home"></app-card-home>
     </div>
-    <div class="w-1/2 h-48">
+    <div [ngClass]="isAdmin? 'w-1/2 h-48': 'w-1/3 h-48'">
       <app-card-home class="hover:cursor-pointer" footer="" header="Cadastrar Cliente" body="body"
                      imgPath="./assets/img/newclient.png" routerLink="/register"></app-card-home>
     </div>
   }
   @if (isUser) {
-    <div class="w-1/2 h-48">
+    <div [ngClass]="isAdmin? 'w-1/2 h-48': 'w-1/3 h-48'">
       <app-card-home class="hover:cursor-pointer" footer="" header="Meus Dados" body="body"
                      imgPath="./assets/img/profile.png" routerLink="/athletas/profile"></app-card-home>
     </div>
-    <div class="w-1/2 h-48">
+    <div [ngClass]="isAdmin? 'w-1/2 h-48': 'w-1/3 h-48'">
       <app-card-home class="hover:cursor-pointer" footer="" header="Minha Planilha" body="body"
                      imgPath="./assets/img/newclient.png" routerLink="/athletas/sheet"></app-card-home>
     </div>
-    <div class="w-1/2 h-48">
+    <div [ngClass]="isAdmin? 'w-1/2 h-48': 'w-1/3 h-48'">
       <app-card-home class="hover:cursor-pointer" footer="" header="Chat Personal" body="body"
                      imgPath="./assets/img/newclient.png" routerLink="/register"></app-card-home>
     </div>

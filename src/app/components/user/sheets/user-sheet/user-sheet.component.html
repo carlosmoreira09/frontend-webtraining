@@ -1,6 +1,6 @@
 
     <div class="grid grid-flow-row grid-cols-1 bg-white border-b rounded-t dark:border-gray-600">
-      <div class="grid grid-cols-2 gap-2 p-2">
+      <div class="grid grid-cols-1 p-2">
         <!-- Modal header -->
         <div class="flex text-sm md:text-xl font-semibold text-gray-900 dark:text-white">
           <img ngSrc="assets/img/usersheet.png" width="40" height="40" alt="User Sheet">
@@ -9,7 +9,7 @@
 
       </div>
       <!-- Modal content -->
-      <div class="p-3 grid grid-rows-1 grid-cols-1 w-full md:grid-rows-1 md:grid-cols-1">
+      <div class="p-3 grid grid-rows-1 w-full md:grid-rows-1 md:grid-cols-1">
         <div class="col-span-1">
           <app-training-table [sheet]="sheetA" training="Treino A"></app-training-table>
         </div>
@@ -24,7 +24,7 @@
         </div>
       </div>
       <div class="p-3 mt-6">
-        Observações: {{sheetInfo.sheet_details}}
+        Observações: {{sheetInfo?.sheet_details}}
       </div>
     </div>
 

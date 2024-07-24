@@ -40,7 +40,6 @@ export class UserProfileComponent implements OnInit {
         this.clientInfo = value;
       },
       complete: () => {
-        console.log()
       }
     })
   }

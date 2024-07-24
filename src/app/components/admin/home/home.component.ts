@@ -24,8 +24,8 @@ import {jwtDecode} from "jwt-decode";
 })
 export class HomeComponent implements OnInit {
   isAdmin: boolean = false;
-  isUser: boolean = true;
-
+  isUser: boolean = false;
+  isClient: boolean = false;
   constructor(@Inject(PLATFORM_ID) private platformId: Object,
               private storageService: StorageService,) {
   }
@@ -38,6 +38,7 @@ export class HomeComponent implements OnInit {
     const tokenLocal = this.storageService.getUserLocalStorage();
     let tokenExist = tokenLocal ? tokenLocal : token
     const authRoles: AuthRoles = jwtDecode(tokenExist);
-    authRoles.role === 'admin' ? this.isAdmin = true : this.isAdmin = false;
+
+    authRoles.role === 'admin' ? this.isAdmin = true : this.isUser = true;
   }
 }

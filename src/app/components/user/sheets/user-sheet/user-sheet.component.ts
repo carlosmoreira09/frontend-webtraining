@@ -37,10 +37,10 @@ export class UserSheetComponent implements OnInit {
   sheetInfo: SheetsModel;
   showPreviewSheet: boolean = false;
   clientInfo: ClientsModel | null;
-  public sheetA: ExerciseModel[];
-  public sheetB: ExerciseModel[];
-  public sheetC: ExerciseModel[];
-  public sheetD: ExerciseModel[];
+  public sheetA: ExerciseModel[] = [];
+  public sheetB: ExerciseModel[] = [];
+  public sheetC: ExerciseModel[] = [];
+  public sheetD: ExerciseModel[] = [];
 
   constructor(private sheetService: SheetsService,) {
   }
