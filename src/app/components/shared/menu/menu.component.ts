@@ -2,6 +2,9 @@ import {Component, Inject, OnInit, PLATFORM_ID} from '@angular/core';
 import {CommonModule, isPlatformBrowser} from "@angular/common";
 import {RouterLink, RouterLinkActive} from "@angular/router";
 import {initFlowbite} from "flowbite";
+import {AuthRoles} from "../../../models/auth.model";
+import {jwtDecode} from "jwt-decode";
+import {StorageService} from "../../../service/storage/storage.service";
 
 
 @Component({
@@ -17,14 +20,22 @@ import {initFlowbite} from "flowbite";
   providers: []
 })
 export class MenuComponent implements OnInit {
+  isUser: boolean = false;
 
-  constructor(@Inject(PLATFORM_ID) private platformId: Object) {
+  constructor(@Inject(PLATFORM_ID) private platformId: Object,
+              private storageService: StorageService) {
   }
 
   ngOnInit() {
     if (isPlatformBrowser(this.platformId)) {
       initFlowbite();
     }
+    const token = this.storageService.getUser();
+    const tokenLocal = this.storageService.getUserLocalStorage();
+    let tokenExist = tokenLocal ? tokenLocal : token
+    const authRoles: AuthRoles = jwtDecode(tokenExist);
+
+    authRoles.role === 'user' ? this.isUser = true : this.isUser = false;
   }
 
 
