@@ -10,6 +10,9 @@ export const ClientGuard: CanActivateFn = (route, state) => {
   if (authService.getAccessLevel('admin')) {
     return true;
   }
+  if (authService.isUser()) {
+    return true;
+  }
   if (!authService.getAccessLevel('client')) {
     router.navigate(['/no-access']).then(
       () => {

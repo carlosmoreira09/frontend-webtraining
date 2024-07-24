@@ -41,7 +41,8 @@ export class AuthComponent implements OnInit {
     this.authForm = this.formBuilder.group({
       username: ['', [Validators.required, Validators.minLength(5)]],
       password: ['', [Validators.required]],
-      saveData: ['']
+      saveData: [''],
+      isUser: [true, Validators.required],
     });
     if (this.storageService.isLoggedIn() || this.storageService.isLoggedInLocal()) {
       let token = this.storageService.getUser();
@@ -67,10 +68,12 @@ export class AuthComponent implements OnInit {
   getFormValues(): AuthDTO {
     const username = this.getField('username')?.value;
     const password = this.getField('password')?.value;
+    const isUser = this.getField('isUser')?.value;
 
     return {
       username: username,
       password: password,
+      isUser: isUser
     }
   }
 
@@ -81,9 +84,8 @@ export class AuthComponent implements OnInit {
       {
         next: (value: any) => {
           payload = value;
-
         },
-        error: (err: { message: any; }) => {
+        error: () => {
           this.messageService.add({
             severity: 'error',
             key: 'tc',
@@ -99,7 +101,7 @@ export class AuthComponent implements OnInit {
           }
           this.storageService.saveUser(payload.accessToken);
           this.authService.home(payload).subscribe({
-              next: (res: ClientDTO) => {
+              next: (res: any) => {
                 this.user = res;
 
               },

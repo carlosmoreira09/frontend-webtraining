@@ -23,6 +23,13 @@ export class AuthService {
     let authRoles: AuthRoles = jwtDecode(tokenExist);
     return authRoles.role === role;
   }
+  isUser(): boolean {
+    const token = this.storageService.getUser();
+    const tokenLocal = this.storageService.getUserLocalStorage();
+    let tokenExist = tokenLocal ? tokenLocal : token
+    let authRoles: AuthRoles = jwtDecode(tokenExist);
+    return authRoles.role === 'user';
+  }
 
   getUserId() {
     const token = this.storageService.getUser();
@@ -45,6 +52,18 @@ export class AuthService {
   home(data: AuthPayload) {
     const token = data.accessToken;
     const id_user = this.getUserId()
+    if(this.isUser()) {
+      let headers: HttpHeaders;
+      headers = new HttpHeaders({
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer ' + token,
+      });
+      let options: { headers: HttpHeaders };
+      options = {headers: headers};
+      return this.httpClient.get<any>(this.baseUrl + "auth/user-profile/" + id_user,
+        options
+      );
+    }
     let headers: HttpHeaders;
     headers = new HttpHeaders({
       'Content-Type': 'application/json',

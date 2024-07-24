@@ -1,6 +1,7 @@
 export interface AuthDTO {
   username: string;
   password: string;
+  isUser?: boolean;
 }
 
 export interface AuthPayload {
