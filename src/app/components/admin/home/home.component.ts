@@ -34,17 +34,28 @@ export class HomeComponent implements OnInit {
     if (isPlatformBrowser(this.platformId)) {
       initFlowbite();
     }
-    console.log(this.getAdminContact())
-    const token = this.storageService.getUser();
-    const tokenLocal = this.storageService.getUserLocalStorage();
+    const token = this.storageService.getItem('user');
+    const tokenLocal = this.storageService.getItemLocalStorage('user');
     let tokenExist = tokenLocal ? tokenLocal : token
-    const authRoles: AuthRoles = jwtDecode(tokenExist);
-    authRoles.role === 'admin' ? this.isAdmin = true : this.isUser = true;
+    switch (tokenExist.userType) {
+      case 'user':
+        this.isUser = true;
+        break;
+      case 'client':
+        this.isClient = true;
+        break;
+      case 'admin':
+        this.isAdmin = true;
+        break;
+    }
   }
   getAdminContact(): string {
     const token = this.storageService.getItem('user');
     const tokenLocal = this.storageService.getItemLocalStorage('user');
     let tokenExist = tokenLocal ? tokenLocal : token
+    if(tokenExist.userType !== 'user') {
+       return ''
+    }
     return "https://wa.me/55"+tokenExist.phone.toString().replace('-', '')+"?text="+this.createMessageWhatsApp();
   }
   createMessageWhatsApp(): string {
