@@ -178,7 +178,7 @@
               </svg>
             </button>
             <ul class="hidden py-2 space-y-2" id="dropdown-planilhas">
-              <li>
+              <li *ngIf="isUser">
                 <a class="flex items-center p-2 pl-11 w-full text-base font-normal text-white-900 rounded-lg transition duration-75 group hover:bg-blue-100 hover:text-blue-950 dark:text-blue-800 dark:hover:bg-blue-200"
                    routerLink="/athletas/sheet">
                     Planilha</a>

@@ -30,13 +30,9 @@ export class MenuComponent implements OnInit {
     if (isPlatformBrowser(this.platformId)) {
       initFlowbite();
     }
-    const token = this.storageService.getUser();
-    const tokenLocal = this.storageService.getUserLocalStorage();
+    const token = this.storageService.getItem('user');
+    const tokenLocal = this.storageService.getItemLocalStorage('user');
     let tokenExist = tokenLocal ? tokenLocal : token
-    const authRoles: AuthRoles = jwtDecode(tokenExist);
-
-    authRoles.role === 'user' ? this.isUser = true : this.isUser = false;
-  }
-
-
+    return tokenExist.userType === 'user'
+    }
 }
