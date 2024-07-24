@@ -62,7 +62,13 @@ export class StorageService {
     }
     return null;
   }
-
+  public getItemLocalStorage(key: string): any {
+    const item = localStorage.getItem(key);
+    if (item) {
+      return JSON.parse(item)
+    }
+    return null;
+  }
   public isLoggedIn(): boolean {
     const user = sessionStorage.getItem(this.USER_KEY);
     return !!user;

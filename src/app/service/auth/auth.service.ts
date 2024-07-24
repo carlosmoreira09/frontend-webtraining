@@ -23,6 +23,11 @@ export class AuthService {
     let authRoles: AuthRoles = jwtDecode(tokenExist);
     return authRoles.role === role;
   }
+  getSheetIdFromStorage() {
+    const token = this.storageService.getItem('user')
+    const tokenLocal = this.storageService.getItemLocalStorage('user');
+    return token ? token.id_sheets : tokenLocal.id_sheets;
+  }
   isUser(): boolean {
     const token = this.storageService.getUser();
     const tokenLocal = this.storageService.getUserLocalStorage();

@@ -7,6 +7,7 @@ import {Router} from "@angular/router";
 import {MessageService} from "primeng/api";
 import {AthletesService} from "../../../service/athletes/athletes.service";
 import {ClientsModel} from "../../../models/clients.model";
+import {AuthService} from "../../../service/auth/auth.service";
 
 
 
@@ -27,7 +28,7 @@ export class UserProfileComponent implements OnInit {
 
   clientInfo: ClientsModel;
 
-  constructor(private router: Router,
+  constructor(private authService: AuthService,
               private athleteService: AthletesService,) {
   }
 
@@ -35,7 +36,8 @@ export class UserProfileComponent implements OnInit {
     this.getClientInfo()
   }
   getClientInfo() {
-    this.athleteService.getClientInfo(7).subscribe({
+    const id_client = this.authService.getUserId();
+    this.athleteService.getClientInfo(id_client).subscribe({
       next: (value) => {
         this.clientInfo = value;
       },

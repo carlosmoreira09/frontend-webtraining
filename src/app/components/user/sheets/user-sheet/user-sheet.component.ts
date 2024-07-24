@@ -12,6 +12,7 @@ import {ClientsModel} from "../../../../models/clients.model";
 
 import {SheetsService} from "../../../../service/sheets/sheets.service";
 import {TrainingComponent} from "../../../admin/sheets/components/preview-sheet/table-component/training.component";
+import {AuthService} from "../../../../service/auth/auth.service";
 
 
 @Component({
@@ -41,8 +42,9 @@ export class UserSheetComponent implements OnInit {
   public sheetB: ExerciseModel[] = [];
   public sheetC: ExerciseModel[] = [];
   public sheetD: ExerciseModel[] = [];
-
-  constructor(private sheetService: SheetsService,) {
+  public sheetDescription: string = '';
+  constructor(private sheetService: SheetsService,
+              private authService: AuthService,) {
   }
 
   ngOnInit(): void {
@@ -50,7 +52,9 @@ export class UserSheetComponent implements OnInit {
   }
 
   getSheetByClient() {
-    this.sheetService.getSheetByUser(25).subscribe({
+
+    const id_sheet = this.authService.getSheetIdFromStorage();
+    this.sheetService.getSheetByUser(parseInt(id_sheet)).subscribe({
       next: (value) => {
         this.sheetInfo = value
       },
@@ -66,6 +70,7 @@ export class UserSheetComponent implements OnInit {
       this.sheetC = sheet.training_c;
       this.sheetD = sheet.training_d;
       this.showPreviewSheet = true;
+      this.sheetDescription = sheet.sheet_details;
   }
 
 }
