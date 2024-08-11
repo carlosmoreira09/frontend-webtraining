@@ -46,6 +46,7 @@ export class UserSheetComponent implements OnInit {
   public sheetDescription: string = '';
   constructor(private sheetService: SheetsService,
               private authService: AuthService,
+              private messageService: MessageService,
               @Inject(PLATFORM_ID) private platformId: Object) {
   }
 
@@ -59,14 +60,14 @@ export class UserSheetComponent implements OnInit {
   getSheetByClient() {
 
     const id_sheet = this.authService.getSheetIdFromStorage();
-    this.sheetService.getSheetByUser(parseInt(id_sheet)).subscribe({
-      next: (value) => {
-        this.sheetInfo = value
-      },
-      complete: () => {
-        this.openPreviewSheet(this.sheetInfo)
-      }
-    })
+      this.sheetService.getSheetByUser(parseInt(id_sheet)).subscribe({
+        next: (value) => {
+          this.sheetInfo = value
+        },
+        complete: () => {
+          this.openPreviewSheet(this.sheetInfo)
+        }
+      })
   }
   openPreviewSheet(sheet: SheetsModel) {
       this.clientInfo = sheet.id_client;
@@ -78,5 +79,4 @@ export class UserSheetComponent implements OnInit {
       this.sheetDescription = sheet.sheet_details;
   }
 
-  protected readonly isPlatformBrowser = isPlatformBrowser;
 }
