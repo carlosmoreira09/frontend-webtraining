@@ -1,7 +1,7 @@
-import {Component, ElementRef, Input, OnInit, ViewChild} from '@angular/core';
+import {Component, ElementRef, Inject, Input, OnInit, PLATFORM_ID, ViewChild} from '@angular/core';
 import {DialogModule} from "primeng/dialog";
 import {MessageModule} from "primeng/message";
-import {CommonModule, NgIf, NgOptimizedImage} from "@angular/common";
+import {CommonModule, isPlatformBrowser, NgIf, NgOptimizedImage} from "@angular/common";
 import {PaginatorModule} from "primeng/paginator";
 import {ReactiveFormsModule} from "@angular/forms";
 import {MessageService} from "primeng/api";
@@ -13,6 +13,7 @@ import {ClientsModel} from "../../../../models/clients.model";
 import {SheetsService} from "../../../../service/sheets/sheets.service";
 import {TrainingComponent} from "../../../admin/sheets/components/preview-sheet/table-component/training.component";
 import {AuthService} from "../../../../service/auth/auth.service";
+import {initFlowbite} from "flowbite";
 
 
 @Component({
@@ -44,10 +45,14 @@ export class UserSheetComponent implements OnInit {
   public sheetD: ExerciseModel[] = [];
   public sheetDescription: string = '';
   constructor(private sheetService: SheetsService,
-              private authService: AuthService,) {
+              private authService: AuthService,
+              @Inject(PLATFORM_ID) private platformId: Object) {
   }
 
   ngOnInit(): void {
+    if (isPlatformBrowser(this.platformId)) {
+      initFlowbite();
+    }
     this.getSheetByClient();
   }
 
@@ -73,4 +78,5 @@ export class UserSheetComponent implements OnInit {
       this.sheetDescription = sheet.sheet_details;
   }
 
+  protected readonly isPlatformBrowser = isPlatformBrowser;
 }

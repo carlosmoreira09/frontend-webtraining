@@ -1,9 +1,9 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, Inject, OnInit, PLATFORM_ID} from '@angular/core';
 import {FormBuilder, ReactiveFormsModule, UntypedFormGroup, Validators} from "@angular/forms";
 import {ClientsModel} from "../../../models/clients.model";
 import {AthletesService} from "../../../service/athletes/athletes.service";
 import {ModalAtletaComponent} from "./components/modal-create/modal-athlete.component";
-import {CommonModule, NgOptimizedImage} from "@angular/common";
+import {CommonModule, isPlatformBrowser, NgOptimizedImage} from "@angular/common";
 import {DialogModule} from "primeng/dialog";
 import {RouterLink} from "@angular/router";
 import {ConfirmationService, MessageService} from "primeng/api";
@@ -21,6 +21,7 @@ import {CheckboxModule} from "primeng/checkbox";
 import {RadioButtonModule} from "primeng/radiobutton";
 import {PaginatorModule} from "primeng/paginator";
 import {CarouselModule} from "primeng/carousel";
+import {initFlowbite} from "flowbite";
 
 @Component({
   selector: 'app-athlete',
@@ -76,10 +77,14 @@ export class AtletasComponent implements OnInit {
               private messageService: MessageService,
               private sheetsService: SheetsService,
               private formBuilder: FormBuilder,
+              @Inject(PLATFORM_ID) private platformId: Object
   ) {
   }
 
   ngOnInit() {
+    if (isPlatformBrowser(this.platformId)) {
+      initFlowbite();
+    }
     this.partnerships = [{
       imgSrc: "assets/img/ramonxp.png",
       alt: 'Ramon Dias XP',
