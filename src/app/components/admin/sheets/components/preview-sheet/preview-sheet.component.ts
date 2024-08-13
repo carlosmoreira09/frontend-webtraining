@@ -68,7 +68,7 @@ export class PreviewSheetComponent implements OnInit {
     if (this.sheetD.length === 0) {
       return 'p-2 grid grid-rows-3 grid-cols-1 md:grid-rows-1 w-full xl:grid-cols-3'
     } else {
-      return 'p-2 grid grid-rows-4 grid-cols-1 md:grid-rows-1 w-full xl:grid-cols-4'
+      return 'p-2 grid grid-rows-1 grid-cols-1 md:grid-rows-1 w-full xl:grid-cols-1'
 
     }
   }

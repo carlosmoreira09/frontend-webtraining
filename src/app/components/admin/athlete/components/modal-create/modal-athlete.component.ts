@@ -107,6 +107,7 @@ export class ModalAtletaComponent implements AfterViewInit {
       age: age,
       training_type: training_type,
       phone: phone,
+      userType: 'user',
       email: email,
     }
   }
@@ -124,6 +125,7 @@ export class ModalAtletaComponent implements AfterViewInit {
       age: age,
       training_type: training_type,
       phone: phone,
+      userType: 'user',
       email: email,
     }
   }
