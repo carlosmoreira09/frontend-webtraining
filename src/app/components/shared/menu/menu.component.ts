@@ -3,6 +3,8 @@ import {CommonModule, isPlatformBrowser} from "@angular/common";
 import {Router, RouterLink, RouterLinkActive} from "@angular/router";
 import {initFlowbite} from "flowbite";
 import {StorageService} from "../../../service/storage/storage.service";
+import {ButtonModule} from "primeng/button";
+import {SidebarModule} from "primeng/sidebar";
 
 
 @Component({
@@ -11,7 +13,9 @@ import {StorageService} from "../../../service/storage/storage.service";
   imports: [
     CommonModule,
     RouterLink,
-    RouterLinkActive
+    RouterLinkActive,
+    ButtonModule,
+    SidebarModule
   ],
   templateUrl: './menu.component.html',
   styleUrl: './menu.component.css',
@@ -20,6 +24,8 @@ import {StorageService} from "../../../service/storage/storage.service";
 export class MenuComponent implements OnInit {
   isUser: boolean = false;
   isClient: boolean = false;
+  sidebarVisible: boolean = false;
+
   constructor(@Inject(PLATFORM_ID) private platformId: Object,
               private router: Router,
               private storageService: StorageService) {
