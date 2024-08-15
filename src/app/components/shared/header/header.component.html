@@ -1,15 +1,15 @@
 <nav class="fixed top-0 w-full h-16 bg-indigo-900 shadow dark:bg-gray-800 z-50">
-  <div class="grid grid-flow-row grid-rows-1 grid-cols-3">
-    <div class="content-start ml-4 my-auto col-span-1">
-    </div>
-    <div class="place-self-center col-span-1">
-      <p class="text-lg md:text-2xl tracking-widest font-bold text-blue-400">WEB<strong
-        class="text-lg md:text-2xl overline font-semibold whitespace-nowrap text-white">PERFORMANCE</strong></p>
-    </div>
-    <div class="col-span-1 place-self-end my-auto">
+  <div class="flex flex-row">
+    <div class="ml-16 md:ml-72 xsm:mt-2">
+      <div>
+        <p class="mt-2 hidden xsm:flex text-lg sm:text-2xl tracking-widest font-bold text-blue-400">WEB<strong
+          class="text-lg sm:text-2xl overline font-semibold whitespace-nowrap text-white">PERFORMANCE</strong></p>
+      </div>
+       </div>
+    <div class="flex justify-end m-auto mr-0">
       <div class="flex flew-row mr-5 mt-2">
-        <p class="hidden sm:flex text-md text-white mr-5 my-auto"> {{ loggedUser.userType === 'client' ? 'Professor: ' : 'Aluno: ' }} {{ loggedUser.fullName.split(' ')[0] }}</p>
-        <img (click)="logout()" alt="" class="hover:cursor-pointer h-12 rounded-xl" src="assets/img/logout2.png"/>
+        <p class="hidden md:flex text-md text-white mr-5 my-auto"> {{ loggedUser.userType === 'client' ? 'Professor: ' : 'Aluno: ' }} {{ loggedUser.fullName.split(' ')[0] }}</p>
+        <img (click)="logout()" alt="" class="xsm:justify-center hover:cursor-pointer h-12 rounded-xl" src="assets/img/logout2.png"/>
       </div>
     </div>
 
