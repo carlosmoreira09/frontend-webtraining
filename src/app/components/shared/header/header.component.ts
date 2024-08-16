@@ -20,12 +20,14 @@ import {AuthComponent} from "../../views/auth/auth.component";
 })
 export class HeaderComponent implements OnInit {
   public loggedUser: ClientDTO;
-  constructor(private storageService: StorageService, private router: Router,
+  public routerName: string;
+  constructor(private storageService: StorageService, protected router: Router,
   ) {
   }
 
   ngOnInit(): void {
     this.loggedUser = this.storageService.getItem('user')
+    this.routerName = this.router.url
   }
 
   logout() {

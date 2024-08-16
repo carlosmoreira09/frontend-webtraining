@@ -13,7 +13,6 @@ import {NgOptimizedImage} from "@angular/common";
 export class CardHomeComponent {
   @Input() header: string;
   @Input() body: string;
-  @Input() footer: string;
   @Input() endpoint: string;
   @Input() imgPath: string;
   @Input() imgAlt: string;

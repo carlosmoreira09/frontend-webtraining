@@ -1,42 +1,42 @@
 
 <div
-  [ngClass]="isAdmin? 'grid grid-cols-2 gap-2 place-items-center p-5' : 'grid grid-cols-1 gap-2 place-items-center p-5'">
+  [ngClass]="isAdmin? 'grid grid-cols-1 place-items-center xxsm:grid-cols-2 xsm:grid-cols-3 gap-2 p-3' : 'grid grid-cols-1 gap-2 p-3'">
   @if(isClient || isAdmin) {
-  <div [ngClass]="isAdmin? 'w-1/2 h-48': 'w-1/3 h-48'">
-    <app-card-home body="body" class="hover:cursor-pointer" footer="" header="Atletas"
+  <div class="w-1/2">
+    <app-card-home body="body" class="hover:cursor-pointer" header="Atletas"
                    imgPath="./assets/img/athletes.png" routerLink="/athletas"></app-card-home>
   </div>
-  <div [ngClass]="isAdmin? 'w-1/2 h-48': 'w-1/3 h-48'">
-    <app-card-home body="body" class="hover:cursor-pointer" footer="" header="Exercicios"
+  <div class="w-1/2">
+    <app-card-home body="body" class="hover:cursor-pointer" header="Exercicios"
                    imgPath="./assets/img/exercise.png" routerLink="/exercises/peito"></app-card-home>
   </div>
-  <div [ngClass]="isAdmin? 'w-1/2 h-48': 'w-1/3 h-48'">
-    <app-card-home body="body" class="hover:cursor-pointer" footer="" header="Planilhas"
+  <div class="w-1/2">
+    <app-card-home body="body" class="hover:cursor-pointer" header="Planilhas"
                    imgPath="./assets/img/sheet.png" routerLink="/sheets"></app-card-home>
   </div>
   }
   @if (isAdmin) {
-    <div [ngClass]="isAdmin? 'w-1/2 h-48': 'w-1/3 h-48'">
-      <app-card-home class="hover:cursor-pointer" footer="" header="Financeiro" body="body"
+    <div class="w-1/2">
+      <app-card-home class="hover:cursor-pointer" header="Financeiro" body="body"
                      imgPath="./assets/img/financeiro.png" routerLink="/home"></app-card-home>
     </div>
-    <div [ngClass]="isAdmin? 'w-1/2 h-48': 'w-1/3 h-48'">
-      <app-card-home class="hover:cursor-pointer" footer="" header="Cadastrar Cliente" body="body"
+    <div class="w-1/2">
+      <app-card-home class="hover:cursor-pointer" header="Cadastrar Cliente" body="body"
                      imgPath="./assets/img/newclient.png" routerLink="/register"></app-card-home>
     </div>
   }
   @if (isUser || isAdmin) {
-    <div [ngClass]="isAdmin? 'w-1/2 h-48': 'w-1/3 h-48'">
-      <app-card-home class="hover:cursor-pointer" footer="" header="Meus Dados" body="body"
+    <div class="w-1/2">
+      <app-card-home class="hover:cursor-pointer" header="Meus Dados" body="body"
                      imgPath="./assets/img/profile.png" routerLink="/athletas/profile"></app-card-home>
     </div>
-    <div [ngClass]="isAdmin? 'w-1/2 h-48': 'w-1/3 h-48'">
-      <app-card-home class="hover:cursor-pointer" footer="" header="Minha Planilha" body="body"
+    <div class="w-1/2">
+      <app-card-home class="hover:cursor-pointer" header="Minha Planilha" body="body"
                      imgPath="./assets/img/newclient.png" routerLink="/athletas/sheet"></app-card-home>
     </div>
-    <div [ngClass]="isAdmin? 'w-1/2 h-48': 'w-1/3 h-48'">
+    <div class="w-1/2">
       <a [href]="getAdminContact()" target="_blank">
-      <app-card-home class="hover:cursor-pointer" footer="" header="Chat Personal" body="body"
+      <app-card-home class="hover:cursor-pointer" header="Chat" body="body"
                      imgPath="./assets/img/whats.png"></app-card-home>
       </a>
     </div>
