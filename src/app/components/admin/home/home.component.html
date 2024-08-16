@@ -1,6 +1,8 @@
 
 <div
-  [ngClass]="isAdmin? 'grid grid-cols-1 place-items-center ssm:grid-cols-2 sm:grid-cols-3 gap-2 p-3' : 'grid grid-cols-1 gap-2 p-3'">
+  [ngClass]="isAdmin?
+   'grid grid-cols-1 place-items-center ssm:grid-cols-2 sm:grid-cols-3 gap-2 p-3' :
+   'grid grid-cols-1 place-items-center md:grid-cols-3 gap-2 p-3'">
   @if(isClient || isAdmin) {
   <div class="w-2/3">
     <app-card-home body="body" class="hover:cursor-pointer" header="Atletas"
