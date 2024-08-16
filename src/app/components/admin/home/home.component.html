@@ -2,39 +2,39 @@
 <div
   [ngClass]="isAdmin? 'grid grid-cols-1 place-items-center ssm:grid-cols-2 sm:grid-cols-3 gap-2 p-3' : 'grid grid-cols-1 gap-2 p-3'">
   @if(isClient || isAdmin) {
-  <div class="w-1/2">
+  <div class="w-2/3">
     <app-card-home body="body" class="hover:cursor-pointer" header="Atletas"
                    imgPath="./assets/img/athletes.png" routerLink="/athletas"></app-card-home>
   </div>
-  <div class="w-1/2">
+  <div class="w-2/3">
     <app-card-home body="body" class="hover:cursor-pointer" header="Exercicios"
                    imgPath="./assets/img/exercise.png" routerLink="/exercises/peito"></app-card-home>
   </div>
-  <div class="w-1/2">
+  <div class="w-2/3">
     <app-card-home body="body" class="hover:cursor-pointer" header="Planilhas"
                    imgPath="./assets/img/sheet.png" routerLink="/sheets"></app-card-home>
   </div>
   }
   @if (isAdmin) {
-    <div class="w-1/2">
+    <div class="w-2/3">
       <app-card-home class="hover:cursor-pointer" header="Financeiro" body="body"
                      imgPath="./assets/img/financeiro.png" routerLink="/home"></app-card-home>
     </div>
-    <div class="w-1/2">
+    <div class="w-2/3">
       <app-card-home class="hover:cursor-pointer" header="Cadastrar Cliente" body="body"
                      imgPath="./assets/img/newclient.png" routerLink="/register"></app-card-home>
     </div>
   }
   @if (isUser || isAdmin) {
-    <div class="w-1/2">
+    <div class="w-2/3">
       <app-card-home class="hover:cursor-pointer" header="Meus Dados" body="body"
                      imgPath="./assets/img/profile.png" routerLink="/athletas/profile"></app-card-home>
     </div>
-    <div class="w-1/2">
+    <div class="w-2/3">
       <app-card-home class="hover:cursor-pointer" header="Minha Planilha" body="body"
                      imgPath="./assets/img/newclient.png" routerLink="/athletas/sheet"></app-card-home>
     </div>
-    <div class="w-1/2">
+    <div class="w-2/3">
       <a [href]="getAdminContact()" target="_blank">
       <app-card-home class="hover:cursor-pointer" header="Chat" body="body"
                      imgPath="./assets/img/whats.png"></app-card-home>
