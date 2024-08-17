@@ -1,19 +1,10 @@
 <div class="p-4">
-  <div class="grid grid-cols-1">
-      <p-carousel
-        [value]="partnerships"
-        [numVisible]="1"
-        [numScroll]="1"
-        [responsiveOptions]="responsiveOptions"
-        autoplayInterval="3000">
-        <ng-template let-partnership pTemplate="item">
-          <app-card-athlete [imgSrc]="partnership.imgSrc" [alt]="partnership.alt" [width]="partnership.width" [height]="partnership.height"></app-card-athlete>
-        </ng-template>
-      </p-carousel>
-
-  </div>
-
   <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
+    <div class="flex items-center justify-center h-24 rounded bg-gray-100 dark:bg-gray-800">
+      <p class="font-mono text-2xl text-blue-800 dark:text-blue-800">
+        <a class="tracking-widest uppercase">Atletas</a>
+      </p>
+    </div>
     <div
       class="flex items-center justify-between flex-column md:flex-row flex-wrap space-y-4 md:space-y-0 py-4 bg-white dark:bg-gray-900">
       <div class="flex m-3">
