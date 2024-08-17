@@ -49,20 +49,5 @@ export class HomeComponent implements OnInit {
         break;
     }
   }
-  getAdminContact(): string {
-    const token = this.storageService.getItem('user');
-    const tokenLocal = this.storageService.getItemLocalStorage('user');
-    let tokenExist = tokenLocal ? tokenLocal : token
-    if(tokenExist.userType !== 'user') {
-       return ''
-    }
-    return "https://wa.me/55"+tokenExist.phone.toString().replace('-', '')+"?text="+this.createMessageWhatsApp();
-  }
-  createMessageWhatsApp(): string {
-    const token = this.storageService.getItem('user');
-    const tokenLocal = this.storageService.getItemLocalStorage('user');
-    let tokenExist = tokenLocal ? tokenLocal : token
-    const name = tokenExist.fullName;
-    return "Olá " + name + ". Gostaria de tirar uma dúvida com você."
-  }
+
 }

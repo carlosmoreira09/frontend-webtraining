@@ -26,8 +26,7 @@ import {initFlowbite} from "flowbite";
 export class UserProfileComponent implements OnInit {
   @ViewChild('openDialog')
   dialog!: ElementRef;
-
-  clientInfo: ClientsModel;
+  clientInfo?: ClientsModel;
 
   constructor(private authService: AuthService,
               private athleteService: AthletesService,
