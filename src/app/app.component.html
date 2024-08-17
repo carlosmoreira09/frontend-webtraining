@@ -1,9 +1,10 @@
 @if (loggedIn) {
   <app-header></app-header>
   @if (!homepage) {
+
     <app-menu></app-menu>
   }
-  <div [ngClass]="(!homepage)? 'mt-16 md:ml-64' : 'mt-16'">
+  <div [ngClass]="(!homepage)? 'mt-16 md:ml-56 mr-4' : 'mt-16'">
     <router-outlet></router-outlet>
   </div>
   <app-footer></app-footer>
