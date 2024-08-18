@@ -6,33 +6,33 @@
       </div>
 
       <div class="my-4">
-        <p class="text-gray-500 text-xs font-semibold uppercase">Nome:</p>
-        <p class="font-semibold">{{clientInfo?.fullName}} </p>
+        <p class="text-gray-500 text-base font-semibold">Nome:</p>
+        <p class="font-normal">{{clientInfo?.fullName}} </p>
       </div>
-      <div class="grid grid-cols-1 gap-4 py-4 border-b">
+      <div class="grid grid-cols-1 gap-4 py-2 border-b">
         <div class="border p-2 rounded-md ">
           <p class="text-gray-500 text-xs font-semibold">Email:</p>
-          <p class="font-bold text-xl">{{clientInfo?.email}}</p>
+          <p class="font-light text-base">{{clientInfo?.email}}</p>
         </div>
         <div class="border p-2 rounded-md ">
           <p class="text-gray-500 text-xs font-semibold">Idade:</p>
-          <p class="font-bold text-xl">{{clientInfo?.age}}</p>
+          <p class="font-light text-base">{{clientInfo?.age}}</p>
         </div>
         <div class="border p-2 rounded-md ">
           <p class="text-gray-500 text-xs font-semibold">Objetivo:</p>
-          <p class="font-bold text-xl">{{clientInfo?.training_type}}</p>
+          <p class="font-light text-base">{{clientInfo?.training_type}}</p>
         </div>
         <div class="border p-2 rounded-md ">
           <p class="text-gray-500 text-xs font-semibold">Contato</p>
-          <p class="font-bold text-xl">{{clientInfo?.phone }}</p>
+          <p class="font-light text-base">{{clientInfo?.phone }}</p>
         </div>
         <div class="border p-2 rounded-md ">
           <p class="text-gray-500 text-xs font-semibold">Última atualização em:</p>
-          <p class="font-bold text-xl">{{clientInfo?.updatedAt | date:'shortDate' }}</p>
+          <p class="font-light text-base">{{clientInfo?.updatedAt | date:'shortDate' }}</p>
         </div>
         <div class="border p-2 rounded-md ">
           <p class="text-gray-500 text-xs font-semibold">Cadastrado em:</p>
-          <p class="font-bold text-xl">{{clientInfo?.createdAt | date:'shortDate' }}</p>
+          <p class="font-light text-base">{{clientInfo?.createdAt | date:'shortDate' }}</p>
         </div>
         <div *ngIf="clientInfo?.isActive">
           <p class="flex text-gray-500 text-xs font-semibold">Status:
