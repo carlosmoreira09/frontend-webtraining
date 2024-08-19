@@ -56,6 +56,8 @@ export class ModalSheetComponent implements OnInit {
   addExercisesB: ExerciseModel[];
   addExercisesC: ExerciseModel[];
   addExercisesD: ExerciseModel[];
+  addExercisesE: ExerciseModel[];
+  addExercisesF: ExerciseModel[];
   modalidades: Modalidade[] = [];
 
 
@@ -91,6 +93,8 @@ export class ModalSheetComponent implements OnInit {
     this.addExercisesB = [];
     this.addExercisesC = [];
     this.addExercisesD = [];
+    this.addExercisesE = [];
+    this.addExercisesF = [];
   }
 
   initEditControlForm() {
@@ -117,6 +121,8 @@ export class ModalSheetComponent implements OnInit {
     this.addExercisesB = this.editSheet.training_b;
     this.addExercisesC = this.editSheet.training_c;
     this.addExercisesD = this.editSheet.training_d;
+    this.addExercisesE = this.editSheet.training_e;
+    this.addExercisesF = this.editSheet.training_f;
     this.formAthleta = this.formBuilder.group({
       id_client: ['', Validators.required],
     });
@@ -132,6 +138,8 @@ export class ModalSheetComponent implements OnInit {
     this.addExercisesB = [];
     this.addExercisesC = [];
     this.addExercisesD = [];
+    this.addExercisesE = [];
+    this.addExercisesF = [];
     this.initNewControlForm();
   }
 
@@ -198,11 +206,13 @@ export class ModalSheetComponent implements OnInit {
     const sheet_name: string = this.getField('sheet_name')?.value;
     const sheet_desc: string = this.getField('sheet_desc')?.value;
     const sheet_detais: string = this.getField('sheet_details')?.value;
+    const quantity:  number = this.getField('quantity')?.value;
     let idExercisesA: number[] = [];
     let idExercisesB: number[] = [];
     let idExercisesC: number[] = [];
     let idExercisesD: number[] = [];
-
+    let idExercisesE: number[] = [];
+    let idExercisesF: number[] = [];
     for (let exercise of this.addExercisesA) {
       if (exercise.id_exercise != null) {
         idExercisesA.push(exercise.id_exercise);
@@ -223,44 +233,77 @@ export class ModalSheetComponent implements OnInit {
         idExercisesD.push(exercise.id_exercise);
       }
     }
+    for (let exercise of this.addExercisesE) {
+      if (exercise.id_exercise != null) {
+        idExercisesE.push(exercise.id_exercise);
+      }
+    }
+    for (let exercise of this.addExercisesF) {
+      if (exercise.id_exercise != null) {
+        idExercisesF.push(exercise.id_exercise);
+      }
+    }
 
     if (this.id_client != null) {
       return {
         sheet_name: sheet_name,
         sheet_desc: sheet_desc,
         sheet_details: sheet_detais,
+        training_quantity: quantity,
         training_a: idExercisesA.toString(),
         training_b: idExercisesB.toString(),
         training_c: idExercisesC.toString(),
         training_d: idExercisesD.toString(),
+        training_e: idExercisesE.toString(),
+        training_f: idExercisesF.toString(),
         id_client: this.id_client,
       }
     } else {
       return {
         sheet_name: sheet_name,
         sheet_desc: sheet_desc,
+        training_quantity: quantity,
         sheet_details: sheet_detais,
         training_a: idExercisesA.toString(),
         training_b: idExercisesB.toString(),
         training_c: idExercisesC.toString(),
         training_d: idExercisesD.toString(),
+        training_e: idExercisesE.toString(),
+        training_f: idExercisesF.toString(),
       }
     }
   }
 
   changeNumberOfTraining() {
     const quantity = this.getField('quantity')?.value;
-    if (quantity == 1) {
-      this.addExercisesB = [];
-      this.addExercisesC = [];
-      this.addExercisesD = [];
-    }
-    if (quantity == 2) {
-      this.addExercisesC = [];
-      this.addExercisesD = [];
-    }
-    if (quantity == 3) {
-      this.addExercisesD = [];
+    switch(quantity) {
+      case 1:
+        this.addExercisesB = [];
+        this.addExercisesC = [];
+        this.addExercisesD = [];
+        this.addExercisesE = [];
+        this.addExercisesF = [];
+        break;
+      case 2:
+        this.addExercisesC = [];
+        this.addExercisesD = [];
+        this.addExercisesE = [];
+        this.addExercisesF = [];
+        break;
+      case 3:
+        this.addExercisesD = [];
+        this.addExercisesE = [];
+        this.addExercisesF = [];
+        break;
+      case 4:
+        this.addExercisesE = [];
+        this.addExercisesF = [];
+        break;
+      case 5:
+        this.addExercisesF = [];
+        break;
+      default:
+        return
     }
   }
 
@@ -368,6 +411,18 @@ export class ModalSheetComponent implements OnInit {
         } else {
           this.addMessage('error', 'Exercício Já Existe na Planilha');
         }
+      } else if (this.resultSheet === 'training_e') {
+        if (!(this.addExercisesE.find((value) => value.id_exercise === parseInt(addNewExercise)))) {
+          this.addExercisesE.push(this.resultExercise)
+        } else {
+          this.addMessage('error', 'Exercício Já Existe na Planilha');
+        }
+      } else if (this.resultSheet === 'training_f') {
+        if (!(this.addExercisesF.find((value) => value.id_exercise === parseInt(addNewExercise)))) {
+          this.addExercisesF.push(this.resultExercise)
+        } else {
+          this.addMessage('error', 'Exercício Já Existe na Planilha');
+        }
       }
     } else {
       this.addMessage('error', 'Erro ao adicionar Exercício')
@@ -390,6 +445,12 @@ export class ModalSheetComponent implements OnInit {
 
       } else if (resultSheet === 'training_d') {
         this.addExercisesD.splice(this.addExercisesD.indexOf(exercise), 1);
+        this.addMessage('success', 'Exercício Removido');
+      } else if (resultSheet === 'training_e') {
+        this.addExercisesE.splice(this.addExercisesE.indexOf(exercise), 1);
+        this.addMessage('success', 'Exercício Removido');
+      } else if (resultSheet === 'training_f') {
+        this.addExercisesF.splice(this.addExercisesF.indexOf(exercise), 1);
         this.addMessage('success', 'Exercício Removido');
       } else {
         this.addMessage('success', 'Erro ao Remover Exercício');

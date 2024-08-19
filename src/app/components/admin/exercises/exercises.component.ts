@@ -12,7 +12,6 @@ import {DialogModule} from "primeng/dialog";
 import {FormBuilder, ReactiveFormsModule, UntypedFormGroup, Validators} from "@angular/forms";
 import {ProgressBarModule} from "primeng/progressbar";
 import {environment} from "../../../../environments/environment";
-import {defer} from "rxjs";
 
 @Component({
   selector: 'app-exercicios',

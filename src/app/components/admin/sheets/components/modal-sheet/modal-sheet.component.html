@@ -59,6 +59,10 @@
                     3</label>
                   <label class="mr-1"><input formControlName="quantity" type="radio" value="4"/>
                     4</label>
+                  <label class="mr-1"><input formControlName="quantity" type="radio" value="5"/>
+                    5</label>
+                  <label class="mr-1"><input formControlName="quantity" type="radio" value="6"/>
+                    6</label>
                 </fieldset>
                 <fieldset class="p-fieldset p-2">
                   <legend>Escolha em Qual Treino deseja adicionar o(s) Exercícios:</legend>
@@ -76,6 +80,14 @@
                                                                                      type="radio"
                                                                                      value="training_d"/> Treino
                     D</label>
+                  <label *ngIf="getField('quantity')?.value > 3" class="mr-1"><input formControlName="sheet_id"
+                                                                                     type="radio"
+                                                                                     value="training_e"/> Treino
+                    E</label>
+                  <label *ngIf="getField('quantity')?.value > 3" class="mr-1"><input formControlName="sheet_id"
+                                                                                     type="radio"
+                                                                                     value="training_f"/> Treino
+                    F</label>
                 </fieldset>
               </div>
               <div class="grid grid-rows-1 col-span-2 grid-flow-row gap-1">
@@ -167,7 +179,7 @@
           </table>
         </div>
         <div class="p-2 flex justify-center items-center mb-2.5 divide-x ml-2">
-          <table class="table-auto w-full border-collapse border border-slate-400 sm:table-auto md:table-auto">
+          <table class="table-auto w-full border-collapse border border-slate-400">
             <caption class="caption-top">
               Preview Planilha
             </caption>
@@ -177,11 +189,13 @@
               <td *ngIf="getField('quantity')?.value > 1" class="border border-slate-900">Treino B</td>
               <td *ngIf="getField('quantity')?.value > 2" class="border border-slate-900">Treino C</td>
               <td *ngIf="getField('quantity')?.value > 3" class="border border-slate-900">Treino D</td>
+              <td *ngIf="getField('quantity')?.value > 4" class="border border-slate-900">Treino E</td>
+              <td *ngIf="getField('quantity')?.value > 5" class="border border-slate-900">Treino F</td>
             </tr>
             </thead>
             <tbody>
             <tr>
-              <td class="w-1/4 border border-slate-300">
+              <td class="w-1/6 border border-slate-300">
                 @for (exercise of addExercisesA; track exercise) {
                   <p class="capitalize border-l-blue-900"> {{ exercise.exercise }}
                     <button (click)="removeExercise(exercise)" style="color: white"
@@ -189,7 +203,7 @@
                   </p>
                 }
               </td>
-              <td *ngIf="getField('quantity')?.value > 1" class="w-1/4 border border-slate-300">
+              <td *ngIf="getField('quantity')?.value > 1" class="w-1/6 border border-slate-300">
                 @for (exercise of addExercisesB; track exercise) {
                   <p class="capitalize border-l-blue-900"> {{ exercise.exercise }}
                     <button (click)="removeExercise(exercise)" style="color: white"
@@ -197,7 +211,7 @@
                   </p>
                 }
               </td>
-              <td *ngIf="getField('quantity')?.value > 2" class="w-1/4 border border-slate-300">
+              <td *ngIf="getField('quantity')?.value > 2" class="w-1/6 border border-slate-300">
                 @for (exercise of addExercisesC; track exercise) {
                   <p class="capitalize"> {{ exercise.exercise }}
                     <button (click)="removeExercise(exercise)" style="color: white"
@@ -205,8 +219,24 @@
                   </p>
                 }
               </td>
-              <td *ngIf="getField('quantity')?.value > 3" class="w-1/4 border border-slate-300">
+              <td *ngIf="getField('quantity')?.value > 3" class="w-1/6 border border-slate-300">
                 @for (exercise of addExercisesD; track exercise) {
+                  <p class="capitalize border-l-blue-900"> {{ exercise.exercise }}
+                    <button (click)="removeExercise(exercise)" style="color: white"
+                            class="rounded-full pi pi-times-circle bg-red-600"></button>
+                  </p>
+                }
+              </td>
+              <td *ngIf="getField('quantity')?.value > 4" class="w-1/6 border border-slate-300">
+                @for (exercise of addExercisesE; track exercise) {
+                  <p class="capitalize border-l-blue-900"> {{ exercise.exercise }}
+                    <button (click)="removeExercise(exercise)" style="color: white"
+                            class="rounded-full pi pi-times-circle bg-red-600"></button>
+                  </p>
+                }
+              </td>
+              <td *ngIf="getField('quantity')?.value > 5" class="w-1/4 border border-slate-300">
+                @for (exercise of addExercisesF; track exercise) {
                   <p class="capitalize border-l-blue-900"> {{ exercise.exercise }}
                     <button (click)="removeExercise(exercise)" style="color: white"
                             class="rounded-full pi pi-times-circle bg-red-600"></button>

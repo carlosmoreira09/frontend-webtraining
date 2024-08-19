@@ -48,12 +48,15 @@ export class SheetsComponent implements OnInit {
   }
 
   listSheets() {
-    this.sheetsService.listSheets().subscribe(
-      (res: SheetsModel[]) => {
-        this.sheets = res;
+    this.sheetsService.listSheets().subscribe({
+      next: (res: SheetsModel[]) => {
+          this.sheets = res;
+        },
+      complete: () => {
         if(this.sheets.length === 0) {
           this.showTable = false;
         }
+      }
       }
     );
   }
