@@ -3,11 +3,11 @@
 <section class="h-screen">
   <div class="h-full">
     <div
-      class="flex h-full flex-wrap items-center justify-center lg:justify-between">
+      class="flex flex-col sm:flex-row h-full items-center justify-center lg:justify-between">
       <div
-        class="hidden md:flex justify-center items-center md:mb-0 md:w-9/12 lg:w-6/12 xl:w-6/12">
+        class="hidden xxsm:w-24 xxsm:h-24 xsm:w-52 xsm:mt-4 xsm:h-80 items-center xxsm:flex justify-center md:w-9/12 lg:w-6/12 xl:w-6/12">
         <img
-          class="sm:max-xl:w-64"
+          class="p-4"
           alt="Banner Web Training"
           height="500"
           ngSrc="../../../../assets/img/banner.png"
@@ -16,14 +16,14 @@
       </div>
 
       <!-- Right column container -->
-      <div class=" mb-12 mr-5 md:mb-2 md:w-7/12 lg:w-5/12 xl:w-5/12">
+      <div class="md:mr-5 xl:mr-52 md:mb-2 md:w-7/12 lg:w-5/12 xl:w-5/12">
         <form [formGroup]="authForm">
           <!--Sign in section-->
           <div
             class="flex flex-row items-center justify-center lg:justify-center md:justify-center">
-            <p class="mb-0 me-4 text-2xl uppercase text-blue-900 tracking-wide font-bold">Log In </p>
+            <p class="text-2xl uppercase text-blue-900 tracking-wide font-bold">Log In </p>
           </div>
-        <div class="mt-5 flex justify-center space-x-10">
+        <div class="flex justify-center space-x-10">
           <label class="mr-1 text-lg capitalize text-blue-900 tracking-wide"><input formControlName="isUser" type="radio" [value]="true"/>
             Aluno</label>
           <label class="mr-1  text-lg capitalize text-blue-900 tracking-wide"><input formControlName="isUser" type="radio" [value]="false"/>
@@ -59,17 +59,6 @@
               class="inline-block w-full rounded bg-blue-600 px-7 pb-2 pt-3 text-sm font-medium uppercase leading-normal text-white shadow-primary-3 transition duration-150 ease-in-out hover:bg-primary-accent-300 hover:shadow-primary-2 focus:bg-primary-accent-300 focus:shadow-primary-2 focus:outline-none focus:ring-0 active:bg-primary-600 active:shadow-primary-2 dark:shadow-black/30 dark:hover:shadow-dark-strong dark:focus:shadow-dark-strong dark:active:shadow-dark-strong">
               Login
             </button>
-
-            <!-- Register link -->
-            <p class="mb-0 mt-2 pt-1 text-sm font-semibold">
-              Don't have an account?
-              <button
-                (click)="register()"
-                class="text-white p-2 ml-3 rounded-full transition bg-blue-900 duration-150 ease-in-out"
-              >Register
-              </button
-              >
-            </p>
           </div>
         </form>
       </div>
