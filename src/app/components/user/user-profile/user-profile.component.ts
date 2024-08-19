@@ -1,7 +1,7 @@
 import {AfterViewInit, Component, ElementRef, Inject, OnInit, PLATFORM_ID, ViewChild} from '@angular/core';
 import {DialogModule} from "primeng/dialog";
 import {HttpClient} from "@angular/common/http";
-import {CommonModule, isPlatformBrowser} from "@angular/common";
+import {CommonModule, isPlatformBrowser, NgOptimizedImage} from "@angular/common";
 import {Router} from "@angular/router";
 
 import {MessageService} from "primeng/api";
@@ -17,7 +17,8 @@ import {initFlowbite} from "flowbite";
   standalone: true,
   imports: [
     DialogModule,
-    CommonModule
+    CommonModule,
+    NgOptimizedImage
   ],
   templateUrl: './user-profile.component.html',
   styleUrl: './user-profile.component.css',
