@@ -34,7 +34,6 @@ export class ModalSheetComponent implements OnInit {
   @ViewChild('openDialog') dialog: ElementRef
   @ViewChild('editDialog') editDialog: ElementRef
 
-  quantitySheet: number;
   id_client: number | null = null;
   showCreateSheet: boolean = false;
   showEditSheet: boolean = false;
@@ -77,7 +76,7 @@ export class ModalSheetComponent implements OnInit {
 
   initNewControlForm() {
     this.sheetFormGroup = this.formBuilder.group({
-      exercises: [this.setExercise('peito'), [Validators.required]],
+      exercises: [this.setExercise('costas'), [Validators.required]],
       sheet_desc: ['', Validators.required],
       sheet_name: ['', Validators.required],
       exercise_type: [this.modalidades[0].abbrev, Validators.required],
@@ -98,22 +97,14 @@ export class ModalSheetComponent implements OnInit {
   }
 
   initEditControlForm() {
-    if (this.editSheet.training_d.length === 0 && this.editSheet.training_c.length !== 0) {
-      this.quantitySheet = 3
-    } else if (this.editSheet.training_c.length === 0) {
-      this.quantitySheet = 2
-    } else if (this.editSheet.training_b.length === 0 && this.editSheet.training_c.length === 0) {
-      this.quantitySheet = 1
-    } else {
-      this.quantitySheet = 4
-    }
+
     this.sheetFormGroup = this.formBuilder.group({
       exercises: [this.setExercise('peito'), [Validators.required]],
       sheet_desc: [this.editSheet.sheet_desc, Validators.required],
       sheet_name: [this.editSheet.sheet_name, Validators.required],
       exercise_type: [this.modalidades[0].abbrev, Validators.required],
       sheet_id: ['training_a', Validators.required],
-      quantity: [this.quantitySheet.toString(), Validators.required],
+      quantity: [this.editSheet.training_quantity, Validators.required],
       sheet_details: [this.editSheet.sheet_details],
 
     });
@@ -129,7 +120,7 @@ export class ModalSheetComponent implements OnInit {
   }
 
   closeEditModal() {
-    this.dialogAthlete = true;
+    this.showEditSheet = false;
     this.initEditControlForm();
   }
 
@@ -431,6 +422,7 @@ export class ModalSheetComponent implements OnInit {
 
   removeExercise(exercise: ExerciseModel) {
     const resultSheet = this.getField('sheet_id')?.value;
+
     if (exercise) {
       if (resultSheet === 'training_a') {
         this.addExercisesA.splice(this.addExercisesA.indexOf(exercise), 1);
