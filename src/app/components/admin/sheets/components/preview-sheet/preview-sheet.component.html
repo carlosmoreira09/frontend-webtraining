@@ -11,24 +11,27 @@
   position="center"
   styleClass="overflow-auto">
   <ng-template pTemplate="headless">
-    <div class="grid grid-flow-row grid-cols-1 bg-white h-1/2 border-b rounded-t dark:border-gray-600">
+    <div class="p-2 grid grid-flow-row grid-cols-1 bg-white h-1/2 border-b rounded-t dark:border-gray-600">
       <div class="grid grid-cols-2 gap-2 p-2">
         <!-- Modal header -->
-        <div class="text-sm md:text-xl font-semibold text-gray-900 dark:text-white">
-          <i class="ml-2 pi pi-plus-circle" style="color: blue; font-size: 1rem"></i>
+        <div class="flex flex-row text-base md:text-xl font-semibold text-blue-800">
+          <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0,0,320,170"
+               style="fill:#228BE6;">
+            <g fill="#228be6" fill-rule="nonzero" stroke="none" stroke-width="1" stroke-linecap="butt" stroke-linejoin="miter" stroke-miterlimit="10" stroke-dasharray="" stroke-dashoffset="0" font-family="none" font-weight="none" font-size="none" text-anchor="none" style="mix-blend-mode: normal"><g transform="scale(5.12,5.12)"><path d="M28.90625,1.96875c-0.04297,0.00781 -0.08594,0.01953 -0.125,0.03125h-17.28125c-1.91406,0 -3.5,1.55859 -3.5,3.46875v38.4375c0,2.25391 1.86719,4.09375 4.125,4.09375h25.75c2.25781,0 4.125,-1.83984 4.125,-4.09375v-28.71875c0.02734,-0.13281 0.02734,-0.27344 0,-0.40625v-0.28125c0.00781,-0.26562 -0.09375,-0.52734 -0.28125,-0.71875l-11.5,-11.5c-0.19141,-0.1875 -0.45312,-0.28906 -0.71875,-0.28125h-0.3125c-0.08984,-0.02344 -0.1875,-0.03516 -0.28125,-0.03125zM11.5,4h16.5v8.34375c0,2.01172 1.64453,3.65625 3.65625,3.65625h8.34375v27.90625c0,1.16797 -0.94531,2.09375 -2.125,2.09375h-25.75c-1.17969,0 -2.125,-0.92578 -2.125,-2.09375v-38.4375c0,-0.82422 0.66016,-1.46875 1.5,-1.46875zM30,4.9375l9.0625,9.0625h-7.40625c-0.93359,0 -1.65625,-0.72266 -1.65625,-1.65625zM17,24v14h16v-14zM19,26h5v2h-5zM26,26h5v2h-5zM19,30h5v2h-5zM26,30h5v2h-5zM19,34h5v2h-5zM26,34h5v2h-5z"></path></g></g>
+          </svg>
           Preview Planilha
         </div>
         <div class="place-self-end">
           <button (click)="onCloseCreate()"
-                  class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+                  class="text-white bg-indigo-900 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
             Fechar
           </button>
         </div>
       </div>
       <!-- Modal content -->
-      <div [class]="setClass()">
+      <div class="grid grid-rows-1 grid-cols-1 md:grid-rows-1 w-full xl:grid-cols-1">
         <div class="col-span-1">
-          <app-training-table [sheet]="sheetA" training="Treino A"></app-training-table>
+          <app-training-table *ngIf="sheetA.length > 0"  [sheet]="sheetA" training="Treino A"></app-training-table>
         </div>
         <div class="col-span-1">
           <app-training-table *ngIf="sheetB.length > 0" [sheet]="sheetB" training="Treino B"></app-training-table>
@@ -38,6 +41,12 @@
         </div>
         <div class="col-span-1">
           <app-training-table *ngIf="sheetD.length > 0" [sheet]="sheetD" training="Treino D"></app-training-table>
+        </div>
+        <div class="col-span-1">
+          <app-training-table *ngIf="sheetE.length > 0" [sheet]="sheetE" training="Treino E"></app-training-table>
+        </div>
+        <div class="col-span-1">
+          <app-training-table *ngIf="sheetF.length > 0" [sheet]="sheetF" training="Treino F"></app-training-table>
         </div>
       </div>
       <div class="mt-1">

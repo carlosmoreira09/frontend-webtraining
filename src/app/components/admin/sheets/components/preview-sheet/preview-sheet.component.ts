@@ -39,7 +39,8 @@ export class PreviewSheetComponent implements OnInit {
   public sheetB: ExerciseModel[];
   public sheetC: ExerciseModel[];
   public sheetD: ExerciseModel[];
-
+  public sheetE: ExerciseModel[];
+  public sheetF: ExerciseModel[];
   constructor() {
   }
 
@@ -54,22 +55,9 @@ export class PreviewSheetComponent implements OnInit {
       this.sheetB = this.sheetInfo.training_b;
       this.sheetC = this.sheetInfo.training_c;
       this.sheetD = this.sheetInfo.training_d;
+      this.sheetE = this.sheetInfo.training_e;
+      this.sheetF = this.sheetInfo.training_f;
       this.showPreviewSheet = true;
-    }
-  }
-
-  setClass() {
-    if (this.sheetB.length === 0) {
-      return 'p-2 grid grid-rows-1 grid-cols-1 w-full md:grid-rows-1 md:grid-cols-1'
-    }
-    if (this.sheetC.length === 0) {
-      return 'p-2 grid grid-rows-2 grid-cols-1 w-full md:grid-rows-1 md:grid-cols-2'
-    }
-    if (this.sheetD.length === 0) {
-      return 'p-2 grid grid-rows-3 grid-cols-1 md:grid-rows-1 w-full xl:grid-cols-3'
-    } else {
-      return 'p-2 grid grid-rows-1 grid-cols-1 md:grid-rows-1 w-full xl:grid-cols-1'
-
     }
   }
 
